@@ -63,6 +63,7 @@ const Header = ({ onMenuClick }) => {
                         {location.pathname === '/history' && '我的作业'}
                         {location.pathname === '/statistics' && '学习统计'}
                         {location.pathname === '/settings' && '个人设置'}
+                        {location.pathname === '/faq' && '常见问题'}
                         {location.pathname.startsWith('/homework/') && '作业详情'}
                         {location.pathname === '/new' && '新建作业'}
                     </h2>
