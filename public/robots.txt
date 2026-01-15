@@ -1,0 +1,34 @@
+# robots.txt for ai7miao.com
+# 智能作业辅导 - AI作业导师
+
+# 允许所有搜索引擎爬取
+User-agent: *
+Allow: /
+
+# 不允许爬取的路径（如果有）
+# Disallow: /api/
+# Disallow: /admin/
+
+# Sitemap 位置
+Sitemap: https://ai7miao.com/sitemap.xml
+Sitemap: https://www.ai7miao.com/sitemap.xml
+Sitemap: https://homework-ai.pages.dev/sitemap.xml
+
+# 爬取延迟（可选，避免服务器压力）
+# Crawl-delay: 1
+
+# 针对特定搜索引擎的设置
+User-agent: Googlebot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Sogou spider
+Allow: /
+
+User-agent: 360Spider
+Allow: /
