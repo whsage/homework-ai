@@ -1,6 +1,6 @@
 ﻿import { useState, useEffect, useRef } from 'react';
 import ChatInput from './ChatInput';
-import { Bot, User, Copy, Check } from 'lucide-react';
+import { Bot, User, Copy, Check, ChevronDown, ChevronUp, Image as ImageIcon } from 'lucide-react';
 import clsx from 'clsx';
 import { sendMessageToTutor } from '../../services/aiService';
 import { supabase } from '../../supabase';
@@ -57,6 +57,7 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
     const messagesEndRef = useRef(null);
     const [sessionId, setSessionId] = useState(initialSessionId);
     const autoAnalysisTriggeredRef = useRef(false); // 防止重复触发
+    const [collapsedMessages, setCollapsedMessages] = useState(new Set()); // 折叠的消息ID集合
 
     // Update sessionId when prop changes (navigation)
     useEffect(() => {
@@ -203,6 +204,19 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
         setMessages(prev => prev.map(m => m.id === id ? { ...m, isTypingDone: true } : m));
     };
 
+    // 切换消息折叠状态
+    const toggleMessageCollapse = (id) => {
+        setCollapsedMessages(prev => {
+            const newSet = new Set(prev);
+            if (newSet.has(id)) {
+                newSet.delete(id);
+            } else {
+                newSet.add(id);
+            }
+            return newSet;
+        });
+    };
+
     // sessionId state is already declared at top level of component
     // deleted redundant declaration created in previous turn parse attempt if any.
 
@@ -287,38 +301,71 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
                         </div>
 
                         <div className={clsx(
-                            "max-w-[90%] sm:max-w-[85%] rounded-2xl p-3 sm:p-4 shadow-sm relative group transition-all text-sm sm:text-base",
+                            "max-w-[90%] sm:max-w-[85%] rounded-2xl shadow-sm relative group transition-all text-sm sm:text-base",
                             msg.type === 'user'
-                                ? "bg-indigo-600 text-white rounded-tr-none text-right"
+                                ? "bg-indigo-600 text-white rounded-tr-none"
                                 : "bg-white text-slate-800 rounded-tl-none border border-slate-200"
                         )}>
                             {msg.type === 'ai' && !msg.isTypingDone ? (
-                                <TypewriterText text={msg.text} onComplete={() => markTypingDone(msg.id)} />
-                            ) : (
+                                <div className="p-3 sm:p-4">
+                                    <TypewriterText text={msg.text} onComplete={() => markTypingDone(msg.id)} />
+                                </div>
+                            ) : msg.type === 'user' ? (
+                                // 用户消息 - 可折叠
                                 <>
-                                    {/* Display image if present */}
-                                    {msg.imageUrl && (
-                                        <img
-                                            src={msg.imageUrl}
-                                            alt="上传的图片"
-                                            className="max-w-full rounded-lg mb-2 max-h-64 object-contain"
-                                        />
-                                    )}
+                                    {/* 折叠标题栏 - 始终显示 */}
+                                    <div
+                                        className="flex items-center justify-between p-3 sm:p-4 cursor-pointer hover:bg-indigo-700 rounded-2xl transition-colors"
+                                        onClick={() => toggleMessageCollapse(msg.id)}
+                                    >
+                                        <div className="flex items-center gap-2 flex-1 min-w-0">
+                                            {msg.imageUrl && <ImageIcon size={16} className="flex-shrink-0" />}
+                                            <span className="font-medium truncate">
+                                                {msg.imageUrl ? '📷 题目图片' : msg.text.length > 20 ? msg.text.substring(0, 20) + '...' : msg.text}
+                                            </span>
+                                        </div>
+                                        {collapsedMessages.has(msg.id) ? (
+                                            <ChevronDown size={18} className="flex-shrink-0" />
+                                        ) : (
+                                            <ChevronUp size={18} className="flex-shrink-0" />
+                                        )}
+                                    </div>
 
-                                    <div className={clsx("prose prose-sm max-w-none", msg.type === 'user' && "prose-invert text-white")}>
+                                    {/* 展开的内容 */}
+                                    {!collapsedMessages.has(msg.id) && (
+                                        <div className="px-3 sm:px-4 pb-3 sm:pb-4 pt-0">
+                                            {msg.imageUrl && (
+                                                <img
+                                                    src={msg.imageUrl}
+                                                    alt="上传的图片"
+                                                    className="max-w-full rounded-lg mb-2 max-h-64 object-contain border-2 border-indigo-400"
+                                                />
+                                            )}
+                                            {msg.text && (
+                                                <div className="prose prose-sm max-w-none prose-invert text-white">
+                                                    <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                                                        {msg.text}
+                                                    </ReactMarkdown>
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                </>
+                            ) : (
+                                // AI消息 - 不折叠
+                                <div className="p-3 sm:p-4">
+                                    <div className="prose prose-sm max-w-none">
                                         {msg.isError ? (
                                             <div className="text-red-500 font-medium flex items-center gap-2">
                                                 <span>⚠️</span> {msg.text}
                                             </div>
                                         ) : (
-                                            <div className="prose prose-sm max-w-none">
-                                                <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
-                                                    {msg.type === 'ai' ? highlightKeywords(msg.text) : msg.text}
-                                                </ReactMarkdown>
-                                            </div>
+                                            <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                                                {highlightKeywords(msg.text)}
+                                            </ReactMarkdown>
                                         )}
                                     </div>
-                                </>
+                                </div>
                             )}
 
                             {/* Copy Button for AI messages */}
@@ -346,7 +393,7 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
             </div>
 
             <ChatInput onSend={handleSendMessage} disabled={isTyping} />
-        </div>
+        </div >
     );
 };
 
