@@ -311,46 +311,53 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
                                     <TypewriterText text={msg.text} onComplete={() => markTypingDone(msg.id)} />
                                 </div>
                             ) : msg.type === 'user' ? (
-                                // 用户消息 - 可折叠
-                                <>
-                                    {/* 折叠标题栏 - 始终显示 */}
-                                    <div
-                                        className="flex items-center justify-between p-3 sm:p-4 cursor-pointer hover:bg-indigo-700 rounded-2xl transition-colors"
-                                        onClick={() => toggleMessageCollapse(msg.id)}
-                                    >
-                                        <div className="flex items-center gap-2 flex-1 min-w-0">
-                                            {msg.imageUrl && <ImageIcon size={16} className="flex-shrink-0" />}
-                                            <span className="font-medium truncate">
-                                                {msg.imageUrl ? '📷 题目图片' : msg.text}
-                                            </span>
-                                        </div>
-                                        {msg.imageUrl && (
-                                            collapsedMessages.has(msg.id) ? (
+                                // 用户消息的处理
+                                msg.imageUrl ? (
+                                    // 1. 带图片的消息：使用折叠样式
+                                    <>
+                                        <div
+                                            className="flex items-center justify-between p-3 sm:p-4 cursor-pointer hover:bg-indigo-700 rounded-2xl transition-colors"
+                                            onClick={() => toggleMessageCollapse(msg.id)}
+                                        >
+                                            <div className="flex items-center gap-2 flex-1 min-w-0">
+                                                <ImageIcon size={16} className="flex-shrink-0" />
+                                                <span className="font-medium truncate">
+                                                    📷 题目图片
+                                                </span>
+                                            </div>
+                                            {collapsedMessages.has(msg.id) ? (
                                                 <ChevronDown size={18} className="flex-shrink-0" />
                                             ) : (
                                                 <ChevronUp size={18} className="flex-shrink-0" />
-                                            )
-                                        )}
-                                    </div>
-
-                                    {/* 展开的内容 - 只在有图片时显示 */}
-                                    {msg.imageUrl && !collapsedMessages.has(msg.id) && (
-                                        <div className="px-3 sm:px-4 pb-3 sm:pb-4 pt-0">
-                                            <img
-                                                src={msg.imageUrl}
-                                                alt="上传的图片"
-                                                className="max-w-full rounded-lg mb-2 max-h-64 object-contain border-2 border-indigo-400"
-                                            />
-                                            {msg.text && (
-                                                <div className="prose prose-sm max-w-none prose-invert text-white mt-2">
-                                                    <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
-                                                        {msg.text}
-                                                    </ReactMarkdown>
-                                                </div>
                                             )}
                                         </div>
-                                    )}
-                                </>
+
+                                        {/* 展开的内容 */}
+                                        {!collapsedMessages.has(msg.id) && (
+                                            <div className="px-3 sm:px-4 pb-3 sm:pb-4 pt-0">
+                                                <img
+                                                    src={msg.imageUrl}
+                                                    alt="上传的图片"
+                                                    className="max-w-full rounded-lg mb-2 max-h-64 object-contain border-2 border-indigo-400"
+                                                />
+                                                {msg.text && (
+                                                    <div className="prose prose-sm max-w-none prose-invert text-white mt-2">
+                                                        <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                                                            {msg.text}
+                                                        </ReactMarkdown>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
+                                    </>
+                                ) : (
+                                    // 2. 纯文字消息：直接显示完整气泡，不使用折叠
+                                    <div className="p-3 sm:p-4 prose prose-sm max-w-none prose-invert text-white">
+                                        <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                                            {msg.text}
+                                        </ReactMarkdown>
+                                    </div>
+                                )
                             ) : (
                                 // AI消息 - 不折叠
                                 <div className="p-3 sm:p-4">

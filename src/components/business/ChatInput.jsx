@@ -186,11 +186,7 @@ const ChatInput = ({ onSend, disabled }) => {
                     </button>
                 </div>
 
-                {/* 提示文字 */}
-                <div className="mt-1.5 sm:mt-2 text-xs text-slate-400 text-center">
-                    <span className="hidden sm:inline">💡 支持粘贴图片 (Ctrl+V) 或点击 📎 添加文件</span>
-                    <span className="sm:hidden">💡 点击 📎 添加图片</span>
-                </div>
+
             </div>
         </form>
     );

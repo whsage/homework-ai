@@ -24,7 +24,7 @@ const HomeworkDetailPage = () => {
                 >
                     <div className="flex items-center gap-2">
                         <ImageIcon size={18} className="text-slate-600" />
-                        <span className="font-semibold text-slate-700 text-sm">题目图片</span>
+                        <span className="font-semibold text-slate-700 text-sm">题目</span>
                     </div>
                     {isDocumentCollapsed ? (
                         <ChevronDown size={18} className="text-slate-600" />
