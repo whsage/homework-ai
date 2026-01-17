@@ -92,7 +92,7 @@ const ChatInput = ({ onSend, disabled }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="p-4 bg-white border-t border-slate-200 absolute bottom-0 left-0 right-0 z-10">
+        <form onSubmit={handleSubmit} className="p-2 sm:p-4 bg-white border-t border-slate-200 absolute bottom-0 left-0 right-0 z-10">
             <div className="max-w-4xl mx-auto">
                 {/* 文件预览区域 */}
                 {selectedFile && (
@@ -159,12 +159,12 @@ const ChatInput = ({ onSend, disabled }) => {
                             onInput={handleInput}
                             onKeyDown={handleKeyDown}
                             onPaste={handlePaste}
-                            placeholder="输入消息... (Enter 发送, Shift+Enter 换行, Ctrl+V 粘贴图片)"
-                            className="w-full px-4 py-3 pr-12 bg-slate-50 border border-slate-200 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-slate-700 placeholder:text-slate-400"
+                            placeholder="输入消息..."
+                            className="w-full px-3 sm:px-4 py-2.5 sm:py-3 pr-12 bg-slate-50 border border-slate-200 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-slate-700 placeholder:text-slate-400 text-sm sm:text-base"
                             disabled={disabled}
                             rows={1}
                             style={{
-                                minHeight: '48px',
+                                minHeight: '44px',
                                 maxHeight: '200px'
                             }}
                         />
@@ -187,8 +187,9 @@ const ChatInput = ({ onSend, disabled }) => {
                 </div>
 
                 {/* 提示文字 */}
-                <div className="mt-2 text-xs text-slate-400 text-center">
-                    💡 支持粘贴图片 (Ctrl+V) 或点击 📎 添加文件
+                <div className="mt-1.5 sm:mt-2 text-xs text-slate-400 text-center">
+                    <span className="hidden sm:inline">💡 支持粘贴图片 (Ctrl+V) 或点击 📎 添加文件</span>
+                    <span className="sm:hidden">💡 点击 📎 添加图片</span>
                 </div>
             </div>
         </form>

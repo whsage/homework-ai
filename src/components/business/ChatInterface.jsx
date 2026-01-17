@@ -276,18 +276,18 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
 
     return (
         <div className="flex flex-col h-full bg-slate-50 relative">
-            <div className="flex-1 overflow-y-auto p-4 space-y-6 pb-24 scroll-smooth">
+            <div className="flex-1 overflow-y-auto p-2 sm:p-4 space-y-4 sm:space-y-6 pb-32 sm:pb-24 scroll-smooth">
                 {messages.map((msg) => (
-                    <div key={msg.id} className={clsx("flex gap-3", msg.type === 'user' ? "flex-row-reverse" : "flex-row")}>
+                    <div key={msg.id} className={clsx("flex gap-2 sm:gap-3", msg.type === 'user' ? "flex-row-reverse" : "flex-row")}>
                         <div className={clsx(
-                            "w-8 h-8 rounded-full flex items-center justify-center shrink-0 shadow-sm border",
+                            "w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center shrink-0 shadow-sm border",
                             msg.type === 'user' ? "bg-indigo-600 text-white border-indigo-700" : "bg-white text-emerald-600 border-slate-200"
                         )}>
-                            {msg.type === 'user' ? <User size={16} /> : <Bot size={16} />}
+                            {msg.type === 'user' ? <User size={14} className="sm:w-4 sm:h-4" /> : <Bot size={14} className="sm:w-4 sm:h-4" />}
                         </div>
 
                         <div className={clsx(
-                            "max-w-[85%] rounded-2xl p-4 shadow-sm relative group transition-all",
+                            "max-w-[90%] sm:max-w-[85%] rounded-2xl p-3 sm:p-4 shadow-sm relative group transition-all text-sm sm:text-base",
                             msg.type === 'user'
                                 ? "bg-indigo-600 text-white rounded-tr-none text-right"
                                 : "bg-white text-slate-800 rounded-tl-none border border-slate-200"
