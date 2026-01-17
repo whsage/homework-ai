@@ -5,13 +5,13 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../supabase';
 
 const StatCard = ({ icon: Icon, label, value, color }) => (
-    <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex items-center gap-4">
-        <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${color}`}>
-            <Icon size={24} className="text-white" />
+    <div className="bg-white p-3 md:p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-2 md:gap-4">
+        <div className={`w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center ${color} flex-shrink-0`}>
+            <Icon size={20} className="text-white md:w-6 md:h-6" />
         </div>
-        <div>
-            <p className="text-slate-500 text-sm font-medium">{label}</p>
-            <p className="text-2xl font-bold text-slate-800">{value}</p>
+        <div className="text-center md:text-left">
+            <p className="text-slate-500 text-xs md:text-sm font-medium">{label}</p>
+            <p className="text-lg md:text-2xl font-bold text-slate-800">{value}</p>
         </div>
     </div>
 );
@@ -34,13 +34,20 @@ const Dashboard = () => {
                 return;
             }
 
-            // 1. Fetch Stats
+            // 1. Fetch Stats (包含已删除的会话)
             const { count, data: allSessions } = await supabase
                 .from('sessions')
                 .select('created_at', { count: 'exact' })
+                .eq('user_id', user.id)
+                .is('deleted_at', null); // 只统计未删除的用于活跃天数
+
+            // 获取总会话数（包含已删除）
+            const { count: totalCount } = await supabase
+                .from('sessions')
+                .select('*', { count: 'exact', head: true })
                 .eq('user_id', user.id);
 
-            const totalSessions = count || 0;
+            const totalSessions = totalCount || 0;
 
             // Calculate Streak (Simplified: Count distinct days)
             let streak = 0;
@@ -96,7 +103,7 @@ const Dashboard = () => {
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-3 md:gap-6">
                 <StatCard
                     icon={CheckCircle2}
                     label="已完成任务"
