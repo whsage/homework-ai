@@ -34,36 +34,36 @@ const Dashboard = () => {
                 return;
             }
 
-            // 1. Fetch Stats (包含已删除的会话)
-            const { count, data: allSessions } = await supabase
-                .from('sessions')
-                .select('created_at', { count: 'exact' })
+            // 1. 获取累积统计（包含已删除的会话）
+            const { data: userStats } = await supabase
+                .from('user_stats')
+                .select('total_sessions_created')
                 .eq('user_id', user.id)
-                .is('deleted_at', null); // 只统计未删除的用于活跃天数
+                .single();
 
-            // 获取总会话数（包含已删除）
-            const { count: totalCount } = await supabase
+            const totalSessionsCreated = userStats?.total_sessions_created || 0;
+
+            // 2. 获取未删除的会话（用于计算活跃天数）
+            const { data: activeSessions } = await supabase
                 .from('sessions')
-                .select('*', { count: 'exact', head: true })
+                .select('created_at')
                 .eq('user_id', user.id);
-
-            const totalSessions = totalCount || 0;
 
             // Calculate Streak (Simplified: Count distinct days)
             let streak = 0;
-            if (allSessions && allSessions.length > 0) {
-                const dates = allSessions.map(s => new Date(s.created_at).toDateString());
+            if (activeSessions && activeSessions.length > 0) {
+                const dates = activeSessions.map(s => new Date(s.created_at).toDateString());
                 const uniqueDates = [...new Set(dates)];
                 streak = uniqueDates.length;
             }
 
             setStats({
-                completedTasks: totalSessions,
-                studyHours: Math.round(totalSessions * 0.25 * 10) / 10,
+                completedTasks: totalSessionsCreated, // 使用累积数量
+                studyHours: Math.round(totalSessionsCreated * 0.25 * 10) / 10,
                 streak: streak
             });
 
-            // 2. Fetch Recent Activity
+            // 3. Fetch Recent Activity (只显示未删除的)
             const { data: recent } = await supabase
                 .from('sessions')
                 .select('*')

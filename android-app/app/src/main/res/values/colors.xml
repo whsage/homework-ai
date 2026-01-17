@@ -13,4 +13,6 @@
     <color name="primary_dark">#3730A3</color>
     <color name="accent">#3B82F6</color>
     <color name="background">#F8FAFC</color>
+
+    <color name="ic_launcher_background">#4F46E5</color>
 </resources>

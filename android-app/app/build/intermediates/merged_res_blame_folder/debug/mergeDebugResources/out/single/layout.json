@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.ai7miao.homework.app-mergeDebugResources-31:/layout/activity_splash.xml",
+        "source": "com.ai7miao.homework.app-main-34:/layout/activity_splash.xml"
+    },
+    {
+        "merged": "com.ai7miao.homework.app-mergeDebugResources-31:/layout/activity_main.xml",
+        "source": "com.ai7miao.homework.app-main-34:/layout/activity_main.xml"
+    }
+]

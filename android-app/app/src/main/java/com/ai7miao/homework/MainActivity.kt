@@ -5,63 +5,64 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.KeyEvent
-import android.view.View
 import android.webkit.*
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.core.content.FileProvider
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var webView: WebView
-    private lateinit var progressBar: ProgressBar
-    private lateinit var swipeRefresh: SwipeRefreshLayout
-    
     private val BASE_URL = "https://ai7miao.com"
     private var filePathCallback: ValueCallback<Array<Uri>>? = null
-    
-    // Permission launcher
-    private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestMultiplePermissions()
-    ) { permissions ->
-        permissions.entries.forEach {
-            if (!it.value) {
-                Toast.makeText(this, "需要相应权限才能使用完整功能", Toast.LENGTH_SHORT).show()
-            }
+    private var tempPhotoUri: Uri? = null
+    private var croppedPhotoUri: Uri? = null
+
+    // 拍照回调 -> 进入裁剪
+    private val takePictureLauncher = registerForActivityResult(
+        ActivityResultContracts.TakePicture()
+    ) { success ->
+        if (success && tempPhotoUri != null) {
+            startCrop(tempPhotoUri!!)
+        } else {
+            cancelUpload()
         }
     }
-    
-    // File chooser launcher
-    private val fileChooserLauncher = registerForActivityResult(
+
+    // 裁剪回调 -> 返回结果给 WebView
+    private val cropLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            val data = result.data
-            val results = if (data == null) {
-                null
+            val uri = croppedPhotoUri ?: result.data?.data
+            if (uri != null) {
+                filePathCallback?.onReceiveValue(arrayOf(uri))
             } else {
-                val clipData = data.clipData
-                if (clipData != null) {
-                    Array(clipData.itemCount) { i ->
-                        clipData.getItemAt(i).uri
-                    }
-                } else {
-                    data.data?.let { arrayOf(it) }
-                }
+                cancelUpload()
             }
-            filePathCallback?.onReceiveValue(results)
         } else {
-            filePathCallback?.onReceiveValue(null)
+            cancelUpload()
         }
         filePathCallback = null
+    }
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            startCamera()
+        } else {
+            Toast.makeText(this, "需要相机权限", Toast.LENGTH_SHORT).show()
+            cancelUpload()
+        }
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -70,25 +71,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         
         webView = findViewById(R.id.webview)
-        progressBar = findViewById(R.id.progress_bar)
-        swipeRefresh = findViewById(R.id.swipe_refresh)
-        
-        // Request permissions
-        requestPermissions()
-        
-        // Setup SwipeRefreshLayout
-        swipeRefresh.setOnRefreshListener {
-            webView.reload()
-        }
-        swipeRefresh.setColorSchemeResources(
-            R.color.primary,
-            R.color.accent
-        )
-        
-        // Configure WebView
         setupWebView()
-        
-        // Load URL
         webView.loadUrl(BASE_URL)
     }
 
@@ -97,74 +80,11 @@ class MainActivity : AppCompatActivity() {
         webView.settings.apply {
             javaScriptEnabled = true
             domStorageEnabled = true
-            databaseEnabled = true
-            cacheMode = WebSettings.LOAD_DEFAULT
-            mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
-            
-            // Enable zoom
-            setSupportZoom(true)
-            builtInZoomControls = true
-            displayZoomControls = false
-            
-            // File access
             allowFileAccess = true
             allowContentAccess = true
-            
-            // User agent
-            userAgentString = userAgentString + " HomeworkAI/1.0"
         }
         
-        // WebViewClient
-        webView.webViewClient = object : WebViewClient() {
-            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-                val url = request?.url.toString()
-                return if (url.startsWith(BASE_URL)) {
-                    false // Load in WebView
-                } else {
-                    // Open external links in browser
-                    try {
-                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
-                    } catch (e: Exception) {
-                        Toast.makeText(this@MainActivity, "无法打开链接", Toast.LENGTH_SHORT).show()
-                    }
-                    true
-                }
-            }
-            
-            override fun onPageStarted(view: WebView?, url: String?, favicon: android.graphics.Bitmap?) {
-                super.onPageStarted(view, url, favicon)
-                progressBar.visibility = View.VISIBLE
-                progressBar.progress = 0
-            }
-            
-            override fun onPageFinished(view: WebView?, url: String?) {
-                super.onPageFinished(view, url)
-                progressBar.visibility = View.GONE
-                swipeRefresh.isRefreshing = false
-            }
-            
-            override fun onReceivedError(
-                view: WebView?,
-                request: WebResourceRequest?,
-                error: WebResourceError?
-            ) {
-                super.onReceivedError(view, request, error)
-                if (request?.isForMainFrame == true) {
-                    showErrorDialog()
-                }
-            }
-        }
-        
-        // WebChromeClient
         webView.webChromeClient = object : WebChromeClient() {
-            override fun onProgressChanged(view: WebView?, newProgress: Int) {
-                super.onProgressChanged(view, newProgress)
-                progressBar.progress = newProgress
-                if (newProgress == 100) {
-                    progressBar.visibility = View.GONE
-                }
-            }
-            
             override fun onShowFileChooser(
                 webView: WebView?,
                 filePathCallback: ValueCallback<Array<Uri>>?,
@@ -173,71 +93,88 @@ class MainActivity : AppCompatActivity() {
                 this@MainActivity.filePathCallback?.onReceiveValue(null)
                 this@MainActivity.filePathCallback = filePathCallback
                 
-                val intent = fileChooserParams?.createIntent()
-                try {
-                    fileChooserLauncher.launch(intent)
-                } catch (e: Exception) {
-                    this@MainActivity.filePathCallback = null
-                    Toast.makeText(this@MainActivity, "无法打开文件选择器", Toast.LENGTH_SHORT).show()
-                    return false
+                if (ContextCompat.checkSelfPermission(this@MainActivity, Manifest.permission.CAMERA) 
+                    == PackageManager.PERMISSION_GRANTED) {
+                    startCamera()
+                } else {
+                    requestPermissionLauncher.launch(Manifest.permission.CAMERA)
                 }
                 return true
             }
+        }
+    }
+
+    private fun startCamera() {
+        try {
+            val photoFile = File(cacheDir, "temp_camera.jpg")
+            if (photoFile.exists()) photoFile.delete()
             
-            override fun onPermissionRequest(request: PermissionRequest?) {
-                request?.grant(request.resources)
-            }
+            tempPhotoUri = FileProvider.getUriForFile(
+                this,
+                "com.ai7miao.homework.fileprovider",
+                photoFile
+            )
+            
+            takePictureLauncher.launch(tempPhotoUri)
+        } catch (e: Exception) {
+            Toast.makeText(this, "启动相机失败", Toast.LENGTH_SHORT).show()
+            cancelUpload()
         }
     }
-    
-    private fun requestPermissions() {
-        val permissions = mutableListOf<String>()
-        
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES)
-                != PackageManager.PERMISSION_GRANTED) {
-                permissions.add(Manifest.permission.READ_MEDIA_IMAGES)
+
+    private fun startCrop(sourceUri: Uri) {
+        try {
+            val croppedFile = File(cacheDir, "cropped_image.jpg")
+            if (croppedFile.exists()) croppedFile.delete()
+            
+            croppedPhotoUri = FileProvider.getUriForFile(
+                this,
+                "com.ai7miao.homework.fileprovider",
+                croppedFile
+            )
+
+            val intent = Intent("com.android.camera.action.CROP").apply {
+                setDataAndType(sourceUri, "image/*")
+                putExtra("crop", "true")
+                // 移除 aspectX 和 aspectY 以允许自由比例裁剪
+                putExtra("scale", true)
+                putExtra("return-data", false)
+                putExtra(MediaStore.EXTRA_OUTPUT, croppedPhotoUri)
+                putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString())
+                putExtra("noFaceDetection", true)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
             }
-        } else {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-                permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+
+            val resInfoList = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
+            if (resInfoList.isEmpty()) {
+                filePathCallback?.onReceiveValue(arrayOf(sourceUri))
+                filePathCallback = null
+                return
             }
-        }
-        
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-            != PackageManager.PERMISSION_GRANTED) {
-            permissions.add(Manifest.permission.CAMERA)
-        }
-        
-        if (permissions.isNotEmpty()) {
-            requestPermissionLauncher.launch(permissions.toTypedArray())
+
+            for (resolveInfo in resInfoList) {
+                val packageName = resolveInfo.activityInfo.packageName
+                grantUriPermission(packageName, sourceUri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                grantUriPermission(packageName, croppedPhotoUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+            }
+
+            cropLauncher.launch(intent)
+        } catch (e: Exception) {
+            filePathCallback?.onReceiveValue(arrayOf(sourceUri))
+            filePathCallback = null
         }
     }
-    
-    private fun showErrorDialog() {
-        AlertDialog.Builder(this)
-            .setTitle("加载失败")
-            .setMessage(getString(R.string.error_network))
-            .setPositiveButton(getString(R.string.retry)) { _, _ ->
-                webView.reload()
-            }
-            .setNegativeButton("退出") { _, _ ->
-                finish()
-            }
-            .show()
+
+    private fun cancelUpload() {
+        filePathCallback?.onReceiveValue(null)
+        filePathCallback = null
     }
-    
+
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
             webView.goBack()
             return true
         }
         return super.onKeyDown(keyCode, event)
-    }
-    
-    override fun onDestroy() {
-        webView.destroy()
-        super.onDestroy()
     }
 }

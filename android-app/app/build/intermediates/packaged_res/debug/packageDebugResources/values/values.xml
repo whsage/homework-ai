@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="accent">#3B82F6</color>
+    <color name="background">#F8FAFC</color>
+    <color name="black">#FF000000</color>
+    <color name="ic_launcher_background">#4F46E5</color>
+    <color name="primary">#4F46E5</color>
+    <color name="primary_dark">#3730A3</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">智能作业辅导</string>
+    <string name="error_loading">页面加载失败</string>
+    <string name="error_network">网络连接失败，请检查网络设置</string>
+    <string name="exit">退出</string>
+    <string name="loading">加载中...</string>
+    <string name="retry">重试</string>
+    <string name="tagline">AI作业导师 · 引导式学习</string>
+    <style name="Theme.HomeworkAI" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/accent</item>
+        <item name="colorSecondaryVariant">@color/accent</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:statusBarColor">@color/primary</item>
+    </style>
+    <style name="Theme.HomeworkAI.Splash" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:statusBarColor">@color/primary</item>
+    </style>
+</resources>

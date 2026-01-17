@@ -15,15 +15,16 @@ const Sidebar = ({ isOpen, onClose }) => {
             setIsLoadingSessions(true);
             const { data: { user } } = await supabase.auth.getUser();
             if (user) {
-                // Fetch total count
-                const { count } = await supabase
-                    .from('sessions')
-                    .select('*', { count: 'exact', head: true })
-                    .eq('user_id', user.id);
+                // Fetch total count from user_stats (累积数量，包含已删除)
+                const { data: userStats } = await supabase
+                    .from('user_stats')
+                    .select('total_sessions_created')
+                    .eq('user_id', user.id)
+                    .single();
 
-                setTotalSessions(count || 0);
+                setTotalSessions(userStats?.total_sessions_created || 0);
 
-                // Fetch recent sessions
+                // Fetch recent sessions (只显示未删除的)
                 const { data } = await supabase
                     .from('sessions')
                     .select('*')
@@ -43,19 +44,12 @@ const Sidebar = ({ isOpen, onClose }) => {
             .channel('public:sessions')
             .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'sessions' }, (payload) => {
                 setRecentSessions(prev => [payload.new, ...prev].slice(0, 5));
-                setTotalSessions(prev => prev + 1);
+                setTotalSessions(prev => prev + 1); // 累积数量 +1
             })
             .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'sessions' }, async () => {
-                // Re-fetch total count to ensure accuracy
+                // 删除时不减少累积数量，只刷新最近会话列表
                 const { data: { user } } = await supabase.auth.getUser();
                 if (user) {
-                    const { count } = await supabase
-                        .from('sessions')
-                        .select('*', { count: 'exact', head: true })
-                        .eq('user_id', user.id);
-                    setTotalSessions(count || 0);
-
-                    // Also refresh recent sessions
                     const { data } = await supabase
                         .from('sessions')
                         .select('*')

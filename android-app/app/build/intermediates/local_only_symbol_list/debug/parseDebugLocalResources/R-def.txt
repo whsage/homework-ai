@@ -1,0 +1,36 @@
+R_DEF: Internal format may change without notice
+local
+color accent
+color background
+color black
+color ic_launcher_background
+color primary
+color primary_dark
+color purple_200
+color purple_500
+color purple_700
+color teal_200
+color teal_700
+color white
+drawable ic_launcher_foreground
+drawable splash_background
+id app_name
+id logo
+id progress
+id progress_bar
+id tagline
+id webview
+layout activity_main
+layout activity_splash
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+string error_loading
+string error_network
+string exit
+string loading
+string retry
+string tagline
+style Theme.HomeworkAI
+style Theme.HomeworkAI.Splash
+xml file_paths
