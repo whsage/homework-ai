@@ -321,28 +321,28 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
                                         <div className="flex items-center gap-2 flex-1 min-w-0">
                                             {msg.imageUrl && <ImageIcon size={16} className="flex-shrink-0" />}
                                             <span className="font-medium truncate">
-                                                {msg.imageUrl ? '📷 题目图片' : msg.text.length > 20 ? msg.text.substring(0, 20) + '...' : msg.text}
+                                                {msg.imageUrl ? '📷 题目图片' : msg.text}
                                             </span>
                                         </div>
-                                        {collapsedMessages.has(msg.id) ? (
-                                            <ChevronDown size={18} className="flex-shrink-0" />
-                                        ) : (
-                                            <ChevronUp size={18} className="flex-shrink-0" />
+                                        {msg.imageUrl && (
+                                            collapsedMessages.has(msg.id) ? (
+                                                <ChevronDown size={18} className="flex-shrink-0" />
+                                            ) : (
+                                                <ChevronUp size={18} className="flex-shrink-0" />
+                                            )
                                         )}
                                     </div>
 
-                                    {/* 展开的内容 */}
-                                    {!collapsedMessages.has(msg.id) && (
+                                    {/* 展开的内容 - 只在有图片时显示 */}
+                                    {msg.imageUrl && !collapsedMessages.has(msg.id) && (
                                         <div className="px-3 sm:px-4 pb-3 sm:pb-4 pt-0">
-                                            {msg.imageUrl && (
-                                                <img
-                                                    src={msg.imageUrl}
-                                                    alt="上传的图片"
-                                                    className="max-w-full rounded-lg mb-2 max-h-64 object-contain border-2 border-indigo-400"
-                                                />
-                                            )}
+                                            <img
+                                                src={msg.imageUrl}
+                                                alt="上传的图片"
+                                                className="max-w-full rounded-lg mb-2 max-h-64 object-contain border-2 border-indigo-400"
+                                            />
                                             {msg.text && (
-                                                <div className="prose prose-sm max-w-none prose-invert text-white">
+                                                <div className="prose prose-sm max-w-none prose-invert text-white mt-2">
                                                     <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
                                                         {msg.text}
                                                     </ReactMarkdown>

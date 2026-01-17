@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 禁用移动端下拉刷新，防止误触 */
+body {
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 禁用整个应用的下拉刷新 */
+html,
+body {
+    overscroll-behavior: contain;
+}
+
+/* 确保聊天界面内部可以正常滚动 */
+.chat-scroll-container {
+    overscroll-behavior: auto;
+}
