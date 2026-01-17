@@ -116,7 +116,6 @@ const History = () => {
             // Update local state
             setSessions(prev => prev.filter(s => !selectedSessions.includes(s.id)));
             setSelectedSessions([]);
-            setIsSelectionMode(false);
             alert('删除成功！');
         } catch (error) {
             console.error('Delete error:', error);
