@@ -127,7 +127,7 @@ const ChatInput = ({ onSend, disabled }) => {
                 )}
 
                 {/* 输入区域 */}
-                <div className="flex items-end gap-2">
+                <div className="flex items-center gap-2">
                     {/* 附件按钮 */}
                     <input
                         ref={fileInputRef}
