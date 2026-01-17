@@ -12,6 +12,7 @@ const History = () => {
     const [isDeleting, setIsDeleting] = useState(false);
     const [isExporting, setIsExporting] = useState(false);
     const [showExportMenu, setShowExportMenu] = useState(false);
+    const [totalCreated, setTotalCreated] = useState(0); // 累积总数
 
     useEffect(() => {
         const loadAllSessions = async () => {
@@ -22,6 +23,7 @@ const History = () => {
                 return;
             }
 
+            // 获取当前会话列表
             const { data, error } = await supabase
                 .from('sessions')
                 .select('*')
@@ -31,6 +33,15 @@ const History = () => {
             if (data) {
                 setSessions(data);
             }
+
+            // 获取累积总数（包含已删除）
+            const { data: userStats } = await supabase
+                .from('user_stats')
+                .select('total_sessions_created')
+                .eq('user_id', user.id)
+                .single();
+
+            setTotalCreated(userStats?.total_sessions_created || 0);
             setLoading(false);
         };
 
@@ -410,19 +421,12 @@ const History = () => {
                 <div className="bg-indigo-50 rounded-xl p-4 border border-indigo-100">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-sm text-indigo-600 font-medium">总会话数</p>
+                            <p className="text-sm text-indigo-600 font-medium">当前作业</p>
                             <p className="text-2xl font-bold text-indigo-900">{sessions.length}</p>
                         </div>
                         <div className="text-right">
-                            <p className="text-sm text-indigo-600 font-medium">本月</p>
-                            <p className="text-2xl font-bold text-indigo-900">
-                                {sessions.filter(s => {
-                                    const sessionDate = new Date(s.created_at);
-                                    const now = new Date();
-                                    return sessionDate.getMonth() === now.getMonth() &&
-                                        sessionDate.getFullYear() === now.getFullYear();
-                                }).length}
-                            </p>
+                            <p className="text-sm text-indigo-600 font-medium">总计</p>
+                            <p className="text-2xl font-bold text-indigo-900">{totalCreated}</p>
                         </div>
                     </div>
                 </div>
