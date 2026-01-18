@@ -471,12 +471,23 @@ export const sendMessageToTutor = async (userMessage, history = [], imageFile = 
             // Smart default prompt based on context
             const defaultPrompt = userMessage || "请帮我分析这道题目，引导我思考解题思路。";
 
+            // 强引导 Prompt：强制 AI 聚焦新图片，忽略旧上下文
+            const strongContextPrompt = `
+【⚠️ 重要指令：新题目分析】
+用户上传了一张新的图片，这意味着这是一个**全新的题目**。
+1. 请**完全忽略**之前对话中的所有题目信息（旧的题目描述、数值等）。
+2. **仅仅**分析当前这张上传的图片。
+3. 如果这张图是新题目，请在返回的 JSON 中生成新的 "title" 字段以更新会话标题。
+
+用户备注：${defaultPrompt}
+`.trim();
+
             messages.push({
                 role: "user",
                 content: [
                     {
                         type: "text",
-                        text: defaultPrompt,
+                        text: strongContextPrompt,
                     },
                     {
                         type: "image_url",

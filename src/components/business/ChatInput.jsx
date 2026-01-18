@@ -1,17 +1,19 @@
 import { Send, Paperclip, X, Image as ImageIcon } from 'lucide-react';
 import { useState, useRef } from 'react';
 import clsx from 'clsx';
+import { compressImage } from '../../utils/imageCompression';
 
 const ChatInput = ({ onSend, disabled }) => {
     const [message, setMessage] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
     const [previewUrl, setPreviewUrl] = useState(null);
+    const [isCompressing, setIsCompressing] = useState(false);
     const fileInputRef = useRef(null);
     const textareaRef = useRef(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if ((message.trim() || selectedFile) && !disabled) {
+        if ((message.trim() || selectedFile) && !disabled && !isCompressing) {
             onSend(message, selectedFile);
             setMessage('');
             setSelectedFile(null);
@@ -23,21 +25,43 @@ const ChatInput = ({ onSend, disabled }) => {
         }
     };
 
-    const handleFileSelect = (e) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'];
-            if (validTypes.includes(file.type)) {
-                setSelectedFile(file);
-                // 创建预览 URL
-                if (file.type.startsWith('image/')) {
-                    const url = URL.createObjectURL(file);
-                    setPreviewUrl(url);
+    const handleProcessFile = async (file) => {
+        if (!file) return;
+
+        const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'];
+        if (validTypes.includes(file.type)) {
+            // 如果是图片，进行压缩
+            if (file.type.startsWith('image/')) {
+                try {
+                    setIsCompressing(true);
+                    // 显示原始预览
+                    const originalUrl = URL.createObjectURL(file);
+                    setPreviewUrl(originalUrl);
+
+                    // 压缩
+                    const compressedFile = await compressImage(file);
+                    setSelectedFile(compressedFile);
+
+                    // 更新为压缩后的预览（可选，通常肉眼看不出区别）
+                    // setPreviewUrl(URL.createObjectURL(compressedFile));
+                } catch (error) {
+                    console.error("Image compression failed:", error);
+                    setSelectedFile(file); // 失败则使用原图
+                } finally {
+                    setIsCompressing(false);
                 }
             } else {
-                alert('请上传图片（JPG, PNG）或 PDF 文件');
+                // PDF 等其他文件直接使用
+                setSelectedFile(file);
             }
+        } else {
+            alert('请上传图片（JPG, PNG）或 PDF 文件');
         }
+    };
+
+    const handleFileSelect = (e) => {
+        const file = e.target.files?.[0];
+        handleProcessFile(file);
     };
 
     const removeFile = () => {
@@ -60,10 +84,8 @@ const ChatInput = ({ onSend, disabled }) => {
                 e.preventDefault(); // 只在有图片时阻止默认行为
                 const file = item.getAsFile();
                 if (file) {
-                    setSelectedFile(file);
-                    const url = URL.createObjectURL(file);
-                    setPreviewUrl(url);
                     console.log('📋 已粘贴图片:', file.name);
+                    handleProcessFile(file);
                 }
                 return; // 找到图片后直接返回
             }
@@ -120,7 +142,8 @@ const ChatInput = ({ onSend, disabled }) => {
                         <div className="flex-1 min-w-0">
                             <p className="text-sm font-medium text-slate-700 truncate">{selectedFile.name}</p>
                             <p className="text-xs text-slate-500">
-                                {(selectedFile.size / 1024).toFixed(1)} KB
+                                {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
+                                {isCompressing && <span className="text-indigo-500 font-medium ml-2 animate-pulse">处理中...</span>}
                             </p>
                         </div>
                     </div>
@@ -173,7 +196,7 @@ const ChatInput = ({ onSend, disabled }) => {
                     {/* 发送按钮 */}
                     <button
                         type="submit"
-                        disabled={(!message.trim() && !selectedFile) || disabled}
+                        disabled={(!message.trim() && !selectedFile) || disabled || isCompressing}
                         className={clsx(
                             "p-2.5 rounded-lg flex items-center justify-center transition-all duration-200 flex-shrink-0",
                             (message.trim() || selectedFile) && !disabled
