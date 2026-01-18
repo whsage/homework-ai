@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useUser } from '../../context/UserContext';
 import { supabase } from '../../supabase';
-import { Lock, Check, AlertCircle, Edit2, Camera, X, Upload, User } from 'lucide-react';
+import { Lock, Check, AlertCircle, Edit2, Camera, X, Upload, User, Mail } from 'lucide-react';
 
 // 预设头像列表 (尝试一些更有趣的 Seed)
 const PRESET_AVATARS = [
@@ -179,6 +179,10 @@ const ProfileSettings = () => {
                         <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
                             {formData.nickname || '未设置昵称'}
                         </h2>
+                        <div className="flex items-center gap-1.5 text-slate-500 mt-1 mb-2">
+                            <Mail size={14} />
+                            <span className="text-sm">{user?.email}</span>
+                        </div>
                         <p className="text-slate-500 flex items-center gap-2 mt-1">
                             <span className="px-2 py-0.5 bg-indigo-50 text-indigo-600 rounded text-xs font-semibold uppercase tracking-wide">
                                 {formData.grade || '未设置年级'}
