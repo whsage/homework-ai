@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../supabase';
-import { Calendar, Clock, BookOpen, TrendingUp, Award, Flame, BarChart3, PieChart } from 'lucide-react';
+import { Calendar, Clock, BookOpen, TrendingUp, Award, Flame, BarChart3, PieChart, Hash } from 'lucide-react';
 
 const Statistics = () => {
     const [loading, setLoading] = useState(true);
@@ -11,7 +11,8 @@ const Statistics = () => {
         thisWeekTime: 0,
         streak: 0,
         subjectDistribution: [],
-        recentActivity: []
+        recentActivity: [],
+        knowledgePoints: []
     });
 
     useEffect(() => {
@@ -137,6 +138,21 @@ const Statistics = () => {
                     }
                 }
 
+                // 统计知识点标签
+                const tagMap = {};
+                sessions.forEach(s => {
+                    if (s.tags && Array.isArray(s.tags)) {
+                        s.tags.forEach(tag => {
+                            tagMap[tag] = (tagMap[tag] || 0) + 1;
+                        });
+                    }
+                });
+
+                const knowledgePoints = Object.entries(tagMap)
+                    .map(([name, count]) => ({ name, count }))
+                    .sort((a, b) => b.count - a.count)
+                    .slice(0, 30); // 展示前30个热门知识点
+
                 setStats({
                     totalSessions,
                     totalTime: totalSessions * 25, // 假设每个会话平均25分钟
@@ -144,7 +160,8 @@ const Statistics = () => {
                     thisWeekTime: thisWeekSessions.length * 25,
                     streak,
                     subjectDistribution,
-                    recentActivity: sessions.slice(0, 7)
+                    recentActivity: sessions.slice(0, 7),
+                    knowledgePoints
                 });
             }
         }
@@ -275,6 +292,8 @@ const Statistics = () => {
                                                 <span className="font-medium text-slate-700">{subject.name}</span>
                                                 <span className="text-slate-600">{subject.count} 次 ({subject.percentage}%)</span>
                                             </div>
+
+
                                             <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
                                                 <div
                                                     className={`h-full ${subjectColors[subject.name] || subjectColors['其他']} transition-all duration-500`}
@@ -288,6 +307,40 @@ const Statistics = () => {
                                 <div className="text-center py-8 text-slate-400">
                                     <PieChart size={48} className="mx-auto mb-3 opacity-50" />
                                     <p>暂无学科数据</p>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* 知识点云图 */}
+                        <div className="bg-white rounded-2xl shadow-lg p-6">
+                            <div className="flex items-center gap-2 mb-6">
+                                <Hash className="text-purple-600" size={24} />
+                                <h2 className="text-xl font-bold text-slate-800">热门知识点</h2>
+                            </div>
+
+                            {stats.knowledgePoints && stats.knowledgePoints.length > 0 ? (
+                                <div className="flex flex-wrap gap-3">
+                                    {stats.knowledgePoints.map((tag, index) => {
+                                        // 简单的标签样式，根据热度稍微调整大小或颜色
+                                        const isHot = index < 5;
+                                        return (
+                                            <span
+                                                key={index}
+                                                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${isHot
+                                                    ? 'bg-purple-100 text-purple-700 border border-purple-200'
+                                                    : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200'
+                                                    }`}
+                                            >
+                                                #{tag.name}
+                                                <span className="ml-1 opacity-60 text-xs">×{tag.count}</span>
+                                            </span>
+                                        );
+                                    })}
+                                </div>
+                            ) : (
+                                <div className="text-center py-8 text-slate-400">
+                                    <Hash size={48} className="mx-auto mb-3 opacity-50" />
+                                    <p>随着作业分析的增加，这里将展示你的知识点图谱</p>
                                 </div>
                             )}
                         </div>

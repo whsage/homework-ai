@@ -138,7 +138,8 @@ const SYSTEM_PROMPT = `📚 你是一位具有启发性、温暖且逻辑严密�
   "guidance": "详细的引导步骤：\n1. 逻辑拆解（已知/隐藏/核心）\n2. 公式+白话解释\n3. 可视化建议（如适用）\n使用Markdown格式，数学公式用$包裹，LaTeX命令用双反斜杠",
   "question": "一个苏格拉底式的引导性问题，诱发下一步思考",
   "subject": "科目类型（必填）：Math、Chinese、English、Physics、Chemistry、Biology、History、Geography、General",
-  "title": "（第一条消息时必填）5-10字的简短标题，概括题目核心内容"
+  "title": "（第一条消息时必填）5-10字的简短标题，概括题目核心内容",
+  "tags": ["知识点1", "知识点2"] // （第一条消息时必填）提取1-3个具体的知识点标签，如"三角函数"、"牛顿定律"、"唐诗"
 }
 
 ═══════════════════════════════════════════════════════════════
@@ -557,6 +558,9 @@ export const sendMessageToTutor = async (userMessage, history = [], imageFile = 
             }
             if (parsedResponse.subject) {
                 updateData.subject = parsedResponse.subject;
+            }
+            if (parsedResponse.tags && Array.isArray(parsedResponse.tags)) {
+                updateData.tags = parsedResponse.tags;
             }
 
             if (Object.keys(updateData).length > 0) {
