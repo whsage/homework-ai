@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard';
 import HomeworkDetailPage from './pages/HomeworkDetailPage';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ResetPassword from './pages/ResetPassword';
 import NewSession from './pages/NewSession';
 import History from './pages/History';
 import Statistics from './pages/Statistics';
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="new" element={<NewSession />} />

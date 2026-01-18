@@ -3,6 +3,7 @@ import { Clock, CheckCircle2, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { supabase } from '../supabase';
+import { useUser } from '../context/UserContext';
 
 const StatCard = ({ icon: Icon, label, value, color }) => (
     <div className="bg-white p-3 md:p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-2 md:gap-4">
@@ -17,6 +18,7 @@ const StatCard = ({ icon: Icon, label, value, color }) => (
 );
 
 const Dashboard = () => {
+    const { settings } = useUser();
     const [stats, setStats] = useState({
         completedTasks: 0,
         studyHours: 0,
@@ -94,11 +96,15 @@ const Dashboard = () => {
         return "刚刚";
     };
 
+    const nickname = settings?.profile?.nickname;
+
     return (
         <div className="space-y-8">
             {/* Welcome Section */}
             <div>
-                <h1 className="text-2xl font-bold text-slate-800">你好，同学！👋</h1>
+                <h1 className="text-2xl font-bold text-slate-800">
+                    你好，{nickname ? `${nickname}同学` : '同学'}！👋
+                </h1>
                 <p className="text-slate-500 mt-1">今天准备好解决一些问题了吗？</p>
             </div>
 

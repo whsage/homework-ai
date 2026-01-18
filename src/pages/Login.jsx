@@ -31,6 +31,28 @@ const Login = () => {
         }
     };
 
+    const handleForgotPassword = async () => {
+        if (!email) {
+            setError('请输入邮箱地址以重置密码');
+            return;
+        }
+
+        try {
+            setLoading(true);
+            const { error } = await supabase.auth.resetPasswordForEmail(email, {
+                redirectTo: `${window.location.origin}/reset-password`,
+            });
+
+            if (error) throw error;
+
+            alert('重置密码邮件已发送，请检查您的邮箱（包括垃圾邮件）。\n点击邮件链接后即可设置新密码。');
+        } catch (error) {
+            setError(error.message || '发送重置邮件失败');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-slate-50">
             <div className="max-w-md w-full bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
@@ -64,6 +86,15 @@ const Login = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="••••••••"
                         />
+                        <div className="flex justify-end mt-1">
+                            <button
+                                type="button"
+                                onClick={handleForgotPassword}
+                                className="text-xs text-indigo-600 hover:text-indigo-800 hover:underline"
+                            >
+                                忘记密码？
+                            </button>
+                        </div>
                     </div>
 
                     <button

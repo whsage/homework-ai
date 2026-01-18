@@ -1,29 +1,16 @@
 import { Bell, User, Menu, LogIn, ChevronLeft, LogOut, Settings, UserCircle } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { supabase } from '../../supabase';
+import { useUser } from '../../context/UserContext';
 
 const Header = ({ onMenuClick }) => {
-    const [user, setUser] = useState(null);
+    const { user, settings } = useUser();
     const [showUserMenu, setShowUserMenu] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
     const isDashboard = location.pathname === '/';
     const menuRef = useRef(null);
-
-    useEffect(() => {
-        // Get initial session
-        supabase.auth.getSession().then(({ data: { session } }) => {
-            setUser(session?.user ?? null);
-        });
-
-        // Listen for changes
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-            setUser(session?.user ?? null);
-        });
-
-        return () => subscription.unsubscribe();
-    }, []);
 
     // Close menu when clicking outside
     useEffect(() => {
@@ -42,6 +29,10 @@ const Header = ({ onMenuClick }) => {
         setShowUserMenu(false);
         navigate('/login');
     };
+
+    const displayName = settings?.profile?.nickname || user?.email?.split('@')[0] || '同学';
+    const displayEmail = user?.email || '';
+    const avatarUrl = settings?.profile?.avatar;
 
     return (
         <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 sticky top-0 z-10 w-full">
@@ -84,11 +75,17 @@ const Header = ({ onMenuClick }) => {
                                 className="flex items-center gap-3 pl-4 border-l border-slate-200 hover:bg-slate-50 rounded-lg transition-colors p-2 -mr-2"
                             >
                                 <div className="text-right hidden sm:block">
-                                    <p className="text-sm font-medium text-slate-700 truncate max-w-[150px]">{user.email}</p>
+                                    <p className="text-sm font-medium text-slate-700 truncate max-w-[150px]">
+                                        {displayName}
+                                    </p>
                                     <p className="text-xs text-slate-500">免费计划</p>
                                 </div>
-                                <div className="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 font-bold border-2 border-indigo-50">
-                                    <User size={20} />
+                                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-indigo-50 bg-indigo-100 flex items-center justify-center text-indigo-600">
+                                    {avatarUrl ? (
+                                        <img src={avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
+                                    ) : (
+                                        <User size={20} />
+                                    )}
                                 </div>
                             </button>
 
@@ -97,8 +94,8 @@ const Header = ({ onMenuClick }) => {
                                 <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-slate-200 py-2 z-50">
                                     {/* User Info */}
                                     <div className="px-4 py-3 border-b border-slate-100">
-                                        <p className="text-sm font-medium text-slate-900">{user.email}</p>
-                                        <p className="text-xs text-slate-500 mt-1">免费计划</p>
+                                        <p className="text-sm font-medium text-slate-900 truncate">{displayName}</p>
+                                        <p className="text-xs text-slate-500 mt-1 truncate">{displayEmail}</p>
                                     </div>
 
                                     {/* Menu Items */}

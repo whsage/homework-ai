@@ -157,6 +157,9 @@ const SYSTEM_PROMPT = `📚 你是一位具有启发性、温暖且逻辑严密�
 - 其他根据内容判断 → General
 
 ═══════════════════════════════════════════════════════════════
+
+// 辅助函数已移动到文件末尾
+
 【标题生成规则】
 ═══════════════════════════════════════════════════════════════
 
@@ -344,6 +347,44 @@ question: "还有其他题目需要讨论吗？"
 ✅ 新增question字段，用于苏格拉底式提问
 `;
 
+// Helper function: Get user context (grade, tone preference)
+const getUserContextInstruction = async () => {
+    try {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) return "";
+
+        const { data } = await supabase.from('user_settings').select('settings').eq('user_id', user.id).single();
+        const grade = data?.settings?.profile?.grade;
+
+        if (!grade) return "";
+
+        let instruction = `\n\n═══════════════════════════════════════════════════════════════\n【当前用户画像：${grade}】\n`;
+
+        if (grade.includes('小学')) {
+            instruction += `1. **语气风格**：亲切、活泼、非常有耐心（像邻家大哥哥/姐姐）。\n2. **语言要求**：多用 Emoji (🌟🔥👏)，拒绝晦涩术语，使用生活化比喻。\n3. **难度适应**：简单题目直接夸奖并给出答案，复杂题目拆解为"找一找、想一想、试一试"三步。`;
+        } else if (grade.includes('初中')) {
+            instruction += `1. **语气风格**：温和、坚定（标准辅导老师）。\n2. **语言要求**：清晰流畅，适当使用专业术语但要解释。\n3. **难度适应**：简单题目概括核心点，难题引导分析思路。`;
+        } else {
+            instruction += `1. **语气风格**：专业、严谨、高效（学术导师）。\n2. **语言要求**：直击重点，逻辑严密，拒绝废话。\n3. **难度适应**：简单问题直接一语道破，复杂问题提供深度推导。`;
+        }
+        instruction += `\n═══════════════════════════════════════════════════════════════`;
+        return instruction;
+    } catch (e) {
+        console.warn('Failed to fetch user context:', e);
+        return "";
+    }
+};
+
+// Helper function to convert file to base64
+const fileToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+};
+
 export const sendMessageToTutor = async (userMessage, history = [], imageFile = null, existingSessionId = null) => {
     if (!client) {
         console.warn("No API Key found. Using mock response.");
@@ -441,11 +482,15 @@ export const sendMessageToTutor = async (userMessage, history = [], imageFile = 
         // 3. Call AI API
         console.log("Sending message to Alibaba Cloud Qwen...");
 
+        // Fetch dynamic context
+        const contextInstruction = await getUserContextInstruction();
+        const finalSystemPrompt = SYSTEM_PROMPT + contextInstruction;
+
         // Build conversation history for API
         const messages = [
             {
                 role: "system",
-                content: SYSTEM_PROMPT
+                content: finalSystemPrompt
             }
         ];
 
@@ -582,14 +627,4 @@ export const sendMessageToTutor = async (userMessage, history = [], imageFile = 
         console.error("AI API Error:", error);
         throw error;
     }
-};
-
-// Helper function to convert file to base64
-const fileToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-    });
 };
