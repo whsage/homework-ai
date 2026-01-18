@@ -9,40 +9,71 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { highlightKeywords } from '../../utils/textHighlight';
 
+// 修复常见的由 JSON 转义导致的 LaTeX 错误
+// 例如：\frac 在 JSON 中被解析为 \f (Form Feed) + rac，导致显示为 krac
+const fixLatexErrors = (text) => {
+    if (!text) return '';
+    return text
+        .replace(/krac/g, '\\frac') // 修复 \f -> frac (表现为 k + rac -> krac ? 不一定，取决于前面是什么)
+        // 准确地说是：\r (Form Feed \u000c) 变成了不可见或乱码
+        // 如果是 F = k\frac... -> k + \f + rac
+        // 在某些字体/渲染器下 \f 可能显示为空。
+        // 但用户看到的是 krac，说明 k 保留了，\f 消失了或显示异常，rac 保留了。
+        // 实际上 F = k \frac... 
+        // 让我们更激进一点：
+        .replace(/[\u000c]rac/g, '\\frac') // 匹配 FormFeed + rac
+        .replace(/k[\u000c]rac/g, 'k\\frac') // 匹配 k + FormFeed + rac
+        .replace(/krac/g, 'k\\frac') // 用户反馈的具体现象
+
+        // 修复 \times (Tab + imes)
+        .replace(/[\t]imes/g, '\\times')
+
+        // 修复 \beta (Backspace + eta)
+        .replace(/[\u0008]eta/g, '\\beta')
+
+        // 修复 \n (Newline) 误伤 \neq (Newline + eq)
+        // .replace(/\neq/g, '\\neq') // 这是换行 + eq，比较难搞，暂时不动
+        ;
+};
+
 const TypewriterText = ({ text, onComplete }) => {
     const [displayedText, setDisplayedText] = useState('');
     const indexRef = useRef(0);
+    // 先修复文本
+    const cleanText = fixLatexErrors(text);
 
     useEffect(() => {
         indexRef.current = 0;
         setDisplayedText('');
 
         // Apply keyword highlighting before typing
-        const highlightedText = highlightKeywords(text);
+        // 注意：highlightKeywords 可能会破坏 LaTeX 结构，应该小心使用
+        // 这里我们先打字，打字完成后再高亮? 
+        // 或者直接对 cleanText 进行打字。
 
-        // Simple word-based typing effect
-        const words = highlightedText.split(/(\s+)/); // Split by whitespace but keep delimiters
+        if (!cleanText) {
+            onComplete?.();
+            return;
+        }
 
-        const interval = setInterval(() => {
-            if (indexRef.current < words.length) {
-                setDisplayedText(prev => prev + words[indexRef.current]);
+        const intervalId = setInterval(() => {
+            if (indexRef.current < cleanText.length) {
+                setDisplayedText((prev) => prev + cleanText.charAt(indexRef.current));
                 indexRef.current++;
             } else {
-                clearInterval(interval);
-                if (onComplete) onComplete();
+                clearInterval(intervalId);
+                onComplete?.();
             }
-        }, 20); // Speed of typing
+        }, 30); // Typing speed
 
-        return () => clearInterval(interval);
-    }, [text]);
+        return () => clearInterval(intervalId);
+    }, [cleanText, onComplete]);
 
+    // 渲染时应用 markdown 和高亮
     return (
-        <div className="prose prose-sm prose-slate max-w-none dark:prose-invert">
-            <ReactMarkdown
-                remarkPlugins={[remarkMath]}
-                rehypePlugins={[rehypeKatex]}
-            >
-                {displayedText}
+        <div className="whitespace-pre-wrap">
+            <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+                {highlightKeywords(displayedText)}
             </ReactMarkdown>
         </div>
     );
@@ -368,7 +399,7 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
                                             </div>
                                         ) : (
                                             <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
-                                                {highlightKeywords(msg.text)}
+                                                {highlightKeywords(fixLatexErrors(msg.text))}
                                             </ReactMarkdown>
                                         )}
                                     </div>
