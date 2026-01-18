@@ -40,72 +40,26 @@ const Statistics = () => {
                 oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
                 const thisWeekSessions = sessions.filter(s => new Date(s.created_at) > oneWeekAgo);
 
-                // 学科识别函数 - 两阶段智能匹配
-                const identifySubject = (title) => {
-                    if (!title) return '其他';
-
-                    const titleLower = title.toLowerCase();
-
-                    // 第一阶段：学科专有名词（高优先级，避免误判）
-                    const coreKeywords = {
-                        '化学': ['化学', 'chemistry', '元素', '分子', '原子', '电解质', '溶液', '试剂', '酿酒', '化合', '离子', '催化', '氧化还原', '酸性', '碱性', '中和', '沉淀', '结晶'],
-                        '物理': ['物理', 'physics', '电流', '电压', '电阻', '电功率', '功率', '力学', '电学', '光学', '欧姆', '焦耳', '牛顿', '瓦特', '安培', '伏特', '浮力', '摩擦', '杠杆'],
-                        '数学': ['数学', 'math', '几何', '代数', '函数', '方程', '角度', '证明', '面积', '体积', '周长', '坐标', '距离', '四边形', '三角形', '圆', '平行', '垂直', '对称', '相似', '全等', '菜地', '行程'],
-                        '语文': ['语文', 'chinese', '文言文', '古诗', '诗词', '散文', '小说', '通假字', '拼音', '汉字', '成语', '古诗词'],
-                        '英语': ['英语', 'english', 'grammar', 'vocabulary', 'tense', 'verb', 'noun'],
-                        '生物': ['生物', 'biology', '细胞', '遗传', '基因', '染色体', 'dna', 'rna', '光合', '呼吸'],
-                        '历史': ['历史', 'history', '朝代', '战争', '革命', '秦', '汉', '唐', '宋', '元', '明', '清'],
-                        '地理': ['地理', 'geography', '地图', '气候', '地形', '经纬度', '板块', '洋流'],
-                        '政治': ['政治', 'politics', '法律', '哲学', '马克思', '宪法'],
-                        '音乐': ['音乐', 'music', '乐理', '钢琴', '吉他', '乐器'],
-                        '美术': ['美术', 'art', '绘画', '素描', '色彩', '设计'],
-                        '体育': ['体育', 'pe', 'sports', '篮球', '足球'],
-                        '信息技术': ['信息技术', '计算机', 'computer', '编程', 'coding', 'python', 'java']
-                    };
-
-                    // 第一阶段匹配：学科专有名词
-                    for (const [subject, keywords] of Object.entries(coreKeywords)) {
-                        for (const keyword of keywords) {
-                            if (titleLower.includes(keyword)) {
-                                return subject;
-                            }
-                        }
-                    }
-
-                    // 第二阶段：通用特征词（低优先级，用于补充识别）
-                    const featureKeywords = {
-                        '语文': ['作文', '阅读理解', '词语', '修辞', '描写', '记叙', '说明', '议论', '抒情', '季节', '心理', '排序', '标点', '段落', '辨析'],
-                        '数学': ['计算', '三角', '微积分', '概率', '统计', '求解', '求值', '计算题', '应用题', '工程', '比例', '分数', '小数', '百分数'],
-                        '物理': ['运动', '能量', '速度', '加速度', '力', '压强', '动能', '势能'],
-                        '化学': ['反应', '酸碱', '氧化', '还原', '有机', '无机', '保存方法'],
-                        '英语': ['单词', '语法', '阅读', 'reading', 'writing', 'listening'],
-                        '生物': ['进化', '生态', '植物', '动物', '消化', '循环', '神经', '免疫'],
-                        '历史': ['古代', '近代', '现代', '世界史', '中国史', '抗战', '改革'],
-                        '地理': ['河流', '山脉', '平原', '高原', '盆地', '季风', '降水', '人口', '城市'],
-                        '政治': ['思想', '道德', '权利', '义务', '民主', '法治', '毛概'],
-                        '音乐': ['声乐', '音符', '节奏'],
-                        '美术': ['水彩', '油画', '雕塑'],
-                        '体育': ['运动', '跑步', '跳远', '游泳'],
-                        '信息技术': ['算法', '数据结构', '网络', '软件', '硬件', 'it', 'c++']
-                    };
-
-                    // 第二阶段匹配：通用特征词
-                    for (const [subject, keywords] of Object.entries(featureKeywords)) {
-                        for (const keyword of keywords) {
-                            if (titleLower.includes(keyword)) {
-                                return subject;
-                            }
-                        }
-                    }
-
-                    return '其他';
+                // 学科中文映射
+                const subjectNameMap = {
+                    'Math': '数学',
+                    'Chinese': '语文',
+                    'English': '英语',
+                    'Physics': '物理',
+                    'Chemistry': '化学',
+                    'Biology': '生物',
+                    'History': '历史',
+                    'Geography': '地理',
+                    'General': '其他'
                 };
 
-                // 计算学科分布
+                // 计算学科分布 - 直接使用数据库中的 subject 字段
                 const subjectMap = {};
                 sessions.forEach(session => {
-                    const subject = identifySubject(session.title);
-                    subjectMap[subject] = (subjectMap[subject] || 0) + 1;
+                    // 优先使用 session.subject，如果没有则标记为"其他"
+                    const subjectKey = session.subject || 'General';
+                    const subjectName = subjectNameMap[subjectKey] || subjectKey;
+                    subjectMap[subjectName] = (subjectMap[subjectName] || 0) + 1;
                 });
 
                 // 按数量排序
