@@ -132,15 +132,31 @@ const SYSTEM_PROMPT = `📚 你是一位具有启发性、温暖且逻辑严密�
 【输出格式（必须是有效的JSON）】
 ═══════════════════════════════════════════════════════════════
 
+⚠️ **严格要求：JSON 必须只包含以下字段，不得添加任何额外字段！**
+
 {
-  "analysis": "简要分析学生当前的理解程度和思维亮点（内部使用）",
+  "analysis": "简要分析学生当前的理解程度和思维亮点（内部使用，1-2句话）",
   "hint": "一个温暖的肯定 + 简短的引导性问题（2-3句话）",
-  "guidance": "详细的引导步骤：\n1. 逻辑拆解（已知/隐藏/核心）\n2. 公式+白话解释\n3. 可视化建议（如适用）\n使用Markdown格式，数学公式用$包裹，LaTeX命令用双反斜杠",
+  "guidance": "详细的引导步骤（使用Markdown格式，数学公式用$包裹，LaTeX命令用双反斜杠）",
   "question": "一个苏格拉底式的引导性问题，诱发下一步思考",
   "subject": "科目类型（必填）：Math、Chinese、English、Physics、Chemistry、Biology、History、Geography、General",
-  "title": "（第一条消息时必填）5-10字的简短标题，概括题目核心内容",
-  "tags": ["知识点1", "知识点2"] // （第一条消息时必填）提取1-3个具体的知识点标签，如"三角函数"、"牛顿定律"、"唐诗"
+  "title": "（仅第一条消息时必填）5-10字的简短标题，概括题目核心内容",
+  "tags": ["知识点1", "知识点2"] // （仅第一条消息时必填）提取1-3个具体的知识点标签
 }
+
+❌ **严禁添加以下字段：**
+- is_new_problem, context, additional_notes, suggested_activity
+- error_analysis, success_criteria, next_steps, parent_teacher_support
+- visual_suggestion, emotional_support, summary_for_child
+- 以及任何其他未在上述格式中列出的字段
+
+❌ **如果图片中没有明确的作业题目：**
+- 不要过度分析或编造题目
+- 在 hint 中礼貌地说明"这张图片似乎不包含作业题目"
+- 在 guidance 中建议用户重新上传或直接输入题目文字
+- subject 设置为 "General"
+- 不要生成 title 和 tags
+
 
 ═══════════════════════════════════════════════════════════════
 【科目识别规则】
@@ -566,13 +582,51 @@ export const sendMessageToTutor = async (userMessage, history = [], imageFile = 
         let parsedResponse;
         try {
             parsedResponse = JSON.parse(responseText);
+
+            // Validate and clean response - only keep required fields
+            const validatedResponse = {
+                analysis: parsedResponse.analysis || "无法分析",
+                hint: parsedResponse.hint || "请提供更清晰的题目图片",
+                guidance: parsedResponse.guidance || "",
+                question: parsedResponse.question || "",
+                subject: parsedResponse.subject || "General"
+            };
+
+            // Only include optional fields if they exist
+            if (parsedResponse.title) validatedResponse.title = parsedResponse.title;
+            if (parsedResponse.tags && Array.isArray(parsedResponse.tags)) {
+                validatedResponse.tags = parsedResponse.tags.slice(0, 3); // Max 3 tags
+            }
+
+            parsedResponse = validatedResponse;
+
         } catch (e) {
             console.error("Failed to parse JSON response:", responseText);
-            parsedResponse = {
-                analysis: "解析 AI 响应时出错。",
-                hint: "我在格式化我的想法时遇到了问题。",
-                guidance: responseText
-            };
+            console.error("Parse error:", e);
+
+            // Try to extract any useful text from the malformed response
+            let extractedText = responseText;
+            try {
+                // Try to find the hint or guidance in the malformed JSON
+                const hintMatch = responseText.match(/"hint"\s*:\s*"([^"]+)"/);
+                const guidanceMatch = responseText.match(/"guidance"\s*:\s*"([^"]+)"/);
+
+                parsedResponse = {
+                    analysis: "JSON 格式错误",
+                    hint: hintMatch ? hintMatch[1] : "抱歉，我在理解这张图片时遇到了问题。",
+                    guidance: guidanceMatch ? guidanceMatch[1] : "请确保上传的图片包含清晰的作业题目。",
+                    question: "能否重新上传一张更清晰的题目图片？",
+                    subject: "General"
+                };
+            } catch (extractError) {
+                parsedResponse = {
+                    analysis: "解析失败",
+                    hint: "抱歉，我在处理这张图片时遇到了技术问题。😔",
+                    guidance: "**可能的原因：**\n\n1. 图片中没有明确的作业题目\n2. 图片质量不够清晰\n3. 图片内容与学习无关\n\n**建议：**\n- 重新拍摄一张包含完整题目的照片\n- 确保光线充足，文字清晰\n- 或者直接输入题目文字",
+                    question: "需要我帮你看看其他题目吗？",
+                    subject: "General"
+                };
+            }
         }
 
         // 4. Insert AI Response into DB
