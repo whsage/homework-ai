@@ -102,32 +102,53 @@ const Dashboard = () => {
         <div className="space-y-8">
             {/* Welcome Section */}
             <div>
-                <h1 className="text-2xl font-bold text-slate-800">
-                    你好，{nickname ? `${nickname}同学` : '同学'}！👋
+                <h1 className="text-2xl font-bold text-slate-800 flex items-center gap-2 h-9">
+                    {isLoading ? (
+                        <>
+                            你好，<div className="w-32 h-8 bg-slate-200 rounded animate-pulse" />
+                        </>
+                    ) : (
+                        `你好，${nickname ? `${nickname}同学` : '同学'}！👋`
+                    )}
                 </h1>
                 <p className="text-slate-500 mt-1">今天准备好解决一些问题了吗？</p>
             </div>
 
             {/* Stats Grid */}
             <div className="grid grid-cols-3 gap-3 md:gap-6">
-                <StatCard
-                    icon={CheckCircle2}
-                    label="已完成任务"
-                    value={stats.completedTasks}
-                    color="bg-emerald-500"
-                />
-                <StatCard
-                    icon={Clock}
-                    label="学习时长"
-                    value={`${stats.studyHours}h`}
-                    color="bg-blue-500"
-                />
-                <StatCard
-                    icon={TrendingUp}
-                    label="活跃天数"
-                    value={`${stats.streak} 天`}
-                    color="bg-orange-500"
-                />
+                {isLoading ? (
+                    // Stats Loading Skeleton
+                    [1, 2, 3].map((i) => (
+                        <div key={i} className="bg-white p-3 md:p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-2 md:gap-4 animate-pulse">
+                            <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-slate-200 flex-shrink-0" />
+                            <div className="flex-1 w-full space-y-2">
+                                <div className="h-3 bg-slate-200 rounded w-1/2 mx-auto md:mx-0" />
+                                <div className="h-6 bg-slate-200 rounded w-3/4 mx-auto md:mx-0" />
+                            </div>
+                        </div>
+                    ))
+                ) : (
+                    <>
+                        <StatCard
+                            icon={CheckCircle2}
+                            label="已完成任务"
+                            value={stats.completedTasks}
+                            color="bg-emerald-500"
+                        />
+                        <StatCard
+                            icon={Clock}
+                            label="学习时长"
+                            value={`${stats.studyHours}h`}
+                            color="bg-blue-500"
+                        />
+                        <StatCard
+                            icon={TrendingUp}
+                            label="活跃天数"
+                            value={`${stats.streak} 天`}
+                            color="bg-orange-500"
+                        />
+                    </>
+                )}
             </div>
 
             {/* Main Upload Area */}

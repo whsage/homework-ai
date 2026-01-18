@@ -75,6 +75,22 @@ export const UserProvider = ({ children }) => {
     // 加载用户信息
     useEffect(() => {
         loadUser();
+
+        // 监听 Auth 状态变化 (登录/退出)
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            if (session?.user) {
+                setUser(session.user);
+                loadUserSettings(session.user.id);
+            } else {
+                setUser(null);
+                setSettings(DEFAULT_SETTINGS);
+            }
+            setLoading(false);
+        });
+
+        return () => {
+            subscription.unsubscribe();
+        };
     }, []);
 
     const loadUser = async () => {
@@ -83,11 +99,16 @@ export const UserProvider = ({ children }) => {
 
             if (authUser) {
                 setUser(authUser);
+                // loadUserSettings is called by onAuthStateChange usually, but good to ensure here too if no event fires immediately
+                // However, onAuthStateChange fires INITIAL_SESSION on mount usually.
+                // Let's keep it safe.
                 await loadUserSettings(authUser.id);
+            } else {
+                // crucial: if no user, stop loading
+                setLoading(false);
             }
         } catch (error) {
             console.error('Error loading user:', error);
-        } finally {
             setLoading(false);
         }
     };
