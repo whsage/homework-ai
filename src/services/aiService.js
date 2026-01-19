@@ -623,7 +623,7 @@ export const sendMessageToTutor = async (userMessage, history = [], imageFile = 
         console.log(`⚙️ AI 参数: max_tokens=${config.max_tokens}, temperature=${config.temperature}`);
 
         // 6. Get User Context (for personalization)
-        const userContext = await getUserContext(user?.id);
+        const userContext = await getUserContextInstruction();
 
         // 7. Build Messages Array for AI
         const messages = [
