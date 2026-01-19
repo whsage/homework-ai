@@ -7,7 +7,7 @@ import { exportSessions } from '../services/exportService';
 // 学科中文映射和图标配置
 const SUBJECT_CONFIG = {
     'Math': { name: '数学', icon: '📐', color: 'bg-blue-100 text-blue-700 border-blue-200' },
-    'Physics': { name: '物理', icon: '🧪', color: 'bg-purple-100 text-purple-700 border-purple-200' },
+    'Physics': { name: '物理', icon: '🧲', color: 'bg-purple-100 text-purple-700 border-purple-200' },
     'Chemistry': { name: '化学', icon: '🧬', color: 'bg-green-100 text-green-700 border-green-200' },
     'Chinese': { name: '语文', icon: '📖', color: 'bg-red-100 text-red-700 border-red-200' },
     'English': { name: '英语', icon: '🌍', color: 'bg-orange-100 text-orange-700 border-orange-200' },
