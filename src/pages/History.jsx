@@ -29,7 +29,143 @@ const History = () => {
     }, new Set());
     const uniqueTags = ['All', ...Array.from(allTags)];
 
-    // ... useEffect hooks ... (omitted for brevity, keep existing useEffects)
+    useEffect(() => {
+        const loadAllSessions = async () => {
+            setLoading(true);
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) {
+                setLoading(false);
+                return;
+            }
+
+            // 获取当前会话列表
+            const { data, error } = await supabase
+                .from('sessions')
+                .select('*')
+                .eq('user_id', user.id)
+                .order('created_at', { ascending: false });
+
+            if (data) {
+                setSessions(data);
+            }
+
+            // 获取累积总数（包含已删除）
+            const { data: userStats } = await supabase
+                .from('user_stats')
+                .select('total_sessions_created')
+                .eq('user_id', user.id)
+                .single();
+
+            setTotalCreated(userStats?.total_sessions_created || 0);
+            setLoading(false);
+        };
+
+        loadAllSessions();
+    }, []);
+
+    // Close export menu when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (showExportMenu && !event.target.closest('.export-menu-container')) {
+                setShowExportMenu(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, [showExportMenu]);
+
+    const handleExport = async (format) => {
+        if (selectedSessions.length === 0) {
+            alert('请先选择要导出的会话');
+            return;
+        }
+
+        setIsExporting(true);
+        setShowExportMenu(false);
+
+        try {
+            const result = await exportSessions(selectedSessions, format);
+
+            // 格式名称映射
+            const formatNames = {
+                'json': 'JSON',
+                'markdown': 'Markdown',
+                'word': 'Word',
+                'pdf': 'PDF'
+            };
+            const formatName = formatNames[format] || format;
+
+            let message = `✅ 成功导出 ${result.count} 个会话为 ${formatName} 格式！\n\n`;
+
+            if (format === 'word') {
+                message += `📄 Word 文档已保存到您的下载文件夹。\n`;
+                message += `💡 提示：可以使用 Microsoft Word 或 WPS 打开编辑。`;
+            } else if (format === 'pdf') {
+                message += `📕 PDF 文件已保存到您的下载文件夹。\n`;
+                message += `💡 提示：可以直接打开查看或打印，适合分享给老师和家长。`;
+            } else if (format === 'markdown' && result.count > 1) {
+                message += `📁 已下载 ${result.count} 个 Markdown 文件到您的下载文件夹。\n`;
+                message += `💡 提示：如果浏览器询问，请允许多个文件下载。`;
+            } else {
+                message += `📁 文件已保存到您的下载文件夹。`;
+            }
+
+            alert(message);
+
+            // 可选：导出成功后取消选择
+            // setSelectedSessions([]);
+            // setIsSelectionMode(false);
+        } catch (error) {
+            console.error('Export error:', error);
+            alert('❌ 导出失败：' + error.message);
+        } finally {
+            setIsExporting(false);
+        }
+    };
+
+    const handleDeleteSessions = async () => {
+        if (selectedSessions.length === 0) return;
+
+        const confirmMsg = `确定要删除选中的 ${selectedSessions.length} 个作业吗？此操作无法撤销。`;
+        if (!window.confirm(confirmMsg)) return;
+
+        setIsDeleting(true);
+        try {
+            const { error } = await supabase
+                .from('sessions')
+                .delete()
+                .in('id', selectedSessions);
+
+            if (error) throw error;
+
+            // Update local state
+            setSessions(prev => prev.filter(s => !selectedSessions.includes(s.id)));
+            setSelectedSessions([]);
+            alert('删除成功！');
+        } catch (error) {
+            console.error('Delete error:', error);
+            alert('删除失败：' + error.message);
+        } finally {
+            setIsDeleting(false);
+        }
+    };
+
+    const toggleSelection = (sessionId) => {
+        setSelectedSessions(prev =>
+            prev.includes(sessionId)
+                ? prev.filter(id => id !== sessionId)
+                : [...prev, sessionId]
+        );
+    };
+
+    const toggleSelectAll = () => {
+        if (selectedSessions.length === filteredSessions.length) {
+            setSelectedSessions([]);
+        } else {
+            setSelectedSessions(filteredSessions.map(s => s.id));
+        }
+    };
 
     // Helper for relative time
     const timeAgo = (dateString) => {
