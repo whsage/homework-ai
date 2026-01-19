@@ -149,11 +149,12 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
                 // 并且确保这是真正的新消息（通过检查是否已经触发过）
                 if (lastMessage.role === 'user' && !hasAIResponse && !autoAnalysisTriggeredRef.current) {
                     // Auto-trigger AI analysis for the uploaded content (image or text)
-                    console.log("Auto-triggering AI analysis for new message...");
+                    console.log("LoadHistory: Auto-triggering AI analysis for existing message...", lastMessage.id);
                     autoAnalysisTriggeredRef.current = true; // 设置标志防止重复触发
 
                     // 使用数据库中的消息数据，而不是重新添加到界面
-                    triggerAutoAnalysis(lastMessage, false); // 传递 false 表示不添加用户消息到界面
+                    // false 参数至关重要：告诉 AI 服务不要再次将此消息存入 DB
+                    triggerAutoAnalysis(lastMessage, false);
                 }
             }
         };
@@ -162,6 +163,7 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
     }, [sessionId]);
 
     const triggerAutoAnalysis = async (userMessage, shouldAddUserMessage = true) => {
+        console.log(`triggerAutoAnalysis called. shouldAddUserMessage=${shouldAddUserMessage}`);
         try {
             setStatus('正在分析题目...');
             setIsTyping(true);
