@@ -545,7 +545,10 @@ const History = () => {
                                                         </span>
                                                     ))}
                                                     {session.tags.length > 2 && (
-                                                        <span className="text-xs text-slate-400">
+                                                        <span
+                                                            className="text-xs text-slate-400 cursor-help border-b border-dotted border-slate-400"
+                                                            title={session.tags.slice(2).join(', ')}
+                                                        >
                                                             +{session.tags.length - 2}
                                                         </span>
                                                     )}
