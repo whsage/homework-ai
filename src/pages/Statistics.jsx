@@ -7,7 +7,7 @@ const Statistics = () => {
     const [stats, setStats] = useState({
         totalSessions: 0,
         totalTime: 0,
-        thisWeekSessions: 0,
+        totalKnowledgePoints: 0,
         thisWeekTime: 0,
         streak: 0,
         subjectDistribution: [],
@@ -24,7 +24,14 @@ const Statistics = () => {
         const { data: { user } } = await supabase.auth.getUser();
 
         if (user) {
-            // 获取所有会话
+            // 获取累积统计数据（包括已删除的作业）
+            const { data: userStats } = await supabase
+                .from('user_stats')
+                .select('*')
+                .eq('user_id', user.id)
+                .single();
+
+            // 获取所有会话（用于学科分布和知识点统计）
             const { data: sessions } = await supabase
                 .from('sessions')
                 .select('*')
@@ -32,13 +39,8 @@ const Statistics = () => {
                 .order('created_at', { ascending: false });
 
             if (sessions) {
-                // 计算总数
-                const totalSessions = sessions.length;
-
-                // 计算本周数据
-                const oneWeekAgo = new Date();
-                oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-                const thisWeekSessions = sessions.filter(s => new Date(s.created_at) > oneWeekAgo);
+                // 使用累积统计数据
+                const totalSessions = userStats?.total_sessions_created || sessions.length;
 
                 // 学科中文映射
                 const subjectNameMap = {
@@ -53,10 +55,9 @@ const Statistics = () => {
                     'General': '其他'
                 };
 
-                // 计算学科分布 - 直接使用数据库中的 subject 字段
+                // 计算学科分布 - 基于当前会话（累积效果）
                 const subjectMap = {};
                 sessions.forEach(session => {
-                    // 优先使用 session.subject，如果没有则标记为"其他"
                     const subjectKey = session.subject || 'General';
                     const subjectName = subjectNameMap[subjectKey] || subjectKey;
                     subjectMap[subjectName] = (subjectMap[subjectName] || 0) + 1;
@@ -67,7 +68,7 @@ const Statistics = () => {
                     .map(([name, count]) => ({
                         name,
                         count,
-                        percentage: ((count / totalSessions) * 100).toFixed(1)
+                        percentage: sessions.length > 0 ? ((count / sessions.length) * 100).toFixed(1) : '0'
                     }))
                     .sort((a, b) => b.count - a.count);
 
@@ -92,7 +93,7 @@ const Statistics = () => {
                     }
                 }
 
-                // 统计知识点标签
+                // 统计知识点标签（累积）
                 const tagMap = {};
                 sessions.forEach(s => {
                     if (s.tags && Array.isArray(s.tags)) {
@@ -107,11 +108,14 @@ const Statistics = () => {
                     .sort((a, b) => b.count - a.count)
                     .slice(0, 30); // 展示前30个热门知识点
 
+                // 计算累积知识点总数
+                const totalKnowledgePoints = Object.keys(tagMap).length;
+
                 setStats({
                     totalSessions,
                     totalTime: totalSessions * 25, // 假设每个会话平均25分钟
-                    thisWeekSessions: thisWeekSessions.length,
-                    thisWeekTime: thisWeekSessions.length * 25,
+                    totalKnowledgePoints,
+                    thisWeekTime: sessions.length * 25,
                     streak,
                     subjectDistribution,
                     recentActivity: sessions.slice(0, 7),
@@ -188,7 +192,7 @@ const Statistics = () => {
                                 <div className="text-sm opacity-90 mt-1">次</div>
                             </div>
                         </div>
-                        <div className="text-sm font-medium opacity-90">完成作业总数</div>
+                        <div className="text-sm font-medium opacity-90">累积作业总数</div>
                     </div>
 
                     {/* 学习时长 */}
@@ -203,16 +207,16 @@ const Statistics = () => {
                         <div className="text-sm font-medium opacity-90">累计学习时长</div>
                     </div>
 
-                    {/* 本周学习 */}
+                    {/* 累积知识点数 */}
                     <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-shadow">
                         <div className="flex items-center justify-between mb-4">
-                            <Calendar size={32} className="opacity-80" />
+                            <Hash size={32} className="opacity-80" />
                             <div className="text-right">
-                                <div className="text-4xl font-bold">{stats.thisWeekSessions}</div>
-                                <div className="text-sm opacity-90 mt-1">次</div>
+                                <div className="text-4xl font-bold">{stats.totalKnowledgePoints}</div>
+                                <div className="text-sm opacity-90 mt-1">个</div>
                             </div>
                         </div>
-                        <div className="text-sm font-medium opacity-90">本周完成作业</div>
+                        <div className="text-sm font-medium opacity-90">累积知识点数</div>
                     </div>
 
                     {/* 连续打卡 */}
