@@ -408,6 +408,101 @@ const fileToBase64 = (file) => {
     });
 };
 
+/**
+ * 智能图片压缩
+ * @param {File} file - 原始图片文件
+ * @param {number} maxWidth - 最大宽度（默认 1920px）
+ * @param {number} quality - 压缩质量 0-1（默认 0.85）
+ * @returns {Promise<File>} 压缩后的图片文件
+ */
+async function compressImage(file, maxWidth = 1920, quality = 0.85) {
+    return new Promise((resolve, reject) => {
+        // 如果不是图片，直接返回原文件
+        if (!file.type.startsWith('image/')) {
+            resolve(file);
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onload = (e) => {
+            const img = new Image();
+            img.src = e.target.result;
+
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                let width = img.width;
+                let height = img.height;
+
+                // 如果图片宽度超过最大宽度，按比例缩放
+                if (width > maxWidth) {
+                    height = (height * maxWidth) / width;
+                    width = maxWidth;
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+
+                // 转换为 Blob
+                canvas.toBlob(
+                    (blob) => {
+                        if (blob) {
+                            const compressedFile = new File([blob], file.name, {
+                                type: 'image/jpeg',
+                                lastModified: Date.now()
+                            });
+
+                            const originalSize = (file.size / 1024).toFixed(2);
+                            const compressedSize = (compressedFile.size / 1024).toFixed(2);
+                            const reduction = ((1 - compressedFile.size / file.size) * 100).toFixed(1);
+
+                            console.log(`📸 图片压缩: ${originalSize}KB → ${compressedSize}KB (减少 ${reduction}%)`);
+                            resolve(compressedFile);
+                        } else {
+                            reject(new Error('压缩失败'));
+                        }
+                    },
+                    'image/jpeg',
+                    quality
+                );
+            };
+
+            img.onerror = () => reject(new Error('图片加载失败'));
+        };
+
+        reader.onerror = () => reject(new Error('文件读取失败'));
+    });
+}
+
+/**
+ * 分析问题复杂度
+ * @param {string} text - 用户输入的文本
+ * @returns {string} 'simple' | 'medium' | 'complex'
+ */
+function analyzeComplexity(text) {
+    if (!text || text.length < 20) return 'simple';
+
+    // 复杂度指标
+    const hasMultipleQuestions = (text.match(/[？?]/g) || []).length > 1;
+    const hasFormulas = /[∫∑∏√±×÷≈≠≤≥∞]/.test(text) || /\$.*\$/.test(text);
+    const hasMultipleParts = /[①②③④⑤⑥⑦⑧⑨⑩]/.test(text) || /[(（][1-9][)）]/.test(text);
+    const isLongText = text.length > 100;
+
+    const complexityScore =
+        (hasMultipleQuestions ? 1 : 0) +
+        (hasFormulas ? 1 : 0) +
+        (hasMultipleParts ? 1 : 0) +
+        (isLongText ? 1 : 0);
+
+    if (complexityScore >= 3) return 'complex';
+    if (complexityScore >= 1) return 'medium';
+    return 'simple';
+}
+
 export const sendMessageToTutor = async (userMessage, history = [], imageFile = null, existingSessionId = null, saveUserMessage = true) => {
     if (!client) {
         console.warn("No API Key found. Using mock response.");
@@ -432,15 +527,27 @@ export const sendMessageToTutor = async (userMessage, history = [], imageFile = 
         let sessionId = existingSessionId;
         let finalImageUrl = null;
 
-        // 1. Upload Image to Supabase Storage (if exists)
-        if (imageFile && user) {
+        // 1. 图片压缩（如果存在）
+        let processedImageFile = imageFile;
+        if (imageFile && imageFile.type.startsWith('image/')) {
             try {
-                const fileExt = imageFile.name.split('.').pop();
+                console.log('🔄 开始压缩图片...');
+                processedImageFile = await compressImage(imageFile);
+            } catch (error) {
+                console.warn('图片压缩失败，使用原图:', error);
+                processedImageFile = imageFile;
+            }
+        }
+
+        // 2. Upload Image to Supabase Storage (if exists)
+        if (processedImageFile && user) {
+            try {
+                const fileExt = processedImageFile.name.split('.').pop();
                 const fileName = `${user.id}/${Date.now()}.${fileExt}`;
 
                 const { error: uploadError } = await supabase.storage
                     .from('homework-images')
-                    .upload(fileName, imageFile);
+                    .upload(fileName, processedImageFile);
 
                 if (uploadError) throw uploadError;
 
@@ -457,7 +564,7 @@ export const sendMessageToTutor = async (userMessage, history = [], imageFile = 
             }
         }
 
-        // 2. Create/Get Session in DB
+        // 3. Create/Get Session in DB
         // Calling API requires a session record per requirements.
         if (user) {
             if (!sessionId) {
@@ -494,75 +601,71 @@ export const sendMessageToTutor = async (userMessage, history = [], imageFile = 
                     .insert({
                         session_id: sessionId,
                         role: 'user',
-                        content: userMessage || (imageFile ? '[Image Upload]' : ''),
+                        content: userMessage || (processedImageFile ? '[Image Upload]' : ''),
                         image_url: finalImageUrl
                     });
                 if (msgError) console.error("Failed to insert user message:", msgError);
             }
         }
 
+        // 4. 分析问题复杂度
+        const complexity = analyzeComplexity(userMessage);
+        console.log(`📊 问题复杂度: ${complexity}`);
 
-        // 3. Call AI API
-        console.log("Sending message to Alibaba Cloud Qwen...");
+        // 5. 根据复杂度调整参数
+        const complexityConfig = {
+            simple: { max_tokens: 800, temperature: 0.4 },   // 简单问题：快速简洁
+            medium: { max_tokens: 1500, temperature: 0.5 },  // 中等问题：平衡
+            complex: { max_tokens: 2500, temperature: 0.6 }  // 复杂问题：详细分析
+        };
 
-        // Fetch dynamic context
-        const contextInstruction = await getUserContextInstruction();
-        const finalSystemPrompt = SYSTEM_PROMPT + contextInstruction;
+        const config = complexityConfig[complexity];
+        console.log(`⚙️ AI 参数: max_tokens=${config.max_tokens}, temperature=${config.temperature}`);
 
-        // Build conversation history for API
+        // 6. Get User Context (for personalization)
+        const userContext = await getUserContext(user?.id);
+
+        // 7. Build Messages Array for AI
         const messages = [
             {
                 role: "system",
-                content: finalSystemPrompt
+                content: SYSTEM_PROMPT + `\n\n当前用户上下文：\n${userContext}`
             }
         ];
 
-        // Add conversation history
-        history.forEach(msg => {
-            if (msg.type === 'user') {
-                messages.push({
-                    role: "user",
-                    content: msg.text
-                });
-            } else if (msg.type === 'ai' && !msg.isError) {
-                messages.push({
-                    role: "assistant",
-                    content: msg.text
-                });
-            }
-        });
+        // Add conversation history (if any)
+        if (history && history.length > 0) {
+            history.forEach(msg => {
+                if (msg.type === 'user') {
+                    messages.push({ role: "user", content: msg.text });
+                } else if (msg.type === 'ai') {
+                    messages.push({ role: "assistant", content: msg.text });
+                }
+            });
+        }
 
-        // Add current user message with image if present
-        if (imageFile) {
-            // Convert image to base64 for the API call (reliable across models)
-            const base64Image = await fileToBase64(imageFile);
-
-            // Smart default prompt based on context
-            const defaultPrompt = userMessage || "请帮我分析这道题目，引导我思考解题思路。";
-
-            // 强引导 Prompt：强制 AI 聚焦新图片，忽略旧上下文
-            const strongContextPrompt = `
-【⚠️ 重要指令：新题目分析】
-用户上传了一张新的图片，这意味着这是一个**全新的题目**。
-1. 请**完全忽略**之前对话中的所有题目信息（旧的题目描述、数值等）。
-2. **仅仅**分析当前这张上传的图片。
-3. 如果这张图是新题目，请在返回的 JSON 中生成新的 "title" 字段以更新会话标题。
-
-用户备注：${defaultPrompt}
-`.trim();
+        // Add current user message (with image if exists)
+        if (processedImageFile) {
+            // Convert image to base64 for vision model
+            const base64Image = await new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(processedImageFile);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+            });
 
             messages.push({
                 role: "user",
                 content: [
                     {
-                        type: "text",
-                        text: strongContextPrompt,
-                    },
-                    {
                         type: "image_url",
                         image_url: {
                             url: base64Image
                         }
+                    },
+                    {
+                        type: "text",
+                        text: userMessage || "请帮我分析这道题目，引导我思考解题思路"
                     }
                 ]
             });
@@ -573,15 +676,16 @@ export const sendMessageToTutor = async (userMessage, history = [], imageFile = 
             });
         }
 
+        // 8. Call AI API
         // Use vision model if there's an image
-        const modelToUse = imageFile ? "qwen-vl-plus" : "qwen-plus";
+        const modelToUse = processedImageFile ? "qwen-vl-plus" : "qwen-plus";
 
         const completion = await client.chat.completions.create({
             model: modelToUse,
             messages: messages,
             response_format: { type: "json_object" },
-            temperature: 0.5, // 降低温度以获得更快、更聚焦的响应（从 0.7 降至 0.5）
-            max_tokens: 1500, // 限制最大 token 数，防止过长回复（约 1000 汉字）
+            temperature: config.temperature, // 根据复杂度动态调整
+            max_tokens: config.max_tokens,   // 根据复杂度动态调整
         });
 
         const responseText = completion.choices[0].message.content;
