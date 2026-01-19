@@ -145,12 +145,15 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
                 const lastMessage = data[data.length - 1];
                 const hasAIResponse = data.some(msg => msg.role === 'assistant');
 
-                // 只在未触发过的情况下触发自动分析（支持图片或纯文字）
+                // 只在最后一条是用户消息且没有AI回复时才触发自动分析
+                // 并且确保这是真正的新消息（通过检查是否已经触发过）
                 if (lastMessage.role === 'user' && !hasAIResponse && !autoAnalysisTriggeredRef.current) {
                     // Auto-trigger AI analysis for the uploaded content (image or text)
-                    console.log("Auto-triggering AI analysis...");
-                    autoAnalysisTriggeredRef.current = true; // 设置标志
-                    triggerAutoAnalysis(lastMessage);
+                    console.log("Auto-triggering AI analysis for new message...");
+                    autoAnalysisTriggeredRef.current = true; // 设置标志防止重复触发
+
+                    // 使用数据库中的消息数据，而不是重新添加到界面
+                    triggerAutoAnalysis(lastMessage, false); // 传递 false 表示不添加用户消息到界面
                 }
             }
         };
@@ -158,9 +161,9 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
         loadHistory();
     }, [sessionId]);
 
-    const triggerAutoAnalysis = async (userMessage) => {
+    const triggerAutoAnalysis = async (userMessage, shouldAddUserMessage = true) => {
         try {
-            setStatus('analyzing');
+            setStatus('正在分析题目...');
             setIsTyping(true);
 
             let file = null;
@@ -187,21 +190,16 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
 
             setStatus('');
 
-            // Display AI response in three parts
-            addMessage(aiResponse.hint, 'ai', false);
+            // 直接显示完整的AI回复，不分段延时（避免闪烁）
+            // 合并所有部分为一条消息
+            const fullResponse = [
+                aiResponse.hint,
+                aiResponse.guidance,
+                aiResponse.question ? `💡 **思考一下：** ${aiResponse.question}` : ''
+            ].filter(Boolean).join('\n\n');
 
-            setTimeout(() => {
-                addMessage(aiResponse.guidance, 'ai', false);
-
-                if (aiResponse.question) {
-                    setTimeout(() => {
-                        addMessage(`💡 **思考一下：** ${aiResponse.question}`, 'ai', false);
-                        setIsTyping(false);
-                    }, 2000);
-                } else {
-                    setIsTyping(false);
-                }
-            }, 3000);
+            addMessage(fullResponse, 'ai', false);
+            setIsTyping(false);
 
         } catch (error) {
             console.error("Auto-analysis failed:", error);
@@ -282,34 +280,17 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
                 setSessionId(aiResponse.sessionId);
             }
 
-            // Step 1: Analysis (Internal/Console only, or debug)
-            console.log("AI Analysis:", aiResponse.analysis);
+            setStatus('');
 
-            // Step 2: Hint (肯定 + 初步引导)
-            setStatus("正在构思提示...");
-            setTimeout(() => {
-                addMessage(aiResponse.hint, 'ai');
+            // 合并所有AI回复为一条消息，避免闪烁
+            const fullResponse = [
+                aiResponse.hint,
+                aiResponse.guidance,
+                aiResponse.question ? `💡 **思考一下：** ${aiResponse.question}` : ''
+            ].filter(Boolean).join('\n\n');
 
-                // Step 3: Guidance (详细引导步骤)
-                setStatus("正在准备引导步骤...");
-                setTimeout(() => {
-                    addMessage(aiResponse.guidance, 'ai');
-
-                    // Step 4: Question (苏格拉底式提问)
-                    if (aiResponse.question) {
-                        setStatus("正在思考下一步...");
-                        setTimeout(() => {
-                            addMessage(`💡 **思考一下：** ${aiResponse.question}`, 'ai');
-                            setStatus("");
-                            setIsTyping(false);
-                        }, 2000);
-                    } else {
-                        setStatus("");
-                        setIsTyping(false);
-                    }
-                }, 4000);
-
-            }, 1500);
+            addMessage(fullResponse, 'ai');
+            setIsTyping(false);
 
         } catch (error) {
             console.error("Chat Error:", error);
