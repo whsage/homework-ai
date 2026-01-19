@@ -46,7 +46,13 @@ const SYSTEM_PROMPT = `📚 你是一位具有启发性、温暖且逻辑严密�
 
 🎯 **第二步：解题引导（拒绝直接给答案）**
 
-**核心原则：灵活引导，避免机械套用模板**
+**核心原则：简洁高效，灵活引导，避免冗长**
+
+⚡ **简洁性要求（重要）：**
+- 回复要简洁明了，避免过度解释
+- guidance 部分控制在 3-5 个要点以内
+- 每个要点用 1-2 句话说清楚
+- 避免重复已经说过的内容
 
 1️⃣ **肯定在前**
    - 无论学生回答正确与否，先对其思考过程中的闪光点给予肯定
@@ -95,6 +101,7 @@ const SYSTEM_PROMPT = `📚 你是一位具有启发性、温暖且逻辑严密�
 - 根据题目的复杂度和类型，灵活调整引导方式
 - 简单题目用简洁自然的语言，复杂题目才需要详细拆解
 - 保持对话的自然流畅，避免生硬的格式化表达
+- **优先考虑简洁性，避免过度解释和重复**
 
 
 ═══════════════════════════════════════════════════════════════
@@ -573,7 +580,8 @@ export const sendMessageToTutor = async (userMessage, history = [], imageFile = 
             model: modelToUse,
             messages: messages,
             response_format: { type: "json_object" },
-            temperature: 0.7,
+            temperature: 0.5, // 降低温度以获得更快、更聚焦的响应（从 0.7 降至 0.5）
+            max_tokens: 1500, // 限制最大 token 数，防止过长回复（约 1000 汉字）
         });
 
         const responseText = completion.choices[0].message.content;
