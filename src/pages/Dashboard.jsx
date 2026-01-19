@@ -5,6 +5,24 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../supabase';
 import { useUser } from '../context/UserContext';
 
+// 学科中文映射和图标配置
+const SUBJECT_CONFIG = {
+    'Math': { name: '数学', icon: '📐', color: 'bg-blue-100 text-blue-700 border-blue-200' },
+    'Physics': { name: '物理', icon: '🧲', color: 'bg-purple-100 text-purple-700 border-purple-200' },
+    'Chemistry': { name: '化学', icon: '🧬', color: 'bg-green-100 text-green-700 border-green-200' },
+    'Chinese': { name: '语文', icon: '📖', color: 'bg-red-100 text-red-700 border-red-200' },
+    'English': { name: '英语', icon: '🌍', color: 'bg-orange-100 text-orange-700 border-orange-200' },
+    'Biology': { name: '生物', icon: '🌿', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
+    'History': { name: '历史', icon: '📜', color: 'bg-amber-100 text-amber-700 border-amber-200' },
+    'Geography': { name: '地理', icon: '🗺️', color: 'bg-teal-100 text-teal-700 border-teal-200' },
+    'General': { name: '通用', icon: '📚', color: 'bg-slate-100 text-slate-700 border-slate-200' }
+};
+
+// 获取学科配置
+const getSubjectConfig = (subject) => {
+    return SUBJECT_CONFIG[subject] || SUBJECT_CONFIG['General'];
+};
+
 const StatCard = ({ icon: Icon, label, value, color }) => (
     <div className="bg-white p-3 md:p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-2 md:gap-4">
         <div className={`w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center ${color} flex-shrink-0`}>
@@ -237,7 +255,7 @@ const Dashboard = () => {
 
             {/* Recent Activity Section */}
             <section>
-                <h2 className="text-lg font-semibold text-slate-800 mb-4">最近活动</h2>
+                <h2 className="text-lg font-semibold text-slate-800 mb-4">最近作业</h2>
                 <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
                     {isLoading ? (
                         // Loading skeleton
@@ -259,14 +277,14 @@ const Dashboard = () => {
                         recentActivity.map((session) => (
                             <Link to={`/homework/${session.id}`} key={session.id} className="p-4 border-b border-slate-50 last:border-0 hover:bg-slate-50 transition-colors flex items-center justify-between group cursor-pointer block">
                                 <div className="flex items-center gap-4">
-                                    <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 shrink-0">
-                                        <span className="font-bold text-sm">#{session.id.slice(0, 4)}</span>
+                                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 border-2 ${getSubjectConfig(session.subject || 'General').color}`}>
+                                        <span className="text-xl">{getSubjectConfig(session.subject || 'General').icon}</span>
                                     </div>
                                     <div className="min-w-0">
                                         <p className="font-medium text-slate-700 group-hover:text-indigo-600 transition-colors truncate">
                                             {session.title || '未命名会话'}
                                         </p>
-                                        <p className="text-xs text-slate-500">{timeAgo(session.created_at)} • {session.subject || '通用'}</p>
+                                        <p className="text-xs text-slate-500">{timeAgo(session.created_at)} • {getSubjectConfig(session.subject || 'General').name}</p>
                                     </div>
                                 </div>
                                 <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 whitespace-nowrap ml-2">
