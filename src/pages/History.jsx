@@ -8,8 +8,8 @@ const History = () => {
     const [sessions, setSessions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
-    const [subjectFilter, setSubjectFilter] = useState('All'); // 学科筛选
-    const [tagFilter, setTagFilter] = useState('All'); // 知识点筛选
+    const [selectedSubjects, setSelectedSubjects] = useState([]); // 多选学科
+    const [selectedTags, setSelectedTags] = useState([]); // 多选知识点
 
     const [selectedSessions, setSelectedSessions] = useState([]);
     const [isDeleting, setIsDeleting] = useState(false);
@@ -18,16 +18,48 @@ const History = () => {
     const [totalCreated, setTotalCreated] = useState(0); // 累积总数
 
     // 提取所有唯一的学科
-    const subjects = ['All', ...new Set(sessions.map(s => s.subject || 'General').filter(Boolean))];
+    const allSubjects = [...new Set(sessions.map(s => s.subject || 'General').filter(Boolean))];
 
-    // 提取所有唯一的知识点 (tags)
-    const allTags = sessions.reduce((acc, session) => {
+    // 构建学科到知识点的映射
+    const subjectToTags = sessions.reduce((acc, session) => {
+        const subject = session.subject || 'General';
+        if (!acc[subject]) acc[subject] = new Set();
         if (session.tags && Array.isArray(session.tags)) {
-            session.tags.forEach(tag => acc.add(tag));
+            session.tags.forEach(tag => acc[subject].add(tag));
         }
         return acc;
-    }, new Set());
-    const uniqueTags = ['All', ...Array.from(allTags)];
+    }, {});
+
+    // 根据选中的学科，筛选出可用的知识点
+    const availableTags = selectedSubjects.length > 0
+        ? [...new Set(selectedSubjects.flatMap(subject => Array.from(subjectToTags[subject] || [])))]
+        : [...new Set(sessions.flatMap(s => s.tags || []))];
+
+    // 切换学科选择
+    const toggleSubject = (subject) => {
+        setSelectedSubjects(prev =>
+            prev.includes(subject)
+                ? prev.filter(s => s !== subject)
+                : [...prev, subject]
+        );
+        // 清除不再可用的知识点选择
+        setSelectedTags(prev => prev.filter(tag => {
+            const newSubjects = selectedSubjects.includes(subject)
+                ? selectedSubjects.filter(s => s !== subject)
+                : [...selectedSubjects, subject];
+            if (newSubjects.length === 0) return true;
+            return newSubjects.some(subj => subjectToTags[subj]?.has(tag));
+        }));
+    };
+
+    // 切换知识点选择
+    const toggleTag = (tag) => {
+        setSelectedTags(prev =>
+            prev.includes(tag)
+                ? prev.filter(t => t !== tag)
+                : [...prev, tag]
+        );
+    };
 
     useEffect(() => {
         const loadAllSessions = async () => {
@@ -185,9 +217,14 @@ const History = () => {
 
     const filteredSessions = sessions.filter(session => {
         const matchesSearch = session.title?.toLowerCase().includes(searchTerm.toLowerCase());
-        const matchesSubject = subjectFilter === 'All' || (session.subject || 'General') === subjectFilter;
-        // 知识点筛选：如果选了特定 Tag，会话必须包含该 Tag
-        const matchesTag = tagFilter === 'All' || (session.tags && session.tags.includes(tagFilter));
+
+        // 学科筛选：如果没选学科，显示全部；如果选了，必须匹配其中之一
+        const matchesSubject = selectedSubjects.length === 0 ||
+            selectedSubjects.includes(session.subject || 'General');
+
+        // 知识点筛选：如果没选知识点，显示全部；如果选了，必须包含其中之一
+        const matchesTag = selectedTags.length === 0 ||
+            (session.tags && selectedTags.some(tag => session.tags.includes(tag)));
 
         return matchesSearch && matchesSubject && matchesTag;
     });
@@ -207,30 +244,83 @@ const History = () => {
 
             {/* Action Bar - 新设计 */}
             <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-4 space-y-4">
-                {/* 1. 学科筛选 (Subject Tabs) */}
-                {subjects.length > 1 && (
-                    <div className="overflow-x-auto pb-2 -mb-2 scrollbar-hide">
-                        <div className="flex gap-2">
-                            {subjects.map(subject => (
-                                <button
-                                    key={subject}
-                                    onClick={() => setSubjectFilter(subject)}
-                                    className={`
-                                        px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors border
-                                        ${subjectFilter === subject
-                                            ? 'bg-indigo-600 text-white border-indigo-600'
-                                            : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300'}
-                                    `}
-                                >
-                                    {subject === 'All' ? '全部学科' : subject}
-                                </button>
-                            ))}
+                {/* 筛选区域 */}
+                <div className="space-y-3">
+                    {/* 1. 学科筛选 (Subject Pills) */}
+                    {allSubjects.length > 0 && (
+                        <div>
+                            <div className="flex items-center gap-2 mb-2">
+                                <span className="text-xs font-semibold text-slate-600">📚 学科</span>
+                                {selectedSubjects.length > 0 && (
+                                    <button
+                                        onClick={() => setSelectedSubjects([])}
+                                        className="text-xs text-indigo-600 hover:text-indigo-700 font-medium"
+                                    >
+                                        清除
+                                    </button>
+                                )}
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                                {allSubjects.map(subject => (
+                                    <button
+                                        key={subject}
+                                        onClick={() => toggleSubject(subject)}
+                                        className={`
+                                            px-3 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-all border
+                                            ${selectedSubjects.includes(subject)
+                                                ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
+                                                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300'}
+                                        `}
+                                    >
+                                        {subject}
+                                    </button>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                )}
+                    )}
 
-                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                    {/* 左侧：搜索、知识点筛选、全选 */}
+                    {/* 2. 知识点筛选 (Tag Pills) - 智能联动 */}
+                    {availableTags.length > 0 && (
+                        <div>
+                            <div className="flex items-center gap-2 mb-2">
+                                <span className="text-xs font-semibold text-slate-600">🏷️ 知识点</span>
+                                {selectedTags.length > 0 && (
+                                    <button
+                                        onClick={() => setSelectedTags([])}
+                                        className="text-xs text-indigo-600 hover:text-indigo-700 font-medium"
+                                    >
+                                        清除
+                                    </button>
+                                )}
+                                {selectedSubjects.length > 0 && (
+                                    <span className="text-xs text-slate-400">
+                                        （仅显示已选学科的知识点）
+                                    </span>
+                                )}
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                                {availableTags.map(tag => (
+                                    <button
+                                        key={tag}
+                                        onClick={() => toggleTag(tag)}
+                                        className={`
+                                            px-3 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-all border
+                                            ${selectedTags.includes(tag)
+                                                ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm'
+                                                : 'bg-white text-slate-600 border-slate-200 hover:bg-emerald-50 hover:border-emerald-300'}
+                                        `}
+                                    >
+                                        {tag}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                {/* 搜索和操作栏 */}
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pt-2 border-t border-slate-100">
+                    {/* 左侧：搜索和全选 */}
                     <div className="flex flex-col md:flex-row items-stretch md:items-center gap-4 flex-1 w-full md:w-auto">
 
                         {/* 搜索框 */}
@@ -244,28 +334,6 @@ const History = () => {
                                 className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                             />
                         </div>
-
-                        {/* 知识点筛选 (Tag Dropdown) - 只有当有Tags时才显示 */}
-                        {uniqueTags.length > 1 && (
-                            <div className="relative min-w-[140px]">
-                                <select
-                                    value={tagFilter}
-                                    onChange={(e) => setTagFilter(e.target.value)}
-                                    className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent appearance-none cursor-pointer"
-                                    style={{ paddingRight: '2rem' }} // Space for chevron
-                                >
-                                    <option value="All">所有知识点</option>
-                                    {uniqueTags.filter(t => t !== 'All').map(tag => (
-                                        <option key={tag} value={tag}>{tag}</option>
-                                    ))}
-                                </select>
-                                <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-                                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                        <path d="M1 1L5 5L9 1" />
-                                    </svg>
-                                </div>
-                            </div>
-                        )}
 
                         {/* 全选复选框 */}
                         {filteredSessions.length > 0 && (
