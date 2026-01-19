@@ -4,6 +4,24 @@ import { supabase } from '../supabase';
 import { Clock, Search, Trash2, X, Download, FileJson, FileText, FileType } from 'lucide-react';
 import { exportSessions } from '../services/exportService';
 
+// 学科中文映射和图标配置
+const SUBJECT_CONFIG = {
+    'Math': { name: '数学', icon: '📐', color: 'bg-blue-100 text-blue-700 border-blue-200' },
+    'Physics': { name: '物理', icon: '🧪', color: 'bg-purple-100 text-purple-700 border-purple-200' },
+    'Chemistry': { name: '化学', icon: '🧬', color: 'bg-green-100 text-green-700 border-green-200' },
+    'Chinese': { name: '语文', icon: '📖', color: 'bg-red-100 text-red-700 border-red-200' },
+    'English': { name: '英语', icon: '🌍', color: 'bg-orange-100 text-orange-700 border-orange-200' },
+    'Biology': { name: '生物', icon: '🌿', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
+    'History': { name: '历史', icon: '📜', color: 'bg-amber-100 text-amber-700 border-amber-200' },
+    'Geography': { name: '地理', icon: '🗺️', color: 'bg-teal-100 text-teal-700 border-teal-200' },
+    'General': { name: '通用', icon: '📚', color: 'bg-slate-100 text-slate-700 border-slate-200' }
+};
+
+// 获取学科配置
+const getSubjectConfig = (subject) => {
+    return SUBJECT_CONFIG[subject] || SUBJECT_CONFIG['General'];
+};
+
 const History = () => {
     const [sessions, setSessions] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -272,7 +290,8 @@ const History = () => {
                                                 : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300'}
                                         `}
                                     >
-                                        {subject}
+                                        <span>{getSubjectConfig(subject).icon}</span>
+                                        <span>{getSubjectConfig(subject).name}</span>
                                     </button>
                                 ))}
                             </div>
@@ -505,8 +524,8 @@ const History = () => {
                                     to={`/homework/${session.id}`}
                                     className="flex items-center gap-4 flex-1 min-w-0"
                                 >
-                                    <div className="w-12 h-12 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600 shrink-0">
-                                        <span className="font-bold text-sm">#{session.id.slice(0, 4)}</span>
+                                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center shrink-0 border-2 ${getSubjectConfig(session.subject || 'General').color}`}>
+                                        <span className="text-2xl">{getSubjectConfig(session.subject || 'General').icon}</span>
                                     </div>
                                     <div className="min-w-0 flex-1">
                                         <p className="font-medium text-slate-700 group-hover:text-indigo-600 transition-colors truncate">
@@ -518,7 +537,10 @@ const History = () => {
                                                 {timeAgo(session.created_at)}
                                             </p>
                                             <span className="text-slate-300">•</span>
-                                            <p className="text-xs text-slate-500">{session.subject || '通用'}</p>
+                                            <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 flex items-center gap-1">
+                                                <span>{getSubjectConfig(session.subject || 'General').icon}</span>
+                                                <span>{getSubjectConfig(session.subject || 'General').name}</span>
+                                            </span>
                                         </div>
                                     </div>
                                 </Link>
