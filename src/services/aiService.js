@@ -401,7 +401,7 @@ const fileToBase64 = (file) => {
     });
 };
 
-export const sendMessageToTutor = async (userMessage, history = [], imageFile = null, existingSessionId = null) => {
+export const sendMessageToTutor = async (userMessage, history = [], imageFile = null, existingSessionId = null, saveUserMessage = true) => {
     if (!client) {
         console.warn("No API Key found. Using mock response.");
         return new Promise((resolve) => {
@@ -480,8 +480,8 @@ export const sendMessageToTutor = async (userMessage, history = [], imageFile = 
                 // Ensure session exists or update 'last_accessed'? Optional.
             }
 
-            // Insert USER message to DB
-            if (sessionId) {
+            // Insert USER message to DB (Only if saveUserMessage is true)
+            if (sessionId && saveUserMessage) {
                 const { error: msgError } = await supabase
                     .from('messages')
                     .insert({

@@ -185,7 +185,8 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
                 userMessage.content,
                 [],
                 file,
-                sessionId
+                sessionId,
+                shouldAddUserMessage // Pass this to control DB insertion. If false, don't save to DB.
             );
 
             setStatus('');
