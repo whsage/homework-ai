@@ -519,7 +519,6 @@ const History = () => {
                                     onClick={(e) => e.stopPropagation()}
                                 />
 
-                                {/* 会话内容 */}
                                 <Link
                                     to={`/homework/${session.id}`}
                                     className="flex items-center gap-4 flex-1 min-w-0"
@@ -543,10 +542,8 @@ const History = () => {
                                             </span>
                                         </div>
                                     </div>
-                                </Link>
 
-                                {/* 右侧操作区 */}
-                                {!selectedSessions.includes(session.id) && (
+                                    {/* 右侧操作区 - 现在也可点击 */}
                                     <div className="flex items-center gap-3">
                                         <span className="text-xs font-medium px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 whitespace-nowrap">
                                             查看
@@ -555,7 +552,7 @@ const History = () => {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                         </svg>
                                     </div>
-                                )}
+                                </Link>
                             </div>
                         ))}
                     </div>
