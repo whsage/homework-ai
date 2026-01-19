@@ -535,11 +535,22 @@ const History = () => {
                                             <p className="text-xs text-slate-500">
                                                 {timeAgo(session.created_at)}
                                             </p>
-                                            <span className="text-slate-300">•</span>
-                                            <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 flex items-center gap-1">
-                                                <span>{getSubjectConfig(session.subject || 'General').icon}</span>
-                                                <span>{getSubjectConfig(session.subject || 'General').name}</span>
-                                            </span>
+                                            {/* 显示知识点标签（如果有） */}
+                                            {session.tags && session.tags.length > 0 && (
+                                                <>
+                                                    <span className="text-slate-300">•</span>
+                                                    {session.tags.slice(0, 2).map((tag, index) => (
+                                                        <span key={index} className="text-xs px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-600 border border-indigo-100">
+                                                            {tag}
+                                                        </span>
+                                                    ))}
+                                                    {session.tags.length > 2 && (
+                                                        <span className="text-xs text-slate-400">
+                                                            +{session.tags.length - 2}
+                                                        </span>
+                                                    )}
+                                                </>
+                                            )}
                                         </div>
                                     </div>
 
