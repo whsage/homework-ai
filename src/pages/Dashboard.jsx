@@ -61,7 +61,7 @@ const Dashboard = () => {
 
             setStats({
                 completedTasks: totalSessionsCreated, // 使用累积数量
-                studyHours: Math.round(totalSessionsCreated * 0.25 * 10) / 10,
+                studyHours: Math.floor(totalSessionsCreated * 25 / 60), // 每次25分钟，转换为小时
                 streak: streak
             });
 
