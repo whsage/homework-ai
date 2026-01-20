@@ -6,3 +6,9 @@
 /robots.txt
   Content-Type: text/plain
   Cache-Control: public, max-age=3600
+
+# APK 文件配置 (强制下载类型)
+/download/*.apk
+  Content-Type: application/vnd.android.package-archive
+  Content-Disposition: attachment
+  Cache-Control: public, max-age=3600

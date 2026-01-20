@@ -159,6 +159,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                 <div className="px-4 pb-2">
                     <a
                         href="/download/app-release.apk"
+                        download="HomeworkAI-Android.apk"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-xl shadow-lg shadow-indigo-900/20 hover:shadow-indigo-900/40 transition-all group"
