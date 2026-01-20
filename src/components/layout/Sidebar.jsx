@@ -1,4 +1,4 @@
-import { LayoutDashboard, BookOpen, Settings, MessageSquare, BarChart3 } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Settings, MessageSquare, BarChart3, Download } from 'lucide-react';
 import { NavLink, Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { supabase } from '../../supabase';
@@ -154,6 +154,24 @@ const Sidebar = ({ isOpen, onClose }) => {
                         </div>
                     )}
                 </nav>
+
+                {/* App Download Link - Fixed at bottom above usage stats */}
+                <div className="px-4 pb-2">
+                    <a
+                        href="/download/app-release.apk"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-xl shadow-lg shadow-indigo-900/20 hover:shadow-indigo-900/40 transition-all group"
+                    >
+                        <div className="bg-white/20 p-1.5 rounded-lg backdrop-blur-sm group-hover:bg-white/30 transition-colors">
+                            <Download size={18} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                            <p className="font-bold text-sm">下载 App</p>
+                            <p className="text-[10px] text-indigo-100 opacity-90 truncate">Android 客户端</p>
+                        </div>
+                    </a>
+                </div>
 
                 <div className="p-4 border-t border-slate-800">
                     <div className={`rounded-lg p-4 ${totalSessions > MAX_SESSIONS - 3 ? 'bg-red-900/30' : 'bg-slate-800/50'}`}>
