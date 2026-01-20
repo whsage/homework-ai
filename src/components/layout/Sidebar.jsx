@@ -95,7 +95,9 @@ const Sidebar = ({ isOpen, onClose }) => {
             )}>
                 <div className="p-6 border-b border-slate-800 flex items-center justify-between">
                     <h1 className="text-xl font-bold text-white flex items-center gap-2">
-                        <span className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold">H</span>
+                        <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden bg-white/10 p-1">
+                            <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
+                        </div>
                         HomeworkAI
                     </h1>
                 </div>
