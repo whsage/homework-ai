@@ -169,6 +169,25 @@ const Dashboard = () => {
                 )}
             </div>
 
+            {/* Android App Promotion Banner */}
+            <div className="bg-gradient-to-r from-indigo-600 to-violet-600 rounded-xl p-4 text-white flex items-center justify-between shadow-lg shadow-indigo-200 mb-8">
+                <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm shrink-0">
+                        <span className="text-2xl">🚀</span>
+                    </div>
+                    <div>
+                        <h3 className="font-bold text-lg">下载 Android 客户端</h3>
+                        <p className="text-indigo-100 text-sm">随时随地拍照搜题，体验更流畅的 AI 辅导</p>
+                    </div>
+                </div>
+                <button
+                    onClick={() => alert('Android 客户端即将上线各大应用商店，敬请期待！')}
+                    className="px-4 py-2 bg-white text-indigo-600 rounded-lg font-semibold text-sm hover:bg-indigo-50 transition-colors shrink-0"
+                >
+                    即将上线
+                </button>
+            </div>
+
             {/* Main Upload Area */}
             <section>
                 <div className="flex items-center justify-between mb-4">
