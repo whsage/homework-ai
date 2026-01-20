@@ -94,11 +94,11 @@ const Sidebar = ({ isOpen, onClose }) => {
                 isOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"
             )}>
                 <div className="p-6 border-b border-slate-800 flex items-center justify-between">
-                    <h1 className="text-xl font-bold text-white flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden bg-white/10 p-1">
-                            <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
+                    <h1 className="text-xl font-bold text-white flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-xl flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#E0F2FE] to-[#eff6ff] p-1.5 shadow-md shadow-indigo-500/20 border border-white/10">
+                            <img src="/logo.png" alt="Logo" className="w-full h-full object-contain drop-shadow-sm" />
                         </div>
-                        HomeworkAI
+                        <span className="tracking-tight">HomeworkAI</span>
                     </h1>
                 </div>
 

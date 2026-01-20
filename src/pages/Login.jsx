@@ -57,8 +57,8 @@ const Login = () => {
         <div className="min-h-screen flex items-center justify-center bg-slate-50">
             <div className="max-w-md w-full bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
                 <div className="flex justify-center mb-6">
-                    <div className="w-16 h-16 rounded-2xl bg-indigo-50 flex items-center justify-center p-2">
-                        <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
+                    <div className="w-20 h-20 rounded-[20px] bg-gradient-to-br from-[#E0F2FE] to-[#eff6ff] flex items-center justify-center p-3.5 shadow-lg shadow-indigo-100 border border-slate-50">
+                        <img src="/logo.png" alt="Logo" className="w-full h-full object-contain drop-shadow-sm" />
                     </div>
                 </div>
                 <h2 className="text-2xl font-bold text-slate-800 mb-6 text-center">登录作业辅导AI</h2>
