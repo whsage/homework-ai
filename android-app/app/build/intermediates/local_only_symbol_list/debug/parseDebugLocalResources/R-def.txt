@@ -12,6 +12,7 @@ color purple_700
 color teal_200
 color teal_700
 color white
+drawable app_icon_source
 drawable ic_launcher_foreground
 drawable splash_background
 id app_name

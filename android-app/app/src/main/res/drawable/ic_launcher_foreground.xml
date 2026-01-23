@@ -3,7 +3,70 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M31,63.923C31,63.923 40.457,74.454 40.457,74.454C40.457,74.454 69,39.965 69,39.965C69,39.965 60.536,31.5 60.536,31.5C60.536,31.5 41.364,54.718 41.364,54.718C41.364,54.718 31,63.923 31,63.923Z" />
+
+    <!-- 整体缩放到 0.5 比例并居中，确保 100% 不会被切边 -->
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:translateX="2"
+        android:translateY="2">
+
+        <!-- 速度线条 -->
+        <path
+            android:pathData="M25,85 L10,100 M40,90 L30,100 M50,80 L40,90"
+            android:strokeColor="#1E3A8A"
+            android:strokeWidth="6"
+            android:strokeLineCap="round" />
+
+        <!-- 底部推力 -->
+        <path
+            android:fillColor="#F97316"
+            android:strokeColor="#1E3A8A"
+            android:strokeWidth="3"
+            android:pathData="M42,72 C36,78 42,86 48,80 L52,82 L42,72 Z" />
+
+        <!-- 左侧机翼 -->
+        <path
+            android:fillColor="#1E40AF"
+            android:strokeColor="#1E3A8A"
+            android:strokeWidth="3"
+            android:strokeLineJoin="round"
+            android:pathData="M45,60 L28,54 C25,53 24,57 26,60 L42,72 Z" />
+
+        <!-- 右侧机翼 -->
+        <path
+            android:fillColor="#1E40AF"
+            android:strokeColor="#1E3A8A"
+            android:strokeWidth="3"
+            android:strokeLineJoin="round"
+            android:pathData="M65,80 L71,97 C72,100 76,98 75,95 L60,81 Z" />
+
+        <!-- 铅笔主体轮廓 -->
+        <path
+            android:fillColor="#1D4ED8"
+            android:strokeColor="#1E3A8A"
+            android:strokeWidth="4"
+            android:strokeLineJoin="round"
+            android:pathData="M42,72 L78,36 C81,33 85,33 88,36 C91,39 91,43 88,46 L52,82 Z" />
+
+        <!-- 铅笔中间的橙色带 -->
+        <path
+            android:fillColor="#F59E0B"
+            android:pathData="M48,66 L74,40 L81,47 L55,73 Z" />
+
+        <!-- 铅笔削尖部分 (白色) -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:strokeColor="#1E3A8A"
+            android:strokeWidth="2"
+            android:pathData="M78,36 L88,36 C91,39 91,43 88,46 L82,45 C80,44 78,41 78,38 Z" />
+
+        <!-- 铅笔芯 (最尖端蓝色) -->
+        <path
+            android:fillColor="#1E3A8A"
+            android:pathData="M85,33 L91,39 L92,32 Z" />
+
+    </group>
 </vector>

@@ -139,7 +139,17 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
                         imageUrl: msg.image_url
                     };
                 });
-                setMessages(history);
+
+                // Always prepend the Socratic welcome message at the beginning
+                const welcomeMessage = {
+                    id: 'welcome',
+                    type: 'ai',
+                    text: "你好！👋 我是你的全科辅导老师。\n\n我的使命不是直接告诉你答案，而是引导你自己思考、发现和理解。\n\n📚 **我能帮你：**\n- 分析题目的关键信息\n- 拆解复杂问题的逻辑\n- 用生活化的方式解释抽象概念\n- 通过提问激发你的思维\n\n上传一张作业题目的照片，或者直接问我问题，让我们一起开始思考吧！",
+                    timestamp: new Date(data[0].created_at - 1000), // Slightly before first message
+                    isTypingDone: true
+                };
+
+                setMessages([welcomeMessage, ...history]);
 
                 // Check if last message is from user and no AI response yet
                 const lastMessage = data[data.length - 1];

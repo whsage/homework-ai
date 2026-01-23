@@ -1,0 +1,7 @@
+com.ai7miao.homework.test.app-annotation-experimental-1.3.0-0 C:\Users\47065\.gradle\caches\9.0-milestone-1\transforms\0030e4302d4e8a2af35568daacfcd9f7\transformed\annotation-experimental-1.3.0\res
+com.ai7miao.homework.test.app-core-1.5.0-1 C:\Users\47065\.gradle\caches\9.0-milestone-1\transforms\ed1ea05bfeee3fdd52d1ac12de482188\transformed\core-1.5.0\res
+com.ai7miao.homework.test.app-androidTest-2 D:\wenh\AI\homework\android-app\app\build\generated\res\resValues\androidTest\debug
+com.ai7miao.homework.test.app-updated_navigation_xml-3 D:\wenh\AI\homework\android-app\app\build\generated\updated_navigation_xml\debugAndroidTest
+com.ai7miao.homework.test.app-mergeDebugAndroidTestResources-4 D:\wenh\AI\homework\android-app\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.ai7miao.homework.test.app-mergeDebugAndroidTestResources-5 D:\wenh\AI\homework\android-app\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.ai7miao.homework.test.app-debugAndroidTest-6 D:\wenh\AI\homework\android-app\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
