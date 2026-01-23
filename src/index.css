@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ========================================
+   移动端优化样式
+   ======================================== */
+
 /* 禁用移动端下拉刷新，防止误触 */
 body {
     overscroll-behavior-y: contain;
@@ -17,4 +21,187 @@ body {
 /* 确保聊天界面内部可以正常滚动 */
 .chat-scroll-container {
     overscroll-behavior: auto;
+}
+
+/* ========================================
+   安全区域适配（刘海屏、Home Indicator）
+   ======================================== */
+
+/* 为支持安全区域的设备添加内边距 */
+@supports (padding: env(safe-area-inset-top)) {
+    body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+}
+
+/* 工具类：安全区域内边距 */
+.safe-area-top {
+    padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-area-left {
+    padding-left: env(safe-area-inset-left);
+}
+
+.safe-area-right {
+    padding-right: env(safe-area-inset-right);
+}
+
+/* ========================================
+   触摸优化
+   ======================================== */
+
+/* 优化触摸反馈 - 自定义高亮颜色 */
+button,
+a,
+[role="button"] {
+    -webkit-tap-highlight-color: rgba(99, 102, 241, 0.1);
+}
+
+/* 禁用长按菜单（图片等） */
+img,
+.no-context-menu {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* 文本输入框保持可选择 */
+input,
+textarea {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+/* ========================================
+   滚动优化
+   ======================================== */
+
+/* 平滑滚动 */
+.smooth-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 隐藏滚动条但保持可滚动 */
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* ========================================
+   性能优化
+   ======================================== */
+
+/* 使用 GPU 加速动画 */
+.gpu-accelerated {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+}
+
+/* 优化渲染性能 */
+.optimize-rendering {
+    contain: layout style paint;
+}
+
+/* ========================================
+   移动端特定样式
+   ======================================== */
+
+/* 防止文本大小调整 */
+@media screen and (max-width: 768px) {
+    html {
+        -webkit-text-size-adjust: 100%;
+        -moz-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+}
+
+/* 移动端输入框优化 */
+@media screen and (max-width: 768px) {
+
+    input,
+    textarea {
+        font-size: 16px;
+        /* 防止 iOS 自动缩放 */
+    }
+}
+
+/* ========================================
+   可访问性优化
+   ======================================== */
+
+/* 聚焦时的轮廓 */
+*:focus-visible {
+    outline: 2px solid rgb(99, 102, 241);
+    outline-offset: 2px;
+}
+
+/* 移除默认的聚焦轮廓 */
+*:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* ========================================
+   LaTeX 公式优化
+   ======================================== */
+
+/* 确保 LaTeX 公式在移动端正确显示 */
+.katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 行内公式不换行 */
+.katex {
+    white-space: nowrap;
+}
+
+/* ========================================
+   代码块优化
+   ======================================== */
+
+/* 代码块横向滚动 */
+pre {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+code {
+    word-break: break-word;
+}
+
+/* ========================================
+   图片加载优化
+   ======================================== */
+
+/* 图片加载时的占位 */
+img[loading="lazy"] {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
 }

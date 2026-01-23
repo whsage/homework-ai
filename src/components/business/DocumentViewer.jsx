@@ -119,7 +119,7 @@ const DocumentViewer = () => {
                         <img
                             src={imageUrl}
                             alt="作业题目"
-                            className="max-w-full h-auto max-h-[70vh] rounded-lg"
+                            className="max-w-full h-auto max-h-[50vh] sm:max-h-[60vh] md:max-h-[70vh] rounded-lg"
                         />
                     </div>
                 ) : textContent ? (

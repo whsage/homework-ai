@@ -363,7 +363,7 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
                                                 <img
                                                     src={msg.imageUrl}
                                                     alt="上传的图片"
-                                                    className="max-w-full rounded-lg mb-2 max-h-64 object-contain border-2 border-indigo-400"
+                                                    className="max-w-full rounded-lg mb-2 max-h-48 sm:max-h-64 object-contain border-2 border-indigo-400"
                                                 />
                                                 {msg.text && (
                                                     <div className="prose prose-sm max-w-none prose-invert text-white mt-2">

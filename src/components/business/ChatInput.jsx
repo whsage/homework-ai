@@ -1,5 +1,5 @@
 import { Send, Paperclip, X, Image as ImageIcon } from 'lucide-react';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import clsx from 'clsx';
 import { compressImage } from '../../utils/imageCompression';
 
@@ -10,6 +10,30 @@ const ChatInput = ({ onSend, disabled }) => {
     const [isCompressing, setIsCompressing] = useState(false);
     const fileInputRef = useRef(null);
     const textareaRef = useRef(null);
+    const formRef = useRef(null);
+
+    // 处理移动端键盘弹出时的滚动
+    useEffect(() => {
+        const handleFocus = () => {
+            // 延迟执行，等待键盘完全弹出
+            setTimeout(() => {
+                if (textareaRef.current && formRef.current) {
+                    // 滚动到输入框位置
+                    formRef.current.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest',
+                        inline: 'nearest'
+                    });
+                }
+            }, 300);
+        };
+
+        const textarea = textareaRef.current;
+        if (textarea) {
+            textarea.addEventListener('focus', handleFocus);
+            return () => textarea.removeEventListener('focus', handleFocus);
+        }
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -114,7 +138,7 @@ const ChatInput = ({ onSend, disabled }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="p-2 sm:p-4 bg-white border-t border-slate-200 absolute bottom-0 left-0 right-0 z-10">
+        <form ref={formRef} onSubmit={handleSubmit} className="p-2 sm:p-4 bg-white border-t border-slate-200 absolute bottom-0 left-0 right-0 z-10">
             <div className="max-w-4xl mx-auto">
                 {/* 文件预览区域 */}
                 {selectedFile && (
