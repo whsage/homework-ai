@@ -581,44 +581,6 @@ const History = () => {
                     </div>
                 )}
             </div>
-
-            {/* Stats Summary */}
-            {!loading && sessions.length > 0 && (
-                <div className="bg-indigo-50 rounded-xl p-4 border border-indigo-100">
-                    <div className="flex items-center justify-between">
-                        <div>
-                            <p className="text-sm text-indigo-600 font-medium">当前作业</p>
-                            <p className="text-2xl font-bold text-indigo-900">{sessions.length}</p>
-                        </div>
-                        <div className="text-right">
-                            <p className="text-sm text-indigo-600 font-medium">总计</p>
-                            <p className="text-2xl font-bold text-indigo-900">{totalCreated}</p>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/* Export Feature Info */}
-            {!loading && sessions.length > 0 && selectedSessions.length === 0 && (
-                <div className="bg-gradient-to-r from-emerald-50 to-blue-50 rounded-xl p-4 border border-emerald-100">
-                    <div className="flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center shrink-0">
-                            <Download size={20} className="text-emerald-600" />
-                        </div>
-                        <div className="flex-1">
-                            <h3 className="text-sm font-semibold text-slate-800 mb-1">💡 批量操作功能</h3>
-                            <p className="text-xs text-slate-600 leading-relaxed">
-                                勾选会话后可进行批量操作：
-                                <span className="font-medium text-blue-700"> Word</span>、
-                                <span className="font-medium text-red-600">PDF</span>（推荐给家长和学生）、
-                                <span className="font-medium text-blue-600">JSON</span>、
-                                <span className="font-medium text-purple-600">Markdown</span> 格式导出，
-                                或批量删除会话。
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };

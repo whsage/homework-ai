@@ -302,37 +302,6 @@ const Statistics = () => {
                                 </div>
                             )}
                         </div>
-
-                        {/* 学习趋势 */}
-                        <div className="bg-white rounded-2xl shadow-lg p-6">
-                            <div className="flex items-center gap-2 mb-6">
-                                <TrendingUp className="text-green-600" size={24} />
-                                <h2 className="text-xl font-bold text-slate-800">最近活动</h2>
-                            </div>
-
-                            {stats.recentActivity.length > 0 ? (
-                                <div className="space-y-3">
-                                    {stats.recentActivity.map((session, index) => (
-                                        <div key={session.id} className="flex items-center gap-4 p-3 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
-                                            <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold">
-                                                {index + 1}
-                                            </div>
-                                            <div className="flex-1 min-w-0">
-                                                <div className="font-medium text-slate-800 truncate">{session.title || '未命名作业'}</div>
-                                                <div className="text-sm text-slate-500">
-                                                    {new Date(session.created_at).toLocaleDateString('zh-CN', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            ) : (
-                                <div className="text-center py-8 text-slate-400">
-                                    <Calendar size={48} className="mx-auto mb-3 opacity-50" />
-                                    <p>暂无学习记录</p>
-                                </div>
-                            )}
-                        </div>
                     </div>
 
                     {/* 右侧：成就系统 */}
