@@ -169,7 +169,7 @@ const Dashboard = () => {
                         <StatCard
                             icon={TrendingUp}
                             label={t('faq.statCard.activeDays')}
-                            value={`${stats.streak} ${t('common.days') || '天'}`}
+                            value={`${stats.streak}d`}
                             color="bg-orange-500"
                         />
                     </>
