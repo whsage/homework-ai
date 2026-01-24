@@ -7,6 +7,7 @@ import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 import NotificationDropdown from './NotificationDropdown';
 import { calculateLevel } from '../../utils/levelSystem';
+import { getAchievementTitle, getSubjectTitle, getFavoriteSubject } from '../../utils/honorSystem';
 
 const Header = ({ onMenuClick }) => {
     const { user, settings } = useUser();
@@ -16,17 +17,20 @@ const Header = ({ onMenuClick }) => {
     const [showNotifications, setShowNotifications] = useState(false);
     const [userLevel, setUserLevel] = useState(1);
     const [totalSessions, setTotalSessions] = useState(0);
+    const [achievementTitle, setAchievementTitle] = useState({ emoji: '🌱', title: '学习萌新' });
+    const [subjectTitle, setSubjectTitle] = useState({ emoji: '📚', title: '全科小学霸' });
     const location = useLocation();
     const navigate = useNavigate();
     const isDashboard = location.pathname === '/';
     const menuRef = useRef(null);
     const notificationRef = useRef(null);
 
-    // Fetch user level and total sessions
+    // Fetch user stats, level, and honor titles
     useEffect(() => {
         const fetchUserStats = async () => {
             if (!user) return;
 
+            // Get total sessions from user_stats
             const { data: userStats } = await supabase
                 .from('user_stats')
                 .select('total_sessions_created')
@@ -36,10 +40,25 @@ const Header = ({ onMenuClick }) => {
             const total = userStats?.total_sessions_created || 0;
             setTotalSessions(total);
             setUserLevel(calculateLevel(total));
+
+            // Set achievement title based on total sessions
+            const achievement = getAchievementTitle(total, language);
+            setAchievementTitle(achievement);
+
+            // Get all sessions to determine favorite subject
+            const { data: sessions } = await supabase
+                .from('sessions')
+                .select('subject')
+                .eq('user_id', user.id);
+
+            const favoriteSubject = getFavoriteSubject(sessions || []);
+            const userGrade = settings?.profile?.grade || '';
+            const subject = getSubjectTitle(favoriteSubject, userGrade, language);
+            setSubjectTitle(subject);
         };
 
         fetchUserStats();
-    }, [user]);
+    }, [user, language, settings?.profile?.grade]);
 
     // Close menu when clicking outside
     useEffect(() => {
@@ -165,8 +184,8 @@ const Header = ({ onMenuClick }) => {
                                         <p className="text-lg font-semibold text-slate-900 dark:text-white mt-3 truncate w-full text-center">{displayName}</p>
                                         <p className="text-xs text-slate-500 dark:text-slate-400 truncate w-full text-center">{displayEmail}</p>
                                         <div className="mt-3 flex gap-2 w-full justify-center">
-                                            <span className="text-xs px-2 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-md font-medium">Lv.{userLevel} {t('header.rank')}</span>
-                                            <span className="text-xs px-2 py-1 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-md font-medium">📚 {totalSessions} {t('header.totalHomework')}</span>
+                                            <span className="text-xs px-2 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-md font-medium">{achievementTitle.emoji} {achievementTitle.title}</span>
+                                            <span className="text-xs px-2 py-1 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-md font-medium">{subjectTitle.emoji} {subjectTitle.title}</span>
                                         </div>
                                     </div>
 
