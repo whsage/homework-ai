@@ -15,7 +15,7 @@ const ICON_MAP = {
     'Gift': Gift
 };
 
-const NotificationDropdown = ({ onClose }) => {
+const NotificationDropdown = ({ onClose, onUpdateUnread }) => {
     const dropdownRef = useRef(null);
     const { t } = useLanguage();
     const [notifications, setNotifications] = useState([]);
@@ -41,7 +41,9 @@ const NotificationDropdown = ({ onClose }) => {
 
             if (!error) {
                 setNotifications(data || []);
-                setUnreadCount((data || []).filter(n => !n.read).length);
+                const count = (data || []).filter(n => !n.read).length;
+                setUnreadCount(count);
+                if (onUpdateUnread) onUpdateUnread(count); // Sync with header
             }
             setIsLoading(false);
         };
@@ -62,8 +64,15 @@ const NotificationDropdown = ({ onClose }) => {
                     table: 'user_notifications',
                     filter: `user_id=eq.${user.id}`
                 }, (payload) => {
-                    setNotifications(prev => [payload.new, ...prev].slice(0, 10));
-                    setUnreadCount(prev => prev + 1);
+                    setNotifications(prev => {
+                        const newNotifications = [payload.new, ...prev].slice(0, 10);
+                        return newNotifications;
+                    });
+                    setUnreadCount(prev => {
+                        const newCount = prev + 1;
+                        if (onUpdateUnread) onUpdateUnread(newCount);
+                        return newCount;
+                    });
                 })
                 .subscribe();
 
@@ -105,6 +114,7 @@ const NotificationDropdown = ({ onClose }) => {
 
         setNotifications(prev => prev.map(n => ({ ...n, read: true })));
         setUnreadCount(0);
+        if (onUpdateUnread) onUpdateUnread(0);
     };
 
     // 标记单个为已读
@@ -117,7 +127,11 @@ const NotificationDropdown = ({ onClose }) => {
         setNotifications(prev => prev.map(n =>
             n.id === notificationId ? { ...n, read: true } : n
         ));
-        setUnreadCount(prev => Math.max(0, prev - 1));
+        setUnreadCount(prev => {
+            const newCount = Math.max(0, prev - 1);
+            if (onUpdateUnread) onUpdateUnread(newCount);
+            return newCount;
+        });
     };
 
     // 格式化时间

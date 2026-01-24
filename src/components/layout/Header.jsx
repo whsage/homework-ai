@@ -19,18 +19,28 @@ const Header = ({ onMenuClick }) => {
     const [totalSessions, setTotalSessions] = useState(0);
     const [achievementTitle, setAchievementTitle] = useState({ emoji: '🌱', title: '学习萌新' });
     const [subjectTitle, setSubjectTitle] = useState({ emoji: '📚', title: '全科小学霸' });
+    const [unreadCount, setUnreadCount] = useState(0);
     const location = useLocation();
     const navigate = useNavigate();
     const isDashboard = location.pathname === '/';
     const menuRef = useRef(null);
     const notificationRef = useRef(null);
 
-    // Fetch user stats, level, and honor titles
+    // Fetch user stats, level, honor titles AND notifications
     useEffect(() => {
         const fetchUserStats = async () => {
             if (!user) return;
 
-            // Get total sessions from user_stats
+            // 1. Get Unread Notification Count
+            const { count } = await supabase
+                .from('user_notifications')
+                .select('*', { count: 'exact', head: true })
+                .eq('user_id', user.id)
+                .eq('read', false);
+
+            setUnreadCount(count || 0);
+
+            // 2. Get total sessions from user_stats
             const { data: userStats } = await supabase
                 .from('user_stats')
                 .select('total_sessions_created')
@@ -58,6 +68,24 @@ const Header = ({ onMenuClick }) => {
         };
 
         fetchUserStats();
+
+        // Subscribe to notifications for red dot
+        if (!user) return;
+        const channel = supabase
+            .channel('header_notifications')
+            .on('postgres_changes', {
+                event: 'INSERT',
+                schema: 'public',
+                table: 'user_notifications',
+                filter: `user_id=eq.${user.id}`
+            }, () => {
+                setUnreadCount(prev => prev + 1);
+            })
+            .subscribe();
+
+        return () => {
+            supabase.removeChannel(channel);
+        };
     }, [user, language, settings?.profile?.grade]);
 
     // Close menu when clicking outside
@@ -68,7 +96,6 @@ const Header = ({ onMenuClick }) => {
             }
             if (notificationRef.current && !notificationRef.current.contains(event.target)) {
                 setShowNotifications(false); // Close if clicking outside container
-                // Note: clicking content inside dropdown is handled by propagation or specific close handlers
             }
         };
 
@@ -80,6 +107,11 @@ const Header = ({ onMenuClick }) => {
         await supabase.auth.signOut();
         setShowUserMenu(false);
         navigate('/login');
+    };
+
+    // Callback when notifications are read in dropdown
+    const handleNotificationsRead = (count = 0) => {
+        setUnreadCount(count);
     };
 
     const displayName = settings?.profile?.nickname || user?.email?.split('@')[0] || '同学';
@@ -154,10 +186,15 @@ const Header = ({ onMenuClick }) => {
                                 className={`p-2 rounded-full transition-colors relative ${showNotifications ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900/50 dark:text-indigo-400' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700'}`}
                             >
                                 <Bell size={20} />
-                                <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-800"></span>
+                                {unreadCount > 0 && (
+                                    <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-800"></span>
+                                )}
                             </button>
                             {showNotifications && (
-                                <NotificationDropdown onClose={() => setShowNotifications(false)} />
+                                <NotificationDropdown
+                                    onClose={() => setShowNotifications(false)}
+                                    onUpdateUnread={handleNotificationsRead}
+                                />
                             )}
                         </div>
 
