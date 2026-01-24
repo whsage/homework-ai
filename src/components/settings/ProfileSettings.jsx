@@ -102,6 +102,15 @@ const PasswordSettings = ({ onUpdateSuccess }) => {
     );
 };
 
+// Calculate user level based on total sessions
+const calculateLevel = (totalSessions) => {
+    if (totalSessions >= 100) return 5;
+    if (totalSessions >= 50) return 4;
+    if (totalSessions >= 30) return 3;
+    if (totalSessions >= 10) return 2;
+    return 1;
+};
+
 const ProfileSettings = () => {
     const { settings, updateProfile, user } = useUser();
     const { t } = useLanguage();
@@ -110,10 +119,30 @@ const ProfileSettings = () => {
     const [isSaving, setIsSaving] = useState(false);
     const [saved, setSaved] = useState(false);
     const [saveError, setSaveError] = useState(null);
+    const [userLevel, setUserLevel] = useState(1);
+    const [totalSessions, setTotalSessions] = useState(0);
 
     useEffect(() => {
         setFormData(settings.profile);
     }, [settings.profile]);
+
+    useEffect(() => {
+        const fetchUserStats = async () => {
+            if (!user) return;
+
+            const { data: userStats } = await supabase
+                .from('user_stats')
+                .select('total_sessions_created')
+                .eq('user_id', user.id)
+                .single();
+
+            const total = userStats?.total_sessions_created || 0;
+            setTotalSessions(total);
+            setUserLevel(calculateLevel(total));
+        };
+
+        fetchUserStats();
+    }, [user]);
 
     const handleChange = (field, value) => {
         setFormData(prev => ({ ...prev, [field]: value }));
@@ -188,7 +217,7 @@ const ProfileSettings = () => {
                         {/* Level Badge */}
                         <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 z-10">
                             <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-sm font-bold px-3 py-0.5 rounded-full shadow-sm border-2 border-white dark:border-slate-800 flex items-center gap-1 whitespace-nowrap">
-                                <span>Lv.3</span>
+                                <span>Lv.{userLevel}</span>
                             </div>
                         </div>
                     </div>
