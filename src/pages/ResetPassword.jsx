@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../supabase';
 import { useNavigate } from 'react-router-dom';
 import { Lock, Eye, EyeOff, Check, AlertCircle } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const ResetPassword = () => {
+    const { t } = useLanguage();
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -27,12 +29,12 @@ const ResetPassword = () => {
         setMessage(null);
 
         if (password.length < 6) {
-            setMessage({ type: 'error', text: '密码长度至少需要6位' });
+            setMessage({ type: 'error', text: t('settings.passwordLengthError') });
             return;
         }
 
         if (password !== confirmPassword) {
-            setMessage({ type: 'error', text: '两次输入的密码不一致' });
+            setMessage({ type: 'error', text: t('settings.passwordMismatchError') });
             return;
         }
 
@@ -45,7 +47,7 @@ const ResetPassword = () => {
 
             if (error) throw error;
 
-            setMessage({ type: 'success', text: '密码重置成功！正在跳转到主页...' });
+            setMessage({ type: 'success', text: t('settings.passwordSuccess') });
 
             setTimeout(() => {
                 navigate('/');
@@ -55,7 +57,7 @@ const ResetPassword = () => {
             console.error('Error resetting password:', error);
             setMessage({
                 type: 'error',
-                text: error.message || '重置失败，可能是链接已过期，请重新申请重置邮件'
+                text: error.message || t('settings.passwordError')
             });
         } finally {
             setLoading(false);
@@ -69,14 +71,14 @@ const ResetPassword = () => {
                     <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
                         <Lock size={32} />
                     </div>
-                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white">设置新密码</h2>
-                    <p className="text-slate-500 dark:text-slate-400 mt-2">请为您的账户设置一个新的安全密码</p>
+                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white">{t('settings.changePassword')}</h2>
+                    <p className="text-slate-500 dark:text-slate-400 mt-2">{t('auth.resetPasswordSubtitle')}</p>
                 </div>
 
                 <form onSubmit={handleResetPassword} className="space-y-6">
                     <div>
                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                            新密码
+                            {t('settings.newPassword')}
                         </label>
                         <div className="relative">
                             <input
@@ -100,7 +102,7 @@ const ResetPassword = () => {
 
                     <div>
                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                            确认新密码
+                            {t('settings.confirmPassword')}
                         </label>
                         <input
                             type="password"
@@ -131,9 +133,9 @@ const ResetPassword = () => {
                         {loading ? (
                             <>
                                 <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                                正在保存...
+                                {t('settings.updating')}
                             </>
-                        ) : '确认修改密码'}
+                        ) : t('settings.confirmPassword')}
                     </button>
 
                     <div className="text-center">
@@ -142,7 +144,7 @@ const ResetPassword = () => {
                             onClick={() => navigate('/login')}
                             className="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200"
                         >
-                            返回登录
+                            {t('auth.backToLogin')}
                         </button>
                     </div>
                 </form>

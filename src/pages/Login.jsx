@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { supabase } from '../supabase';
 import { useNavigate, Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 
 const Login = () => {
+    const { t } = useLanguage();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -33,7 +35,7 @@ const Login = () => {
 
     const handleForgotPassword = async () => {
         if (!email) {
-            setError('请输入邮箱地址以重置密码');
+            setError(t('auth.resetPasswordSubtitle'));
             return;
         }
 
@@ -61,7 +63,7 @@ const Login = () => {
                         <img src="/logo.png" alt="Logo" className="w-full h-full object-contain drop-shadow-sm" />
                     </div>
                 </div>
-                <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">登录作业辅导AI</h2>
+                <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">{t('auth.loginTitle')}</h2>
 
                 {error && (
                     <div className="mb-4 p-3 bg-red-50 text-red-600 text-sm rounded-lg border border-red-100">
@@ -71,7 +73,7 @@ const Login = () => {
 
                 <form onSubmit={handleLogin} className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">邮箱</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{t('auth.emailLabel')}</label>
                         <input
                             type="email"
                             required
@@ -82,7 +84,7 @@ const Login = () => {
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">密码</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{t('auth.passwordLabel')}</label>
                         <input
                             type="password"
                             required
@@ -97,7 +99,7 @@ const Login = () => {
                                 onClick={handleForgotPassword}
                                 className="text-xs text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 hover:underline"
                             >
-                                忘记密码？
+                                {t('auth.forgotPassword')}
                             </button>
                         </div>
                     </div>
@@ -107,14 +109,14 @@ const Login = () => {
                         disabled={loading}
                         className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium shadow-sm shadow-indigo-200 dark:shadow-none transition-all disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                        {loading ? '登录中...' : '登录'}
+                        {loading ? t('common.loading') : t('auth.loginButton')}
                     </button>
                 </form>
 
                 <div className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
-                    还没有账号？{' '}
-                    <Link to="/register" className="text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-700 dark:hover:text-indigo-300">
-                        立即注册
+                    {t('auth.registerLink')}
+                    <Link to="/register" className="text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-700 dark:hover:text-indigo-300 ml-1">
+                        {t('nav.register')}
                     </Link>
                 </div>
             </div>

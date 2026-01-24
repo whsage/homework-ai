@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { supabase } from '../supabase';
 import { Clock, Search, Trash2, X, Download, FileJson, FileText, FileType } from 'lucide-react';
 import { exportSessions } from '../services/exportService';
+import { useLanguage } from '../context/LanguageContext';
 
 // 学科中文映射和图标配置
 const SUBJECT_CONFIG = {
@@ -23,6 +24,7 @@ const getSubjectConfig = (subject) => {
 };
 
 const History = () => {
+    const { t } = useLanguage();
     const [sessions, setSessions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
@@ -252,10 +254,10 @@ const History = () => {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-2xl font-bold text-slate-800 dark:text-white">我的作业</h1>
+                    <h1 className="text-2xl font-bold text-slate-800 dark:text-white">{t('nav.homework')}</h1>
                     <p className="text-slate-500 dark:text-slate-400 mt-1">
-                        {sessions.length > 0 ? `共 ${sessions.length} 个会话` : '还没有作业会话'}
-                        {selectedSessions.length > 0 && ` · 已选择 ${selectedSessions.length} 个`}
+                        {sessions.length > 0 ? t('history.totalSessions', { count: sessions.length }) : t('history.noSessions')}
+                        {selectedSessions.length > 0 && ` · ${t('history.selected', { count: selectedSessions.length })}`}
                     </p>
                 </div>
             </div>
@@ -268,13 +270,13 @@ const History = () => {
                     {allSubjects.length > 0 && (
                         <div>
                             <div className="flex items-center gap-2 mb-2">
-                                <span className="text-xs font-semibold text-slate-600 dark:text-slate-300">📚 学科</span>
+                                <span className="text-xs font-semibold text-slate-600 dark:text-slate-300">📚 {t('history.subject')}</span>
                                 {selectedSubjects.length > 0 && (
                                     <button
                                         onClick={() => setSelectedSubjects([])}
                                         className="text-xs text-indigo-600 hover:text-indigo-700 font-medium"
                                     >
-                                        清除
+                                        {t('common.clear')}
                                     </button>
                                 )}
                             </div>
@@ -302,13 +304,13 @@ const History = () => {
                     {availableTags.length > 0 && (
                         <div>
                             <div className="flex items-center gap-2 mb-2">
-                                <span className="text-xs font-semibold text-slate-600 dark:text-slate-300">🏷️ 知识点</span>
+                                <span className="text-xs font-semibold text-slate-600 dark:text-slate-300">🏷️ {t('history.knowledgePoints')}</span>
                                 {selectedTags.length > 0 && (
                                     <button
                                         onClick={() => setSelectedTags([])}
                                         className="text-xs text-indigo-600 hover:text-indigo-700 font-medium"
                                     >
-                                        清除
+                                        {t('common.clear')}
                                     </button>
                                 )}
                                 {selectedSubjects.length > 0 && (
@@ -347,7 +349,7 @@ const History = () => {
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
                             <input
                                 type="text"
-                                placeholder="搜索会话..."
+                                placeholder={t('history.searchPlaceholder')}
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-slate-900 dark:border-slate-600 dark:text-white dark:placeholder-slate-400"
@@ -363,7 +365,7 @@ const History = () => {
                                     onChange={toggleSelectAll}
                                     className="w-4 h-4 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500 dark:bg-slate-700 dark:border-slate-500"
                                 />
-                                <span className="text-sm font-medium text-slate-700 dark:text-slate-300 whitespace-nowrap">全选</span>
+                                <span className="text-sm font-medium text-slate-700 dark:text-slate-300 whitespace-nowrap">{t('common.selectAll')}</span>
                             </label>
                         )}
                     </div>
@@ -381,7 +383,7 @@ const History = () => {
                                     className="px-4 py-2 text-sm font-medium text-slate-600 bg-slate-100 rounded-lg hover:bg-slate-200 transition-colors flex items-center gap-2 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600"
                                 >
                                     <X size={16} />
-                                    取消
+                                    {t('common.cancel')}
                                 </button>
 
                                 {/* 导出按钮 */}
@@ -392,7 +394,7 @@ const History = () => {
                                         className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-emerald-600 to-emerald-500 rounded-lg hover:from-emerald-700 hover:to-emerald-600 transition-all shadow-sm hover:shadow disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                                     >
                                         <Download size={16} />
-                                        {isExporting ? '导出中...' : `导出 (${selectedSessions.length})`}
+                                        {isExporting ? t('history.exporting') : `${t('history.export')} (${selectedSessions.length})`}
                                     </button>
 
                                     {/* Export Format Menu */}
@@ -483,7 +485,7 @@ const History = () => {
                                     className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-red-600 to-red-500 rounded-lg hover:from-red-700 hover:to-red-600 transition-all shadow-sm hover:shadow disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                                 >
                                     <Trash2 size={16} />
-                                    {isDeleting ? '删除中...' : `删除 (${selectedSessions.length})`}
+                                    {isDeleting ? t('history.deleting') : `${t('common.delete')} (${selectedSessions.length})`}
                                 </button>
                             </>
                         ) : (

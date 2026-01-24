@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useUser } from '../../context/UserContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { supabase } from '../../supabase';
 import { Lock, Check, AlertCircle, Edit2, Camera, X, Upload, User, Mail } from 'lucide-react';
 
@@ -14,6 +15,7 @@ const PRESET_AVATARS = [
 ];
 
 const PasswordSettings = ({ onUpdateSuccess }) => {
+    const { t } = useLanguage();
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [isUpdating, setIsUpdating] = useState(false);
@@ -24,12 +26,12 @@ const PasswordSettings = ({ onUpdateSuccess }) => {
         setMessage(null);
 
         if (newPassword.length < 6) {
-            setMessage({ type: 'error', text: '密码长度至少需要6位' });
+            setMessage({ type: 'error', text: t('settings.passwordLengthError') });
             return;
         }
 
         if (newPassword !== confirmPassword) {
-            setMessage({ type: 'error', text: '两次输入的密码不一致' });
+            setMessage({ type: 'error', text: t('settings.passwordMismatchError') });
             return;
         }
 
@@ -41,12 +43,12 @@ const PasswordSettings = ({ onUpdateSuccess }) => {
 
             if (error) throw error;
 
-            setMessage({ type: 'success', text: '密码已成功修改！' });
+            setMessage({ type: 'success', text: t('settings.passwordSuccess') });
             setNewPassword('');
             setConfirmPassword('');
             onUpdateSuccess?.();
         } catch (error) {
-            setMessage({ type: 'error', text: error.message || '修改失败，请重试' });
+            setMessage({ type: 'error', text: error.message || t('settings.passwordError') });
         } finally {
             setIsUpdating(false);
         }
@@ -56,12 +58,12 @@ const PasswordSettings = ({ onUpdateSuccess }) => {
         <div className="pt-6 border-t border-slate-200 dark:border-slate-700">
             <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
                 <Lock size={20} className="text-indigo-600 dark:text-indigo-400" />
-                安全设置
+                {t('settings.security')}
             </h3>
 
             <form onSubmit={handleUpdatePassword} className="space-y-4 max-w-lg">
                 <div>
-                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">新密码</label>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{t('settings.newPassword')}</label>
                     <input
                         type="password"
                         value={newPassword}
@@ -71,7 +73,7 @@ const PasswordSettings = ({ onUpdateSuccess }) => {
                     />
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">确认新密码</label>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{t('settings.confirmPassword')}</label>
                     <input
                         type="password"
                         value={confirmPassword}
@@ -93,7 +95,7 @@ const PasswordSettings = ({ onUpdateSuccess }) => {
                     disabled={isUpdating || !newPassword}
                     className="px-6 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium dark:bg-indigo-600 dark:hover:bg-indigo-700"
                 >
-                    {isUpdating ? '更新中...' : '修改密码'}
+                    {isUpdating ? t('common.loading') : t('common.save')}
                 </button>
             </form>
         </div>
@@ -102,6 +104,7 @@ const PasswordSettings = ({ onUpdateSuccess }) => {
 
 const ProfileSettings = () => {
     const { settings, updateProfile, user } = useUser();
+    const { t } = useLanguage();
     const [isEditing, setIsEditing] = useState(false); // 默认为展示模式
     const [formData, setFormData] = useState(settings.profile);
     const [isSaving, setIsSaving] = useState(false);
@@ -157,7 +160,7 @@ const ProfileSettings = () => {
                     onClick={() => setIsEditing(true)}
                     className="absolute top-4 right-4 bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg backdrop-blur-sm transition-all flex items-center gap-2 text-sm font-medium"
                 >
-                    <Edit2 size={16} /> 编辑资料
+                    <Edit2 size={16} /> {t('common.edit')}
                 </button>
             </div>
 
@@ -183,7 +186,7 @@ const ProfileSettings = () => {
                 <div className="space-y-6">
                     <div>
                         <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                            {formData.nickname || '未设置昵称'}
+                            {formData.nickname || t('profile.noNickname')}
                         </h2>
                         <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 mt-1 mb-2">
                             <Mail size={14} />
@@ -191,7 +194,7 @@ const ProfileSettings = () => {
                         </div>
                         <p className="text-slate-500 dark:text-slate-400 flex items-center gap-2 mt-1">
                             <span className="px-2 py-0.5 bg-indigo-50 text-indigo-600 rounded text-xs font-semibold uppercase tracking-wide dark:bg-indigo-900/30 dark:text-indigo-400">
-                                {formData.grade || '未设置年级'}
+                                {formData.grade || t('profile.noGrade')}
                             </span>
                             {formData.school && (
                                 <span className="text-sm">• {formData.school}</span>
@@ -201,10 +204,10 @@ const ProfileSettings = () => {
 
                     <div className="p-4 bg-slate-50 dark:bg-slate-700/30 rounded-xl border border-slate-100 dark:border-slate-700">
                         <h4 className="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2 flex items-center gap-2">
-                            <User size={16} /> 个人简介
+                            <User size={16} /> {t('profile.bioTitle')}
                         </h4>
                         <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                            {formData.bio || '这个人很懒，什么都没写...'}
+                            {formData.bio || t('profile.defaultBio')}
                         </p>
                     </div>
 
@@ -217,8 +220,8 @@ const ProfileSettings = () => {
     return (
         <div className="space-y-8">
             <div>
-                <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-1">个人资料</h2>
-                <p className="text-slate-600 dark:text-slate-400">管理你的个人信息与账户安全</p>
+                <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-1">{t('nav.profile')}</h2>
+                <p className="text-slate-600 dark:text-slate-400">{t('nav.profile')}</p>
             </div>
 
             {/* 模式切换：展示 vs 编辑 */}
@@ -227,7 +230,7 @@ const ProfileSettings = () => {
             ) : (
                 <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 p-6 space-y-8 animate-fade-in">
                     <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-700 pb-4">
-                        <h3 className="text-lg font-bold text-slate-800 dark:text-white">编辑资料</h3>
+                        <h3 className="text-lg font-bold text-slate-800 dark:text-white">{t('profile.editTitle')}</h3>
                         <button
                             onClick={() => {
                                 setFormData(settings.profile); // 重置修改
@@ -241,7 +244,7 @@ const ProfileSettings = () => {
 
                     {/* 头像选择区域 */}
                     <div>
-                        <h3 className="font-semibold text-slate-700 dark:text-slate-200 mb-4 block">头像设置</h3>
+                        <h3 className="font-semibold text-slate-700 dark:text-slate-200 mb-4 block">{t('profile.avatarSettings')}</h3>
                         <div className="flex flex-col md:flex-row gap-6 items-start">
                             {/* 当前预览 */}
                             <div className="relative flex-shrink-0">
@@ -256,7 +259,7 @@ const ProfileSettings = () => {
 
                             <div className="flex-1">
                                 <div className="mb-3 text-sm text-slate-500 dark:text-slate-400">
-                                    选择你喜欢的头像风格：
+                                    {t('profile.chooseAvatarStyle')}
                                 </div>
                                 <div className="flex flex-wrap gap-3">
                                     {PRESET_AVATARS.map((url, index) => (
@@ -281,7 +284,7 @@ const ProfileSettings = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
                             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                                昵称 <span className="text-red-500">*</span>
+                                {t('profile.nickname')} <span className="text-red-500">*</span>
                             </label>
                             <input
                                 type="text"
@@ -293,14 +296,14 @@ const ProfileSettings = () => {
 
                         <div>
                             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                                年级/学段
+                                {t('profile.grade')}
                             </label>
                             <select
                                 value={formData.grade}
                                 onChange={(e) => handleChange('grade', e.target.value)}
                                 className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all bg-white dark:bg-slate-900 dark:border-slate-600 dark:text-white"
                             >
-                                <option value="">请选择年级</option>
+                                <option value="">{t('profile.selectGrade')}</option>
                                 {grades.map(grade => (
                                     <option key={grade} value={grade}>{grade}</option>
                                 ))}
@@ -309,7 +312,7 @@ const ProfileSettings = () => {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">学校</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{t('profile.school')}</label>
                         <input
                             type="text"
                             value={formData.school}
@@ -319,7 +322,7 @@ const ProfileSettings = () => {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">个人简介</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{t('profile.bio')}</label>
                         <textarea
                             value={formData.bio}
                             onChange={(e) => handleChange('bio', e.target.value)}
@@ -339,7 +342,7 @@ const ProfileSettings = () => {
                             }}
                             className="px-6 py-2 text-slate-600 font-medium hover:bg-slate-100 rounded-lg transition-colors dark:text-slate-300 dark:hover:bg-slate-700"
                         >
-                            取消
+                            {t('common.cancel')}
                         </button>
                         <button
                             onClick={handleSave}
@@ -349,7 +352,8 @@ const ProfileSettings = () => {
                                 : 'bg-indigo-600 text-white hover:bg-indigo-700'
                                 }`}
                         >
-                            {isSaving ? '保存中...' : saved ? '保存成功' : '保存修改'}
+
+                            {isSaving ? t('common.loading') : saved ? t('common.success') : t('common.save')}
                         </button>
                     </div>
                 </div>

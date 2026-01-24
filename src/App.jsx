@@ -12,28 +12,31 @@ import Settings from './pages/Settings';
 import FAQ from './pages/FAQ';
 
 import { ThemeProvider } from './context/ThemeContext';
+import { LanguageProvider } from './context/LanguageContext';
 
 function App() {
   return (
-    <ThemeProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/" element={<MainLayout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="new" element={<NewSession />} />
-            <Route path="homework/:id" element={<HomeworkDetailPage />} />
-            <Route path="history" element={<History />} />
-            <Route path="statistics" element={<Statistics />} />
-            <Route path="settings" element={<Settings />} />
-            <Route path="faq" element={<FAQ />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </ThemeProvider>
+    <LanguageProvider>
+      <ThemeProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/" element={<MainLayout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="new" element={<NewSession />} />
+              <Route path="homework/:id" element={<HomeworkDetailPage />} />
+              <Route path="history" element={<History />} />
+              <Route path="statistics" element={<Statistics />} />
+              <Route path="settings" element={<Settings />} />
+              <Route path="faq" element={<FAQ />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
+    </LanguageProvider>
   );
 }
 

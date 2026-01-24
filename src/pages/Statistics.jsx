@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../supabase';
 import { Calendar, Clock, BookOpen, TrendingUp, Award, Flame, BarChart3, PieChart, Hash } from 'lucide-react';
 
+import { useRef } from 'react';
+import { useLanguage } from '../context/LanguageContext';
+
 const Statistics = () => {
+    const { t } = useLanguage();
     const [loading, setLoading] = useState(true);
     const [stats, setStats] = useState({
         totalSessions: 0,
@@ -163,7 +167,7 @@ const Statistics = () => {
             <div className="flex items-center justify-center h-screen">
                 <div className="text-center">
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
-                    <p className="text-slate-600">加载统计数据中...</p>
+                    <p className="text-slate-600">{t('common.loading')}</p>
                 </div>
             </div>
         );
@@ -176,9 +180,9 @@ const Statistics = () => {
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
                         <BarChart3 className="text-blue-600" size={32} />
-                        学习统计
+                        {t('statistics.title')}
                     </h1>
-                    <p className="text-slate-600 dark:text-slate-400">记录你的成长轨迹，见证每一次进步</p>
+                    <p className="text-slate-600 dark:text-slate-400">{t('statistics.subtitle')}</p>
                 </div>
 
                 {/* 核心数据卡片 */}
@@ -192,7 +196,7 @@ const Statistics = () => {
                                 <div className="text-sm opacity-90 mt-1">次</div>
                             </div>
                         </div>
-                        <div className="text-sm font-medium opacity-90">累积作业总数</div>
+                        <div className="text-sm font-medium opacity-90">{t('statistics.totalSessions')}</div>
                     </div>
 
                     {/* 学习时长 */}
@@ -204,7 +208,7 @@ const Statistics = () => {
                                 <div className="text-sm opacity-90 mt-1">小时</div>
                             </div>
                         </div>
-                        <div className="text-sm font-medium opacity-90">累计学习时长</div>
+                        <div className="text-sm font-medium opacity-90">{t('statistics.totalTime')}</div>
                     </div>
 
                     {/* 累积知识点数 */}
@@ -216,7 +220,7 @@ const Statistics = () => {
                                 <div className="text-sm opacity-90 mt-1">个</div>
                             </div>
                         </div>
-                        <div className="text-sm font-medium opacity-90">累积知识点数</div>
+                        <div className="text-sm font-medium opacity-90">{t('statistics.totalKnowledgePoints')}</div>
                     </div>
 
                     {/* 连续打卡 */}
@@ -228,7 +232,7 @@ const Statistics = () => {
                                 <div className="text-sm opacity-90 mt-1">天</div>
                             </div>
                         </div>
-                        <div className="text-sm font-medium opacity-90">连续学习天数</div>
+                        <div className="text-sm font-medium opacity-90">{t('statistics.streak')}</div>
                     </div>
                 </div>
 
@@ -239,7 +243,7 @@ const Statistics = () => {
                         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
                             <div className="flex items-center gap-2 mb-6">
                                 <PieChart className="text-blue-600" size={24} />
-                                <h2 className="text-xl font-bold text-slate-800 dark:text-white">学科分布</h2>
+                                <h2 className="text-xl font-bold text-slate-800 dark:text-white">{t('statistics.subjectDistribution')}</h2>
                             </div>
 
                             {stats.subjectDistribution.length > 0 ? (
@@ -264,7 +268,7 @@ const Statistics = () => {
                             ) : (
                                 <div className="text-center py-8 text-slate-400">
                                     <PieChart size={48} className="mx-auto mb-3 opacity-50" />
-                                    <p>暂无学科数据</p>
+                                    <p>{t('statistics.noSubjectData')}</p>
                                 </div>
                             )}
                         </div>
@@ -273,7 +277,7 @@ const Statistics = () => {
                         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
                             <div className="flex items-center gap-2 mb-6">
                                 <Hash className="text-purple-600" size={24} />
-                                <h2 className="text-xl font-bold text-slate-800 dark:text-white">热门知识点</h2>
+                                <h2 className="text-xl font-bold text-slate-800 dark:text-white">{t('statistics.hotKnowledgePoints')}</h2>
                             </div>
 
                             {stats.knowledgePoints && stats.knowledgePoints.length > 0 ? (
@@ -298,7 +302,7 @@ const Statistics = () => {
                             ) : (
                                 <div className="text-center py-8 text-slate-400">
                                     <Hash size={48} className="mx-auto mb-3 opacity-50" />
-                                    <p>随着作业分析的增加，这里将展示你的知识点图谱</p>
+                                    <p>{t('statistics.noKnowledgePoints')}</p>
                                 </div>
                             )}
                         </div>
@@ -310,7 +314,7 @@ const Statistics = () => {
                         <div className="bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-2xl shadow-lg p-6 border-2 border-yellow-200 dark:border-yellow-700">
                             <div className="flex items-center gap-2 mb-6">
                                 <Award className="text-yellow-600 dark:text-yellow-500" size={24} />
-                                <h2 className="text-xl font-bold text-slate-800 dark:text-white">成就徽章</h2>
+                                <h2 className="text-xl font-bold text-slate-800 dark:text-white">{t('statistics.achievements')}</h2>
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
@@ -325,7 +329,7 @@ const Statistics = () => {
                                 {achievements.length === 0 && (
                                     <div className="col-span-2 text-center py-8 text-slate-400">
                                         <Award size={48} className="mx-auto mb-3 opacity-50" />
-                                        <p className="text-sm">完成作业解锁成就</p>
+                                        <p className="text-sm">{t('statistics.unlock')}</p>
                                     </div>
                                 )}
                             </div>
@@ -335,12 +339,12 @@ const Statistics = () => {
                         <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-lg p-6 text-white">
                             <div className="text-center">
                                 <div className="text-6xl mb-4">🎓</div>
-                                <h3 className="text-xl font-bold mb-2">继续加油！</h3>
+                                <h3 className="text-xl font-bold mb-2">{t('statistics.keepGoing')}</h3>
                                 <p className="text-sm opacity-90 leading-relaxed">
-                                    {stats.totalSessions === 0 && "开始你的第一次学习吧！"}
-                                    {stats.totalSessions > 0 && stats.totalSessions < 10 && "你已经迈出了第一步，继续保持！"}
-                                    {stats.totalSessions >= 10 && stats.totalSessions < 50 && "你的努力正在积累，坚持就是胜利！"}
-                                    {stats.totalSessions >= 50 && "你真是一个学习达人，继续保持这份热情！"}
+                                    {stats.totalSessions === 0 && t('statistics.startFirst')}
+                                    {stats.totalSessions > 0 && stats.totalSessions < 10 && t('statistics.keepItUp')}
+                                    {stats.totalSessions >= 10 && stats.totalSessions < 50 && t('statistics.accumulating')}
+                                    {stats.totalSessions >= 50 && t('statistics.master')}
                                 </p>
                             </div>
                         </div>

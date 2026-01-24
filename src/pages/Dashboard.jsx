@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { supabase } from '../supabase';
 import { useUser } from '../context/UserContext';
+import { useLanguage } from '../context/LanguageContext';
 import DailyQuote from '../components/common/DailyQuote';
 
 // 学科中文映射和图标配置
@@ -38,6 +39,7 @@ const StatCard = ({ icon: Icon, label, value, color }) => (
 
 const Dashboard = () => {
     const { settings } = useUser();
+    const { t } = useLanguage();
     const [stats, setStats] = useState({
         completedTasks: 0,
         studyHours: 0,
@@ -115,6 +117,9 @@ const Dashboard = () => {
         return "刚刚";
     };
 
+    // Note: Time ago strings would ideally be localized too, but keeping simple for now or using a library like date-fns
+
+
     const nickname = settings?.profile?.nickname;
 
     return (
@@ -124,13 +129,13 @@ const Dashboard = () => {
                 <h1 className="text-2xl font-bold text-slate-800 dark:text-white flex items-center gap-2 h-9">
                     {isLoading ? (
                         <>
-                            你好，<div className="w-32 h-8 bg-slate-200 dark:bg-slate-700 rounded animate-pulse" />
+                            {t('common.loading')}
                         </>
                     ) : (
-                        `你好，${nickname ? `${nickname}同学` : '同学'}！👋`
+                        t('dashboard.welcome', { name: nickname || t('common.student') })
                     )}
                 </h1>
-                <p className="text-slate-500 dark:text-slate-400 mt-1 mb-6">今天准备好解决一些问题了吗？</p>
+                <p className="text-slate-500 dark:text-slate-400 mt-1 mb-6">{t('dashboard.startLearning')}</p>
                 <DailyQuote />
             </div>
 
@@ -175,7 +180,7 @@ const Dashboard = () => {
             {/* Main Upload Area */}
             <section>
                 <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-lg font-semibold text-slate-800 dark:text-white">开始新会话</h2>
+                    <h2 className="text-lg font-semibold text-slate-800 dark:text-white">{t('dashboard.newSession')}</h2>
                 </div>
                 <UploadZone />
             </section>
@@ -258,7 +263,7 @@ const Dashboard = () => {
 
             {/* Recent Activity Section */}
             <section>
-                <h2 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">最近作业</h2>
+                <h2 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">{t('dashboard.recentActivity')}</h2>
                 <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
                     {isLoading ? (
                         // Loading skeleton
@@ -285,19 +290,19 @@ const Dashboard = () => {
                                     </div>
                                     <div className="min-w-0">
                                         <p className="font-medium text-slate-700 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate">
-                                            {session.title || '未命名会话'}
+                                            {session.title || t('sidebar.untitled')}
                                         </p>
                                         <p className="text-xs text-slate-500 dark:text-slate-400">{timeAgo(session.created_at)} • {getSubjectConfig(session.subject || 'General').name}</p>
                                     </div>
                                 </div>
                                 <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 whitespace-nowrap ml-2">
-                                    查看
+                                    {t('dashboard.viewAll')}
                                 </span>
                             </Link>
                         ))
                     ) : (
                         <div className="p-8 text-center text-slate-500 dark:text-slate-400 text-sm">
-                            暂无最近活动。从上面开始新会话！
+                            {t('dashboard.noActivity')}
                         </div>
                     )}
                 </div>

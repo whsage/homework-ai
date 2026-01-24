@@ -4,6 +4,7 @@ import { Bot, User, Copy, Check, ChevronDown, ChevronUp, Image as ImageIcon } fr
 import clsx from 'clsx';
 import { sendMessageToTutor } from '../../services/aiService';
 import { supabase } from '../../supabase';
+import { useLanguage } from '../../context/LanguageContext';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
@@ -80,8 +81,9 @@ const TypewriterText = ({ text, onComplete }) => {
 };
 
 const ChatInterface = ({ sessionId: initialSessionId }) => {
+    const { t } = useLanguage();
     const [messages, setMessages] = useState([
-        { id: 1, type: 'ai', text: "你好！👋 我是你的全科辅导老师。\n\n我的使命不是直接告诉你答案，而是引导你自己思考、发现和理解。\n\n📚 **我能帮你：**\n- 分析题目的关键信息\n- 拆解复杂问题的逻辑\n- 用生活化的方式解释抽象概念\n- 通过提问激发你的思维\n\n上传一张作业题目的照片，或者直接问我问题，让我们一起开始思考吧！", timestamp: new Date(), isTypingDone: true }
+        { id: 1, type: 'ai', text: t('chat.welcome'), timestamp: new Date(), isTypingDone: true }
     ]);
     const [status, setStatus] = useState(''); // 'analyzing', 'hinting', 'guiding', ''
     const [isTyping, setIsTyping] = useState(false);
@@ -103,7 +105,7 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
             if (!sessionId || !uuidRegex.test(sessionId)) {
                 // Reset to default if not a valid session (e.g. '102') or empty
                 if (!initialSessionId) {
-                    setMessages([{ id: 1, type: 'ai', text: "你好！👋 我是你的全科辅导老师。\n\n我的使命不是直接告诉你答案，而是引导你自己思考、发现和理解。\n\n📚 **我能帮你：**\n- 分析题目的关键信息\n- 拆解复杂问题的逻辑\n- 用生活化的方式解释抽象概念\n- 通过提问激发你的思维\n\n上传一张作业题目的照片，或者直接问我问题，让我们一起开始思考吧！", timestamp: new Date(), isTypingDone: true }]);
+                    setMessages([{ id: 1, type: 'ai', text: t('chat.welcome'), timestamp: new Date(), isTypingDone: true }]);
                 }
                 return;
             }
@@ -124,7 +126,9 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
                             const parts = [];
                             if (parsed.hint) parts.push(parsed.hint);
                             if (parsed.guidance) parts.push(parsed.guidance);
-                            if (parsed.question) parts.push(`💡 **思考一下：** ${parsed.question}`);
+                            if (parsed.hint) parts.push(parsed.hint);
+                            if (parsed.guidance) parts.push(parsed.guidance);
+                            if (parsed.question) parts.push(`${t('chat.thinking')}${parsed.question}`);
                             textContent = parts.join('\n\n') || msg.content;
                         } catch (e) {
                             textContent = msg.content;
@@ -144,7 +148,7 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
                 const welcomeMessage = {
                     id: 'welcome',
                     type: 'ai',
-                    text: "你好！👋 我是你的全科辅导老师。\n\n我的使命不是直接告诉你答案，而是引导你自己思考、发现和理解。\n\n📚 **我能帮你：**\n- 分析题目的关键信息\n- 拆解复杂问题的逻辑\n- 用生活化的方式解释抽象概念\n- 通过提问激发你的思维\n\n上传一张作业题目的照片，或者直接问我问题，让我们一起开始思考吧！",
+                    text: t('chat.welcome'),
                     timestamp: new Date(data[0].created_at - 1000), // Slightly before first message
                     isTypingDone: true
                 };
@@ -175,7 +179,7 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
     const triggerAutoAnalysis = async (userMessage, shouldAddUserMessage = true) => {
         console.log(`triggerAutoAnalysis called. shouldAddUserMessage=${shouldAddUserMessage}`);
         try {
-            setStatus('正在分析题目...');
+            setStatus(t('chat.analyzing'));
             setIsTyping(true);
 
             let file = null;
@@ -208,7 +212,7 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
             const fullResponse = [
                 aiResponse.hint,
                 aiResponse.guidance,
-                aiResponse.question ? `💡 **思考一下：** ${aiResponse.question}` : ''
+                aiResponse.question ? `${t('chat.thinking')}${aiResponse.question}` : ''
             ].filter(Boolean).join('\n\n');
 
             addMessage(fullResponse, 'ai', false);
@@ -218,7 +222,7 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
             console.error("Auto-analysis failed:", error);
             setStatus('');
             setIsTyping(false);
-            addMessage("自动分析失败，请手动发送消息重试", 'ai', true);
+            addMessage(t('chat.autoAnalysisFailed'), 'ai', true);
         }
     };
 
@@ -268,7 +272,7 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
         let imageUrl = null;
 
         if (file) {
-            userMessage = text || "请帮我分析这道题目，引导我思考解题思路";
+            userMessage = text || t('chat.defaultQuestion');
             // Create preview URL for image
             if (file.type.startsWith('image/')) {
                 imageUrl = URL.createObjectURL(file);
@@ -277,12 +281,12 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
         addMessage(userMessage, 'user', false, imageUrl);
 
         setIsTyping(true);
-        setStatus(file ? "正在识别图片..." : "正在分析你的问题...");
+        setStatus(file ? t('chat.recognizing') : t('chat.analyzingQuestion'));
 
         try {
             // Pass the file directly to AI service for vision processing
             const aiResponse = await sendMessageToTutor(
-                text || `请帮我分析这道题目，引导我思考解题思路`,
+                text || t('chat.defaultQuestion'),
                 messages,
                 file, // Pass the actual file object
                 sessionId // Pass current session ID
@@ -299,7 +303,7 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
             const fullResponse = [
                 aiResponse.hint,
                 aiResponse.guidance,
-                aiResponse.question ? `💡 **思考一下：** ${aiResponse.question}` : ''
+                aiResponse.question ? `${t('chat.thinking')}${aiResponse.question}` : ''
             ].filter(Boolean).join('\n\n');
 
             addMessage(fullResponse, 'ai');
@@ -309,7 +313,7 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
             console.error("Chat Error:", error);
             setStatus("");
             setIsTyping(false);
-            addMessage(`错误: ${error.message || "无法连接到 AI 导师。"}`, 'ai', true);
+            addMessage(`${t('chat.error')}${error.message || t('chat.connectError')}`, 'ai', true);
         }
     };
 
@@ -349,7 +353,7 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
                                             <div className="flex items-center gap-2 flex-1 min-w-0">
                                                 <ImageIcon size={16} className="flex-shrink-0" />
                                                 <span className="font-medium truncate">
-                                                    📷 题目图片
+                                                    {t('chat.uploadedImage')}
                                                 </span>
                                             </div>
                                             {collapsedMessages.has(msg.id) ? (
@@ -408,7 +412,7 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
                                     onClick={() => navigator.clipboard.writeText(msg.text)}
                                     className="absolute -bottom-6 left-0 opacity-0 group-hover:opacity-100 transition-opacity text-xs text-slate-400 dark:text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1 p-1"
                                 >
-                                    <Copy size={12} /> 复制
+                                    <Copy size={12} /> {t('chat.copy')}
                                 </button>
                             )}
                         </div>

@@ -3,8 +3,11 @@ import { NavLink, Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { supabase } from '../../supabase';
 import { useEffect, useState } from 'react';
+import { useLanguage } from '../../context/LanguageContext';
+import { Languages } from 'lucide-react';
 
 const Sidebar = ({ isOpen, onClose }) => {
+    const { t, language, toggleLanguage } = useLanguage();
     const [recentSessions, setRecentSessions] = useState([]);
     const [isLoadingSessions, setIsLoadingSessions] = useState(true);
     const [totalSessions, setTotalSessions] = useState(0);
@@ -73,10 +76,10 @@ const Sidebar = ({ isOpen, onClose }) => {
     }, []);
 
     const navItems = [
-        { icon: LayoutDashboard, label: '主页', path: '/' },
-        { icon: BookOpen, label: '我的作业', path: '/history' },
-        { icon: BarChart3, label: '学习统计', path: '/statistics' },
-        { icon: Settings, label: '设置', path: '/settings' },
+        { icon: LayoutDashboard, label: t('nav.home'), path: '/' },
+        { icon: BookOpen, label: t('nav.homework'), path: '/history' },
+        { icon: BarChart3, label: t('nav.statistics'), path: '/statistics' },
+        { icon: Settings, label: t('nav.settings'), path: '/settings' },
     ];
 
     return (
@@ -98,7 +101,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                         <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-indigo-600 to-violet-600 text-white shadow-lg shadow-indigo-500/30">
                             <span className="font-extrabold text-2xl tracking-tighter">H</span>
                         </div>
-                        <span className="tracking-tight">HomeworkAI</span>
+                        <span className="tracking-tight">{t('appName')}</span>
                     </h1>
                 </div>
 
@@ -126,7 +129,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                     {(isLoadingSessions || recentSessions.length > 0) && (
                         <div className="mt-8">
                             <h3 className="px-4 text-xs font-semibold text-slate-500 dark:text-slate-500 uppercase tracking-wider mb-2">
-                                最近活动
+                                {t('sidebar.recent')}
                             </h3>
                             <div className="space-y-1">
                                 {isLoadingSessions ? (
@@ -146,7 +149,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                                             className="flex items-center gap-3 px-4 py-2 text-sm text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors group"
                                         >
                                             <MessageSquare size={16} className="shrink-0 group-hover:text-indigo-600 dark:group-hover:text-indigo-400" />
-                                            <span className="truncate">{session.title || '未命名会话'}</span>
+                                            <span className="truncate">{session.title || t('sidebar.untitled')}</span>
                                         </Link>
                                     ))
                                 )}
@@ -168,15 +171,15 @@ const Sidebar = ({ isOpen, onClose }) => {
                             <Download size={18} />
                         </div>
                         <div className="flex-1 min-w-0">
-                            <p className="font-bold text-sm">下载 App</p>
-                            <p className="text-[10px] text-indigo-100 opacity-90 truncate">Android 客户端</p>
+                            <p className="font-bold text-sm">{t('sidebar.downloadApp')}</p>
+                            <p className="text-[10px] text-indigo-100 opacity-90 truncate">{t('sidebar.androidClient')}</p>
                         </div>
                     </a>
                 </div>
 
                 <div className="p-4 border-t border-slate-200 dark:border-slate-800">
                     <div className={`rounded-lg p-4 ${totalSessions > MAX_SESSIONS - 3 ? 'bg-red-50 dark:bg-red-900/30' : 'bg-slate-100 dark:bg-slate-800/50'}`}>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 mb-2">作业用量</p>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 mb-2">{t('sidebar.usage')}</p>
                         <div className="h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
                             <div
                                 className={`h-full rounded-full transition-all ${totalSessions > MAX_SESSIONS - 3 ? 'bg-red-500' : 'bg-indigo-500'}`}
@@ -189,11 +192,20 @@ const Sidebar = ({ isOpen, onClose }) => {
                             </p>
                             {totalSessions > MAX_SESSIONS - 3 && (
                                 <p className="text-xs text-red-400 font-medium">
-                                    ⚠️ 即将满额
+                                    ⚠️ {t('sidebar.nearLimit')}
                                 </p>
                             )}
                         </div>
                     </div>
+
+                    {/* Language Switcher */}
+                    <button
+                        onClick={toggleLanguage}
+                        className="mt-4 flex items-center gap-2 w-full px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors border border-slate-200 dark:border-slate-700"
+                    >
+                        <Languages size={18} />
+                        <span>{language === 'zh' ? 'English' : '中文'}</span>
+                    </button>
                 </div>
             </aside>
         </>

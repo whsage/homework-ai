@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { supabase } from '../supabase';
 import { useNavigate, Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 
 const Register = () => {
+    const { t } = useLanguage();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -40,7 +42,7 @@ const Register = () => {
     return (
         <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900 transition-colors duration-200">
             <div className="max-w-md w-full bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-8">
-                <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">创建账号</h2>
+                <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">{t('auth.registerTitle')}</h2>
 
                 {error && (
                     <div className="mb-4 p-3 bg-red-50 text-red-600 text-sm rounded-lg border border-red-100">
@@ -56,7 +58,7 @@ const Register = () => {
 
                 <form onSubmit={handleRegister} className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">邮箱</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{t('auth.emailLabel')}</label>
                         <input
                             type="email"
                             required
@@ -67,7 +69,7 @@ const Register = () => {
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">密码</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">{t('auth.passwordLabel')}</label>
                         <input
                             type="password"
                             required
@@ -84,14 +86,14 @@ const Register = () => {
                         disabled={loading}
                         className="w-full py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-medium shadow-sm shadow-emerald-200 dark:shadow-none transition-all disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                        {loading ? '注册中...' : '注册'}
+                        {loading ? t('common.loading') : t('auth.registerButton')}
                     </button>
                 </form>
 
                 <div className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
-                    已有账号？{' '}
-                    <Link to="/login" className="text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-700 dark:hover:text-indigo-300">
-                        立即登录
+                    {t('auth.loginLink')}
+                    <Link to="/login" className="text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-700 dark:hover:text-indigo-300 ml-1">
+                        {t('nav.login')}
                     </Link>
                 </div>
             </div>

@@ -2,14 +2,16 @@ import { ZoomIn, ZoomOut, Move } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from '../../supabase';
+import { useLanguage } from '../context/LanguageContext';
 
 const DocumentViewer = () => {
+    const { t } = useLanguage();
     const { id: sessionId } = useParams();
     const [scale, setScale] = useState(1);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [imageUrl, setImageUrl] = useState(null); // 初始化为null，区分是有图还是无图
     const [textContent, setTextContent] = useState(""); // 新增：用于存储纯文本题目内容
-    const [sessionTitle, setSessionTitle] = useState("作业题目");
+    const [sessionTitle, setSessionTitle] = useState(t('detail.homeworkTitle'));
     const [sessionNumber, setSessionNumber] = useState("");
     const [isLoading, setIsLoading] = useState(true);
 
@@ -109,7 +111,7 @@ const DocumentViewer = () => {
                 {isLoading ? (
                     <div className="flex flex-col items-center justify-center h-full text-slate-400 dark:text-slate-500 gap-3">
                         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
-                        <span className="text-sm font-medium">加载题目中...</span>
+                        <span className="text-sm font-medium">{t('detail.loadingQuestion')}</span>
                     </div>
                 ) : imageUrl ? (
                     <div
@@ -118,14 +120,14 @@ const DocumentViewer = () => {
                     >
                         <img
                             src={imageUrl}
-                            alt="作业题目"
+                            alt={t('detail.homeworkImageAlt')}
                             className="max-w-full h-auto max-h-[50vh] sm:max-h-[60vh] md:max-h-[70vh] rounded-lg"
                         />
                     </div>
                 ) : textContent ? (
                     // 显示纯文本题目内容
                     <div className="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm max-w-2xl mx-auto w-full prose prose-slate dark:prose-invert">
-                        <h4 className="text-slate-400 uppercase text-xs font-bold tracking-wider mb-4 border-b dark:border-slate-700 pb-2">题目描述</h4>
+                        <h4 className="text-slate-400 uppercase text-xs font-bold tracking-wider mb-4 border-b dark:border-slate-700 pb-2">{t('detail.problemDescription')}</h4>
                         <div className="whitespace-pre-wrap text-slate-800 dark:text-slate-200 text-lg leading-relaxed">
                             {textContent}
                         </div>
@@ -138,7 +140,7 @@ const DocumentViewer = () => {
                     >
                         <img
                             src={defaultPlaceholder}
-                            alt="作业题目"
+                            alt={t('detail.homeworkImageAlt')}
                             className="max-w-full h-auto max-h-[70vh] rounded-lg opacity-50 grayscale"
                         />
                     </div>

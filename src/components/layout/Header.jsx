@@ -4,11 +4,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { supabase } from '../../supabase';
 import { useUser } from '../../context/UserContext';
 import { useTheme } from '../../context/ThemeContext';
+import { useLanguage } from '../../context/LanguageContext';
 import NotificationDropdown from './NotificationDropdown';
 
 const Header = ({ onMenuClick }) => {
     const { user, settings } = useUser();
     const { theme, toggleTheme } = useTheme();
+    const { t } = useLanguage();
     const [showUserMenu, setShowUserMenu] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
     const location = useLocation();
@@ -76,18 +78,18 @@ const Header = ({ onMenuClick }) => {
                 </button>
                 <div className="flex items-center gap-3">
                     {!isDashboard && (
-                        <Link to="/" className="p-1.5 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" title="返回主页">
+                        <Link to="/" className="p-1.5 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" title={t('nav.backHome')}>
                             <ChevronLeft size={20} />
                         </Link>
                     )}
                     <h2 className="text-xl font-semibold text-slate-800 dark:text-white">
-                        {location.pathname === '/' && '主页'}
-                        {location.pathname === '/history' && '我的作业'}
-                        {location.pathname === '/statistics' && '学习统计'}
-                        {location.pathname === '/settings' && '个人设置'}
-                        {location.pathname === '/faq' && '常见问题'}
-                        {location.pathname.startsWith('/homework/') && '作业详情'}
-                        {location.pathname === '/new' && '新建作业'}
+                        {location.pathname === '/' && t('nav.home')}
+                        {location.pathname === '/history' && t('nav.homework')}
+                        {location.pathname === '/statistics' && t('nav.statistics')}
+                        {location.pathname === '/settings' && t('nav.settings')}
+                        {location.pathname === '/faq' && t('nav.faq')}
+                        {location.pathname.startsWith('/homework/') && t('nav.detail')}
+                        {location.pathname === '/new' && t('nav.new')}
                     </h2>
                 </div>
             </div>
@@ -118,7 +120,7 @@ const Header = ({ onMenuClick }) => {
                                     <p className="text-sm font-medium text-slate-700 dark:text-slate-200 truncate max-w-[150px]">
                                         {displayName}
                                     </p>
-                                    <p className="text-xs text-slate-500 dark:text-slate-400">免费计划</p>
+                                    <p className="text-xs text-slate-500 dark:text-slate-400">{t('header.freePlan')}</p>
                                 </div>
                                 <AvatarWithBadge />
                             </button>
@@ -132,8 +134,8 @@ const Header = ({ onMenuClick }) => {
                                         <p className="text-lg font-semibold text-slate-900 dark:text-white mt-3 truncate w-full text-center">{displayName}</p>
                                         <p className="text-xs text-slate-500 dark:text-slate-400 truncate w-full text-center">{displayEmail}</p>
                                         <div className="mt-3 flex gap-2 w-full justify-center">
-                                            <span className="text-xs px-2 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-md font-medium">Lv.3 解题能手</span>
-                                            <span className="text-xs px-2 py-1 bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-md font-medium">🔥 3天连胜</span>
+                                            <span className="text-xs px-2 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-md font-medium">Lv.3 {t('header.rank')}</span>
+                                            <span className="text-xs px-2 py-1 bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-md font-medium">🔥 {t('header.streak')}</span>
                                         </div>
                                     </div>
 
@@ -145,7 +147,7 @@ const Header = ({ onMenuClick }) => {
                                         >
                                             <div className="flex items-center gap-3">
                                                 {theme === 'dark' ? <Moon size={18} className="text-slate-400" /> : <Sun size={18} className="text-slate-400" />}
-                                                <span>深色模式</span>
+                                                <span>{t('header.darkMode')}</span>
                                             </div>
                                             <div className={`w-9 h-5 rounded-full relative transition-colors ${theme === 'dark' ? 'bg-indigo-500' : 'bg-slate-200'}`}>
                                                 <div className={`absolute top-1 w-3 h-3 rounded-full bg-white transition-transform ${theme === 'dark' ? 'left-5' : 'left-1'}`} />
@@ -158,7 +160,7 @@ const Header = ({ onMenuClick }) => {
                                             className="flex items-center gap-3 px-4 py-3 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
                                         >
                                             <UserCircle size={18} className="text-slate-400" />
-                                            个人资料
+                                            {t('nav.profile')}
                                         </Link>
                                         <Link
                                             to="/settings"
@@ -166,7 +168,7 @@ const Header = ({ onMenuClick }) => {
                                             className="flex items-center gap-3 px-4 py-3 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
                                         >
                                             <Settings size={18} className="text-slate-400" />
-                                            设置
+                                            {t('nav.settings')}
                                         </Link>
                                     </div>
 
@@ -177,7 +179,7 @@ const Header = ({ onMenuClick }) => {
                                             className="flex items-center gap-3 px-4 py-3 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors w-full"
                                         >
                                             <LogOut size={18} />
-                                            退出登录
+                                            {t('nav.logout')}
                                         </button>
                                     </div>
                                 </div>
@@ -187,11 +189,11 @@ const Header = ({ onMenuClick }) => {
                 ) : (
                     <div className="flex items-center gap-2">
                         <Link to="/login" className="px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                            登录
+                            {t('nav.login')}
                         </Link>
                         <Link to="/register" className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors flex items-center gap-2">
                             <LogIn size={16} />
-                            注册
+                            {t('nav.register')}
                         </Link>
                     </div>
                 )}

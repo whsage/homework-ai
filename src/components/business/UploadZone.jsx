@@ -3,8 +3,10 @@ import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { supabase } from '../../supabase';
+import { useLanguage } from '../../context/LanguageContext';
 
 const UploadZone = () => {
+    const { t } = useLanguage();
     const [message, setMessage] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
     const [previewUrl, setPreviewUrl] = useState(null);
@@ -19,17 +21,17 @@ const UploadZone = () => {
 
         // 必须有文字或文件
         if (!message.trim() && !selectedFile) {
-            alert('请输入题目或上传图片');
+            alert(t('uploadZone.inputLimit'));
             return;
         }
 
         setIsUploading(true);
-        setUploadProgress('🔍 正在验证用户...');
+        setUploadProgress(t('uploadZone.verifying'));
 
         try {
             const { data: { user } } = await supabase.auth.getUser();
             if (!user) {
-                alert("请先登录！");
+                alert(t('uploadZone.loginRequired'));
                 navigate('/login');
                 return;
             }
@@ -42,7 +44,7 @@ const UploadZone = () => {
                 .eq('user_id', user.id);
 
             if (count >= MAX_SESSIONS) {
-                alert(`作业数量已达上限（${MAX_SESSIONS}个）！\n请先在"我的作业"中删除一些旧作业后再上传新的。`);
+                alert(t('uploadZone.limitReached', { limit: MAX_SESSIONS }));
                 setIsUploading(false);
                 return;
             }
@@ -51,7 +53,7 @@ const UploadZone = () => {
 
             // 1. Upload Image if exists
             if (selectedFile) {
-                setUploadProgress('📤 正在上传图片...');
+                setUploadProgress(t('uploadZone.uploadingImage'));
                 const fileExt = selectedFile.name.split('.').pop();
                 const fileName = `${user.id}/${Date.now()}.${fileExt}`;
 
@@ -69,11 +71,11 @@ const UploadZone = () => {
             }
 
             // 2. Create Session
-            setUploadProgress('📝 正在创建作业会话...');
+            setUploadProgress(t('uploadZone.creatingSession'));
 
             const tempTitle = message.trim()
                 ? (message.length > 20 ? message.slice(0, 20) + "..." : message)
-                : "作业题目";
+                : t('detail.homeworkTitle');
 
             const { data: sessionData, error: sessionError } = await supabase
                 .from('sessions')
@@ -89,20 +91,20 @@ const UploadZone = () => {
             const sessionId = sessionData.id;
 
             // 3. Insert Initial Message
-            setUploadProgress('✅ 保存消息中...');
+            setUploadProgress(t('uploadZone.savingMessage'));
             const { error: msgError } = await supabase
                 .from('messages')
                 .insert({
                     session_id: sessionId,
                     role: 'user',
-                    content: message.trim() || "请帮我分析这道题目，引导我思考解题思路",
+                    content: message.trim() || t('chat.defaultQuestion'),
                     image_url: finalImageUrl
                 });
 
             if (msgError) throw new Error(`插入消息失败: ${msgError.message}`);
 
             // 4. Navigate
-            setUploadProgress('🚀 正在跳转...');
+            setUploadProgress(t('uploadZone.redirecting'));
             setTimeout(() => {
                 navigate(`/homework/${sessionId}`);
             }, 300);
@@ -111,7 +113,7 @@ const UploadZone = () => {
             console.error("Upload failed:", error);
             setIsUploading(false);
             setUploadProgress('');
-            alert(`上传失败: ${error.message || '请重试'}`);
+            alert(`${t('uploadZone.uploadFailed')}${error.message || t('common.error')}`);
         }
     };
 
@@ -126,7 +128,7 @@ const UploadZone = () => {
                     setPreviewUrl(url);
                 }
             } else {
-                alert('请上传图片（JPG, PNG）或 PDF 文件');
+                alert(t('chat.uploadLimitTip'));
             }
         }
     };
@@ -173,10 +175,10 @@ const UploadZone = () => {
                 {/* 标题 */}
                 <div className="text-center mb-6">
                     <h3 className="text-xl font-semibold text-slate-800 mb-2">
-                        开始新的作业
+                        {t('uploadZone.title')}
                     </h3>
                     <p className="text-sm text-slate-500">
-                        输入题目文字、上传图片，或两者结合
+                        {t('uploadZone.subtitle')}
                     </p>
                 </div>
 
@@ -187,7 +189,7 @@ const UploadZone = () => {
                             {previewUrl ? (
                                 <img
                                     src={previewUrl}
-                                    alt="预览"
+                                    alt={t('chat.preview')}
                                     className="h-24 w-24 object-cover rounded-lg border-2 border-indigo-300"
                                 />
                             ) : (
@@ -220,7 +222,7 @@ const UploadZone = () => {
                         onChange={(e) => setMessage(e.target.value)}
                         onInput={handleInput}
                         onPaste={handlePaste}
-                        placeholder="在这里输入题目内容...（支持粘贴文字或图片）"
+                        placeholder={t('uploadZone.placeholder')}
                         className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-slate-700 placeholder:text-slate-400"
                         disabled={isUploading}
                         rows={3}
@@ -253,7 +255,7 @@ const UploadZone = () => {
                             )}
                         >
                             <Paperclip size={18} />
-                            <span className="text-sm font-medium">添加图片</span>
+                            <span className="text-sm font-medium">{t('uploadZone.addImage')}</span>
                         </label>
                     </div>
 
@@ -269,7 +271,7 @@ const UploadZone = () => {
                         )}
                     >
                         <Send size={18} />
-                        <span>开始对话</span>
+                        <span>{t('uploadZone.startChat')}</span>
                     </button>
                 </div>
 
@@ -277,17 +279,17 @@ const UploadZone = () => {
                 <div className="mt-4 text-xs text-slate-400 text-center flex items-center justify-center gap-4">
                     <span className="flex items-center gap-1">
                         <Type size={14} />
-                        输入文字
+                        {t('uploadZone.tips.text')}
                     </span>
                     <span className="text-slate-300">|</span>
                     <span className="flex items-center gap-1">
                         <Paperclip size={14} />
-                        上传图片
+                        {t('uploadZone.tips.upload')}
                     </span>
                     <span className="text-slate-300">|</span>
                     <span className="flex items-center gap-1">
                         <ImageIcon size={14} />
-                        粘贴图片 (Ctrl+V)
+                        {t('uploadZone.tips.paste')}
                     </span>
                 </div>
             </form>
@@ -305,7 +307,7 @@ const UploadZone = () => {
                         {uploadProgress}
                     </p>
                     <p className="mt-2 text-sm text-slate-500">
-                        请稍候，正在处理您的作业...
+                        {t('uploadZone.tips.wait')}
                     </p>
                 </div>
             )}

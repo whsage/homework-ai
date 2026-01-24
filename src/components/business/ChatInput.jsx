@@ -2,8 +2,10 @@ import { Send, Paperclip, X, Image as ImageIcon } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import clsx from 'clsx';
 import { compressImage } from '../../utils/imageCompression';
+import { useLanguage } from '../../context/LanguageContext';
 
 const ChatInput = ({ onSend, disabled }) => {
+    const { t } = useLanguage();
     const [message, setMessage] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
     const [previewUrl, setPreviewUrl] = useState(null);
@@ -79,7 +81,7 @@ const ChatInput = ({ onSend, disabled }) => {
                 setSelectedFile(file);
             }
         } else {
-            alert('请上传图片（JPG, PNG）或 PDF 文件');
+            alert(t('chat.uploadLimitTip'));
         }
     };
 
@@ -147,7 +149,7 @@ const ChatInput = ({ onSend, disabled }) => {
                             {previewUrl ? (
                                 <img
                                     src={previewUrl}
-                                    alt="预览"
+                                    alt={t('chat.preview')}
                                     className="h-20 w-20 object-cover rounded-lg border-2 border-indigo-200"
                                 />
                             ) : (
@@ -167,7 +169,7 @@ const ChatInput = ({ onSend, disabled }) => {
                             <p className="text-sm font-medium text-slate-700 dark:text-slate-200 truncate">{selectedFile.name}</p>
                             <p className="text-xs text-slate-500 dark:text-slate-400">
                                 {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
-                                {isCompressing && <span className="text-indigo-500 font-medium ml-2 animate-pulse">处理中...</span>}
+                                {isCompressing && <span className="text-indigo-500 font-medium ml-2 animate-pulse">{t('chat.processing')}</span>}
                             </p>
                         </div>
                     </div>
@@ -192,7 +194,7 @@ const ChatInput = ({ onSend, disabled }) => {
                                 ? "text-indigo-600 bg-indigo-50 dark:bg-indigo-900/30 dark:text-indigo-400"
                                 : "text-slate-500 dark:text-slate-400 hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-700"
                         )}
-                        title="添加图片或文件"
+                        title={t('chat.addAttachment')}
                     >
                         <Paperclip size={20} />
                     </label>
@@ -206,7 +208,7 @@ const ChatInput = ({ onSend, disabled }) => {
                             onInput={handleInput}
                             onKeyDown={handleKeyDown}
                             onPaste={handlePaste}
-                            placeholder="输入消息..."
+                            placeholder={t('chat.inputPlaceholder')}
                             className="w-full px-3 sm:px-4 py-2.5 sm:py-3 pr-12 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-slate-700 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 text-sm sm:text-base"
                             disabled={disabled}
                             rows={1}
@@ -227,7 +229,7 @@ const ChatInput = ({ onSend, disabled }) => {
                                 ? "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95"
                                 : "bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed"
                         )}
-                        title="发送消息"
+                        title={t('chat.sendMessage')}
                     >
                         <Send size={20} />
                     </button>
