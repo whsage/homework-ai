@@ -1,4 +1,4 @@
-import { Bell, BookOpen, Clock, Trophy, Flame, TrendingUp, Check } from 'lucide-react';
+import { Bell, BookOpen, Clock, Trophy, Flame, TrendingUp, Check, Sun, Gift } from 'lucide-react';
 import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../../supabase';
@@ -10,7 +10,9 @@ const ICON_MAP = {
     'Flame': Flame,
     'BookOpen': BookOpen,
     'Clock': Clock,
-    'TrendingUp': TrendingUp
+    'TrendingUp': TrendingUp,
+    'Sun': Sun,
+    'Gift': Gift
 };
 
 const NotificationDropdown = ({ onClose }) => {

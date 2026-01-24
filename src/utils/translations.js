@@ -365,6 +365,17 @@ export const translations = {
             streak: {
                 title: "🔥 连续学习达成！",
                 msg: "恭喜！你已经连续学习 {{days}} 天了。坚持就是胜利，保持这个势头！"
+            },
+            subject: {
+                five: { title: "📚 {{subject}}小达人！", msg: "你已经在{{subject}}学科完成了 5 个作业，解锁称号！" },
+                ten: { title: "🎓 {{subject}}探索者！", msg: "太棒了！10 个{{subject}}作业达成，你对这个学科越来越精通了！" },
+                twenty: { title: "🏆 {{subject}}专家！", msg: "厉害！20 个{{subject}}作业，你已经是这个领域的专家了！" },
+                fifty: { title: "👑 {{subject}}大师！", msg: "不可思议！50 个{{subject}}作业，你是真正的{{subject}}大师！" }
+            },
+            welcome: {
+                title: "👋 欢迎回来！",
+                msg: "好久不见！已经 {{days}} 天没看到你了，今天要不要来做个作业？",
+                anniversary: { title: "🎂 注册{{year}}周年！", msg: "在这个特殊的日子里，感谢你一直以来的陪伴！" }
             }
         }
     },
@@ -734,6 +745,17 @@ export const translations = {
             streak: {
                 title: "🔥 Streak!",
                 msg: "Congrats! You have studied for {{days}} days in a row!"
+            },
+            subject: {
+                five: { title: "📚 {{subject}} Beginner!", msg: "You have completed 5 sessions in {{subject}}!" },
+                ten: { title: "🎓 {{subject}} Explorer!", msg: "Awesome! 10 sessions in {{subject}}. You are mastering it!" },
+                twenty: { title: "🏆 {{subject}} Expert!", msg: "Amazing! 20 sessions in {{subject}}. You are an expert!" },
+                fifty: { title: "👑 {{subject}} Master!", msg: "Incredible! 50 sessions in {{subject}}. A true master!" }
+            },
+            welcome: {
+                title: "👋 Welcome Back!",
+                msg: "Long time no see! It's been {{days}} days. Ready to learn?",
+                anniversary: { title: "🎂 {{year}} Year Anniversary!", msg: "Happy Anniversary! Thank you for being with us!" }
             }
         }
     }
