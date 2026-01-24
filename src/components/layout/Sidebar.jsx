@@ -11,7 +11,7 @@ const Sidebar = ({ isOpen, onClose }) => {
     const [recentSessions, setRecentSessions] = useState([]);
     const [isLoadingSessions, setIsLoadingSessions] = useState(true);
     const [totalSessions, setTotalSessions] = useState(0);
-    const MAX_SESSIONS = 20;
+    const MAX_SESSIONS = 50;
 
     useEffect(() => {
         const fetchSessions = async () => {
