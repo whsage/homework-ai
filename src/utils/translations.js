@@ -148,7 +148,24 @@ export const translations = {
             grade: "年级/学段",
             selectGrade: "请选择年级",
             school: "学校",
-            bio: "个人简介"
+            bio: "个人简介",
+            grades: {
+                primary1: "小学一年级",
+                primary2: "小学二年级",
+                primary3: "小学三年级",
+                primary4: "小学四年级",
+                primary5: "小学五年级",
+                primary6: "小学六年级",
+                middle7: "初中一年级",
+                middle8: "初中二年级",
+                middle9: "初中三年级",
+                high10: "高中一年级",
+                high11: "高中二年级",
+                high12: "高中三年级",
+                university: "大学本科",
+                graduate: "研究生",
+                adult: "成人/社会"
+            }
         },
 
         // FAQ
@@ -177,6 +194,35 @@ export const translations = {
                 fullSubjectDesc: "从小学到高中全覆盖",
                 stats: "学习统计",
                 statsDesc: "可视化学习进度"
+            },
+
+            // Dashboard Features & Steps
+            dashboardFeature: {
+                title: "智能AI助手，即刻解决学习难题",
+                subtitle: "全方位的智能学习辅导体验",
+                socraticTitle: "苏格拉底式教学",
+                socraticDesc: "引导学生独立思考，培养解决问题的能力，而非直接给出答案",
+                subjectTitle: "全学科覆盖",
+                subjectDesc: "支持数学、语文、英语、物理、化学等全学科在线辅导",
+                ocrTitle: "智能图像识别",
+                ocrDesc: "支持拍照上传作业题目，AI自动识别并分析",
+                statsTitle: "学习数据统计",
+                statsDesc: "记录学习进度，可视化展示学习成果，激励持续学习"
+            },
+            howTo: {
+                title: "如何使用AI作业助手",
+                step1Title: "创建会话",
+                step1Desc: "点击\"开始新作业\"，输入作业标题",
+                step2Title: "提问互动",
+                step2Desc: "输入问题或上传图片，AI会引导你思考",
+                step3Title: "深入学习",
+                step3Desc: "跟随AI的引导，逐步理解解题思路",
+                moreFaq: "查看更多常见问题 →"
+            },
+            statCard: {
+                completedTasks: "已完成任务",
+                studyHours: "学习时长",
+                activeDays: "活跃天数"
             }
         },
 
@@ -390,7 +436,24 @@ export const translations = {
             grade: "Grade/Stage",
             selectGrade: "Select Grade",
             school: "School",
-            bio: "Bio"
+            bio: "Bio",
+            grades: {
+                primary1: "Grade 1 (Primary)",
+                primary2: "Grade 2 (Primary)",
+                primary3: "Grade 3 (Primary)",
+                primary4: "Grade 4 (Primary)",
+                primary5: "Grade 5 (Primary)",
+                primary6: "Grade 6 (Primary)",
+                middle7: "Grade 7 (Middle School)",
+                middle8: "Grade 8 (Middle School)",
+                middle9: "Grade 9 (Middle School)",
+                high10: "Grade 10 (High School)",
+                high11: "Grade 11 (High School)",
+                high12: "Grade 12 (High School)",
+                university: "Undergraduate",
+                graduate: "Graduate",
+                adult: "Adult / Professional"
+            }
         },
 
         // FAQ
@@ -419,6 +482,35 @@ export const translations = {
                 fullSubjectDesc: "From primary to high school",
                 stats: "Learning Statistics",
                 statsDesc: "Visualize learning progress"
+            },
+
+            // Dashboard Features & Steps
+            dashboardFeature: {
+                title: "Smart AI Assistant, Solve Problems Instantly",
+                subtitle: "Comprehensive smart learning tutoring experience",
+                socraticTitle: "Socratic Method",
+                socraticDesc: "Guide students to think independently, cultivate problem-solving skills, rather than giving answers directly",
+                subjectTitle: "Full Subject Coverage",
+                subjectDesc: "Supports Math, Chinese, English, Physics, Chemistry, and more",
+                ocrTitle: "Smart Image Recognition",
+                ocrDesc: "Supports taking photos of homework problems, AI automatically recognizes and analyzes",
+                statsTitle: "Learning Statistics",
+                statsDesc: "Record learning progress, visualize learning results, encourage continuous learning"
+            },
+            howTo: {
+                title: "How to Use AI Homework Assistant",
+                step1Title: "Create Session",
+                step1Desc: "Click \"Start New Session\", enter homework title",
+                step2Title: "Interactive Q&A",
+                step2Desc: "Enter question or upload image, AI will guide your thinking",
+                step3Title: "Deep Learning",
+                step3Desc: "Follow AI guidance, gradually understand the solution path",
+                moreFaq: "View more FAQs →"
+            },
+            statCard: {
+                completedTasks: "Completed Tasks",
+                studyHours: "Study Hours",
+                activeDays: "Active Days"
             }
         },
 

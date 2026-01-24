@@ -156,20 +156,20 @@ const Dashboard = () => {
                     <>
                         <StatCard
                             icon={CheckCircle2}
-                            label="已完成任务"
+                            label={t('faq.statCard.completedTasks')}
                             value={stats.completedTasks}
                             color="bg-emerald-500"
                         />
                         <StatCard
                             icon={Clock}
-                            label="学习时长"
+                            label={t('faq.statCard.studyHours')}
                             value={`${stats.studyHours}h`}
                             color="bg-blue-500"
                         />
                         <StatCard
                             icon={TrendingUp}
-                            label="活跃天数"
-                            value={`${stats.streak} 天`}
+                            label={t('faq.statCard.activeDays')}
+                            value={`${stats.streak} ${t('common.days') || '天'}`}
                             color="bg-orange-500"
                         />
                     </>
@@ -188,8 +188,8 @@ const Dashboard = () => {
             {/* Features Section */}
             <section className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-900/40 dark:to-blue-900/40 rounded-2xl p-8">
                 <div className="text-center mb-8">
-                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2">智能AI助手，即刻解决学习难题</h2>
-                    <p className="text-slate-600 dark:text-slate-300">全方位的智能学习辅导体验</p>
+                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2">{t('faq.dashboardFeature.title')}</h2>
+                    <p className="text-slate-600 dark:text-slate-300">{t('faq.dashboardFeature.subtitle')}</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -198,8 +198,8 @@ const Dashboard = () => {
                         <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center mb-4">
                             <span className="text-2xl">🎯</span>
                         </div>
-                        <h3 className="font-semibold text-slate-800 dark:text-white mb-2">苏格拉底式教学</h3>
-                        <p className="text-sm text-slate-600 dark:text-slate-400">引导学生独立思考，培养解决问题的能力，而非直接给出答案</p>
+                        <h3 className="font-semibold text-slate-800 dark:text-white mb-2">{t('faq.dashboardFeature.socraticTitle')}</h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">{t('faq.dashboardFeature.socraticDesc')}</p>
                     </div>
 
                     {/* Feature 2 */}
@@ -207,8 +207,8 @@ const Dashboard = () => {
                         <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center mb-4">
                             <span className="text-2xl">📚</span>
                         </div>
-                        <h3 className="font-semibold text-slate-800 dark:text-white mb-2">全学科覆盖</h3>
-                        <p className="text-sm text-slate-600 dark:text-slate-400">支持数学、语文、英语、物理、化学等全学科在线辅导</p>
+                        <h3 className="font-semibold text-slate-800 dark:text-white mb-2">{t('faq.dashboardFeature.subjectTitle')}</h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">{t('faq.dashboardFeature.subjectDesc')}</p>
                     </div>
 
                     {/* Feature 3 */}
@@ -216,8 +216,8 @@ const Dashboard = () => {
                         <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center mb-4">
                             <span className="text-2xl">📸</span>
                         </div>
-                        <h3 className="font-semibold text-slate-800 dark:text-white mb-2">智能图像识别</h3>
-                        <p className="text-sm text-slate-600 dark:text-slate-400">支持拍照上传作业题目，AI自动识别并分析</p>
+                        <h3 className="font-semibold text-slate-800 dark:text-white mb-2">{t('faq.dashboardFeature.ocrTitle')}</h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">{t('faq.dashboardFeature.ocrDesc')}</p>
                     </div>
 
                     {/* Feature 4 */}
@@ -225,29 +225,29 @@ const Dashboard = () => {
                         <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center mb-4">
                             <span className="text-2xl">📊</span>
                         </div>
-                        <h3 className="font-semibold text-slate-800 dark:text-white mb-2">学习数据统计</h3>
-                        <p className="text-sm text-slate-600 dark:text-slate-400">记录学习进度，可视化展示学习成果，激励持续学习</p>
+                        <h3 className="font-semibold text-slate-800 dark:text-white mb-2">{t('faq.dashboardFeature.statsTitle')}</h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">{t('faq.dashboardFeature.statsDesc')}</p>
                     </div>
                 </div>
 
                 {/* How to Use */}
                 <div className="bg-white dark:bg-slate-800 rounded-xl p-6">
-                    <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-6 text-center">如何使用AI作业助手</h3>
+                    <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-6 text-center">{t('faq.howTo.title')}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div className="text-center">
                             <div className="w-16 h-16 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-2xl font-bold mx-auto mb-4">1</div>
-                            <h4 className="font-semibold text-slate-800 dark:text-white mb-2">创建会话</h4>
-                            <p className="text-sm text-slate-600 dark:text-slate-400">点击"开始新作业"，输入作业标题</p>
+                            <h4 className="font-semibold text-slate-800 dark:text-white mb-2">{t('faq.howTo.step1Title')}</h4>
+                            <p className="text-sm text-slate-600 dark:text-slate-400">{t('faq.howTo.step1Desc')}</p>
                         </div>
                         <div className="text-center">
                             <div className="w-16 h-16 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 flex items-center justify-center text-2xl font-bold mx-auto mb-4">2</div>
-                            <h4 className="font-semibold text-slate-800 dark:text-white mb-2">提问互动</h4>
-                            <p className="text-sm text-slate-600 dark:text-slate-400">输入问题或上传图片，AI会引导你思考</p>
+                            <h4 className="font-semibold text-slate-800 dark:text-white mb-2">{t('faq.howTo.step2Title')}</h4>
+                            <p className="text-sm text-slate-600 dark:text-slate-400">{t('faq.howTo.step2Desc')}</p>
                         </div>
                         <div className="text-center">
                             <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl font-bold mx-auto mb-4">3</div>
-                            <h4 className="font-semibold text-slate-800 dark:text-white mb-2">深入学习</h4>
-                            <p className="text-sm text-slate-600 dark:text-slate-400">跟随AI的引导，逐步理解解题思路</p>
+                            <h4 className="font-semibold text-slate-800 dark:text-white mb-2">{t('faq.howTo.step3Title')}</h4>
+                            <p className="text-sm text-slate-600 dark:text-slate-400">{t('faq.howTo.step3Desc')}</p>
                         </div>
                     </div>
                     <div className="text-center mt-6">
@@ -255,7 +255,7 @@ const Dashboard = () => {
                             to="/faq"
                             className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium text-sm transition-colors"
                         >
-                            查看更多常见问题 →
+                            {t('faq.howTo.moreFaq')}
                         </Link>
                     </div>
                 </div>

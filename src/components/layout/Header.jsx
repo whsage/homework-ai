@@ -1,4 +1,4 @@
-import { Bell, User, Menu, LogIn, ChevronLeft, LogOut, Settings, UserCircle, Moon, Sun } from 'lucide-react';
+import { Bell, User, Menu, LogIn, ChevronLeft, LogOut, Settings, UserCircle, Moon, Sun, Languages } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { supabase } from '../../supabase';
@@ -10,7 +10,7 @@ import NotificationDropdown from './NotificationDropdown';
 const Header = ({ onMenuClick }) => {
     const { user, settings } = useUser();
     const { theme, toggleTheme } = useTheme();
-    const { t } = useLanguage();
+    const { t, language, toggleLanguage } = useLanguage();
     const [showUserMenu, setShowUserMenu] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
     const location = useLocation();
@@ -95,6 +95,15 @@ const Header = ({ onMenuClick }) => {
             </div>
 
             <div className="flex items-center gap-4">
+                <button
+                    onClick={toggleLanguage}
+                    className="p-2 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors flex items-center gap-1"
+                    title={language === 'zh' ? 'Switch to English' : '切换到中文'}
+                >
+                    <Languages size={20} />
+                    <span className="text-sm font-medium hidden md:inline">{language === 'zh' ? 'EN' : '中'}</span>
+                </button>
+
                 {user ? (
                     <>
                         {/* Notification Bell */}

@@ -144,10 +144,21 @@ const ProfileSettings = () => {
     };
 
     const grades = [
-        '小学一年级', '小学二年级', '小学三年级', '小学四年级', '小学五年级', '小学六年级',
-        '初中一年级', '初中二年级', '初中三年级',
-        '高中一年级', '高中二年级', '高中三年级',
-        '大学本科', '研究生', '成人/社会'
+        { value: '小学一年级', key: 'primary1' },
+        { value: '小学二年级', key: 'primary2' },
+        { value: '小学三年级', key: 'primary3' },
+        { value: '小学四年级', key: 'primary4' },
+        { value: '小学五年级', key: 'primary5' },
+        { value: '小学六年级', key: 'primary6' },
+        { value: '初中一年级', key: 'middle7' },
+        { value: '初中二年级', key: 'middle8' },
+        { value: '初中三年级', key: 'middle9' },
+        { value: '高中一年级', key: 'high10' },
+        { value: '高中二年级', key: 'high11' },
+        { value: '高中三年级', key: 'high12' },
+        { value: '大学本科', key: 'university' },
+        { value: '研究生', key: 'graduate' },
+        { value: '成人/社会', key: 'adult' }
     ];
 
     // 展示视图组件
@@ -194,7 +205,11 @@ const ProfileSettings = () => {
                         </div>
                         <p className="text-slate-500 dark:text-slate-400 flex items-center gap-2 mt-1">
                             <span className="px-2 py-0.5 bg-indigo-50 text-indigo-600 rounded text-xs font-semibold uppercase tracking-wide dark:bg-indigo-900/30 dark:text-indigo-400">
-                                {formData.grade || t('profile.noGrade')}
+                                {/* Try to find the key for the current grade value to translate it, or fallback to value */}
+                                {(() => {
+                                    const gradeObj = grades.find(g => g.value === formData.grade);
+                                    return gradeObj ? t(`profile.grades.${gradeObj.key}`) : (formData.grade || t('profile.noGrade'));
+                                })()}
                             </span>
                             {formData.school && (
                                 <span className="text-sm">• {formData.school}</span>
@@ -305,7 +320,7 @@ const ProfileSettings = () => {
                             >
                                 <option value="">{t('profile.selectGrade')}</option>
                                 {grades.map(grade => (
-                                    <option key={grade} value={grade}>{grade}</option>
+                                    <option key={grade.key} value={grade.value}>{t(`profile.grades.${grade.key}`)}</option>
                                 ))}
                             </select>
                         </div>
