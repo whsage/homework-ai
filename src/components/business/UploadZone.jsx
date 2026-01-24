@@ -36,15 +36,34 @@ const UploadZone = () => {
                 return;
             }
 
-            // Check session count limit
-            const MAX_SESSIONS = 20;
-            const { count } = await supabase
+            // Check limits
+            const TOTAL_LIMIT = 50;
+            const DAILY_LIMIT = 10;
+
+            // 1. Check Total Limit
+            const { count: totalCount } = await supabase
                 .from('sessions')
                 .select('*', { count: 'exact', head: true })
                 .eq('user_id', user.id);
 
-            if (count >= MAX_SESSIONS) {
-                alert(t('uploadZone.limitReached', { limit: MAX_SESSIONS }));
+            if (totalCount >= TOTAL_LIMIT) {
+                alert(t('uploadZone.totalLimitReached', { limit: TOTAL_LIMIT }));
+                setIsUploading(false);
+                return;
+            }
+
+            // 2. Check Daily Limit
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            const { count: dailyCount } = await supabase
+                .from('sessions')
+                .select('*', { count: 'exact', head: true })
+                .eq('user_id', user.id)
+                .gte('created_at', today.toISOString());
+
+            if (dailyCount >= DAILY_LIMIT) {
+                alert(t('uploadZone.dailyLimitReached', { limit: DAILY_LIMIT }));
                 setIsUploading(false);
                 return;
             }
