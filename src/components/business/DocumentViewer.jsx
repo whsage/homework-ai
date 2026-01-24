@@ -2,7 +2,7 @@ import { ZoomIn, ZoomOut, Move } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from '../../supabase';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 const DocumentViewer = () => {
     const { t } = useLanguage();
