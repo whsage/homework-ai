@@ -15,15 +15,16 @@ const Header = ({ onMenuClick }) => {
     const [showUserMenu, setShowUserMenu] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
     const [userLevel, setUserLevel] = useState(1);
+    const [totalSessions, setTotalSessions] = useState(0);
     const location = useLocation();
     const navigate = useNavigate();
     const isDashboard = location.pathname === '/';
     const menuRef = useRef(null);
     const notificationRef = useRef(null);
 
-    // Fetch user level
+    // Fetch user level and total sessions
     useEffect(() => {
-        const fetchUserLevel = async () => {
+        const fetchUserStats = async () => {
             if (!user) return;
 
             const { data: userStats } = await supabase
@@ -33,10 +34,11 @@ const Header = ({ onMenuClick }) => {
                 .single();
 
             const total = userStats?.total_sessions_created || 0;
+            setTotalSessions(total);
             setUserLevel(calculateLevel(total));
         };
 
-        fetchUserLevel();
+        fetchUserStats();
     }, [user]);
 
     // Close menu when clicking outside
@@ -164,7 +166,7 @@ const Header = ({ onMenuClick }) => {
                                         <p className="text-xs text-slate-500 dark:text-slate-400 truncate w-full text-center">{displayEmail}</p>
                                         <div className="mt-3 flex gap-2 w-full justify-center">
                                             <span className="text-xs px-2 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-md font-medium">Lv.{userLevel} {t('header.rank')}</span>
-                                            <span className="text-xs px-2 py-1 bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-md font-medium">🔥 {t('header.streak')}</span>
+                                            <span className="text-xs px-2 py-1 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-md font-medium">📚 {totalSessions} {t('header.totalHomework')}</span>
                                         </div>
                                     </div>
 

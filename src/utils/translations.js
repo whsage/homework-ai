@@ -49,7 +49,7 @@ export const translations = {
             freePlan: "免费计划",
             darkMode: "深色模式",
             rank: "解题能手",
-            streak: "3天连胜"
+            totalHomework: "题总量"
         },
 
         // Auth
@@ -393,7 +393,7 @@ export const translations = {
             freePlan: "Free Plan",
             darkMode: "Dark Mode",
             rank: "Problem Solver",
-            streak: "3 Day Streak"
+            totalHomework: "Total"
         },
 
         // Auth
