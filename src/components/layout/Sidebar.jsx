@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import { supabase } from '../../supabase';
 import { useEffect, useState } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
-import { Languages } from 'lucide-react';
 
 const Sidebar = ({ isOpen, onClose }) => {
     const { t, language, toggleLanguage } = useLanguage();
@@ -197,15 +196,6 @@ const Sidebar = ({ isOpen, onClose }) => {
                             )}
                         </div>
                     </div>
-
-                    {/* Language Switcher */}
-                    <button
-                        onClick={toggleLanguage}
-                        className="mt-4 flex items-center gap-2 w-full px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors border border-slate-200 dark:border-slate-700"
-                    >
-                        <Languages size={18} />
-                        <span>{language === 'zh' ? 'English' : '中文'}</span>
-                    </button>
                 </div>
             </aside>
         </>
