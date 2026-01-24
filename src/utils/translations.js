@@ -20,6 +20,19 @@ export const translations = {
             personalSettings: "个人设置"
         },
 
+        // Subjects
+        subjects: {
+            math: "数学",
+            physics: "物理",
+            chemistry: "化学",
+            chinese: "语文",
+            english: "英语",
+            biology: "生物",
+            history: "历史",
+            geography: "地理",
+            general: "通用"
+        },
+
         // Sidebar
         sidebar: {
             recent: "最近活动",
@@ -98,7 +111,48 @@ export const translations = {
             searchPlaceholder: "搜索会话...",
             export: "导出",
             exporting: "导出中...",
-            deleting: "删除中..."
+            deleting: "删除中...",
+            selectToExport: "请先选择要导出的会话",
+            exportSuccess: "✅ 成功导出 {{count}} 个会话为 {{format}} 格式！",
+            wordSaved: "📄 Word 文档已保存到您的下载文件夹。",
+            wordTip: "💡 提示：可以使用 Microsoft Word 或 WPS 打开编辑。",
+            pdfSaved: "📕 PDF 文件已保存到您的下载文件夹。",
+            pdfTip: "💡 提示：可以直接打开查看或打印，适合分享给老师和家长。",
+            markdownSaved: "📁 已下载 {{count}} 个 Markdown 文件到您的下载文件夹。",
+            markdownTip: "💡 提示：如果浏览器询问，请允许多个文件下载。",
+            fileSaved: "📁 文件已保存到您的下载文件夹。",
+            exportFailed: "❌ 导出失败：",
+            deleteConfirm: "确定要删除选中的 {{count}} 个作业吗？此操作无法撤销。",
+            deleteSuccess: "删除成功！",
+            deleteFailed: "删除失败：",
+            filterBySubject: "（仅显示已选学科的知识点）",
+            selectFormat: "选择导出格式",
+            wordDoc: "Word 文档",
+            recommended: "推荐",
+            editable: "可编辑 · 易打印",
+            singleOnly: "仅支持单个会话",
+            txtText: "TXT 文本",
+            plainText: "纯文本 · 完美中文",
+            jsonData: "JSON 数据",
+            structured: "结构化 · 批量支持",
+            markdownDoc: "Markdown 文档",
+            plainTextBatch: "纯文本 · 批量支持",
+            selectTip: "💡 勾选会话以批量操作",
+            loading: "加载中...",
+            untitled: "未命名会话",
+            view: "查看",
+            noSessionsFound: "未找到会话",
+            tryOtherKeywords: "试试其他搜索词",
+            noSessionsYet: "还没有作业会话",
+            startFromDashboard: "从主页开始上传作业题目",
+            timeAgo: {
+                yearsAgo: "{{count}} 年前",
+                monthsAgo: "{{count}} 个月前",
+                daysAgo: "{{count}} 天前",
+                hoursAgo: "{{count}} 小时前",
+                minutesAgo: "{{count}} 分钟前",
+                justNow: "刚刚"
+            }
         },
 
         // Statistics
@@ -310,6 +364,19 @@ export const translations = {
             personalSettings: "Personal Settings"
         },
 
+        // Subjects
+        subjects: {
+            math: "Math",
+            physics: "Physics",
+            chemistry: "Chemistry",
+            chinese: "Chinese",
+            english: "English",
+            biology: "Biology",
+            history: "History",
+            geography: "Geography",
+            general: "General"
+        },
+
         // Sidebar
         sidebar: {
             recent: "Recent Activity",
@@ -388,7 +455,48 @@ export const translations = {
             searchPlaceholder: "Search sessions...",
             export: "Export",
             exporting: "Exporting...",
-            deleting: "Deleting..."
+            deleting: "Deleting...",
+            selectToExport: "Please select sessions to export",
+            exportSuccess: "✅ Successfully exported {{count}} session(s) as {{format}}!",
+            wordSaved: "📄 Word document saved to your downloads folder.",
+            wordTip: "💡 Tip: You can open and edit with Microsoft Word or WPS.",
+            pdfSaved: "📕 PDF file saved to your downloads folder.",
+            pdfTip: "💡 Tip: You can open, view, or print directly. Perfect for sharing with teachers and parents.",
+            markdownSaved: "📁 Downloaded {{count}} Markdown file(s) to your downloads folder.",
+            markdownTip: "💡 Tip: If your browser asks, please allow multiple file downloads.",
+            fileSaved: "📁 File saved to your downloads folder.",
+            exportFailed: "❌ Export failed: ",
+            deleteConfirm: "Are you sure you want to delete {{count}} selected session(s)? This action cannot be undone.",
+            deleteSuccess: "Deleted successfully!",
+            deleteFailed: "Delete failed: ",
+            filterBySubject: "(Only showing knowledge points for selected subjects)",
+            selectFormat: "Select Export Format",
+            wordDoc: "Word Document",
+            recommended: "Recommended",
+            editable: "Editable · Easy to Print",
+            singleOnly: "Single session only",
+            txtText: "TXT Text",
+            plainText: "Plain Text · Perfect Chinese",
+            jsonData: "JSON Data",
+            structured: "Structured · Batch Support",
+            markdownDoc: "Markdown Document",
+            plainTextBatch: "Plain Text · Batch Support",
+            selectTip: "💡 Select sessions for batch operations",
+            loading: "Loading...",
+            untitled: "Untitled Session",
+            view: "View",
+            noSessionsFound: "No sessions found",
+            tryOtherKeywords: "Try other keywords",
+            noSessionsYet: "No homework sessions yet",
+            startFromDashboard: "Start by uploading homework from the dashboard",
+            timeAgo: {
+                yearsAgo: "{{count}} year(s) ago",
+                monthsAgo: "{{count}} month(s) ago",
+                daysAgo: "{{count}} day(s) ago",
+                hoursAgo: "{{count}} hour(s) ago",
+                minutesAgo: "{{count}} minute(s) ago",
+                justNow: "Just now"
+            }
         },
 
         // Statistics

@@ -5,17 +5,32 @@ import { Clock, Search, Trash2, X, Download, FileJson, FileText, FileType } from
 import { exportSessions } from '../services/exportService';
 import { useLanguage } from '../context/LanguageContext';
 
-// 学科中文映射和图标配置
+// Subject configuration with icons and colors
+const getSubjectName = (subject, t) => {
+    const names = {
+        'Math': t('subjects.math') || 'Math',
+        'Physics': t('subjects.physics') || 'Physics',
+        'Chemistry': t('subjects.chemistry') || 'Chemistry',
+        'Chinese': t('subjects.chinese') || 'Chinese',
+        'English': t('subjects.english') || 'English',
+        'Biology': t('subjects.biology') || 'Biology',
+        'History': t('subjects.history') || 'History',
+        'Geography': t('subjects.geography') || 'Geography',
+        'General': t('subjects.general') || 'General'
+    };
+    return names[subject] || names['General'];
+};
+
 const SUBJECT_CONFIG = {
-    'Math': { name: '数学', icon: '📐', color: 'bg-blue-100 text-blue-700 border-blue-200' },
-    'Physics': { name: '物理', icon: '🧲', color: 'bg-purple-100 text-purple-700 border-purple-200' },
-    'Chemistry': { name: '化学', icon: '🧬', color: 'bg-green-100 text-green-700 border-green-200' },
-    'Chinese': { name: '语文', icon: '📖', color: 'bg-red-100 text-red-700 border-red-200' },
-    'English': { name: '英语', icon: '🌍', color: 'bg-orange-100 text-orange-700 border-orange-200' },
-    'Biology': { name: '生物', icon: '🌿', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
-    'History': { name: '历史', icon: '📜', color: 'bg-amber-100 text-amber-700 border-amber-200' },
-    'Geography': { name: '地理', icon: '🗺️', color: 'bg-teal-100 text-teal-700 border-teal-200' },
-    'General': { name: '通用', icon: '📚', color: 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600' }
+    'Math': { icon: '📐', color: 'bg-blue-100 text-blue-700 border-blue-200' },
+    'Physics': { icon: '🧲', color: 'bg-purple-100 text-purple-700 border-purple-200' },
+    'Chemistry': { icon: '🧬', color: 'bg-green-100 text-green-700 border-green-200' },
+    'Chinese': { icon: '📖', color: 'bg-red-100 text-red-700 border-red-200' },
+    'English': { icon: '🌍', color: 'bg-orange-100 text-orange-700 border-orange-200' },
+    'Biology': { icon: '🌿', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
+    'History': { icon: '📜', color: 'bg-amber-100 text-amber-700 border-amber-200' },
+    'Geography': { icon: '🗺️', color: 'bg-teal-100 text-teal-700 border-teal-200' },
+    'General': { icon: '📚', color: 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600' }
 };
 
 // 获取学科配置
@@ -129,7 +144,7 @@ const History = () => {
 
     const handleExport = async (format) => {
         if (selectedSessions.length === 0) {
-            alert('请先选择要导出的会话');
+            alert(t('history.selectToExport'));
             return;
         }
 
@@ -139,7 +154,7 @@ const History = () => {
         try {
             const result = await exportSessions(selectedSessions, format);
 
-            // 格式名称映射
+            // Format name mapping
             const formatNames = {
                 'json': 'JSON',
                 'markdown': 'Markdown',
@@ -148,29 +163,29 @@ const History = () => {
             };
             const formatName = formatNames[format] || format;
 
-            let message = `✅ 成功导出 ${result.count} 个会话为 ${formatName} 格式！\n\n`;
+            let message = t('history.exportSuccess', { count: result.count, format: formatName }) + '\n\n';
 
             if (format === 'word') {
-                message += `📄 Word 文档已保存到您的下载文件夹。\n`;
-                message += `💡 提示：可以使用 Microsoft Word 或 WPS 打开编辑。`;
+                message += t('history.wordSaved') + '\n';
+                message += t('history.wordTip');
             } else if (format === 'pdf') {
-                message += `📕 PDF 文件已保存到您的下载文件夹。\n`;
-                message += `💡 提示：可以直接打开查看或打印，适合分享给老师和家长。`;
+                message += t('history.pdfSaved') + '\n';
+                message += t('history.pdfTip');
             } else if (format === 'markdown' && result.count > 1) {
-                message += `📁 已下载 ${result.count} 个 Markdown 文件到您的下载文件夹。\n`;
-                message += `💡 提示：如果浏览器询问，请允许多个文件下载。`;
+                message += t('history.markdownSaved', { count: result.count }) + '\n';
+                message += t('history.markdownTip');
             } else {
-                message += `📁 文件已保存到您的下载文件夹。`;
+                message += t('history.fileSaved');
             }
 
             alert(message);
 
-            // 可选：导出成功后取消选择
+            // Optional: deselect after successful export
             // setSelectedSessions([]);
             // setIsSelectionMode(false);
         } catch (error) {
             console.error('Export error:', error);
-            alert('❌ 导出失败：' + error.message);
+            alert(t('history.exportFailed') + error.message);
         } finally {
             setIsExporting(false);
         }
@@ -179,7 +194,7 @@ const History = () => {
     const handleDeleteSessions = async () => {
         if (selectedSessions.length === 0) return;
 
-        const confirmMsg = `确定要删除选中的 ${selectedSessions.length} 个作业吗？此操作无法撤销。`;
+        const confirmMsg = t('history.deleteConfirm', { count: selectedSessions.length });
         if (!window.confirm(confirmMsg)) return;
 
         setIsDeleting(true);
@@ -194,10 +209,10 @@ const History = () => {
             // Update local state
             setSessions(prev => prev.filter(s => !selectedSessions.includes(s.id)));
             setSelectedSessions([]);
-            alert('删除成功！');
+            alert(t('history.deleteSuccess'));
         } catch (error) {
             console.error('Delete error:', error);
-            alert('删除失败：' + error.message);
+            alert(t('history.deleteFailed') + error.message);
         } finally {
             setIsDeleting(false);
         }
@@ -223,16 +238,16 @@ const History = () => {
     const timeAgo = (dateString) => {
         const seconds = Math.floor((new Date() - new Date(dateString)) / 1000);
         let interval = seconds / 31536000;
-        if (interval > 1) return Math.floor(interval) + " 年前";
+        if (interval > 1) return t('history.timeAgo.yearsAgo', { count: Math.floor(interval) });
         interval = seconds / 2592000;
-        if (interval > 1) return Math.floor(interval) + " 个月前";
+        if (interval > 1) return t('history.timeAgo.monthsAgo', { count: Math.floor(interval) });
         interval = seconds / 86400;
-        if (interval > 1) return Math.floor(interval) + " 天前";
+        if (interval > 1) return t('history.timeAgo.daysAgo', { count: Math.floor(interval) });
         interval = seconds / 3600;
-        if (interval > 1) return Math.floor(interval) + " 小时前";
+        if (interval > 1) return t('history.timeAgo.hoursAgo', { count: Math.floor(interval) });
         interval = seconds / 60;
-        if (interval > 1) return Math.floor(interval) + " 分钟前";
-        return "刚刚";
+        if (interval > 1) return t('history.timeAgo.minutesAgo', { count: Math.floor(interval) });
+        return t('history.timeAgo.justNow');
     };
 
     const filteredSessions = sessions.filter(session => {
@@ -293,7 +308,7 @@ const History = () => {
                                         `}
                                     >
                                         <span>{getSubjectConfig(subject).icon}</span>
-                                        <span>{getSubjectConfig(subject).name}</span>
+                                        <span>{getSubjectName(subject, t)}</span>
                                     </button>
                                 ))}
                             </div>
@@ -315,7 +330,7 @@ const History = () => {
                                 )}
                                 {selectedSubjects.length > 0 && (
                                     <span className="text-xs text-slate-400">
-                                        （仅显示已选学科的知识点）
+                                        {t('history.filterBySubject')}
                                     </span>
                                 )}
                             </div>
@@ -401,10 +416,10 @@ const History = () => {
                                     {showExportMenu && selectedSessions.length > 0 && (
                                         <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden z-10">
                                             <div className="p-2 bg-gradient-to-r from-emerald-50 to-blue-50 dark:from-emerald-900/30 dark:to-blue-900/30 border-b border-slate-200 dark:border-slate-700">
-                                                <p className="text-xs font-semibold text-slate-700 dark:text-slate-200">选择导出格式</p>
+                                                <p className="text-xs font-semibold text-slate-700 dark:text-slate-200">{t('history.selectFormat')}</p>
                                             </div>
 
-                                            {/* Word 格式 - 推荐 */}
+                                            {/* Word Format - Recommended */}
                                             <button
                                                 onClick={() => handleExport('word')}
                                                 disabled={selectedSessions.length > 1}
@@ -415,16 +430,16 @@ const History = () => {
                                                 </div>
                                                 <div className="flex-1">
                                                     <div className="font-medium flex items-center gap-2">
-                                                        Word 文档
-                                                        <span className="text-xs px-1.5 py-0.5 bg-emerald-500 text-white rounded-full">推荐</span>
+                                                        {t('history.wordDoc')}
+                                                        <span className="text-xs px-1.5 py-0.5 bg-emerald-500 text-white rounded-full">{t('history.recommended')}</span>
                                                     </div>
                                                     <div className="text-xs text-slate-500 dark:text-slate-400">
-                                                        {selectedSessions.length > 1 ? '仅支持单个会话' : '可编辑 · 易打印'}
+                                                        {selectedSessions.length > 1 ? t('history.singleOnly') : t('history.editable')}
                                                     </div>
                                                 </div>
                                             </button>
 
-                                            {/* TXT 格式 - 推荐 */}
+                                            {/* TXT Format - Recommended */}
                                             <button
                                                 onClick={() => handleExport('pdf')}
                                                 disabled={selectedSessions.length > 1}
@@ -435,19 +450,19 @@ const History = () => {
                                                 </div>
                                                 <div className="flex-1">
                                                     <div className="font-medium flex items-center gap-2">
-                                                        TXT 文本
-                                                        <span className="text-xs px-1.5 py-0.5 bg-emerald-500 text-white rounded-full">推荐</span>
+                                                        {t('history.txtText')}
+                                                        <span className="text-xs px-1.5 py-0.5 bg-emerald-500 text-white rounded-full">{t('history.recommended')}</span>
                                                     </div>
                                                     <div className="text-xs text-slate-500">
-                                                        {selectedSessions.length > 1 ? '仅支持单个会话' : '纯文本 · 完美中文'}
+                                                        {selectedSessions.length > 1 ? t('history.singleOnly') : t('history.plainText')}
                                                     </div>
                                                 </div>
                                             </button>
 
-                                            {/* 分隔线 */}
+                                            {/* Divider */}
                                             <div className="border-t-2 border-slate-200 dark:border-slate-700 my-1"></div>
 
-                                            {/* JSON 格式 */}
+                                            {/* JSON Format */}
                                             <button
                                                 onClick={() => handleExport('json')}
                                                 className="w-full px-4 py-3 text-left text-sm text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors flex items-center gap-3"
@@ -456,12 +471,12 @@ const History = () => {
                                                     <FileJson size={16} className="text-blue-600" />
                                                 </div>
                                                 <div>
-                                                    <div className="font-medium">JSON 数据</div>
-                                                    <div className="text-xs text-slate-500 dark:text-slate-400">结构化 · 批量支持</div>
+                                                    <div className="font-medium">{t('history.jsonData')}</div>
+                                                    <div className="text-xs text-slate-500 dark:text-slate-400">{t('history.structured')}</div>
                                                 </div>
                                             </button>
 
-                                            {/* Markdown 格式 */}
+                                            {/* Markdown Format */}
                                             <button
                                                 onClick={() => handleExport('markdown')}
                                                 className="w-full px-4 py-3 text-left text-sm text-slate-700 dark:text-slate-200 hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-colors flex items-center gap-3 border-t border-slate-100 dark:border-slate-700"
@@ -470,8 +485,8 @@ const History = () => {
                                                     <FileText size={16} className="text-purple-600" />
                                                 </div>
                                                 <div>
-                                                    <div className="font-medium">Markdown 文档</div>
-                                                    <div className="text-xs text-slate-500 dark:text-slate-400">纯文本 · 批量支持</div>
+                                                    <div className="font-medium">{t('history.markdownDoc')}</div>
+                                                    <div className="text-xs text-slate-500 dark:text-slate-400">{t('history.plainTextBatch')}</div>
                                                 </div>
                                             </button>
                                         </div>
@@ -489,9 +504,9 @@ const History = () => {
                                 </button>
                             </>
                         ) : (
-                            /* 未选择时显示的提示 */
+                            /* Tip when no sessions selected */
                             <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
-                                <span>💡 勾选会话以批量操作</span>
+                                <span>{t('history.selectTip')}</span>
                             </div>
                         )}
                     </div>
@@ -503,7 +518,7 @@ const History = () => {
                 {loading ? (
                     <div className="p-12 text-center text-slate-500 dark:text-slate-400">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
-                        加载中...
+                        {t('history.loading')}
                     </div>
                 ) : filteredSessions.length > 0 ? (
                     <div className="divide-y divide-slate-100 dark:divide-slate-700">
@@ -530,7 +545,7 @@ const History = () => {
                                     </div>
                                     <div className="min-w-0 flex-1">
                                         <p className="font-medium text-slate-700 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate">
-                                            {session.title || '未命名会话'}
+                                            {session.title || t('history.untitled')}
                                         </p>
                                         <div className="flex items-center gap-2 mt-1">
                                             <Clock size={14} className="text-slate-400 dark:text-slate-500" />
@@ -562,7 +577,7 @@ const History = () => {
                                     {/* 右侧操作区 - 现在也可点击 */}
                                     <div className="flex items-center gap-3">
                                         <span className="text-xs font-medium px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 whitespace-nowrap">
-                                            查看
+                                            {t('history.view')}
                                         </span>
                                         <svg className="w-5 h-5 text-slate-400 group-hover:text-indigo-600 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -575,10 +590,10 @@ const History = () => {
                 ) : (
                     <div className="p-12 text-center text-slate-500">
                         <p className="text-lg font-medium mb-2">
-                            {searchTerm ? '未找到会话' : '还没有作业会话'}
+                            {searchTerm ? t('history.noSessionsFound') : t('history.noSessionsYet')}
                         </p>
                         <p className="text-sm">
-                            {searchTerm ? '试试其他搜索词' : '从主页开始上传作业题目'}
+                            {searchTerm ? t('history.tryOtherKeywords') : t('history.startFromDashboard')}
                         </p>
                     </div>
                 )}
