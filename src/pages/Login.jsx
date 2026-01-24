@@ -58,11 +58,7 @@ const Login = () => {
     return (
         <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900 transition-colors duration-200">
             <div className="max-w-md w-full bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-8">
-                <div className="flex justify-center mb-6">
-                    <div className="w-20 h-20 rounded-[20px] bg-gradient-to-br from-[#E0F2FE] to-[#eff6ff] dark:from-slate-700 dark:to-slate-600 flex items-center justify-center p-3.5 shadow-lg shadow-indigo-100 dark:shadow-none border border-slate-50 dark:border-slate-600">
-                        <img src="/logo.png" alt="Logo" className="w-full h-full object-contain drop-shadow-sm" />
-                    </div>
-                </div>
+
                 <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">{t('auth.loginTitle')}</h2>
 
                 {error && (
