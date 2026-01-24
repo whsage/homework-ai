@@ -83,21 +83,21 @@ const DocumentViewer = () => {
     const defaultPlaceholder = "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2070&auto=format&fit=crop";
 
     return (
-        <div className="h-full flex flex-col bg-slate-100 rounded-2xl overflow-hidden border border-slate-200">
+        <div className="h-full flex flex-col bg-slate-100 dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 transition-colors duration-200">
             {/* Toolbar */}
-            <div className="bg-white p-3 border-b border-slate-200 flex items-center justify-between">
-                <h3 className="font-semibold text-slate-700">
+            <div className="bg-white dark:bg-slate-800 p-3 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                <h3 className="font-semibold text-slate-700 dark:text-white">
                     {sessionTitle} {sessionNumber}
                 </h3>
                 {imageUrl && !isLoading && (
                     <div className="flex gap-2">
-                        <button onClick={() => handleZoom(-0.1)} className="p-2 hover:bg-slate-100 rounded-lg text-slate-600 transition-colors">
+                        <button onClick={() => handleZoom(-0.1)} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg text-slate-600 dark:text-slate-400 transition-colors">
                             <ZoomOut size={18} />
                         </button>
-                        <span className="flex items-center text-xs font-mono text-slate-500 w-12 justify-center">
+                        <span className="flex items-center text-xs font-mono text-slate-500 dark:text-slate-500 w-12 justify-center">
                             {Math.round(scale * 100)}%
                         </span>
-                        <button onClick={() => handleZoom(0.1)} className="p-2 hover:bg-slate-100 rounded-lg text-slate-600 transition-colors">
+                        <button onClick={() => handleZoom(0.1)} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg text-slate-600 dark:text-slate-400 transition-colors">
                             <ZoomIn size={18} />
                         </button>
                     </div>
@@ -105,15 +105,15 @@ const DocumentViewer = () => {
             </div>
 
             {/* Viewport */}
-            <div className={`flex-1 overflow-auto relative p-8 bg-slate-50 ${imageUrl && !isLoading ? 'flex items-center justify-center cursor-grab active:cursor-grabbing' : ''}`}>
+            <div className={`flex-1 overflow-auto relative p-8 bg-slate-50 dark:bg-slate-900 ${imageUrl && !isLoading ? 'flex items-center justify-center cursor-grab active:cursor-grabbing' : ''}`}>
                 {isLoading ? (
-                    <div className="flex flex-col items-center justify-center h-full text-slate-400 gap-3">
+                    <div className="flex flex-col items-center justify-center h-full text-slate-400 dark:text-slate-500 gap-3">
                         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
                         <span className="text-sm font-medium">加载题目中...</span>
                     </div>
                 ) : imageUrl ? (
                     <div
-                        className="relative shadow-xl transition-transform duration-200 ease-out origin-center bg-white"
+                        className="relative shadow-xl transition-transform duration-200 ease-out origin-center bg-white dark:bg-slate-800"
                         style={{ transform: `scale(${scale})` }}
                     >
                         <img
@@ -124,16 +124,16 @@ const DocumentViewer = () => {
                     </div>
                 ) : textContent ? (
                     // 显示纯文本题目内容
-                    <div className="bg-white p-8 rounded-xl shadow-sm max-w-2xl mx-auto w-full prose prose-slate">
-                        <h4 className="text-slate-400 uppercase text-xs font-bold tracking-wider mb-4 border-b pb-2">题目描述</h4>
-                        <div className="whitespace-pre-wrap text-slate-800 text-lg leading-relaxed">
+                    <div className="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm max-w-2xl mx-auto w-full prose prose-slate dark:prose-invert">
+                        <h4 className="text-slate-400 uppercase text-xs font-bold tracking-wider mb-4 border-b dark:border-slate-700 pb-2">题目描述</h4>
+                        <div className="whitespace-pre-wrap text-slate-800 dark:text-slate-200 text-lg leading-relaxed">
                             {textContent}
                         </div>
                     </div>
                 ) : (
                     // 既无图也无文（空状态），显示默认占位
                     <div
-                        className="relative shadow-xl transition-transform duration-200 ease-out origin-center bg-white"
+                        className="relative shadow-xl transition-transform duration-200 ease-out origin-center bg-white dark:bg-slate-800"
                         style={{ transform: `scale(${scale})` }}
                     >
                         <img

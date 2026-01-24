@@ -53,31 +53,31 @@ const PasswordSettings = ({ onUpdateSuccess }) => {
     };
 
     return (
-        <div className="pt-6 border-t border-slate-200">
-            <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
-                <Lock size={20} className="text-indigo-600" />
+        <div className="pt-6 border-t border-slate-200 dark:border-slate-700">
+            <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                <Lock size={20} className="text-indigo-600 dark:text-indigo-400" />
                 安全设置
             </h3>
 
             <form onSubmit={handleUpdatePassword} className="space-y-4 max-w-lg">
                 <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1">新密码</label>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">新密码</label>
                     <input
                         type="password"
                         value={newPassword}
                         onChange={(e) => setNewPassword(e.target.value)}
                         placeholder="••••••••"
-                        className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                        className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all dark:bg-slate-900 dark:border-slate-600 dark:text-white dark:placeholder-slate-500"
                     />
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1">确认新密码</label>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">确认新密码</label>
                     <input
                         type="password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         placeholder="••••••••"
-                        className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                        className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all dark:bg-slate-900 dark:border-slate-600 dark:text-white dark:placeholder-slate-500"
                     />
                 </div>
 
@@ -91,7 +91,7 @@ const PasswordSettings = ({ onUpdateSuccess }) => {
                 <button
                     type="submit"
                     disabled={isUpdating || !newPassword}
-                    className="px-6 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
+                    className="px-6 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium dark:bg-indigo-600 dark:hover:bg-indigo-700"
                 >
                     {isUpdating ? '更新中...' : '修改密码'}
                 </button>
@@ -149,7 +149,7 @@ const ProfileSettings = () => {
 
     // 展示视图组件
     const ProfileDisplay = () => (
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
             <div className="h-32 bg-gradient-to-r from-blue-500 to-indigo-600 relative">
                 {/* 背景装饰 */}
                 <div className="absolute inset-0 opacity-20 pattern-grid-lg"></div>
@@ -164,27 +164,33 @@ const ProfileSettings = () => {
             <div className="px-8 pb-8">
                 <div className="relative -mt-16 mb-6 flex justify-between items-end">
                     <div className="relative">
-                        <div className="w-32 h-32 rounded-full border-4 border-white shadow-md overflow-hidden bg-white">
+                        <div className="w-32 h-32 rounded-full border-4 border-white dark:border-slate-800 shadow-md overflow-hidden bg-white dark:bg-slate-700">
                             <img
                                 src={formData.avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${user?.email}`}
                                 alt="Profile"
                                 className="w-full h-full object-cover"
                             />
                         </div>
+                        {/* Level Badge */}
+                        <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 z-10">
+                            <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-sm font-bold px-3 py-0.5 rounded-full shadow-sm border-2 border-white dark:border-slate-800 flex items-center gap-1 whitespace-nowrap">
+                                <span>Lv.3</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div className="space-y-6">
                     <div>
-                        <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                             {formData.nickname || '未设置昵称'}
                         </h2>
-                        <div className="flex items-center gap-1.5 text-slate-500 mt-1 mb-2">
+                        <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 mt-1 mb-2">
                             <Mail size={14} />
                             <span className="text-sm">{user?.email}</span>
                         </div>
-                        <p className="text-slate-500 flex items-center gap-2 mt-1">
-                            <span className="px-2 py-0.5 bg-indigo-50 text-indigo-600 rounded text-xs font-semibold uppercase tracking-wide">
+                        <p className="text-slate-500 dark:text-slate-400 flex items-center gap-2 mt-1">
+                            <span className="px-2 py-0.5 bg-indigo-50 text-indigo-600 rounded text-xs font-semibold uppercase tracking-wide dark:bg-indigo-900/30 dark:text-indigo-400">
                                 {formData.grade || '未设置年级'}
                             </span>
                             {formData.school && (
@@ -193,11 +199,11 @@ const ProfileSettings = () => {
                         </p>
                     </div>
 
-                    <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                        <h4 className="text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                    <div className="p-4 bg-slate-50 dark:bg-slate-700/30 rounded-xl border border-slate-100 dark:border-slate-700">
+                        <h4 className="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2 flex items-center gap-2">
                             <User size={16} /> 个人简介
                         </h4>
-                        <p className="text-slate-600 text-sm leading-relaxed">
+                        <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
                             {formData.bio || '这个人很懒，什么都没写...'}
                         </p>
                     </div>
@@ -211,17 +217,17 @@ const ProfileSettings = () => {
     return (
         <div className="space-y-8">
             <div>
-                <h2 className="text-2xl font-bold text-slate-800 mb-1">个人资料</h2>
-                <p className="text-slate-600">管理你的个人信息与账户安全</p>
+                <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-1">个人资料</h2>
+                <p className="text-slate-600 dark:text-slate-400">管理你的个人信息与账户安全</p>
             </div>
 
             {/* 模式切换：展示 vs 编辑 */}
             {!isEditing ? (
                 <ProfileDisplay />
             ) : (
-                <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-6 space-y-8 animate-fade-in">
-                    <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-                        <h3 className="text-lg font-bold text-slate-800">编辑资料</h3>
+                <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 p-6 space-y-8 animate-fade-in">
+                    <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-700 pb-4">
+                        <h3 className="text-lg font-bold text-slate-800 dark:text-white">编辑资料</h3>
                         <button
                             onClick={() => {
                                 setFormData(settings.profile); // 重置修改
@@ -235,11 +241,11 @@ const ProfileSettings = () => {
 
                     {/* 头像选择区域 */}
                     <div>
-                        <h3 className="font-semibold text-slate-700 mb-4 block">头像设置</h3>
+                        <h3 className="font-semibold text-slate-700 dark:text-slate-200 mb-4 block">头像设置</h3>
                         <div className="flex flex-col md:flex-row gap-6 items-start">
                             {/* 当前预览 */}
                             <div className="relative flex-shrink-0">
-                                <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-slate-200">
+                                <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-slate-200 dark:border-slate-600">
                                     <img
                                         src={formData.avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${user?.email}`}
                                         alt="Preview"
@@ -249,7 +255,7 @@ const ProfileSettings = () => {
                             </div>
 
                             <div className="flex-1">
-                                <div className="mb-3 text-sm text-slate-500">
+                                <div className="mb-3 text-sm text-slate-500 dark:text-slate-400">
                                     选择你喜欢的头像风格：
                                 </div>
                                 <div className="flex flex-wrap gap-3">
@@ -258,8 +264,8 @@ const ProfileSettings = () => {
                                             key={index}
                                             onClick={() => handleAvatarSelect(url)}
                                             className={`relative w-12 h-12 rounded-full overflow-hidden border-2 transition-all transform hover:scale-105 ${formData.avatar === url
-                                                ? 'border-indigo-600 ring-2 ring-indigo-200'
-                                                : 'border-slate-100 opacity-70 hover:opacity-100'
+                                                ? 'border-indigo-600 ring-2 ring-indigo-200 dark:ring-indigo-900'
+                                                : 'border-slate-100 opacity-70 hover:opacity-100 dark:border-slate-600'
                                                 }`}
                                             title="选择头像"
                                         >
@@ -274,25 +280,25 @@ const ProfileSettings = () => {
                     {/* 表单字段 */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 mb-2">
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                                 昵称 <span className="text-red-500">*</span>
                             </label>
                             <input
                                 type="text"
                                 value={formData.nickname}
                                 onChange={(e) => handleChange('nickname', e.target.value)}
-                                className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                                className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all dark:bg-slate-900 dark:border-slate-600 dark:text-white"
                             />
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-slate-700 mb-2">
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                                 年级/学段
                             </label>
                             <select
                                 value={formData.grade}
                                 onChange={(e) => handleChange('grade', e.target.value)}
-                                className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all bg-white"
+                                className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all bg-white dark:bg-slate-900 dark:border-slate-600 dark:text-white"
                             >
                                 <option value="">请选择年级</option>
                                 {grades.map(grade => (
@@ -303,35 +309,35 @@ const ProfileSettings = () => {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">学校</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">学校</label>
                         <input
                             type="text"
                             value={formData.school}
                             onChange={(e) => handleChange('school', e.target.value)}
-                            className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                            className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all dark:bg-slate-900 dark:border-slate-600 dark:text-white"
                         />
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">个人简介</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">个人简介</label>
                         <textarea
                             value={formData.bio}
                             onChange={(e) => handleChange('bio', e.target.value)}
                             rows={3}
                             maxLength={200}
-                            className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all resize-none"
+                            className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all resize-none dark:bg-slate-900 dark:border-slate-600 dark:text-white"
                         />
                         <p className="text-right text-xs text-slate-400 mt-1">{formData.bio?.length || 0} / 200</p>
                     </div>
 
                     {/* 底部操作栏 */}
-                    <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100">
+                    <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100 dark:border-slate-700">
                         <button
                             onClick={() => {
                                 setFormData(settings.profile);
                                 setIsEditing(false);
                             }}
-                            className="px-6 py-2 text-slate-600 font-medium hover:bg-slate-100 rounded-lg transition-colors"
+                            className="px-6 py-2 text-slate-600 font-medium hover:bg-slate-100 rounded-lg transition-colors dark:text-slate-300 dark:hover:bg-slate-700"
                         >
                             取消
                         </button>

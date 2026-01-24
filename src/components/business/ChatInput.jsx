@@ -138,7 +138,7 @@ const ChatInput = ({ onSend, disabled }) => {
     };
 
     return (
-        <form ref={formRef} onSubmit={handleSubmit} className="p-2 sm:p-4 bg-white border-t border-slate-200 absolute bottom-0 left-0 right-0 z-10">
+        <form ref={formRef} onSubmit={handleSubmit} className="p-2 sm:p-4 bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 absolute bottom-0 left-0 right-0 z-10 transition-colors duration-200">
             <div className="max-w-4xl mx-auto">
                 {/* 文件预览区域 */}
                 {selectedFile && (
@@ -151,8 +151,8 @@ const ChatInput = ({ onSend, disabled }) => {
                                     className="h-20 w-20 object-cover rounded-lg border-2 border-indigo-200"
                                 />
                             ) : (
-                                <div className="h-20 w-20 bg-slate-100 rounded-lg border-2 border-slate-200 flex items-center justify-center">
-                                    <ImageIcon size={32} className="text-slate-400" />
+                                <div className="h-20 w-20 bg-slate-100 dark:bg-slate-700 rounded-lg border-2 border-slate-200 dark:border-slate-600 flex items-center justify-center">
+                                    <ImageIcon size={32} className="text-slate-400 dark:text-slate-500" />
                                 </div>
                             )}
                             <button
@@ -164,8 +164,8 @@ const ChatInput = ({ onSend, disabled }) => {
                             </button>
                         </div>
                         <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-slate-700 truncate">{selectedFile.name}</p>
-                            <p className="text-xs text-slate-500">
+                            <p className="text-sm font-medium text-slate-700 dark:text-slate-200 truncate">{selectedFile.name}</p>
+                            <p className="text-xs text-slate-500 dark:text-slate-400">
                                 {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
                                 {isCompressing && <span className="text-indigo-500 font-medium ml-2 animate-pulse">处理中...</span>}
                             </p>
@@ -189,8 +189,8 @@ const ChatInput = ({ onSend, disabled }) => {
                         className={clsx(
                             "p-2.5 rounded-lg transition-colors cursor-pointer flex-shrink-0",
                             selectedFile
-                                ? "text-indigo-600 bg-indigo-50"
-                                : "text-slate-500 hover:text-indigo-600 hover:bg-slate-100"
+                                ? "text-indigo-600 bg-indigo-50 dark:bg-indigo-900/30 dark:text-indigo-400"
+                                : "text-slate-500 dark:text-slate-400 hover:text-indigo-600 hover:bg-slate-100 dark:hover:bg-slate-700"
                         )}
                         title="添加图片或文件"
                     >
@@ -207,7 +207,7 @@ const ChatInput = ({ onSend, disabled }) => {
                             onKeyDown={handleKeyDown}
                             onPaste={handlePaste}
                             placeholder="输入消息..."
-                            className="w-full px-3 sm:px-4 py-2.5 sm:py-3 pr-12 bg-slate-50 border border-slate-200 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-slate-700 placeholder:text-slate-400 text-sm sm:text-base"
+                            className="w-full px-3 sm:px-4 py-2.5 sm:py-3 pr-12 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-slate-700 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 text-sm sm:text-base"
                             disabled={disabled}
                             rows={1}
                             style={{
@@ -225,7 +225,7 @@ const ChatInput = ({ onSend, disabled }) => {
                             "p-2.5 rounded-lg flex items-center justify-center transition-all duration-200 flex-shrink-0",
                             (message.trim() || selectedFile) && !disabled
                                 ? "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95"
-                                : "bg-slate-200 text-slate-400 cursor-not-allowed"
+                                : "bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed"
                         )}
                         title="发送消息"
                     >

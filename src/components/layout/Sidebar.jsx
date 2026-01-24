@@ -90,13 +90,13 @@ const Sidebar = ({ isOpen, onClose }) => {
             )}
 
             <aside className={clsx(
-                "fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-slate-300 flex flex-col h-screen border-r border-slate-800 transition-transform duration-300 ease-in-out md:static md:translate-x-0",
+                "fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 flex flex-col h-screen border-r border-slate-200 dark:border-slate-800 transition-transform duration-300 ease-in-out md:static md:translate-x-0 transition-colors",
                 isOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"
             )}>
-                <div className="p-6 border-b border-slate-800 flex items-center justify-between">
-                    <h1 className="text-xl font-bold text-white flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-xl flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#E0F2FE] to-[#eff6ff] p-1.5 shadow-md shadow-indigo-500/20 border border-white/10">
-                            <img src="/logo.png" alt="Logo" className="w-full h-full object-contain drop-shadow-sm" />
+                <div className="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                    <h1 className="text-2xl font-bold text-slate-800 dark:text-white flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-indigo-600 to-violet-600 text-white shadow-lg shadow-indigo-500/30">
+                            <span className="font-extrabold text-2xl tracking-tighter">H</span>
                         </div>
                         <span className="tracking-tight">HomeworkAI</span>
                     </h1>
@@ -113,7 +113,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                                     "flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200",
                                     isActive
                                         ? "bg-indigo-600 text-white shadow-lg shadow-indigo-900/20"
-                                        : "hover:bg-slate-800 hover:text-white"
+                                        : "hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
                                 )
                             }
                         >
@@ -125,7 +125,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                     {/* Recent Activity Section */}
                     {(isLoadingSessions || recentSessions.length > 0) && (
                         <div className="mt-8">
-                            <h3 className="px-4 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                            <h3 className="px-4 text-xs font-semibold text-slate-500 dark:text-slate-500 uppercase tracking-wider mb-2">
                                 最近活动
                             </h3>
                             <div className="space-y-1">
@@ -143,9 +143,9 @@ const Sidebar = ({ isOpen, onClose }) => {
                                             key={session.id}
                                             to={`/homework/${session.id}`}
                                             onClick={onClose}
-                                            className="flex items-center gap-3 px-4 py-2 text-sm text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors group"
+                                            className="flex items-center gap-3 px-4 py-2 text-sm text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors group"
                                         >
-                                            <MessageSquare size={16} className="shrink-0 group-hover:text-indigo-400" />
+                                            <MessageSquare size={16} className="shrink-0 group-hover:text-indigo-600 dark:group-hover:text-indigo-400" />
                                             <span className="truncate">{session.title || '未命名会话'}</span>
                                         </Link>
                                     ))
@@ -174,10 +174,10 @@ const Sidebar = ({ isOpen, onClose }) => {
                     </a>
                 </div>
 
-                <div className="p-4 border-t border-slate-800">
-                    <div className={`rounded-lg p-4 ${totalSessions > MAX_SESSIONS - 3 ? 'bg-red-900/30' : 'bg-slate-800/50'}`}>
-                        <p className="text-xs text-slate-400 mb-2">作业用量</p>
-                        <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
+                <div className="p-4 border-t border-slate-200 dark:border-slate-800">
+                    <div className={`rounded-lg p-4 ${totalSessions > MAX_SESSIONS - 3 ? 'bg-red-50 dark:bg-red-900/30' : 'bg-slate-100 dark:bg-slate-800/50'}`}>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 mb-2">作业用量</p>
+                        <div className="h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
                             <div
                                 className={`h-full rounded-full transition-all ${totalSessions > MAX_SESSIONS - 3 ? 'bg-red-500' : 'bg-indigo-500'}`}
                                 style={{ width: `${Math.min((totalSessions / MAX_SESSIONS) * 100, 100)}%` }}

@@ -38,9 +38,9 @@ const Register = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-slate-50">
-            <div className="max-w-md w-full bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
-                <h2 className="text-2xl font-bold text-slate-800 mb-6 text-center">创建账号</h2>
+        <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900 transition-colors duration-200">
+            <div className="max-w-md w-full bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-8">
+                <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">创建账号</h2>
 
                 {error && (
                     <div className="mb-4 p-3 bg-red-50 text-red-600 text-sm rounded-lg border border-red-100">
@@ -56,22 +56,22 @@ const Register = () => {
 
                 <form onSubmit={handleRegister} className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-1">邮箱</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">邮箱</label>
                         <input
                             type="email"
                             required
-                            className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+                            className="w-full px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all dark:bg-slate-900 dark:text-white dark:placeholder-slate-500"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="your@email.com"
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-1">密码</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">密码</label>
                         <input
                             type="password"
                             required
-                            className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+                            className="w-full px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all dark:bg-slate-900 dark:text-white dark:placeholder-slate-500"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="请创建一个强密码"
@@ -82,15 +82,15 @@ const Register = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-medium shadow-sm shadow-emerald-200 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+                        className="w-full py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-medium shadow-sm shadow-emerald-200 dark:shadow-none transition-all disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                         {loading ? '注册中...' : '注册'}
                     </button>
                 </form>
 
-                <div className="mt-6 text-center text-sm text-slate-500">
+                <div className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
                     已有账号？{' '}
-                    <Link to="/login" className="text-indigo-600 font-medium hover:text-indigo-700">
+                    <Link to="/login" className="text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-700 dark:hover:text-indigo-300">
                         立即登录
                     </Link>
                 </div>

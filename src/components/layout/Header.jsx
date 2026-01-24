@@ -1,22 +1,31 @@
-import { Bell, User, Menu, LogIn, ChevronLeft, LogOut, Settings, UserCircle } from 'lucide-react';
+import { Bell, User, Menu, LogIn, ChevronLeft, LogOut, Settings, UserCircle, Moon, Sun } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { supabase } from '../../supabase';
 import { useUser } from '../../context/UserContext';
+import { useTheme } from '../../context/ThemeContext';
+import NotificationDropdown from './NotificationDropdown';
 
 const Header = ({ onMenuClick }) => {
     const { user, settings } = useUser();
+    const { theme, toggleTheme } = useTheme();
     const [showUserMenu, setShowUserMenu] = useState(false);
+    const [showNotifications, setShowNotifications] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
     const isDashboard = location.pathname === '/';
     const menuRef = useRef(null);
+    const notificationRef = useRef(null);
 
     // Close menu when clicking outside
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (menuRef.current && !menuRef.current.contains(event.target)) {
                 setShowUserMenu(false);
+            }
+            if (notificationRef.current && !notificationRef.current.contains(event.target)) {
+                setShowNotifications(false); // Close if clicking outside container
+                // Note: clicking content inside dropdown is handled by propagation or specific close handlers
             }
         };
 
@@ -34,22 +43,44 @@ const Header = ({ onMenuClick }) => {
     const displayEmail = user?.email || '';
     const avatarUrl = settings?.profile?.avatar;
 
+    // Component for the Avatar Badge
+    const AvatarWithBadge = ({ size = "normal" }) => {
+        const sizeClasses = size === "large" ? "w-16 h-16" : "w-10 h-10";
+        return (
+            <div className="relative inline-block">
+                <div className={`${sizeClasses} rounded-full overflow-hidden border-2 border-indigo-50 dark:border-indigo-900 bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center text-indigo-600 dark:text-indigo-300`}>
+                    {avatarUrl ? (
+                        <img src={avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
+                    ) : (
+                        <User size={size === "large" ? 32 : 20} />
+                    )}
+                </div>
+                {/* Honour Badge at bottom center */}
+                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2">
+                    <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-sm border border-white dark:border-slate-800 flex items-center gap-0.5 whitespace-nowrap">
+                        <span>Lv.3</span>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
     return (
-        <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 sticky top-0 z-10 w-full">
+        <header className="h-16 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between px-6 sticky top-0 z-10 w-full transition-colors duration-200">
             <div className="flex items-center gap-4">
                 <button
                     onClick={onMenuClick}
-                    className="p-2 -ml-2 text-slate-500 hover:bg-slate-100 rounded-lg md:hidden"
+                    className="p-2 -ml-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg md:hidden"
                 >
                     <Menu size={24} />
                 </button>
                 <div className="flex items-center gap-3">
                     {!isDashboard && (
-                        <Link to="/" className="p-1.5 text-slate-500 hover:bg-slate-100 rounded-lg transition-colors" title="返回主页">
+                        <Link to="/" className="p-1.5 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors" title="返回主页">
                             <ChevronLeft size={20} />
                         </Link>
                     )}
-                    <h2 className="text-xl font-semibold text-slate-800">
+                    <h2 className="text-xl font-semibold text-slate-800 dark:text-white">
                         {location.pathname === '/' && '主页'}
                         {location.pathname === '/history' && '我的作业'}
                         {location.pathname === '/statistics' && '学习统计'}
@@ -64,46 +95,67 @@ const Header = ({ onMenuClick }) => {
             <div className="flex items-center gap-4">
                 {user ? (
                     <>
-                        <button className="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors relative">
-                            <Bell size={20} />
-                            <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
-                        </button>
+                        {/* Notification Bell */}
+                        <div className="relative" ref={notificationRef}>
+                            <button
+                                onClick={() => setShowNotifications(!showNotifications)}
+                                className={`p-2 rounded-full transition-colors relative ${showNotifications ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900/50 dark:text-indigo-400' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700'}`}
+                            >
+                                <Bell size={20} />
+                                <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-800"></span>
+                            </button>
+                            {showNotifications && (
+                                <NotificationDropdown onClose={() => setShowNotifications(false)} />
+                            )}
+                        </div>
 
                         <div className="relative" ref={menuRef}>
                             <button
                                 onClick={() => setShowUserMenu(!showUserMenu)}
-                                className="flex items-center gap-3 pl-4 border-l border-slate-200 hover:bg-slate-50 rounded-lg transition-colors p-2 -mr-2"
+                                className="flex items-center gap-3 pl-4 border-l border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-lg transition-colors p-2 -mr-2"
                             >
                                 <div className="text-right hidden sm:block">
-                                    <p className="text-sm font-medium text-slate-700 truncate max-w-[150px]">
+                                    <p className="text-sm font-medium text-slate-700 dark:text-slate-200 truncate max-w-[150px]">
                                         {displayName}
                                     </p>
-                                    <p className="text-xs text-slate-500">免费计划</p>
+                                    <p className="text-xs text-slate-500 dark:text-slate-400">免费计划</p>
                                 </div>
-                                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-indigo-50 bg-indigo-100 flex items-center justify-center text-indigo-600">
-                                    {avatarUrl ? (
-                                        <img src={avatarUrl} alt="Avatar" className="w-full h-full object-cover" />
-                                    ) : (
-                                        <User size={20} />
-                                    )}
-                                </div>
+                                <AvatarWithBadge />
                             </button>
 
                             {/* Dropdown Menu */}
                             {showUserMenu && (
-                                <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-slate-200 py-2 z-50">
-                                    {/* User Info */}
-                                    <div className="px-4 py-3 border-b border-slate-100">
-                                        <p className="text-sm font-medium text-slate-900 truncate">{displayName}</p>
-                                        <p className="text-xs text-slate-500 mt-1 truncate">{displayEmail}</p>
+                                <div className="absolute right-0 mt-2 w-72 bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 py-2 z-50">
+                                    {/* User Info Large */}
+                                    <div className="px-4 py-4 border-b border-slate-100 dark:border-slate-700 flex flex-col items-center">
+                                        <AvatarWithBadge size="large" />
+                                        <p className="text-lg font-semibold text-slate-900 dark:text-white mt-3 truncate w-full text-center">{displayName}</p>
+                                        <p className="text-xs text-slate-500 dark:text-slate-400 truncate w-full text-center">{displayEmail}</p>
+                                        <div className="mt-3 flex gap-2 w-full justify-center">
+                                            <span className="text-xs px-2 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-md font-medium">Lv.3 解题能手</span>
+                                            <span className="text-xs px-2 py-1 bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-md font-medium">🔥 3天连胜</span>
+                                        </div>
                                     </div>
 
                                     {/* Menu Items */}
                                     <div className="py-2">
+                                        <button
+                                            onClick={toggleTheme}
+                                            className="flex items-center justify-between w-full px-4 py-3 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+                                        >
+                                            <div className="flex items-center gap-3">
+                                                {theme === 'dark' ? <Moon size={18} className="text-slate-400" /> : <Sun size={18} className="text-slate-400" />}
+                                                <span>深色模式</span>
+                                            </div>
+                                            <div className={`w-9 h-5 rounded-full relative transition-colors ${theme === 'dark' ? 'bg-indigo-500' : 'bg-slate-200'}`}>
+                                                <div className={`absolute top-1 w-3 h-3 rounded-full bg-white transition-transform ${theme === 'dark' ? 'left-5' : 'left-1'}`} />
+                                            </div>
+                                        </button>
+
                                         <Link
                                             to="/settings"
                                             onClick={() => setShowUserMenu(false)}
-                                            className="flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
+                                            className="flex items-center gap-3 px-4 py-3 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
                                         >
                                             <UserCircle size={18} className="text-slate-400" />
                                             个人资料
@@ -111,7 +163,7 @@ const Header = ({ onMenuClick }) => {
                                         <Link
                                             to="/settings"
                                             onClick={() => setShowUserMenu(false)}
-                                            className="flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
+                                            className="flex items-center gap-3 px-4 py-3 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
                                         >
                                             <Settings size={18} className="text-slate-400" />
                                             设置
@@ -119,10 +171,10 @@ const Header = ({ onMenuClick }) => {
                                     </div>
 
                                     {/* Logout */}
-                                    <div className="border-t border-slate-100 pt-2">
+                                    <div className="border-t border-slate-100 dark:border-slate-700 pt-2">
                                         <button
                                             onClick={handleLogout}
-                                            className="flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors w-full"
+                                            className="flex items-center gap-3 px-4 py-3 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors w-full"
                                         >
                                             <LogOut size={18} />
                                             退出登录
@@ -134,7 +186,7 @@ const Header = ({ onMenuClick }) => {
                     </>
                 ) : (
                     <div className="flex items-center gap-2">
-                        <Link to="/login" className="px-4 py-2 text-sm font-medium text-slate-700 hover:text-indigo-600 transition-colors">
+                        <Link to="/login" className="px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                             登录
                         </Link>
                         <Link to="/register" className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors flex items-center gap-2">

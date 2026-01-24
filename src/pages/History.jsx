@@ -14,7 +14,7 @@ const SUBJECT_CONFIG = {
     'Biology': { name: '生物', icon: '🌿', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
     'History': { name: '历史', icon: '📜', color: 'bg-amber-100 text-amber-700 border-amber-200' },
     'Geography': { name: '地理', icon: '🗺️', color: 'bg-teal-100 text-teal-700 border-teal-200' },
-    'General': { name: '通用', icon: '📚', color: 'bg-slate-100 text-slate-700 border-slate-200' }
+    'General': { name: '通用', icon: '📚', color: 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600' }
 };
 
 // 获取学科配置
@@ -252,8 +252,8 @@ const History = () => {
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-2xl font-bold text-slate-800">我的作业</h1>
-                    <p className="text-slate-500 mt-1">
+                    <h1 className="text-2xl font-bold text-slate-800 dark:text-white">我的作业</h1>
+                    <p className="text-slate-500 dark:text-slate-400 mt-1">
                         {sessions.length > 0 ? `共 ${sessions.length} 个会话` : '还没有作业会话'}
                         {selectedSessions.length > 0 && ` · 已选择 ${selectedSessions.length} 个`}
                     </p>
@@ -261,14 +261,14 @@ const History = () => {
             </div>
 
             {/* Action Bar - 新设计 */}
-            <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-4 space-y-4">
+            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 p-4 space-y-4">
                 {/* 筛选区域 */}
                 <div className="space-y-3">
                     {/* 1. 学科筛选 (Subject Pills) */}
                     {allSubjects.length > 0 && (
                         <div>
                             <div className="flex items-center gap-2 mb-2">
-                                <span className="text-xs font-semibold text-slate-600">📚 学科</span>
+                                <span className="text-xs font-semibold text-slate-600 dark:text-slate-300">📚 学科</span>
                                 {selectedSubjects.length > 0 && (
                                     <button
                                         onClick={() => setSelectedSubjects([])}
@@ -287,7 +287,7 @@ const History = () => {
                                             px-3 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-all border
                                             ${selectedSubjects.includes(subject)
                                                 ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
-                                                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300'}
+                                                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600 dark:hover:bg-slate-700'}
                                         `}
                                     >
                                         <span>{getSubjectConfig(subject).icon}</span>
@@ -302,7 +302,7 @@ const History = () => {
                     {availableTags.length > 0 && (
                         <div>
                             <div className="flex items-center gap-2 mb-2">
-                                <span className="text-xs font-semibold text-slate-600">🏷️ 知识点</span>
+                                <span className="text-xs font-semibold text-slate-600 dark:text-slate-300">🏷️ 知识点</span>
                                 {selectedTags.length > 0 && (
                                     <button
                                         onClick={() => setSelectedTags([])}
@@ -326,7 +326,7 @@ const History = () => {
                                             px-3 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-all border
                                             ${selectedTags.includes(tag)
                                                 ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm'
-                                                : 'bg-white text-slate-600 border-slate-200 hover:bg-emerald-50 hover:border-emerald-300'}
+                                                : 'bg-white text-slate-600 border-slate-200 hover:bg-emerald-50 hover:border-emerald-300 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600 dark:hover:bg-emerald-900/30'}
                                         `}
                                     >
                                         {tag}
@@ -338,7 +338,7 @@ const History = () => {
                 </div>
 
                 {/* 搜索和操作栏 */}
-                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pt-2 border-t border-slate-100">
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pt-2 border-t border-slate-100 dark:border-slate-700">
                     {/* 左侧：搜索和全选 */}
                     <div className="flex flex-col md:flex-row items-stretch md:items-center gap-4 flex-1 w-full md:w-auto">
 
@@ -350,7 +350,7 @@ const History = () => {
                                 placeholder="搜索会话..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-slate-900 dark:border-slate-600 dark:text-white dark:placeholder-slate-400"
                             />
                         </div>
 
@@ -361,9 +361,9 @@ const History = () => {
                                     type="checkbox"
                                     checked={selectedSessions.length === filteredSessions.length && filteredSessions.length > 0}
                                     onChange={toggleSelectAll}
-                                    className="w-4 h-4 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500"
+                                    className="w-4 h-4 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500 dark:bg-slate-700 dark:border-slate-500"
                                 />
-                                <span className="text-sm font-medium text-slate-700 whitespace-nowrap">全选</span>
+                                <span className="text-sm font-medium text-slate-700 dark:text-slate-300 whitespace-nowrap">全选</span>
                             </label>
                         )}
                     </div>
@@ -378,7 +378,7 @@ const History = () => {
                                         setSelectedSessions([]);
                                         setShowExportMenu(false);
                                     }}
-                                    className="px-4 py-2 text-sm font-medium text-slate-600 bg-slate-100 rounded-lg hover:bg-slate-200 transition-colors flex items-center gap-2"
+                                    className="px-4 py-2 text-sm font-medium text-slate-600 bg-slate-100 rounded-lg hover:bg-slate-200 transition-colors flex items-center gap-2 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600"
                                 >
                                     <X size={16} />
                                     取消
@@ -397,16 +397,16 @@ const History = () => {
 
                                     {/* Export Format Menu */}
                                     {showExportMenu && selectedSessions.length > 0 && (
-                                        <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-slate-200 overflow-hidden z-10">
-                                            <div className="p-2 bg-gradient-to-r from-emerald-50 to-blue-50 border-b border-slate-200">
-                                                <p className="text-xs font-semibold text-slate-700">选择导出格式</p>
+                                        <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden z-10">
+                                            <div className="p-2 bg-gradient-to-r from-emerald-50 to-blue-50 dark:from-emerald-900/30 dark:to-blue-900/30 border-b border-slate-200 dark:border-slate-700">
+                                                <p className="text-xs font-semibold text-slate-700 dark:text-slate-200">选择导出格式</p>
                                             </div>
 
                                             {/* Word 格式 - 推荐 */}
                                             <button
                                                 onClick={() => handleExport('word')}
                                                 disabled={selectedSessions.length > 1}
-                                                className="w-full px-4 py-3 text-left text-sm text-slate-700 hover:bg-blue-50 transition-colors flex items-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                                                className="w-full px-4 py-3 text-left text-sm text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors flex items-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
                                             >
                                                 <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center">
                                                     <FileType size={16} className="text-blue-700" />
@@ -416,7 +416,7 @@ const History = () => {
                                                         Word 文档
                                                         <span className="text-xs px-1.5 py-0.5 bg-emerald-500 text-white rounded-full">推荐</span>
                                                     </div>
-                                                    <div className="text-xs text-slate-500">
+                                                    <div className="text-xs text-slate-500 dark:text-slate-400">
                                                         {selectedSessions.length > 1 ? '仅支持单个会话' : '可编辑 · 易打印'}
                                                     </div>
                                                 </div>
@@ -426,7 +426,7 @@ const History = () => {
                                             <button
                                                 onClick={() => handleExport('pdf')}
                                                 disabled={selectedSessions.length > 1}
-                                                className="w-full px-4 py-3 text-left text-sm text-slate-700 hover:bg-emerald-50 transition-colors flex items-center gap-3 border-t border-slate-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                                                className="w-full px-4 py-3 text-left text-sm text-slate-700 dark:text-slate-200 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 transition-colors flex items-center gap-3 border-t border-slate-100 dark:border-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
                                             >
                                                 <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center">
                                                     <FileText size={16} className="text-emerald-600" />
@@ -443,33 +443,33 @@ const History = () => {
                                             </button>
 
                                             {/* 分隔线 */}
-                                            <div className="border-t-2 border-slate-200 my-1"></div>
+                                            <div className="border-t-2 border-slate-200 dark:border-slate-700 my-1"></div>
 
                                             {/* JSON 格式 */}
                                             <button
                                                 onClick={() => handleExport('json')}
-                                                className="w-full px-4 py-3 text-left text-sm text-slate-700 hover:bg-blue-50 transition-colors flex items-center gap-3"
+                                                className="w-full px-4 py-3 text-left text-sm text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors flex items-center gap-3"
                                             >
                                                 <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
                                                     <FileJson size={16} className="text-blue-600" />
                                                 </div>
                                                 <div>
                                                     <div className="font-medium">JSON 数据</div>
-                                                    <div className="text-xs text-slate-500">结构化 · 批量支持</div>
+                                                    <div className="text-xs text-slate-500 dark:text-slate-400">结构化 · 批量支持</div>
                                                 </div>
                                             </button>
 
                                             {/* Markdown 格式 */}
                                             <button
                                                 onClick={() => handleExport('markdown')}
-                                                className="w-full px-4 py-3 text-left text-sm text-slate-700 hover:bg-purple-50 transition-colors flex items-center gap-3 border-t border-slate-100"
+                                                className="w-full px-4 py-3 text-left text-sm text-slate-700 dark:text-slate-200 hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-colors flex items-center gap-3 border-t border-slate-100 dark:border-slate-700"
                                             >
                                                 <div className="w-8 h-8 rounded-lg bg-purple-50 flex items-center justify-center">
                                                     <FileText size={16} className="text-purple-600" />
                                                 </div>
                                                 <div>
                                                     <div className="font-medium">Markdown 文档</div>
-                                                    <div className="text-xs text-slate-500">纯文本 · 批量支持</div>
+                                                    <div className="text-xs text-slate-500 dark:text-slate-400">纯文本 · 批量支持</div>
                                                 </div>
                                             </button>
                                         </div>
@@ -488,7 +488,7 @@ const History = () => {
                             </>
                         ) : (
                             /* 未选择时显示的提示 */
-                            <div className="flex items-center gap-2 text-sm text-slate-500">
+                            <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
                                 <span>💡 勾选会话以批量操作</span>
                             </div>
                         )}
@@ -497,25 +497,25 @@ const History = () => {
             </div>
 
             {/* Sessions List */}
-            <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
+            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
                 {loading ? (
-                    <div className="p-12 text-center text-slate-500">
+                    <div className="p-12 text-center text-slate-500 dark:text-slate-400">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
                         加载中...
                     </div>
                 ) : filteredSessions.length > 0 ? (
-                    <div className="divide-y divide-slate-100">
+                    <div className="divide-y divide-slate-100 dark:divide-slate-700">
                         {filteredSessions.map((session) => (
                             <div
                                 key={session.id}
-                                className="p-4 hover:bg-slate-50 transition-colors flex items-center gap-4 group"
+                                className="p-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors flex items-center gap-4 group"
                             >
                                 {/* 复选框 - 始终显示 */}
                                 <input
                                     type="checkbox"
                                     checked={selectedSessions.includes(session.id)}
                                     onChange={() => toggleSelection(session.id)}
-                                    className="w-4 h-4 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500 cursor-pointer"
+                                    className="w-4 h-4 text-indigo-600 border-slate-300 rounded focus:ring-indigo-500 cursor-pointer dark:bg-slate-700 dark:border-slate-500"
                                     onClick={(e) => e.stopPropagation()}
                                 />
 
@@ -527,12 +527,12 @@ const History = () => {
                                         <span className="text-2xl">{getSubjectConfig(session.subject || 'General').icon}</span>
                                     </div>
                                     <div className="min-w-0 flex-1">
-                                        <p className="font-medium text-slate-700 group-hover:text-indigo-600 transition-colors truncate">
+                                        <p className="font-medium text-slate-700 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate">
                                             {session.title || '未命名会话'}
                                         </p>
                                         <div className="flex items-center gap-2 mt-1">
-                                            <Clock size={14} className="text-slate-400" />
-                                            <p className="text-xs text-slate-500">
+                                            <Clock size={14} className="text-slate-400 dark:text-slate-500" />
+                                            <p className="text-xs text-slate-500 dark:text-slate-400">
                                                 {timeAgo(session.created_at)}
                                             </p>
                                             {/* 显示知识点标签（如果有） */}

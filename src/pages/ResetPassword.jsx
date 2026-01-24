@@ -63,19 +63,19 @@ const ResetPassword = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
-            <div className="max-w-md w-full bg-white rounded-2xl shadow-lg border border-slate-100 p-8">
+        <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900 px-4 transition-colors duration-200">
+            <div className="max-w-md w-full bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-100 dark:border-slate-700 p-8">
                 <div className="text-center mb-8">
-                    <div className="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
                         <Lock size={32} />
                     </div>
-                    <h2 className="text-2xl font-bold text-slate-800">设置新密码</h2>
-                    <p className="text-slate-500 mt-2">请为您的账户设置一个新的安全密码</p>
+                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white">设置新密码</h2>
+                    <p className="text-slate-500 dark:text-slate-400 mt-2">请为您的账户设置一个新的安全密码</p>
                 </div>
 
                 <form onSubmit={handleResetPassword} className="space-y-6">
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-1">
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                             新密码
                         </label>
                         <div className="relative">
@@ -85,7 +85,7 @@ const ResetPassword = () => {
                                 minLength={6}
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all pr-12"
+                                className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all pr-12 dark:bg-slate-900 dark:text-white dark:placeholder-slate-500"
                                 placeholder="••••••••"
                             />
                             <button
@@ -99,7 +99,7 @@ const ResetPassword = () => {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-1">
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                             确认新密码
                         </label>
                         <input
@@ -108,15 +108,15 @@ const ResetPassword = () => {
                             minLength={6}
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+                            className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all dark:bg-slate-900 dark:text-white dark:placeholder-slate-500"
                             placeholder="••••••••"
                         />
                     </div>
 
                     {message && (
                         <div className={`p-4 rounded-xl text-sm flex items-start gap-3 ${message.type === 'success'
-                                ? 'bg-green-50 text-green-700 border border-green-100'
-                                : 'bg-red-50 text-red-700 border border-red-100'
+                            ? 'bg-green-50 text-green-700 border border-green-100'
+                            : 'bg-red-50 text-red-700 border border-red-100'
                             }`}>
                             {message.type === 'success' ? <Check size={18} className="mt-0.5 shrink-0" /> : <AlertCircle size={18} className="mt-0.5 shrink-0" />}
                             <span>{message.text}</span>
@@ -126,7 +126,7 @@ const ResetPassword = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium shadow-lg shadow-indigo-200 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                        className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium shadow-lg shadow-indigo-200 dark:shadow-none transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                         {loading ? (
                             <>
@@ -140,7 +140,7 @@ const ResetPassword = () => {
                         <button
                             type="button"
                             onClick={() => navigate('/login')}
-                            className="text-sm text-slate-500 hover:text-slate-800"
+                            className="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200"
                         >
                             返回登录
                         </button>

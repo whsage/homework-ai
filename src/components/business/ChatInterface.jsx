@@ -314,13 +314,15 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
     };
 
     return (
-        <div className="flex flex-col h-full bg-slate-50 relative">
+        <div className="flex flex-col h-full bg-slate-50 dark:bg-slate-900 relative transition-colors duration-200">
             <div className="flex-1 overflow-y-auto p-2 sm:p-4 space-y-4 sm:space-y-6 pb-32 sm:pb-24 scroll-smooth">
                 {messages.map((msg) => (
                     <div key={msg.id} className={clsx("flex gap-2 sm:gap-3", msg.type === 'user' ? "flex-row-reverse" : "flex-row")}>
                         <div className={clsx(
                             "w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center shrink-0 shadow-sm border",
-                            msg.type === 'user' ? "bg-indigo-600 text-white border-indigo-700" : "bg-white text-emerald-600 border-slate-200"
+                            msg.type === 'user'
+                                ? "bg-indigo-600 text-white border-indigo-700"
+                                : "bg-white dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border-slate-200 dark:border-slate-700"
                         )}>
                             {msg.type === 'user' ? <User size={14} className="sm:w-4 sm:h-4" /> : <Bot size={14} className="sm:w-4 sm:h-4" />}
                         </div>
@@ -329,7 +331,7 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
                             "max-w-[90%] sm:max-w-[85%] rounded-2xl shadow-sm relative group transition-all text-sm sm:text-base",
                             msg.type === 'user'
                                 ? "bg-indigo-600 text-white rounded-tr-none"
-                                : "bg-white text-slate-800 rounded-tl-none border border-slate-200"
+                                : "bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-tl-none border border-slate-200 dark:border-slate-700"
                         )}>
                             {msg.type === 'ai' && !msg.isTypingDone ? (
                                 <div className="p-3 sm:p-4">
@@ -386,7 +388,7 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
                             ) : (
                                 // AI消息 - 不折叠
                                 <div className="p-3 sm:p-4">
-                                    <div className="prose prose-sm max-w-none">
+                                    <div className="prose prose-sm max-w-none dark:prose-invert">
                                         {msg.isError ? (
                                             <div className="text-red-500 font-medium flex items-center gap-2">
                                                 <span>⚠️</span> {msg.text}
@@ -404,7 +406,7 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
                             {msg.type === 'ai' && (
                                 <button
                                     onClick={() => navigator.clipboard.writeText(msg.text)}
-                                    className="absolute -bottom-6 left-0 opacity-0 group-hover:opacity-100 transition-opacity text-xs text-slate-400 hover:text-indigo-600 flex items-center gap-1 p-1"
+                                    className="absolute -bottom-6 left-0 opacity-0 group-hover:opacity-100 transition-opacity text-xs text-slate-400 dark:text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1 p-1"
                                 >
                                     <Copy size={12} /> 复制
                                 </button>
@@ -415,10 +417,10 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
 
                 {isTyping && status && (
                     <div className="flex gap-3 items-center animate-pulse">
-                        <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center shrink-0">
-                            <Bot size={16} className="text-slate-400" />
+                        <div className="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center shrink-0">
+                            <Bot size={16} className="text-slate-400 dark:text-slate-500" />
                         </div>
-                        <span className="text-xs text-slate-400 font-medium italic">{status}</span>
+                        <span className="text-xs text-slate-400 dark:text-slate-500 font-medium italic">{status}</span>
                     </div>
                 )}
                 <div ref={messagesEndRef} />

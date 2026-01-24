@@ -170,15 +170,15 @@ const Statistics = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-6">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-indigo-900/20 dark:to-slate-900 p-6">
             <div className="max-w-7xl mx-auto">
                 {/* 页面标题 */}
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3">
+                    <h1 className="text-3xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
                         <BarChart3 className="text-blue-600" size={32} />
                         学习统计
                     </h1>
-                    <p className="text-slate-600">记录你的成长轨迹，见证每一次进步</p>
+                    <p className="text-slate-600 dark:text-slate-400">记录你的成长轨迹，见证每一次进步</p>
                 </div>
 
                 {/* 核心数据卡片 */}
@@ -236,10 +236,10 @@ const Statistics = () => {
                     {/* 左侧：学科分布 */}
                     <div className="lg:col-span-2 space-y-6">
                         {/* 学科分布 */}
-                        <div className="bg-white rounded-2xl shadow-lg p-6">
+                        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
                             <div className="flex items-center gap-2 mb-6">
                                 <PieChart className="text-blue-600" size={24} />
-                                <h2 className="text-xl font-bold text-slate-800">学科分布</h2>
+                                <h2 className="text-xl font-bold text-slate-800 dark:text-white">学科分布</h2>
                             </div>
 
                             {stats.subjectDistribution.length > 0 ? (
@@ -247,12 +247,12 @@ const Statistics = () => {
                                     {stats.subjectDistribution.map((subject, index) => (
                                         <div key={index} className="space-y-2">
                                             <div className="flex items-center justify-between text-sm">
-                                                <span className="font-medium text-slate-700">{subject.name}</span>
-                                                <span className="text-slate-600">{subject.count} 次 ({subject.percentage}%)</span>
+                                                <span className="font-medium text-slate-700 dark:text-slate-200">{subject.name}</span>
+                                                <span className="text-slate-600 dark:text-slate-400">{subject.count} 次 ({subject.percentage}%)</span>
                                             </div>
 
 
-                                            <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
+                                            <div className="h-3 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
                                                 <div
                                                     className={`h-full ${subjectColors[subject.name] || subjectColors['其他']} transition-all duration-500`}
                                                     style={{ width: `${subject.percentage}%` }}
@@ -270,10 +270,10 @@ const Statistics = () => {
                         </div>
 
                         {/* 知识点云图 */}
-                        <div className="bg-white rounded-2xl shadow-lg p-6">
+                        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
                             <div className="flex items-center gap-2 mb-6">
                                 <Hash className="text-purple-600" size={24} />
-                                <h2 className="text-xl font-bold text-slate-800">热门知识点</h2>
+                                <h2 className="text-xl font-bold text-slate-800 dark:text-white">热门知识点</h2>
                             </div>
 
                             {stats.knowledgePoints && stats.knowledgePoints.length > 0 ? (
@@ -285,8 +285,8 @@ const Statistics = () => {
                                             <span
                                                 key={index}
                                                 className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${isHot
-                                                    ? 'bg-purple-100 text-purple-700 border border-purple-200'
-                                                    : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200'
+                                                    ? 'bg-purple-100 text-purple-700 border border-purple-200 dark:bg-purple-900/30 dark:text-purple-300 dark:border-purple-700'
+                                                    : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600 dark:hover:bg-slate-600'
                                                     }`}
                                             >
                                                 #{tag.name}
@@ -307,18 +307,18 @@ const Statistics = () => {
                     {/* 右侧：成就系统 */}
                     <div className="space-y-6">
                         {/* 成就徽章 */}
-                        <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl shadow-lg p-6 border-2 border-yellow-200">
+                        <div className="bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-2xl shadow-lg p-6 border-2 border-yellow-200 dark:border-yellow-700">
                             <div className="flex items-center gap-2 mb-6">
-                                <Award className="text-yellow-600" size={24} />
-                                <h2 className="text-xl font-bold text-slate-800">成就徽章</h2>
+                                <Award className="text-yellow-600 dark:text-yellow-500" size={24} />
+                                <h2 className="text-xl font-bold text-slate-800 dark:text-white">成就徽章</h2>
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
                                 {achievements.map((achievement, index) => (
-                                    <div key={index} className="bg-white rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+                                    <div key={index} className="bg-white dark:bg-slate-700/50 rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow">
                                         <div className="text-4xl mb-2">{achievement.icon}</div>
-                                        <div className="font-semibold text-slate-800 text-sm mb-1">{achievement.name}</div>
-                                        <div className="text-xs text-slate-500">{achievement.desc}</div>
+                                        <div className="font-semibold text-slate-800 dark:text-slate-200 text-sm mb-1">{achievement.name}</div>
+                                        <div className="text-xs text-slate-500 dark:text-slate-400">{achievement.desc}</div>
                                     </div>
                                 ))}
 

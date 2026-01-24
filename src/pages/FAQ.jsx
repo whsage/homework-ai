@@ -2,14 +2,14 @@ import { HelpCircle, BookOpen, DollarSign, Shield, Zap, MessageCircle } from 'lu
 
 const FAQItem = ({ question, answer, icon: Icon }) => {
     return (
-        <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+        <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-indigo-100 flex items-center justify-center shrink-0">
-                    <Icon className="text-indigo-600" size={24} />
+                <div className="w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center shrink-0">
+                    <Icon className="text-indigo-600 dark:text-indigo-400" size={24} />
                 </div>
                 <div>
-                    <h3 className="font-semibold text-slate-800 mb-2">{question}</h3>
-                    <p className="text-slate-600 text-sm leading-relaxed">{answer}</p>
+                    <h3 className="font-semibold text-slate-800 dark:text-white mb-2">{question}</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{answer}</p>
                 </div>
             </div>
         </div>
@@ -51,12 +51,12 @@ const FAQ = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 transition-colors duration-200">
             <div className="max-w-6xl mx-auto px-6 py-12">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <h1 className="text-4xl font-bold text-slate-800 mb-4">常见问题解答</h1>
-                    <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                    <h1 className="text-4xl font-bold text-slate-800 dark:text-white mb-4">常见问题解答</h1>
+                    <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
                         关于AI作业助手的一切你想知道的
                     </p>
                 </div>
@@ -84,20 +84,20 @@ const FAQ = () => {
 
                 {/* Features Highlight */}
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-white rounded-xl p-6 text-center">
+                    <div className="bg-white dark:bg-slate-800 rounded-xl p-6 text-center">
                         <div className="text-4xl mb-3">🎯</div>
-                        <h3 className="font-semibold text-slate-800 mb-2">引导式学习</h3>
-                        <p className="text-sm text-slate-600">培养独立思考能力</p>
+                        <h3 className="font-semibold text-slate-800 dark:text-white mb-2">引导式学习</h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">培养独立思考能力</p>
                     </div>
-                    <div className="bg-white rounded-xl p-6 text-center">
+                    <div className="bg-white dark:bg-slate-800 rounded-xl p-6 text-center">
                         <div className="text-4xl mb-3">📚</div>
-                        <h3 className="font-semibold text-slate-800 mb-2">全学科覆盖</h3>
-                        <p className="text-sm text-slate-600">从小学到高中全覆盖</p>
+                        <h3 className="font-semibold text-slate-800 dark:text-white mb-2">全学科覆盖</h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">从小学到高中全覆盖</p>
                     </div>
-                    <div className="bg-white rounded-xl p-6 text-center">
+                    <div className="bg-white dark:bg-slate-800 rounded-xl p-6 text-center">
                         <div className="text-4xl mb-3">📊</div>
-                        <h3 className="font-semibold text-slate-800 mb-2">学习统计</h3>
-                        <p className="text-sm text-slate-600">可视化学习进度</p>
+                        <h3 className="font-semibold text-slate-800 dark:text-white mb-2">学习统计</h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">可视化学习进度</p>
                     </div>
                 </div>
             </div>

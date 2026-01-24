@@ -16,16 +16,16 @@ const Settings = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 p-6">
             <div className="max-w-4xl mx-auto">
                 {/* 页面标题 */}
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-slate-800 mb-2">⚙️ 个人设置</h1>
-                    <p className="text-slate-600">管理你的个人信息</p>
+                    <h1 className="text-3xl font-bold text-slate-800 dark:text-white mb-2">⚙️ 个人设置</h1>
+                    <p className="text-slate-600 dark:text-slate-400">管理你的个人信息</p>
                 </div>
 
                 {/* 设置内容 */}
-                <div className="bg-white rounded-2xl shadow-lg p-8">
+                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8">
                     <ProfileSettings />
                 </div>
             </div>
