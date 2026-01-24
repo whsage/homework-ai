@@ -6,6 +6,7 @@ import { useUser } from '../../context/UserContext';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
 import NotificationDropdown from './NotificationDropdown';
+import { calculateLevel } from '../../utils/levelSystem';
 
 const Header = ({ onMenuClick }) => {
     const { user, settings } = useUser();
@@ -13,11 +14,30 @@ const Header = ({ onMenuClick }) => {
     const { t, language, toggleLanguage } = useLanguage();
     const [showUserMenu, setShowUserMenu] = useState(false);
     const [showNotifications, setShowNotifications] = useState(false);
+    const [userLevel, setUserLevel] = useState(1);
     const location = useLocation();
     const navigate = useNavigate();
     const isDashboard = location.pathname === '/';
     const menuRef = useRef(null);
     const notificationRef = useRef(null);
+
+    // Fetch user level
+    useEffect(() => {
+        const fetchUserLevel = async () => {
+            if (!user) return;
+
+            const { data: userStats } = await supabase
+                .from('user_stats')
+                .select('total_sessions_created')
+                .eq('user_id', user.id)
+                .single();
+
+            const total = userStats?.total_sessions_created || 0;
+            setUserLevel(calculateLevel(total));
+        };
+
+        fetchUserLevel();
+    }, [user]);
 
     // Close menu when clicking outside
     useEffect(() => {
@@ -60,7 +80,7 @@ const Header = ({ onMenuClick }) => {
                 {/* Honour Badge at bottom center */}
                 <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2">
                     <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-sm border border-white dark:border-slate-800 flex items-center gap-0.5 whitespace-nowrap">
-                        <span>Lv.3</span>
+                        <span>Lv.{userLevel}</span>
                     </div>
                 </div>
             </div>
@@ -143,7 +163,7 @@ const Header = ({ onMenuClick }) => {
                                         <p className="text-lg font-semibold text-slate-900 dark:text-white mt-3 truncate w-full text-center">{displayName}</p>
                                         <p className="text-xs text-slate-500 dark:text-slate-400 truncate w-full text-center">{displayEmail}</p>
                                         <div className="mt-3 flex gap-2 w-full justify-center">
-                                            <span className="text-xs px-2 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-md font-medium">Lv.3 {t('header.rank')}</span>
+                                            <span className="text-xs px-2 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-md font-medium">Lv.{userLevel} {t('header.rank')}</span>
                                             <span className="text-xs px-2 py-1 bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-md font-medium">🔥 {t('header.streak')}</span>
                                         </div>
                                     </div>

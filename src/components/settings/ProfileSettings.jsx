@@ -3,6 +3,7 @@ import { useUser } from '../../context/UserContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { supabase } from '../../supabase';
 import { Lock, Check, AlertCircle, Edit2, Camera, X, Upload, User, Mail } from 'lucide-react';
+import { calculateLevel } from '../../utils/levelSystem';
 
 // 预设头像列表 (尝试一些更有趣的 Seed)
 const PRESET_AVATARS = [
@@ -102,14 +103,6 @@ const PasswordSettings = ({ onUpdateSuccess }) => {
     );
 };
 
-// Calculate user level based on total sessions
-const calculateLevel = (totalSessions) => {
-    if (totalSessions >= 100) return 5;
-    if (totalSessions >= 50) return 4;
-    if (totalSessions >= 30) return 3;
-    if (totalSessions >= 10) return 2;
-    return 1;
-};
 
 const ProfileSettings = () => {
     const { settings, updateProfile, user } = useUser();
