@@ -99,6 +99,8 @@ class MainActivity : AppCompatActivity() {
             domStorageEnabled = true
             allowFileAccess = true
             allowContentAccess = true
+            // 设置缓存模式：优先使用缓存，但定期检查更新
+            cacheMode = WebSettings.LOAD_DEFAULT
         }
         
         webView.webChromeClient = object : WebChromeClient() {
@@ -113,6 +115,40 @@ class MainActivity : AppCompatActivity() {
                 showImagePickerDialog()
                 return true
             }
+        }
+        
+        // 添加长按刷新功能：长按 WebView 3秒可清除缓存并刷新
+        webView.setOnLongClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("清除缓存")
+                .setMessage("是否清除应用缓存并刷新页面？\n\n这将解决页面显示异常的问题，但不会删除您的登录信息。")
+                .setPositiveButton("清除并刷新") { _, _ ->
+                    clearCacheAndReload()
+                }
+                .setNegativeButton("取消", null)
+                .show()
+            true
+        }
+    }
+    
+    /**
+     * 清除 WebView 缓存并重新加载页面
+     */
+    private fun clearCacheAndReload() {
+        try {
+            // 清除 WebView 缓存
+            webView.clearCache(true)
+            // 清除表单数据
+            webView.clearFormData()
+            // 清除历史记录
+            webView.clearHistory()
+            
+            // 重新加载页面
+            webView.loadUrl(BASE_URL)
+            
+            Toast.makeText(this, "✅ 缓存已清除，页面已刷新", Toast.LENGTH_LONG).show()
+        } catch (e: Exception) {
+            Toast.makeText(this, "清除缓存失败: ${e.message}", Toast.LENGTH_SHORT).show()
         }
     }
 
