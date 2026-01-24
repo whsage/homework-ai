@@ -122,7 +122,10 @@ const UploadZone = () => {
 
             if (msgError) throw new Error(`插入消息失败: ${msgError.message}`);
 
-            // 4. Navigate
+            // 4. Check Streak & Notify (Async, non-blocking)
+            checkStreakAndNotify(user.id);
+
+            // 5. Navigate
             setUploadProgress(t('uploadZone.redirecting'));
             setTimeout(() => {
                 navigate(`/homework/${sessionId}`);
@@ -133,6 +136,94 @@ const UploadZone = () => {
             setIsUploading(false);
             setUploadProgress('');
             alert(`${t('uploadZone.uploadFailed')}${error.message || t('common.error')}`);
+        }
+    };
+
+    // 检查连续学习天数并发送通知
+    const checkStreakAndNotify = async (userId) => {
+        try {
+            // 1. 检查今天是否已经发过通知（通过检查今天是否已活跃）
+            // 我们只需要在每天第一次作业时检查
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            const { count: todayCount } = await supabase
+                .from('sessions')
+                .select('*', { count: 'exact', head: true })
+                .eq('user_id', userId)
+                .gte('created_at', today.toISOString());
+
+            // 如果今天作业数 > 1，说明之前已经活跃过，不需要再检查 streak
+            // 注意：此时作业已经插入，所以 todayCount 至少为 1
+            if (todayCount > 1) return;
+
+            // 2. 计算连续天数
+            // 获取用户最近的活跃日期（为了性能，只取最近 60 天的作业）
+            const sixtyDaysAgo = new Date();
+            sixtyDaysAgo.setDate(sixtyDaysAgo.getDate() - 60);
+
+            const { data: sessions } = await supabase
+                .from('sessions')
+                .select('created_at')
+                .eq('user_id', userId)
+                .gte('created_at', sixtyDaysAgo.toISOString())
+                .order('created_at', { ascending: false });
+
+            if (!sessions || sessions.length === 0) return;
+
+            // 提取唯一日期
+            const dates = sessions.map(s => {
+                const d = new Date(s.created_at);
+                d.setHours(0, 0, 0, 0);
+                return d.toISOString();
+            });
+            const uniqueDates = [...new Set(dates)];
+
+            // 计算 streak
+            let streak = 0;
+            const now = new Date();
+            now.setHours(0, 0, 0, 0);
+
+            // 检查最近的日期是否是今天或昨天
+            const lastActive = new Date(uniqueDates[0]);
+            const diffDays = (now - lastActive) / (1000 * 60 * 60 * 24);
+
+            if (diffDays > 1) {
+                streak = 1; // 断了，重新开始
+            } else {
+                // 连续检查
+                streak = 1;
+                for (let i = 0; i < uniqueDates.length - 1; i++) {
+                    const current = new Date(uniqueDates[i]);
+                    const next = new Date(uniqueDates[i + 1]);
+                    const diff = (current - next) / (1000 * 60 * 60 * 24);
+
+                    if (diff === 1) {
+                        streak++;
+                    } else {
+                        break;
+                    }
+                }
+            }
+
+            // 3. 达到里程碑发送通知
+            const milestones = [3, 7, 14, 30, 60, 100];
+            if (milestones.includes(streak)) {
+                await supabase.from('user_notifications').insert({
+                    user_id: userId,
+                    type: 'streak',
+                    title: '🔥 连续学习达成！',
+                    message: `恭喜！你已经连续学习 ${streak} 天了。坚持就是胜利，保持这个势头！`,
+                    icon: 'Flame',
+                    color: 'text-orange-500 bg-orange-50',
+                    link: '/statistics',
+                    metadata: { streak }
+                });
+            }
+
+        } catch (err) {
+            console.error("Streak check failed:", err);
+            // 不阻断主流程
         }
     };
 
