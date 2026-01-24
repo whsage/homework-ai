@@ -37,9 +37,9 @@ const NotificationDropdown = ({ onClose }) => {
                 .order('created_at', { ascending: false })
                 .limit(10);
 
-            if (!error && data) {
-                setNotifications(data);
-                setUnreadCount(data.filter(n => !n.read).length);
+            if (!error) {
+                setNotifications(data || []);
+                setUnreadCount((data || []).filter(n => !n.read).length);
             }
             setIsLoading(false);
         };
@@ -47,8 +47,9 @@ const NotificationDropdown = ({ onClose }) => {
         fetchNotifications();
 
         // 实时监听新通知
-        const { data: { user } } = supabase.auth.getUser();
-        user.then(({ user }) => {
+        // 注意：这里需要再次获取用户ID来建立订阅
+        const setupSubscription = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
             if (!user) return;
 
             const channel = supabase
@@ -67,7 +68,12 @@ const NotificationDropdown = ({ onClose }) => {
             return () => {
                 supabase.removeChannel(channel);
             };
-        });
+        };
+
+        const cleanup = setupSubscription();
+        return () => {
+            cleanup.then(unsub => unsub && unsub());
+        };
     }, []);
 
     // 点击外部关闭
@@ -118,11 +124,11 @@ const NotificationDropdown = ({ onClose }) => {
         const date = new Date(dateString);
         const seconds = Math.floor((now - date) / 1000);
 
-        if (seconds < 60) return '刚刚';
-        if (seconds < 3600) return `${Math.floor(seconds / 60)}分钟前`;
-        if (seconds < 86400) return `${Math.floor(seconds / 3600)}小时前`;
-        if (seconds < 604800) return `${Math.floor(seconds / 86400)}天前`;
-        return date.toLocaleDateString('zh-CN');
+        if (seconds < 60) return t('notifications.justNow');
+        if (seconds < 3600) return t('notifications.minsAgo', { count: Math.floor(seconds / 60) });
+        if (seconds < 86400) return t('notifications.hoursAgo', { count: Math.floor(seconds / 3600) });
+        if (seconds < 604800) return t('notifications.daysAgo', { count: Math.floor(seconds / 86400) });
+        return date.toLocaleDateString(t('language') === 'en' ? 'en-US' : 'zh-CN');
     };
 
     return (
@@ -130,11 +136,11 @@ const NotificationDropdown = ({ onClose }) => {
             <div className="p-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/50">
                 <h3 className="font-semibold text-slate-800 dark:text-slate-100 flex items-center gap-2">
                     <Bell size={18} className="text-indigo-600 dark:text-indigo-400" />
-                    通知中心
+                    {t('notifications.title')}
                 </h3>
                 {unreadCount > 0 && (
                     <span className="text-xs font-medium text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 px-2 py-1 rounded-full">
-                        {unreadCount}条未读
+                        {t('notifications.unread', { count: unreadCount })}
                     </span>
                 )}
             </div>
@@ -154,12 +160,12 @@ const NotificationDropdown = ({ onClose }) => {
                             </div>
                         </div>
                     ))
-                ) : notifications.length === 0 ? (
+                ) : !notifications || notifications.length === 0 ? (
                     // 空状态
                     <div className="p-8 text-center text-slate-500 dark:text-slate-400">
                         <Bell size={48} className="mx-auto mb-3 opacity-30" />
-                        <p className="text-sm">暂无通知</p>
-                        <p className="text-xs mt-1">完成作业后会收到成就通知哦！</p>
+                        <p className="text-sm">{t('notifications.empty')}</p>
+                        <p className="text-xs mt-1">{t('notifications.emptyTip')}</p>
                     </div>
                 ) : (
                     // 通知列表
@@ -186,10 +192,10 @@ const NotificationDropdown = ({ onClose }) => {
                                     </div>
                                     <div className="flex-1 min-w-0">
                                         <h4 className={`text-sm font-medium mb-1 truncate pr-4 ${!item.read ? 'text-slate-900 dark:text-slate-100' : 'text-slate-600 dark:text-slate-400'}`}>
-                                            {item.title}
+                                            {t(item.title, item.metadata || {})}
                                         </h4>
                                         <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
-                                            {item.message}
+                                            {t(item.message, item.metadata || {})}
                                         </p>
                                         <p className="text-[10px] text-slate-400 mt-2 flex items-center gap-1">
                                             {formatTime(item.created_at)}
@@ -209,7 +215,7 @@ const NotificationDropdown = ({ onClose }) => {
                         className="text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center justify-center gap-1 w-full"
                     >
                         <Check size={14} />
-                        全部标记为已读
+                        {t('notifications.markAllRead')}
                     </button>
                 </div>
             )}

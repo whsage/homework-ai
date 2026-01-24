@@ -212,12 +212,12 @@ const UploadZone = () => {
                 await supabase.from('user_notifications').insert({
                     user_id: userId,
                     type: 'streak',
-                    title: '🔥 连续学习达成！',
-                    message: `恭喜！你已经连续学习 ${streak} 天了。坚持就是胜利，保持这个势头！`,
+                    title: 'notifications.streak.title',
+                    message: 'notifications.streak.msg',
                     icon: 'Flame',
                     color: 'text-orange-500 bg-orange-50',
                     link: '/statistics',
-                    metadata: { streak }
+                    metadata: { streak, days: streak }
                 });
             }
 

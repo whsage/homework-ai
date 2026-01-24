@@ -341,6 +341,31 @@ export const translations = {
                 paste: "粘贴图片 (Ctrl+V)",
                 wait: "请稍候，正在处理您的作业..."
             }
+        },
+        // Notifications
+        notifications: {
+            title: "通知中心",
+            markAllRead: "全部标记为已读",
+            empty: "暂无通知",
+            emptyTip: "完成作业后会收到成就通知哦！",
+            unread: "{{count}}条未读",
+            justNow: "刚刚",
+            minsAgo: "{{count}}分钟前",
+            hoursAgo: "{{count}}小时前",
+            daysAgo: "{{count}}天前",
+            achievement: {
+                first: { title: "🎉 开启学习之旅！", msg: "恭喜完成第一个作业！这是你学习之旅的开始。" },
+                five: { title: "🌟 初露锋芒！", msg: "你已经完成了 5 个作业，继续保持这个势头！" },
+                ten: { title: "🏆 学习小能手！", msg: "太棒了！你已经完成了 10 个作业，成功升级到 Lv.2！" },
+                twenty: { title: "💎 勤奋学习者！", msg: "厉害！完成 20 个作业，你已经是 Lv.3 了！" },
+                fifty: { title: "👑 学习达人！", msg: "惊人！50 个作业完成，你是真正的学习达人！" },
+                hundred: { title: "🔥 学霸诞生！", msg: "传奇！100 个作业，你已经是学霸级别了！" },
+                levelup: { title: "⬆️ 恭喜升级！", msg: "你已经升级到 Lv.{{level}}！继续努力，下一个等级在等你！" }
+            },
+            streak: {
+                title: "🔥 连续学习达成！",
+                msg: "恭喜！你已经连续学习 {{days}} 天了。坚持就是胜利，保持这个势头！"
+            }
         }
     },
     en: {
@@ -684,6 +709,31 @@ export const translations = {
                 upload: "Upload Image",
                 paste: "Paste Image (Ctrl+V)",
                 wait: "Please wait, processing your homework..."
+            }
+        },
+        // Notifications
+        notifications: {
+            title: "Notifications",
+            markAllRead: "Mark all as read",
+            empty: "No notifications",
+            emptyTip: "You will receive notifications after completing homework!",
+            unread: "{{count}} unread",
+            justNow: "Just now",
+            minsAgo: "{{count}}m ago",
+            hoursAgo: "{{count}}h ago",
+            daysAgo: "{{count}}d ago",
+            achievement: {
+                first: { title: "🎉 Start Journey!", msg: "Congrats on your first homework! Your journey begins." },
+                five: { title: "🌟 Rising Star!", msg: "You have completed 5 sessions. Keep it up!" },
+                ten: { title: "🏆 Good Student!", msg: "Awesome! 10 sessions completed. You are now Lv.2!" },
+                twenty: { title: "💎 Diligent!", msg: "Amazing! 20 sessions completed. You are now Lv.3!" },
+                fifty: { title: "👑 Master!", msg: "Incredible! 50 sessions completed. You are a true master!" },
+                hundred: { title: "🔥 Legend!", msg: "Legendary! 100 sessions completed. You are unstoppable!" },
+                levelup: { title: "⬆️ Level Up!", msg: "You reached Lv.{{level}}! Keep going!" }
+            },
+            streak: {
+                title: "🔥 Streak!",
+                msg: "Congrats! You have studied for {{days}} days in a row!"
             }
         }
     }
