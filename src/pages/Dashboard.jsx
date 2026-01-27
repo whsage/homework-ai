@@ -306,8 +306,79 @@ const Dashboard = () => {
                         </div>
                     )}
                 </div>
-            </section >
-        </div >
+            </section>
+
+            {/* SEO关键词区域 */}
+            <section className="bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-800/50 dark:to-slate-900/50 py-8 mt-12 rounded-2xl border border-slate-200 dark:border-slate-700">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="text-center">
+                        <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">
+                            专业的AI作业辅导服务
+                        </h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed max-w-4xl mx-auto">
+                            AI7Miao提供全面的<strong className="text-indigo-600 dark:text-indigo-400">作业辅导</strong>服务，
+                            包括<strong className="text-indigo-600 dark:text-indigo-400">数学作业辅导</strong>、
+                            <strong className="text-indigo-600 dark:text-indigo-400">物理作业辅导</strong>、
+                            <strong className="text-indigo-600 dark:text-indigo-400">化学作业辅导</strong>、
+                            <strong className="text-indigo-600 dark:text-indigo-400">英语作业辅导</strong>、
+                            <strong className="text-indigo-600 dark:text-indigo-400">语文作业辅导</strong>等。
+                            我们的<strong className="text-indigo-600 dark:text-indigo-400">AI智能辅导</strong>系统采用苏格拉底式教学方法，
+                            为学生提供24小时<strong className="text-indigo-600 dark:text-indigo-400">在线作业帮助</strong>。
+                            无论是<strong className="text-indigo-600 dark:text-indigo-400">作业答疑</strong>还是
+                            <strong className="text-indigo-600 dark:text-indigo-400">学习辅导</strong>，
+                            我们都能提供专业的<strong className="text-indigo-600 dark:text-indigo-400">在线辅导</strong>服务。
+                        </p>
+                        <div className="flex flex-wrap justify-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                            <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
+                                作业辅导
+                            </span>
+                            <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
+                                AI作业辅导
+                            </span>
+                            <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
+                                在线作业辅导
+                            </span>
+                            <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
+                                数学作业辅导
+                            </span>
+                            <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
+                                物理作业辅导
+                            </span>
+                            <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
+                                化学作业辅导
+                            </span>
+                            <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
+                                英语作业辅导
+                            </span>
+                            <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
+                                语文作业辅导
+                            </span>
+                            <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
+                                作业帮助
+                            </span>
+                            <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
+                                智能辅导
+                            </span>
+                            <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
+                                学习辅导
+                            </span>
+                            <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
+                                作业答疑
+                            </span>
+                            <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
+                                在线学习
+                            </span>
+                            <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
+                                AI教育
+                            </span>
+                        </div>
+                        <p className="text-xs text-slate-400 dark:text-slate-500 mt-4">
+                            AI7Miao - 专业的AI智能作业辅导平台，让学习更高效
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
     );
 };
 
