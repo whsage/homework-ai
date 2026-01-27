@@ -3,7 +3,7 @@
   <!-- 主页 -->
   <url>
     <loc>https://ai7miao.com/</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -11,7 +11,7 @@
   <!-- FAQ 页面 -->
   <url>
     <loc>https://ai7miao.com/faq</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -19,7 +19,7 @@
   <!-- 学习统计页面 -->
   <url>
     <loc>https://ai7miao.com/statistics</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -27,7 +27,7 @@
   <!-- 我的作业页面 -->
   <url>
     <loc>https://ai7miao.com/history</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
@@ -35,7 +35,7 @@
   <!-- 登录页面 -->
   <url>
     <loc>https://ai7miao.com/login</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -43,7 +43,7 @@
   <!-- 注册页面 -->
   <url>
     <loc>https://ai7miao.com/register</loc>
-    <lastmod>2026-01-15</lastmod>
+    <lastmod>2026-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
