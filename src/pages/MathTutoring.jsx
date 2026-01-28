@@ -318,8 +318,8 @@ const MathTutoring = () => {
                                     key={grade.id}
                                     onClick={() => setActiveGrade(grade.id)}
                                     className={`px-6 py-3 rounded-xl font-semibold transition-all ${activeGrade === grade.id
-                                            ? 'bg-gradient-to-r from-indigo-600 to-blue-600 text-white shadow-lg scale-105'
-                                            : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:shadow-md'
+                                        ? 'bg-gradient-to-r from-indigo-600 to-blue-600 text-white shadow-lg scale-105'
+                                        : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:shadow-md'
                                         }`}
                                 >
                                     <span className="mr-2">{grade.icon}</span>
@@ -627,23 +627,78 @@ const MathTutoring = () => {
 
                 {/* CTA */}
                 <section className="py-20 px-6">
-                    <div className="max-w-4xl mx-auto text-center">
-                        <div className="bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl p-12 shadow-2xl">
-                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                                开始你的数学学习之旅
+                    <div className="max-w-7xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">
+                                准备好开始了吗？
                             </h2>
-                            <p className="text-xl text-indigo-100 mb-8">
-                                无论你是小学生还是大学生，我们都能提供最适合你的数学辅导
+                            <p className="text-xl text-slate-600 dark:text-slate-400">
+                                选择最适合你的学习方式
                             </p>
-                            <Link
-                                to="/new"
-                                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-indigo-600 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all"
-                            >
-                                立即开始数学辅导
-                                <ArrowRight className="w-5 h-5" />
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                            {/* Option 1: Upload Homework */}
+                            <Link to="/new" className="group">
+                                <div className="bg-gradient-to-br from-indigo-500 to-blue-600 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all hover:scale-105">
+                                    <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-white/30 transition-all">
+                                        <Calculator className="w-8 h-8 text-white" />
+                                    </div>
+                                    <h3 className="text-2xl font-bold text-white mb-3">
+                                        📝 有数学作业题目？
+                                    </h3>
+                                    <p className="text-indigo-100 mb-6 text-lg">
+                                        上传你的数学题目，获得AI苏格拉底式辅导。
+                                        不直接给答案，引导你独立思考和解题。
+                                    </p>
+                                    <div className="flex items-center gap-2 text-white font-semibold">
+                                        <span>上传数学作业</span>
+                                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                    </div>
+                                    <div className="mt-4 pt-4 border-t border-white/20">
+                                        <div className="flex flex-wrap gap-2 text-sm text-indigo-100">
+                                            <span>✓ 拍照上传</span>
+                                            <span>✓ 即时辅导</span>
+                                            <span>✓ 24小时在线</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </Link>
-                            <p className="text-indigo-100 text-sm mt-4">
-                                24小时在线 · 随时随地 · 因材施教
+
+                            {/* Option 2: Browse Knowledge Points (Coming Soon) */}
+                            <div className="relative group">
+                                <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all hover:scale-105 cursor-not-allowed opacity-90">
+                                    <div className="absolute top-4 right-4 px-3 py-1 bg-yellow-400 text-yellow-900 rounded-full text-xs font-bold">
+                                        即将推出
+                                    </div>
+                                    <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-white/30 transition-all">
+                                        <BookOpen className="w-8 h-8 text-white" />
+                                    </div>
+                                    <h3 className="text-2xl font-bold text-white mb-3">
+                                        📚 想系统学习数学？
+                                    </h3>
+                                    <p className="text-purple-100 mb-6 text-lg">
+                                        浏览数学知识点，从基础到高级。
+                                        包括概念讲解、典型例题、AI互动学习。
+                                    </p>
+                                    <div className="flex items-center gap-2 text-white font-semibold opacity-60">
+                                        <span>浏览知识点</span>
+                                        <ArrowRight className="w-5 h-5" />
+                                    </div>
+                                    <div className="mt-4 pt-4 border-t border-white/20">
+                                        <div className="flex flex-wrap gap-2 text-sm text-purple-100">
+                                            <span>✓ 分年级内容</span>
+                                            <span>✓ 系统化学习</span>
+                                            <span>✓ AI互动</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="text-center mt-8">
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">
+                                💡 提示：两种方式可以结合使用，既能解决作业问题，又能系统提升数学能力
                             </p>
                         </div>
                     </div>
