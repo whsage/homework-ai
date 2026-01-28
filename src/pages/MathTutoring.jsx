@@ -665,12 +665,9 @@ const MathTutoring = () => {
                                 </div>
                             </Link>
 
-                            {/* Option 2: Browse Knowledge Points (Coming Soon) */}
-                            <div className="relative group">
-                                <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all hover:scale-105 cursor-not-allowed opacity-90">
-                                    <div className="absolute top-4 right-4 px-3 py-1 bg-yellow-400 text-yellow-900 rounded-full text-xs font-bold">
-                                        即将推出
-                                    </div>
+                            {/* Option 2: Browse Knowledge Points */}
+                            <Link to="/subjects/math" className="group">
+                                <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all hover:scale-105">
                                     <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-white/30 transition-all">
                                         <BookOpen className="w-8 h-8 text-white" />
                                     </div>
@@ -681,9 +678,9 @@ const MathTutoring = () => {
                                         浏览数学知识点，从基础到高级。
                                         包括概念讲解、典型例题、AI互动学习。
                                     </p>
-                                    <div className="flex items-center gap-2 text-white font-semibold opacity-60">
+                                    <div className="flex items-center gap-2 text-white font-semibold">
                                         <span>浏览知识点</span>
-                                        <ArrowRight className="w-5 h-5" />
+                                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                     </div>
                                     <div className="mt-4 pt-4 border-t border-white/20">
                                         <div className="flex flex-wrap gap-2 text-sm text-purple-100">
@@ -693,7 +690,7 @@ const MathTutoring = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
 
                         <div className="text-center mt-8">
@@ -705,7 +702,7 @@ const MathTutoring = () => {
                 </section>
 
                 {/* SEO Keywords Footer */}
-                <section className="py-8 px-6 bg-slate-100 dark:bg-slate-900">
+                < section className="py-8 px-6 bg-slate-100 dark:bg-slate-900" >
                     <div className="max-w-7xl mx-auto text-center">
                         <div className="text-xs text-slate-500 dark:text-slate-400 space-y-2">
                             <p>
@@ -719,8 +716,8 @@ const MathTutoring = () => {
                             </p>
                         </div>
                     </div>
-                </section>
-            </div>
+                </section >
+            </div >
         </>
     );
 };

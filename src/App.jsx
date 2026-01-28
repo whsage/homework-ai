@@ -11,6 +11,7 @@ import Statistics from './pages/Statistics';
 import Settings from './pages/Settings';
 import FAQ from './pages/FAQ';
 import MathTutoring from './pages/MathTutoring';
+import MathLearning from './pages/subjects/MathLearning';
 
 
 import { ThemeProvider } from './context/ThemeContext';
@@ -26,6 +27,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/math-tutoring" element={<MathTutoring />} />
+            <Route path="/subjects/math" element={<MathLearning />} />
             <Route path="/" element={<MainLayout />}>
               <Route index element={<Dashboard />} />
               <Route path="new" element={<NewSession />} />
