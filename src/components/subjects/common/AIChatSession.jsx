@@ -2,7 +2,7 @@ import { MessageCircle, Sparkles } from 'lucide-react';
 
 const AIChatSession = ({ title, summary, messages, userAvatar = "👤", aiAvatar = "🤖" }) => {
     return (
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
             <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                 <MessageCircle className="w-6 h-6 text-indigo-600" />
                 {title}
@@ -18,10 +18,10 @@ const AIChatSession = ({ title, summary, messages, userAvatar = "👤", aiAvatar
                         )}
 
                         <div className={`flex-1 max-w-md p-4 rounded-xl ${msg.role === 'user'
-                                ? 'bg-blue-50 dark:bg-blue-900/20'
-                                : msg.type === 'success'
-                                    ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800'
-                                    : 'bg-indigo-50 dark:bg-indigo-900/20'
+                            ? 'bg-blue-50 dark:bg-blue-900/20'
+                            : msg.type === 'success'
+                                ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800'
+                                : 'bg-indigo-50 dark:bg-indigo-900/20'
                             }`}>
                             <div className="text-slate-700 dark:text-slate-300">
                                 {msg.content}

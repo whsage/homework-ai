@@ -43,7 +43,7 @@ const TopicLayout = ({
             <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
                 {/* Header */}
                 <section className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
-                    <div className="max-w-7xl mx-auto px-6 py-6">
+                    <div className="max-w-7xl mx-auto px-4 md:px-6 py-6">
                         <Link
                             to="/subjects/math"
                             className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 mb-4 transition-colors"
@@ -75,7 +75,7 @@ const TopicLayout = ({
 
                 {/* Tabs */}
                 <section className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-10 shadow-sm">
-                    <div className="max-w-7xl mx-auto px-6">
+                    <div className="max-w-7xl mx-auto px-4 md:px-6">
                         <div className="flex gap-2 overflow-x-auto no-scrollbar">
                             {tabs.map((tab) => {
                                 const Icon = tab.icon;
@@ -84,8 +84,8 @@ const TopicLayout = ({
                                         key={tab.id}
                                         onClick={() => onTabChange(tab.id)}
                                         className={`flex items-center gap-2 px-6 py-4 font-semibold transition-all whitespace-nowrap ${activeTab === tab.id
-                                                ? 'text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 dark:border-indigo-400'
-                                                : 'text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
+                                            ? 'text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 dark:border-indigo-400'
+                                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
                                             }`}
                                     >
                                         {Icon && <Icon className="w-5 h-5" />}
@@ -98,14 +98,14 @@ const TopicLayout = ({
                 </section>
 
                 {/* Content */}
-                <section className="py-12 px-6">
+                <section className="py-8 md:py-12 px-4 md:px-6">
                     <div className="max-w-7xl mx-auto">
                         {children}
                     </div>
                 </section>
 
                 {/* Shared Footer CTA - Can be overridden or hidden if needed via props, but beneficial to keep standard */}
-                <section className="py-16 px-6">
+                <section className="py-12 md:py-16 px-4 md:px-6">
                     <div className="max-w-4xl mx-auto text-center">
                         <div className="bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl p-12 shadow-2xl">
                             <h2 className="text-3xl font-bold text-white mb-4">
@@ -126,7 +126,7 @@ const TopicLayout = ({
                 </section>
 
                 {/* SEO Keywords Footer */}
-                <section className="py-8 px-6 bg-slate-100 dark:bg-slate-900">
+                <section className="py-8 px-4 md:px-6 bg-slate-100 dark:bg-slate-900">
                     <div className="max-w-7xl mx-auto text-center">
                         <div className="text-xs text-slate-500 dark:text-slate-400 space-y-2">
                             <p>

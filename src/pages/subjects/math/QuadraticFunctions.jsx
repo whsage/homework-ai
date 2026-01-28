@@ -89,7 +89,7 @@ const QuadraticFunctions = () => {
             {activeTab === 'concept' && (
                 <div className="space-y-8">
                     {/* 什么是二次函数 */}
-                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Lightbulb className="w-6 h-6 text-indigo-600" />
                             什么是二次函数？
@@ -144,7 +144,7 @@ const QuadraticFunctions = () => {
                     />
 
                     {/* 为什么学二次函数 */}
-                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Target className="w-6 h-6 text-indigo-600" />
                             为什么要学二次函数？
@@ -195,7 +195,7 @@ const QuadraticFunctions = () => {
             {activeTab === 'properties' && (
                 <div className="space-y-6">
                     {/* 1. 参数 a 的影响：开口方向与宽窄 */}
-                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <TrendingUp className="w-6 h-6 text-indigo-600" />
                             1. 参数 a 决定开口方向与大小
@@ -252,7 +252,7 @@ const QuadraticFunctions = () => {
                     </div>
 
                     {/* 2. 对称轴与顶点 */}
-                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Target className="w-6 h-6 text-indigo-600" />
                             2. 对称轴与顶点坐标
@@ -292,6 +292,37 @@ const QuadraticFunctions = () => {
                             </div>
                         </div>
                     </div>
+
+                    {/* 3. 函数的增减性 */}
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <TrendingUp className="w-6 h-6 text-indigo-600" />
+                            3. 函数的增减性
+                        </h2>
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left border-collapse">
+                                <thead>
+                                    <tr className="border-b border-slate-200 dark:border-slate-700">
+                                        <th className="py-4 px-4 text-slate-500 dark:text-slate-400 font-medium">情况</th>
+                                        <th className="py-4 px-4 text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap">对称轴左侧 (x &lt; -b/2a)</th>
+                                        <th className="py-4 px-4 text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap">对称轴右侧 (x &gt; -b/2a)</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="text-slate-700 dark:text-slate-300">
+                                    <tr className="border-b border-slate-100 dark:border-slate-800">
+                                        <td className="py-4 px-4 font-bold text-orange-600 dark:text-orange-400 whitespace-nowrap">a &gt; 0 (开口向上)</td>
+                                        <td className="py-4 px-4 whitespace-nowrap">y 随 x 增大而<strong>减小</strong> ↘</td>
+                                        <td className="py-4 px-4 whitespace-nowrap">y 随 x 增大而<strong>增大</strong> ↗</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="py-4 px-4 font-bold text-blue-600 dark:text-blue-400 whitespace-nowrap">a &lt; 0 (开口向下)</td>
+                                        <td className="py-4 px-4 whitespace-nowrap">y 随 x 增大而<strong>增大</strong> ↗</td>
+                                        <td className="py-4 px-4 whitespace-nowrap">y 随 x 增大而<strong>减小</strong> ↘</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             )}
 
@@ -299,7 +330,7 @@ const QuadraticFunctions = () => {
             {activeTab === 'examples' && (
                 <div className="space-y-6">
                     {/* 例题 1 */}
-                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <div className="flex items-center gap-3 mb-4">
                             <span className="px-3 py-1 bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded-lg text-sm font-bold">
                                 例题 1
@@ -353,7 +384,7 @@ const QuadraticFunctions = () => {
                     </div>
 
                     {/* 例题 2 */}
-                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <div className="flex items-center gap-3 mb-4">
                             <span className="px-3 py-1 bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded-lg text-sm font-bold">
                                 例题 2
@@ -415,7 +446,7 @@ const QuadraticFunctions = () => {
                         explanation="求与y轴交点，令 x=0，则 y = 0² - 0 - 3 = -3。所以交点坐标为 (0, -3)。"
                     />
 
-                    <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl p-8 text-center text-white mt-8">
+                    <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl p-6 md:p-8 text-center text-white mt-8">
                         <h3 className="text-2xl font-bold mb-4">想要更多练习？</h3>
                         <p className="mb-6 opacity-90">上传你的作业题目，让AI为你生成个性化的变式练习题</p>
                         <Link // 这里需要 import Link，但 TopicLayout 也有 Link，注意 import
