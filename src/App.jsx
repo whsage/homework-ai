@@ -25,6 +25,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/math-tutoring" element={<MathTutoring />} />
             <Route path="/" element={<MainLayout />}>
               <Route index element={<Dashboard />} />
               <Route path="new" element={<NewSession />} />
@@ -33,7 +34,6 @@ function App() {
               <Route path="statistics" element={<Statistics />} />
               <Route path="settings" element={<Settings />} />
               <Route path="faq" element={<FAQ />} />
-              <Route path="math-tutoring" element={<MathTutoring />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
           </Routes>
