@@ -297,8 +297,8 @@ const MathLearning = () => {
                                     key={grade.id}
                                     onClick={() => setActiveGrade(grade.id)}
                                     className={`px-6 py-3 rounded-xl font-semibold transition-all ${activeGrade === grade.id
-                                            ? 'bg-gradient-to-r from-indigo-600 to-blue-600 text-white shadow-lg scale-105'
-                                            : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:shadow-md'
+                                        ? 'bg-gradient-to-r from-indigo-600 to-blue-600 text-white shadow-lg scale-105'
+                                        : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:shadow-md'
                                         }`}
                                 >
                                     <span className="mr-2">{grade.icon}</span>
@@ -322,46 +322,65 @@ const MathLearning = () => {
                                     </div>
 
                                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                        {module.topics.map((topic) => (
-                                            <div
-                                                key={topic.id}
-                                                className="group relative bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-700 dark:to-slate-600 rounded-xl p-6 hover:shadow-lg transition-all cursor-not-allowed"
-                                            >
-                                                {/* Coming Soon Badge */}
-                                                <div className="absolute top-3 right-3 px-2 py-1 bg-yellow-400 text-yellow-900 rounded-full text-xs font-bold">
-                                                    即将推出
-                                                </div>
+                                        {module.topics.map((topic) => {
+                                            const isReady = topic.id === 'quadratic-functions';
+                                            const CardContent = () => (
+                                                <>
+                                                    {/* Coming Soon Badge - Only for non-ready topics */}
+                                                    {!isReady && (
+                                                        <div className="absolute top-3 right-3 px-2 py-1 bg-yellow-400 text-yellow-900 rounded-full text-xs font-bold">
+                                                            即将推出
+                                                        </div>
+                                                    )}
 
-                                                <div className="mb-4">
-                                                    <h4 className="text-lg font-bold text-slate-800 dark:text-white mb-2">
-                                                        {topic.name}
-                                                    </h4>
-                                                    <div className="flex flex-wrap gap-2 text-xs">
-                                                        <span className={`px-2 py-1 rounded-full ${topic.difficulty === '基础' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
+                                                    <div className="mb-4">
+                                                        <h4 className="text-lg font-bold text-slate-800 dark:text-white mb-2">
+                                                            {topic.name}
+                                                        </h4>
+                                                        <div className="flex flex-wrap gap-2 text-xs">
+                                                            <span className={`px-2 py-1 rounded-full ${topic.difficulty === '基础' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
                                                                 topic.difficulty === '提高' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
                                                                     'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
-                                                            }`}>
-                                                            {topic.difficulty}
-                                                        </span>
-                                                        <span className="px-2 py-1 bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-full flex items-center gap-1">
-                                                            <Clock className="w-3 h-3" />
-                                                            {topic.time}
-                                                        </span>
-                                                        {topic.important && (
-                                                            <span className="px-2 py-1 bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400 rounded-full flex items-center gap-1">
-                                                                <Star className="w-3 h-3" />
-                                                                重要
+                                                                }`}>
+                                                                {topic.difficulty}
                                                             </span>
-                                                        )}
+                                                            <span className="px-2 py-1 bg-slate-200 dark:bg-slate-600 text-slate-700 dark:text-slate-300 rounded-full flex items-center gap-1">
+                                                                <Clock className="w-3 h-3" />
+                                                                {topic.time}
+                                                            </span>
+                                                            {topic.important && (
+                                                                <span className="px-2 py-1 bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400 rounded-full flex items-center gap-1">
+                                                                    <Star className="w-3 h-3" />
+                                                                    重要
+                                                                </span>
+                                                            )}
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-semibold text-sm opacity-60">
-                                                    <span>开始学习</span>
-                                                    <ChevronRight className="w-4 h-4" />
+                                                    <div className={`flex items-center gap-2 font-semibold text-sm ${isReady ? 'text-indigo-600 dark:text-indigo-400' : 'text-indigo-600 dark:text-indigo-400 opacity-60'}`}>
+                                                        <span>{isReady ? '开始学习' : '即将推出'}</span>
+                                                        <ChevronRight className={`w-4 h-4 ${isReady ? 'group-hover:translate-x-1 transition-transform' : ''}`} />
+                                                    </div>
+                                                </>
+                                            );
+
+                                            return isReady ? (
+                                                <Link
+                                                    key={topic.id}
+                                                    to={`/subjects/math/${topic.id}`}
+                                                    className="group relative bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-700 dark:to-slate-600 rounded-xl p-6 hover:shadow-lg transition-all border border-transparent hover:border-indigo-500 hover:scale-[1.02]"
+                                                >
+                                                    <CardContent />
+                                                </Link>
+                                            ) : (
+                                                <div
+                                                    key={topic.id}
+                                                    className="group relative bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-700 dark:to-slate-600 rounded-xl p-6 hover:shadow-lg transition-all cursor-not-allowed opacity-80"
+                                                >
+                                                    <CardContent />
                                                 </div>
-                                            </div>
-                                        ))}
+                                            );
+                                        })}
                                     </div>
                                 </div>
                             ))}

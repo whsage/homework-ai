@@ -33,6 +33,14 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- 二次函数详解 - 数学知识点 -->
+  <url>
+    <loc>https://ai7miao.com/subjects/math/quadratic-functions</loc>
+    <lastmod>2026-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
   
   <!-- 开始新作业 - AI智能辅导 -->
   <url>

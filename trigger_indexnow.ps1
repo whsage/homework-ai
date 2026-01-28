@@ -8,6 +8,7 @@ $payload = @{
         "https://ai7miao.com/faq",
         "https://ai7miao.com/math-tutoring",
         "https://ai7miao.com/subjects/math",
+        "https://ai7miao.com/subjects/math/quadratic-functions",
         "https://ai7miao.com/new",
         "https://ai7miao.com/statistics",
         "https://ai7miao.com/history",
