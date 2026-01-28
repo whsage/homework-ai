@@ -15,8 +15,70 @@ import {
     TrendingUp,
     Award,
     Clock,
-    Star
+    Clock,
+    Star,
+    Eye,
+    EyeOff,
+    HelpCircle
 } from 'lucide-react';
+
+const PracticeProblem = ({ id, type, question, options, answer, explanation }) => {
+    const [showAnswer, setShowAnswer] = useState(false);
+
+    return (
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 border border-slate-100 dark:border-slate-700">
+            <div className="flex items-start gap-4">
+                <div className="w-8 h-8 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center text-indigo-700 dark:text-indigo-400 font-bold flex-shrink-0">
+                    {id}
+                </div>
+                <div className="flex-1">
+                    <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">
+                        {question}
+                    </h4>
+
+                    {type === 'choice' && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                            {options.map((opt) => (
+                                <div key={opt.value} className="flex items-center gap-3 p-3 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors cursor-pointer">
+                                    <div className="w-6 h-6 rounded-full border-2 border-slate-300 dark:border-slate-600 flex items-center justify-center text-xs font-bold text-slate-500">
+                                        {opt.label}
+                                    </div>
+                                    <span className="text-slate-700 dark:text-slate-300">{opt.value}</span>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    <div className="mt-6">
+                        <button
+                            onClick={() => setShowAnswer(!showAnswer)}
+                            className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 text-sm font-semibold hover:text-indigo-700 transition-colors"
+                        >
+                            {showAnswer ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                            {showAnswer ? '隐藏解析' : '查看答案与解析'}
+                        </button>
+
+                        {showAnswer && (
+                            <div className="mt-4 p-4 bg-green-50 dark:bg-green-900/20 rounded-xl border border-green-100 dark:border-green-800 animate-in fade-in slide-in-from-top-2 duration-300">
+                                <div className="flex items-start gap-3">
+                                    <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                                    <div>
+                                        <div className="font-bold text-green-700 dark:text-green-400 mb-1">
+                                            正确答案：{answer}
+                                        </div>
+                                        <p className="text-slate-600 dark:text-slate-400 text-sm">
+                                            {explanation}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 const QuadraticFunctions = () => {
     const [activeTab, setActiveTab] = useState('concept');
@@ -101,8 +163,8 @@ const QuadraticFunctions = () => {
                                         key={tab.id}
                                         onClick={() => setActiveTab(tab.id)}
                                         className={`flex items-center gap-2 px-6 py-4 font-semibold transition-all whitespace-nowrap ${activeTab === tab.id
-                                                ? 'text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 dark:border-indigo-400'
-                                                : 'text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
+                                            ? 'text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 dark:border-indigo-400'
+                                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
                                             }`}
                                     >
                                         <Icon className="w-5 h-5" />
@@ -340,52 +402,310 @@ const QuadraticFunctions = () => {
                         )}
 
                         {activeTab === 'properties' && (
-                            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
-                                <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">
-                                    二次函数的图像与性质
-                                </h2>
-                                <div className="text-center py-12">
-                                    <div className="text-6xl mb-4">🚧</div>
-                                    <p className="text-xl text-slate-600 dark:text-slate-400 mb-4">
-                                        内容正在制作中...
-                                    </p>
-                                    <p className="text-slate-500 dark:text-slate-500 text-sm">
-                                        即将包含：图像绘制、对称轴、顶点、开口方向、单调性等
-                                    </p>
+                            <div className="space-y-6">
+                                {/* 1. 参数 a 的影响：开口方向与宽窄 */}
+                                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
+                                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                                        <TrendingUp className="w-6 h-6 text-indigo-600" />
+                                        1. 参数 a 决定开口方向与大小
+                                    </h2>
+                                    <div className="grid md:grid-cols-2 gap-8">
+                                        <div className="bg-orange-50 dark:bg-orange-900/20 rounded-xl p-6 border border-orange-100 dark:border-orange-800">
+                                            <h3 className="text-lg font-bold text-orange-700 dark:text-orange-400 mb-4 text-center">
+                                                当 a &gt; 0 时
+                                            </h3>
+                                            <div className="h-40 flex items-center justify-center mb-4">
+                                                {/* SVG 示意图 a > 0 */}
+                                                <svg viewBox="0 0 100 100" className="w-full h-full text-orange-500">
+                                                    <path d="M 10 10 Q 50 90 90 10" fill="none" stroke="currentColor" strokeWidth="3" />
+                                                    <circle cx="50" cy="50" r="3" fill="currentColor" />
+                                                    <text x="50" y="70" textAnchor="middle" fontSize="10" fill="currentColor">开口向上</text>
+                                                    <text x="50" y="85" textAnchor="middle" fontSize="10" fill="currentColor">有最小值</text>
+                                                </svg>
+                                            </div>
+                                            <ul className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                                                <li className="flex items-start gap-2">
+                                                    <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5" />
+                                                    <span>开口<strong>向上</strong></span>
+                                                </li>
+                                                <li className="flex items-start gap-2">
+                                                    <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5" />
+                                                    <span>有<strong>最小值</strong>（在顶点处）</span>
+                                                </li>
+                                                <li className="flex items-start gap-2">
+                                                    <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5" />
+                                                    <span>|a| 越大，开口越小（越陡）</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-100 dark:border-blue-800">
+                                            <h3 className="text-lg font-bold text-blue-700 dark:text-blue-400 mb-4 text-center">
+                                                当 a &lt; 0 时
+                                            </h3>
+                                            <div className="h-40 flex items-center justify-center mb-4">
+                                                {/* SVG 示意图 a < 0 */}
+                                                <svg viewBox="0 0 100 100" className="w-full h-full text-blue-500">
+                                                    <path d="M 10 90 Q 50 10 90 90" fill="none" stroke="currentColor" strokeWidth="3" />
+                                                    <circle cx="50" cy="50" r="3" fill="currentColor" />
+                                                    <text x="50" y="30" textAnchor="middle" fontSize="10" fill="currentColor">开口向下</text>
+                                                    <text x="50" y="15" textAnchor="middle" fontSize="10" fill="currentColor">有最大值</text>
+                                                </svg>
+                                            </div>
+                                            <ul className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                                                <li className="flex items-start gap-2">
+                                                    <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5" />
+                                                    <span>开口<strong>向下</strong></span>
+                                                </li>
+                                                <li className="flex items-start gap-2">
+                                                    <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5" />
+                                                    <span>有<strong>最大值</strong>（在顶点处）</span>
+                                                </li>
+                                                <li className="flex items-start gap-2">
+                                                    <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5" />
+                                                    <span>|a| 越大，开口越小（越陡）</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* 2. 对称轴与顶点 */}
+                                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
+                                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                                        <Target className="w-6 h-6 text-indigo-600" />
+                                        2. 对称轴与顶点坐标
+                                    </h2>
+
+                                    <div className="flex flex-col md:flex-row gap-8 items-center">
+                                        <div className="flex-1 space-y-6">
+                                            <div className="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl border-l-4 border-indigo-500">
+                                                <h4 className="font-bold text-slate-700 dark:text-slate-300 mb-2">对称轴公式</h4>
+                                                <code className="text-2xl text-indigo-600 dark:text-indigo-400 font-bold">
+                                                    x = - <span className="mx-1">b</span> / <span className="mx-1">2a</span>
+                                                </code>
+                                            </div>
+
+                                            <div className="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl border-l-4 border-purple-500">
+                                                <h4 className="font-bold text-slate-700 dark:text-slate-300 mb-2">顶点坐标公式</h4>
+                                                <div className="flex items-center gap-2">
+                                                    <code className="text-xl text-purple-600 dark:text-purple-400 font-bold">
+                                                        ( -<span className="mx-1">b</span>/2a , <span className="mx-1">4ac-b²</span>/4a )
+                                                    </code>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex-1">
+                                            <div className="bg-indigo-50 dark:bg-indigo-900/20 p-6 rounded-xl">
+                                                <h4 className="font-bold text-indigo-800 dark:text-indigo-300 mb-4 flex items-center gap-2">
+                                                    <Sparkles className="w-4 h-4" />
+                                                    小技巧：记忆口诀
+                                                </h4>
+                                                <ul className="space-y-3 text-sm text-indigo-700 dark:text-indigo-400">
+                                                    <li>• <strong>左同右异</strong>：a、b同号时，对称轴在y轴左侧；异号时在右侧。</li>
+                                                    <li>• <strong>c点截距</strong>：抛物线与y轴交点坐标为 (0, c)。</li>
+                                                    <li>• <strong>顶点最值</strong>：顶点纵坐标即为函数的最大值或最小值。</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* 3. 增减性 */}
+                                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
+                                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                                        <TrendingUp className="w-6 h-6 text-indigo-600" />
+                                        3. 函数的增减性
+                                    </h2>
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-left border-collapse">
+                                            <thead>
+                                                <tr className="border-b border-slate-200 dark:border-slate-700">
+                                                    <th className="py-4 px-4 text-slate-500 dark:text-slate-400 font-medium">情况</th>
+                                                    <th className="py-4 px-4 text-slate-500 dark:text-slate-400 font-medium">对称轴左侧 (x &lt; -b/2a)</th>
+                                                    <th className="py-4 px-4 text-slate-500 dark:text-slate-400 font-medium">对称轴右侧 (x &gt; -b/2a)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="text-slate-700 dark:text-slate-300">
+                                                <tr className="border-b border-slate-100 dark:border-slate-800">
+                                                    <td className="py-4 px-4 font-bold text-orange-600 dark:text-orange-400">a &gt; 0 (开口向上)</td>
+                                                    <td className="py-4 px-4">y 随 x 增大而<strong>减小</strong> ↘</td>
+                                                    <td className="py-4 px-4">y 随 x 增大而<strong>增大</strong> ↗</td>
+                                                </tr>
+                                                <tr>
+                                                    <td className="py-4 px-4 font-bold text-blue-600 dark:text-blue-400">a &lt; 0 (开口向下)</td>
+                                                    <td className="py-4 px-4">y 随 x 增大而<strong>增大</strong> ↗</td>
+                                                    <td className="py-4 px-4">y 随 x 增大而<strong>减小</strong> ↘</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         )}
 
                         {activeTab === 'examples' && (
-                            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
-                                <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">
-                                    典型例题
-                                </h2>
-                                <div className="text-center py-12">
-                                    <div className="text-6xl mb-4">🚧</div>
-                                    <p className="text-xl text-slate-600 dark:text-slate-400 mb-4">
-                                        内容正在制作中...
-                                    </p>
-                                    <p className="text-slate-500 dark:text-slate-500 text-sm">
-                                        即将包含：配方法、顶点坐标、最值问题、实际应用等例题
-                                    </p>
+                            <div className="space-y-6">
+                                {/* 例题 1 */}
+                                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <span className="px-3 py-1 bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded-lg text-sm font-bold">
+                                            例题 1
+                                        </span>
+                                        <h3 className="text-xl font-bold text-slate-800 dark:text-white">
+                                            已知顶点求解析式
+                                        </h3>
+                                    </div>
+
+                                    <div className="mb-6 p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl text-slate-700 dark:text-slate-300">
+                                        已知二次函数的图像顶点为 (1, -4)，且经过点 (2, -3)，求该二次函数的解析式。
+                                    </div>
+
+                                    <div className="space-y-4">
+                                        <div className="flex gap-3">
+                                            <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center text-green-600 dark:text-green-400 font-bold text-sm flex-shrink-0">
+                                                思
+                                            </div>
+                                            <div>
+                                                <div className="text-sm font-bold text-slate-600 dark:text-slate-400 mb-1">思路分析</div>
+                                                <p className="text-slate-600 dark:text-slate-400 text-sm">
+                                                    题目已知顶点坐标，因此使用<strong>顶点式</strong> y = a(x-h)² + k 最为简便。
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex gap-3">
+                                            <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold text-sm flex-shrink-0">
+                                                解
+                                            </div>
+                                            <div className="space-y-3 w-full">
+                                                <div className="p-3 bg-slate-50 dark:bg-slate-700/30 rounded-lg border-l-2 border-blue-400">
+                                                    <p className="text-slate-700 dark:text-slate-300 text-sm">
+                                                        设二次函数解析式为 y = a(x - 1)² - 4
+                                                    </p>
+                                                </div>
+                                                <div className="p-3 bg-slate-50 dark:bg-slate-700/30 rounded-lg border-l-2 border-blue-400">
+                                                    <p className="text-slate-700 dark:text-slate-300 text-sm">
+                                                        将点 (2, -3) 代入上式，得：<br />
+                                                        -3 = a(2 - 1)² - 4
+                                                    </p>
+                                                </div>
+                                                <div className="p-3 bg-slate-50 dark:bg-slate-700/30 rounded-lg border-l-2 border-blue-400">
+                                                    <p className="text-slate-700 dark:text-slate-300 text-sm">
+                                                        解得 a = 1
+                                                    </p>
+                                                </div>
+                                                <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                                                    <p className="text-indigo-700 dark:text-indigo-400 font-bold">
+                                                        ∴ 解析式为 y = (x - 1)² - 4 或 y = x² - 2x - 3
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* 例题 2 */}
+                                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <span className="px-3 py-1 bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400 rounded-lg text-sm font-bold">
+                                            例题 2
+                                        </span>
+                                        <h3 className="text-xl font-bold text-slate-800 dark:text-white">
+                                            实际应用：利润最大化
+                                        </h3>
+                                    </div>
+
+                                    <div className="mb-6 p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl text-slate-700 dark:text-slate-300">
+                                        某商店经营一种商品，进价为每件40元。据市场调查，销售价格为x元时，日销售量y（件）与x的关系为 y = -2x + 200 (40 &lt; x &lt; 100)。
+                                        求定价多少元时，日利润最大？最大利润是多少？
+                                    </div>
+
+                                    <div className="space-y-4">
+                                        <div className="flex gap-3">
+                                            <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center text-green-600 dark:text-green-400 font-bold text-sm flex-shrink-0">
+                                                思
+                                            </div>
+                                            <div>
+                                                <div className="text-sm font-bold text-slate-600 dark:text-slate-400 mb-1">思路分析</div>
+                                                <p className="text-slate-600 dark:text-slate-400 text-sm">
+                                                    总利润 W = (售价 - 进价) × 销量。<br />
+                                                    列出 W 关于 x 的函数关系式，利用配方法或公式法求最大值。
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex gap-3">
+                                            <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold text-sm flex-shrink-0">
+                                                解
+                                            </div>
+                                            <div className="space-y-3 w-full">
+                                                <div className="p-3 bg-slate-50 dark:bg-slate-700/30 rounded-lg border-l-2 border-blue-400">
+                                                    <p className="text-slate-700 dark:text-slate-300 text-sm">
+                                                        设日利润为 W 元，则：<br />
+                                                        W = (x - 40) · y <br />
+                                                        W = (x - 40)(-2x + 200) <br />
+                                                        W = -2x² + 280x - 8000
+                                                    </p>
+                                                </div>
+                                                <div className="p-3 bg-slate-50 dark:bg-slate-700/30 rounded-lg border-l-2 border-blue-400">
+                                                    <p className="text-slate-700 dark:text-slate-300 text-sm">
+                                                        ∵ a = -2 &lt; 0，抛物线开口向下，有最大值。<br />
+                                                        当 x = -b/2a = -280 / (2 × -2) = 70 时，W 取最大值。
+                                                    </p>
+                                                </div>
+                                                <div className="p-3 bg-slate-50 dark:bg-slate-700/30 rounded-lg border-l-2 border-blue-400">
+                                                    <p className="text-slate-700 dark:text-slate-300 text-sm">
+                                                        最大利润 W = -2(70)² + 280(70) - 8000 = 1800 (元)
+                                                    </p>
+                                                </div>
+                                                <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                                                    <p className="text-indigo-700 dark:text-indigo-400 font-bold">
+                                                        答：定价为 70 元时，日利润最大，为 1800 元。
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         )}
 
                         {activeTab === 'practice' && (
-                            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
-                                <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">
-                                    练习题
-                                </h2>
-                                <div className="text-center py-12">
-                                    <div className="text-6xl mb-4">🚧</div>
-                                    <p className="text-xl text-slate-600 dark:text-slate-400 mb-4">
-                                        内容正在制作中...
-                                    </p>
-                                    <p className="text-slate-500 dark:text-slate-500 text-sm">
-                                        即将包含：基础题、提高题、竞赛题，以及AI自动批改功能
-                                    </p>
+                            <div className="space-y-6">
+                                {/* 练习题组件 - 这里简单实现，未来可抽离为通用组件 */}
+                                <PracticeProblem
+                                    id={1}
+                                    type="choice"
+                                    question="二次函数 y = 2(x - 3)² + 5 的顶点坐标是？"
+                                    options={[
+                                        { label: 'A', value: '(-3, 5)' },
+                                        { label: 'B', value: '(3, 5)' },
+                                        { label: 'C', value: '(3, -5)' },
+                                        { label: 'D', value: '(-3, -5)' }
+                                    ]}
+                                    answer="B"
+                                    explanation="对于顶点式 y = a(x - h)² + k，顶点坐标为 (h, k)。这里 h=3, k=5，所以顶点为 (3, 5)。"
+                                />
+
+                                <PracticeProblem
+                                    id={2}
+                                    type="text"
+                                    question="抛物线 y = x² - 2x - 3 与 y 轴的交点坐标是？"
+                                    answer="(0, -3)"
+                                    explanation="求与y轴交点，令 x=0，则 y = 0² - 0 - 3 = -3。所以交点坐标为 (0, -3)。"
+                                />
+
+                                <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl p-8 text-center text-white mt-8">
+                                    <h3 className="text-2xl font-bold mb-4">想要更多练习？</h3>
+                                    <p className="mb-6 opacity-90">上传你的作业题目，让AI为你生成个性化的变式练习题</p>
+                                    <Link
+                                        to="/new"
+                                        className="inline-block px-8 py-3 bg-white text-indigo-600 rounded-lg font-bold hover:bg-indigo-50 transition-colors"
+                                    >
+                                        上传题目
+                                    </Link>
                                 </div>
                             </div>
                         )}
