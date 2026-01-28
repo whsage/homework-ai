@@ -10,6 +10,8 @@ import History from './pages/History';
 import Statistics from './pages/Statistics';
 import Settings from './pages/Settings';
 import FAQ from './pages/FAQ';
+import MathTutoring from './pages/MathTutoring';
+
 
 import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
@@ -31,6 +33,7 @@ function App() {
               <Route path="statistics" element={<Statistics />} />
               <Route path="settings" element={<Settings />} />
               <Route path="faq" element={<FAQ />} />
+              <Route path="math-tutoring" element={<MathTutoring />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
           </Routes>
