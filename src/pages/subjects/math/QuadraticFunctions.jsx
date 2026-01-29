@@ -20,6 +20,8 @@ import {
 import TopicLayout from '../../../components/subjects/common/TopicLayout';
 import AIChatSession from '../../../components/subjects/common/AIChatSession';
 import PracticeProblem from '../../../components/subjects/practice/PracticeProblem';
+import SmartChat from '../../../components/learning/SmartChat';
+import '../../../components/learning/SmartChat.css';
 
 const QuadraticFunctions = () => {
     const [activeTab, setActiveTab] = useState('concept');
@@ -81,10 +83,21 @@ const QuadraticFunctions = () => {
                     className="hidden md:flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105"
                 >
                     <MessageCircle className="w-5 h-5" />
-                    AI互动学习
+                    {showAIChat ? '关闭AI对话' : 'AI智能对话'}
                 </button>
             }
         >
+            {/* 智能对话组件 */}
+            {showAIChat && (
+                <div className="mb-8 animate-fadeIn">
+                    <SmartChat
+                        topicId="二次函数"
+                        topicName="二次函数"
+                        onClose={() => setShowAIChat(false)}
+                    />
+                </div>
+            )}
+
             {/* Tab 1: 核心概念 */}
             {activeTab === 'concept' && (
                 <div className="space-y-8">
