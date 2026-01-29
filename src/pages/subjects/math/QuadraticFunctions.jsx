@@ -26,6 +26,12 @@ import '../../../components/learning/SmartChat.css';
 const QuadraticFunctions = () => {
     const [activeTab, setActiveTab] = useState('concept');
     const [showAIChat, setShowAIChat] = useState(false);
+    const [aiContext, setAiContext] = useState(null);
+
+    const handleStartAIChat = (context) => {
+        setAiContext(context);
+        setShowAIChat(true);
+    };
 
     // 1. 页面元数据配置
     const meta = {
@@ -79,7 +85,7 @@ const QuadraticFunctions = () => {
             onTabChange={setActiveTab}
             actions={
                 <button
-                    onClick={() => setShowAIChat(!showAIChat)}
+                    onClick={() => handleStartAIChat(null)}
                     className="hidden md:flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105"
                 >
                     <MessageCircle className="w-5 h-5" />
@@ -93,6 +99,7 @@ const QuadraticFunctions = () => {
                     <SmartChat
                         topicId="二次函数"
                         topicName="二次函数"
+                        initialContext={aiContext}
                         onClose={() => setShowAIChat(false)}
                     />
                 </div>
@@ -154,6 +161,7 @@ const QuadraticFunctions = () => {
                         title="AI互动学习：发现抛物线的对称性"
                         intro={aiSummary}
                         messages={aiMessages}
+                        onStart={() => handleStartAIChat("学生正在看二次函数核心概念。请引导学生通过计算 f(x) 和 f(-x) 的值，自己发现抛物线关于 y 轴对称的性质。不要直接给出结论，要一步步提问。")}
                     />
 
                     {/* 为什么学二次函数 */}
