@@ -102,7 +102,10 @@ const MainLayout = () => {
 
             <div className="flex-1 flex flex-col h-full overflow-hidden">
                 <Header onMenuClick={() => setIsMobileMenuOpen(true)} />
-
+                {/* DEBUG BANNER: 可视化验证部署是否成功，验证后请删除 */}
+                <div className="bg-indigo-600 text-white text-xs py-1 px-4 text-center font-bold">
+                    DEV_CHECK: 2026-01-29 19:30 Update
+                </div>
                 <main className="flex-1 overflow-y-auto p-6 scroll-smooth">
                     <div className="max-w-7xl mx-auto w-full">
                         <Outlet />
