@@ -76,6 +76,7 @@ const Sidebar = ({ isOpen, onClose }) => {
 
     const navItems = [
         { icon: LayoutDashboard, label: t('nav.home'), path: '/' },
+        // New Subject Learning Entrance
         { icon: GraduationCap, label: language === 'zh' ? '知识点学习' : 'Subjects', path: '/subjects' },
         { icon: BookOpen, label: t('nav.homework'), path: '/history' },
         { icon: BarChart3, label: t('nav.statistics'), path: '/statistics' },
