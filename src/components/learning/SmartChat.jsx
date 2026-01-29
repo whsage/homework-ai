@@ -9,13 +9,15 @@
  */
 
 import { useState, useEffect, useRef } from 'react';
-import { MessageCircle, Send, Loader2, Sparkles, Brain, TrendingUp, Target, Award } from 'lucide-react';
+import { MessageCircle, Send, Loader2, Sparkles, Brain, TrendingUp, Target, Award, PenTool } from 'lucide-react';
 import { SmartTutor } from '../../services/smartTutor';
 import { KnowledgeAssessment } from '../../services/knowledgeAssessment';
 import { useUser } from '../../context/UserContext';
+import SmartPracticeSession from './SmartPracticeSession'; // 导入练习组件
 
 const SmartChat = ({ topicId, topicName, onClose }) => {
     const { user } = useUser();
+    const [mode, setMode] = useState('chat'); // 'chat' | 'practice'
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
     const [loading, setLoading] = useState(false);
@@ -229,8 +231,8 @@ const SmartChat = ({ topicId, topicName, onClose }) => {
                                             <div className="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
                                                 <div
                                                     className={`h-full transition-all duration-500 ${isWeak
-                                                            ? 'bg-gradient-to-r from-orange-400 to-orange-600'
-                                                            : 'bg-gradient-to-r from-green-400 to-green-600'
+                                                        ? 'bg-gradient-to-r from-orange-400 to-orange-600'
+                                                        : 'bg-gradient-to-r from-green-400 to-green-600'
                                                         }`}
                                                     style={{ width: `${skillMastery * 100}%` }}
                                                 />
