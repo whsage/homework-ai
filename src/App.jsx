@@ -11,6 +11,7 @@ import Statistics from './pages/Statistics';
 import Settings from './pages/Settings';
 import FAQ from './pages/FAQ';
 import MathTutoring from './pages/MathTutoring';
+import Subjects from './pages/Subjects';
 import MathLearning from './pages/subjects/MathLearning';
 import QuadraticFunctions from './pages/subjects/math/QuadraticFunctions';
 
@@ -28,10 +29,12 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/math-tutoring" element={<MathTutoring />} />
-            <Route path="/subjects/math" element={<MathLearning />} />
-            <Route path="/subjects/math/quadratic-functions" element={<QuadraticFunctions />} />
+
             <Route path="/" element={<MainLayout />}>
               <Route index element={<Dashboard />} />
+              <Route path="subjects" element={<Subjects />} />
+              <Route path="subjects/math" element={<MathLearning />} />
+              <Route path="subjects/math/quadratic-functions" element={<QuadraticFunctions />} />
               <Route path="new" element={<NewSession />} />
               <Route path="homework/:id" element={<HomeworkDetailPage />} />
               <Route path="history" element={<History />} />
