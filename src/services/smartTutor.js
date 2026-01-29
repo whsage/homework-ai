@@ -16,7 +16,7 @@ import { KnowledgeGraphHelper } from '../data/mathKnowledgeGraph';
  * 调用Gemini API
  * 注意: 这里假设你已经有geminiAPI.js,如果没有需要创建
  */
-async function callGeminiAPI(prompt) {
+export async function callGeminiAPI(prompt) {
     try {
         const response = await fetch('/api/gemini', {
             method: 'POST',
