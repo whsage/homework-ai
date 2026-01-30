@@ -7,7 +7,6 @@
  * 3. 实时调整难度
  */
 
-import { supabase } from '../supabase';
 import { callAI } from './aiService'; // 复用API调用
 import { SmartTutor } from './smartTutor';
 import { KnowledgeAssessment } from './knowledgeAssessment';
@@ -25,7 +24,7 @@ export class SmartPractice {
         try {
             // 1. 获取诊断信息(包含掌握度和薄弱点)
             const diagnosis = await KnowledgeAssessment.diagnose(userId, topicId);
-            const { currentMastery, weakSkills, topic } = diagnosis;
+            const { currentMastery, weakSkills } = diagnosis;
 
             // 2. 计算目标难度 (ZPD理论:略高于当前水平)
             const difficulty = this.calculateDifficulty(currentMastery);

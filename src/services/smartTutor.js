@@ -51,14 +51,14 @@ export class SmartTutor {
             // aiService 的 sendMessageToTutor 内部有自己的 prompt 构建逻辑 (SYSTEM_PROMPT)
 
             // 临时方案：直接复用 sendMessageToTutor，但放入我们的上下文作为前缀
-            const enhancedUserMessage = `[系统上下文: ${systemPrompt}]\n\n用户消息: ${userMessage}`;
+            const enhancedUserMessage = `[系统指令: ${systemPrompt}]\n\n用户消息: ${userMessage}`;
 
             // 更好的方案是将 buildEnhancedPrompt 的结果作为 system prompt
             // 但 aiService 目前硬编码了 SYSTEM_PROMPT.
             // 我们先尝试直接调用，利用 aiService 的通用能力，稍后可能需要重构 aiService 以支持自定义 system prompt.
 
             // 考虑到 SmartChat 传进来的 message 可能已经是处理过的，我们直接调用：
-            const response = await sendMessageToTutor(userMessage, conversationHistory);
+            const response = await sendMessageToTutor(enhancedUserMessage, conversationHistory);
 
             // response 是一个对象 { analysis, hint, guidance, question ... }
             // SmartChat 期望返回字符串。我们需要格式化这个 JSON 响应为对话文本。
@@ -528,6 +528,7 @@ ${formattedHistory || '(首次对话)'}
             const context = await this.getLearningContext(userId, topicId);
             const history = await this.getConversationHistory(userId, topicId, 20);
 
+            /*
             const prompt = `
 基于以下学习对话,生成一个简短的学习总结。
 
@@ -543,6 +544,7 @@ ${history.map(m => `${m.role}: ${m.content}`).join('\n')}
 
 格式: 简洁、友好、鼓励性
 `;
+            */
 
             // const summary = await callGeminiAPI(prompt);
             const summary = "学习总结功能正在升级中..."; // 临时占位，因为 callGeminiAPI 已移除
