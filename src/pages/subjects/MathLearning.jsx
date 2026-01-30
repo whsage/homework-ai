@@ -66,46 +66,47 @@ const MathLearning = () => {
             color: 'from-blue-500 to-indigo-500',
             modules: [
                 {
-                    id: 'algebra',
-                    name: '代数基础',
-                    icon: '📐',
+                    id: 'grade-7',
+                    name: '七年级',
+                    icon: 'One', // Placeholder, text renders better usually or specific icon
                     topics: [
-                        { id: 'rational-numbers', name: '有理数', difficulty: '基础', time: '30分钟', important: true },
-                        { id: 'polynomials', name: '整式', difficulty: '基础', time: '35分钟', important: true },
-                        { id: 'factorization', name: '因式分解', difficulty: '提高', time: '40分钟', important: true }
+                        { id: 'mid-7-1-rational-numbers', name: '有理数', difficulty: '基础', time: '30分钟', important: true },
+                        { id: 'mid-7-1-algebraic-expressions', name: '整式的加减', difficulty: '基础', time: '35分钟', important: true },
+                        { id: 'mid-7-1-equations', name: '一元一次方程', difficulty: '重点', time: '40分钟', important: true },
+                        { id: 'mid-7-1-geometry-basic', name: '几何图形初步', difficulty: '基础', time: '30分钟', important: false },
+                        { id: 'mid-7-2-inequalities', name: '不等式与不等式组', difficulty: '提高', time: '35分钟', important: true },
+                        { id: 'mid-7-2-statistics', name: '数据的收集、整理与描述', difficulty: '基础', time: '25分钟', important: false },
+                        { id: 'mid-7-2-plane-coordinates', name: '平面直角坐标系', difficulty: '基础', time: '30分钟', important: true }
                     ]
                 },
                 {
-                    id: 'equations',
-                    name: '方程与不等式',
-                    icon: '⚖️',
+                    id: 'grade-8',
+                    name: '八年级',
+                    icon: 'Two',
                     topics: [
-                        { id: 'linear-equations', name: '一元一次方程', difficulty: '基础', time: '30分钟', important: true },
-                        { id: 'linear-equation-systems', name: '二元一次方程组', difficulty: '提高', time: '40分钟', important: true },
-                        { id: 'quadratic-equations', name: '一元二次方程', difficulty: '提高', time: '45分钟', important: true },
-                        { id: 'inequalities', name: '不等式', difficulty: '提高', time: '35分钟', important: false }
+                        { id: 'mid-8-1-triangles', name: '三角形', difficulty: '重点', time: '45分钟', important: true },
+                        { id: 'mid-8-1-factorization', name: '因式分解', difficulty: '提高', time: '40分钟', important: true },
+                        { id: 'mid-8-1-fractions', name: '分式', difficulty: '提高', time: '35分钟', important: false },
+                        { id: 'mid-8-1-binary-equations', name: '二元一次方程组', difficulty: '基础', time: '35分钟', important: true },
+                        { id: 'mid-8-2-quadrilaterals', name: '四边形', difficulty: '提高', time: '45分钟', important: true },
+                        { id: 'mid-8-2-functions', name: '函数', difficulty: '重点', time: '40分钟', important: true },
+                        { id: 'mid-8-2-linear-functions', name: '一次函数', difficulty: '重点', time: '50分钟', important: true },
+                        { id: 'mid-8-2-data-analysis', name: '数据的分析', difficulty: '基础', time: '30分钟', important: false }
                     ]
                 },
                 {
-                    id: 'functions',
-                    name: '函数',
-                    icon: '📈',
+                    id: 'grade-9',
+                    name: '九年级',
+                    icon: 'Three',
                     topics: [
-                        { id: 'function-concept', name: '函数的概念', difficulty: '基础', time: '30分钟', important: true },
-                        { id: 'linear-functions', name: '一次函数', difficulty: '提高', time: '40分钟', important: true },
-                        { id: 'inverse-functions', name: '反比例函数', difficulty: '提高', time: '35分钟', important: false },
-                        { id: 'quadratic-functions', name: '二次函数', difficulty: '重点', time: '50分钟', important: true }
-                    ]
-                },
-                {
-                    id: 'geometry',
-                    name: '平面几何',
-                    icon: '🔺',
-                    topics: [
-                        { id: 'triangles', name: '三角形', difficulty: '基础', time: '40分钟', important: true },
-                        { id: 'quadrilaterals', name: '四边形', difficulty: '提高', time: '35分钟', important: false },
-                        { id: 'circles', name: '圆', difficulty: '重点', time: '45分钟', important: true },
-                        { id: 'similarity-congruence', name: '相似与全等', difficulty: '重点', time: '50分钟', important: true }
+                        { id: 'mid-9-1-quadratic-equations', name: '一元二次方程', difficulty: '重点', time: '45分钟', important: true },
+                        { id: 'mid-9-1-quadratic-functions', name: '二次函数', difficulty: '难点', time: '60分钟', important: true },
+                        { id: 'mid-9-1-rotation', name: '旋转', difficulty: '基础', time: '30分钟', important: false },
+                        { id: 'mid-9-1-circle', name: '圆', difficulty: '难点', time: '55分钟', important: true },
+                        { id: 'mid-9-2-probability', name: '概率初步', difficulty: '基础', time: '25分钟', important: false },
+                        { id: 'mid-9-2-inverse-proportional', name: '反比例函数', difficulty: '提高', time: '40分钟', important: true },
+                        { id: 'mid-9-2-similar', name: '相似', difficulty: '重点', time: '50分钟', important: true },
+                        { id: 'mid-9-2-trigonometry', name: '锐角三角函数', difficulty: '提高', time: '45分钟', important: true }
                     ]
                 }
             ]
@@ -312,7 +313,7 @@ const MathLearning = () => {
                             {filteredModules.map((module) => (
                                 <div key={module.id} className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8">
                                     <div className="flex items-center gap-3 mb-6">
-                                        <div className="text-4xl">{module.icon}</div>
+                                        <div className={`text-4xl ${module.id.startsWith('grade') ? 'font-bold text-slate-300' : ''}`}>{module.icon === 'One' ? '7️⃣' : module.icon === 'Two' ? '8️⃣' : module.icon === 'Three' ? '9️⃣' : module.icon}</div>
                                         <h3 className="text-2xl font-bold text-slate-800 dark:text-white">
                                             {module.name}
                                         </h3>
@@ -323,16 +324,8 @@ const MathLearning = () => {
 
                                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                                         {module.topics.map((topic) => {
-                                            const isReady = topic.id === 'quadratic-functions';
                                             const CardContent = () => (
                                                 <>
-                                                    {/* Coming Soon Badge - Only for non-ready topics */}
-                                                    {!isReady && (
-                                                        <div className="absolute top-3 right-3 px-2 py-1 bg-yellow-400 text-yellow-900 rounded-full text-xs font-bold">
-                                                            即将推出
-                                                        </div>
-                                                    )}
-
                                                     <div className="mb-4">
                                                         <h4 className="text-lg font-bold text-slate-800 dark:text-white mb-2">
                                                             {topic.name}
@@ -357,14 +350,14 @@ const MathLearning = () => {
                                                         </div>
                                                     </div>
 
-                                                    <div className={`flex items-center gap-2 font-semibold text-sm ${isReady ? 'text-indigo-600 dark:text-indigo-400' : 'text-indigo-600 dark:text-indigo-400 opacity-60'}`}>
-                                                        <span>{isReady ? '开始学习' : '即将推出'}</span>
-                                                        <ChevronRight className={`w-4 h-4 ${isReady ? 'group-hover:translate-x-1 transition-transform' : ''}`} />
+                                                    <div className="flex items-center gap-2 font-semibold text-sm text-indigo-600 dark:text-indigo-400">
+                                                        <span>开始学习</span>
+                                                        <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                                     </div>
                                                 </>
                                             );
 
-                                            return isReady ? (
+                                            return (
                                                 <Link
                                                     key={topic.id}
                                                     to={`/subjects/math/${topic.id}`}
@@ -372,13 +365,6 @@ const MathLearning = () => {
                                                 >
                                                     <CardContent />
                                                 </Link>
-                                            ) : (
-                                                <div
-                                                    key={topic.id}
-                                                    className="group relative bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-700 dark:to-slate-600 rounded-xl p-6 hover:shadow-lg transition-all cursor-not-allowed opacity-80"
-                                                >
-                                                    <CardContent />
-                                                </div>
                                             );
                                         })}
                                     </div>

@@ -14,6 +14,7 @@ import MathTutoring from './pages/MathTutoring';
 import Subjects from './pages/Subjects';
 import MathLearning from './pages/subjects/MathLearning';
 import QuadraticFunctions from './pages/subjects/math/QuadraticFunctions';
+import MathTopicPage from './pages/subjects/math/MathTopicPage';
 
 
 import { ThemeProvider } from './context/ThemeContext';
@@ -35,6 +36,7 @@ function App() {
               <Route path="subjects" element={<Subjects />} />
               <Route path="subjects/math" element={<MathLearning />} />
               <Route path="subjects/math/quadratic-functions" element={<QuadraticFunctions />} />
+              <Route path="subjects/math/:topicId" element={<MathTopicPage />} />
               <Route path="new" element={<NewSession />} />
               <Route path="homework/:id" element={<HomeworkDetailPage />} />
               <Route path="history" element={<History />} />
