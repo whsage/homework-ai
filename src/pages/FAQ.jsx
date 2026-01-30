@@ -1,12 +1,12 @@
 import { HelpCircle, BookOpen, DollarSign, Shield, Zap, MessageCircle } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
-const FAQItem = ({ question, answer, icon: Icon }) => {
+const FAQItem = ({ question, answer, icon: IconComponent }) => {
     return (
         <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center shrink-0">
-                    <Icon className="text-indigo-600 dark:text-indigo-400" size={24} />
+                    <IconComponent className="text-indigo-600 dark:text-indigo-400" size={24} />
                 </div>
                 <div>
                     <h3 className="font-semibold text-slate-800 dark:text-white mb-2">{question}</h3>

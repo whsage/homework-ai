@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../supabase';
 import { Calendar, Clock, BookOpen, TrendingUp, Award, Flame, BarChart3, PieChart, Hash } from 'lucide-react';
 
-import { useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
 const Statistics = () => {
@@ -19,114 +18,114 @@ const Statistics = () => {
         knowledgePoints: []
     });
 
-    const fetchStatistics = async () => {
-        setLoading(true);
-        const { data: { user } } = await supabase.auth.getUser();
+    useEffect(() => {
+        const fetchStatistics = async () => {
+            setLoading(true);
+            const { data: { user } } = await supabase.auth.getUser();
 
-        if (user) {
-            // 获取累积统计数据（包括已删除的作业）
-            const { data: userStats } = await supabase
-                .from('user_stats')
-                .select('*')
-                .eq('user_id', user.id)
-                .single();
+            if (user) {
+                // 获取累积统计数据（包括已删除的作业）
+                const { data: userStats } = await supabase
+                    .from('user_stats')
+                    .select('*')
+                    .eq('user_id', user.id)
+                    .single();
 
-            // 获取所有会话（用于学科分布和知识点统计）
-            const { data: sessions } = await supabase
-                .from('sessions')
-                .select('*')
-                .eq('user_id', user.id)
-                .order('created_at', { ascending: false });
+                // 获取所有会话（用于学科分布和知识点统计）
+                const { data: sessions } = await supabase
+                    .from('sessions')
+                    .select('*')
+                    .eq('user_id', user.id)
+                    .order('created_at', { ascending: false });
 
-            if (sessions) {
-                // 使用累积统计数据
-                const totalSessions = userStats?.total_sessions_created || sessions.length;
+                if (sessions) {
+                    // 使用累积统计数据
+                    const totalSessions = userStats?.total_sessions_created || sessions.length;
 
-                // 学科中文映射
-                const subjectNameMap = {
-                    'Math': '数学',
-                    'Chinese': '语文',
-                    'English': '英语',
-                    'Physics': '物理',
-                    'Chemistry': '化学',
-                    'Biology': '生物',
-                    'History': '历史',
-                    'Geography': '地理',
-                    'General': '其他'
-                };
+                    // 学科中文映射
+                    const subjectNameMap = {
+                        'Math': '数学',
+                        'Chinese': '语文',
+                        'English': '英语',
+                        'Physics': '物理',
+                        'Chemistry': '化学',
+                        'Biology': '生物',
+                        'History': '历史',
+                        'Geography': '地理',
+                        'General': '其他'
+                    };
 
-                // 计算学科分布 - 基于当前会话（累积效果）
-                const subjectMap = {};
-                sessions.forEach(session => {
-                    const subjectKey = session.subject || 'General';
-                    const subjectName = subjectNameMap[subjectKey] || subjectKey;
-                    subjectMap[subjectName] = (subjectMap[subjectName] || 0) + 1;
-                });
-
-                // 按数量排序
-                const subjectDistribution = Object.entries(subjectMap)
-                    .map(([name, count]) => ({
-                        name,
-                        count,
-                        percentage: sessions.length > 0 ? ((count / sessions.length) * 100).toFixed(1) : '0'
-                    }))
-                    .sort((a, b) => b.count - a.count);
-
-                // 计算连续学习天数
-                let streak = 0;
-                const today = new Date();
-                today.setHours(0, 0, 0, 0);
-
-                for (let i = 0; i < 365; i++) {
-                    const checkDate = new Date(today);
-                    checkDate.setDate(checkDate.getDate() - i);
-                    const hasSession = sessions.some(s => {
-                        const sessionDate = new Date(s.created_at);
-                        sessionDate.setHours(0, 0, 0, 0);
-                        return sessionDate.getTime() === checkDate.getTime();
+                    // 计算学科分布 - 基于当前会话（累积效果）
+                    const subjectMap = {};
+                    sessions.forEach(session => {
+                        const subjectKey = session.subject || 'General';
+                        const subjectName = subjectNameMap[subjectKey] || subjectKey;
+                        subjectMap[subjectName] = (subjectMap[subjectName] || 0) + 1;
                     });
 
-                    if (hasSession) {
-                        streak++;
-                    } else if (i > 0) {
-                        break;
-                    }
-                }
+                    // 按数量排序
+                    const subjectDistribution = Object.entries(subjectMap)
+                        .map(([name, count]) => ({
+                            name,
+                            count,
+                            percentage: sessions.length > 0 ? ((count / sessions.length) * 100).toFixed(1) : '0'
+                        }))
+                        .sort((a, b) => b.count - a.count);
 
-                // 统计知识点标签（累积）
-                const tagMap = {};
-                sessions.forEach(s => {
-                    if (s.tags && Array.isArray(s.tags)) {
-                        s.tags.forEach(tag => {
-                            tagMap[tag] = (tagMap[tag] || 0) + 1;
+                    // 计算连续学习天数
+                    let streak = 0;
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+
+                    for (let i = 0; i < 365; i++) {
+                        const checkDate = new Date(today);
+                        checkDate.setDate(checkDate.getDate() - i);
+                        const hasSession = sessions.some(s => {
+                            const sessionDate = new Date(s.created_at);
+                            sessionDate.setHours(0, 0, 0, 0);
+                            return sessionDate.getTime() === checkDate.getTime();
                         });
+
+                        if (hasSession) {
+                            streak++;
+                        } else if (i > 0) {
+                            break;
+                        }
                     }
-                });
 
-                const knowledgePoints = Object.entries(tagMap)
-                    .map(([name, count]) => ({ name, count }))
-                    .sort((a, b) => b.count - a.count)
-                    .slice(0, 30); // 展示前30个热门知识点
+                    // 统计知识点标签（累积）
+                    const tagMap = {};
+                    sessions.forEach(s => {
+                        if (s.tags && Array.isArray(s.tags)) {
+                            s.tags.forEach(tag => {
+                                tagMap[tag] = (tagMap[tag] || 0) + 1;
+                            });
+                        }
+                    });
 
-                // 计算累积知识点总数
-                const totalKnowledgePoints = Object.keys(tagMap).length;
+                    const knowledgePoints = Object.entries(tagMap)
+                        .map(([name, count]) => ({ name, count }))
+                        .sort((a, b) => b.count - a.count)
+                        .slice(0, 30); // 展示前30个热门知识点
 
-                setStats({
-                    totalSessions,
-                    totalTime: totalSessions * 25, // 假设每个会话平均25分钟
-                    totalKnowledgePoints,
-                    thisWeekTime: sessions.length * 25,
-                    streak,
-                    subjectDistribution,
-                    recentActivity: sessions.slice(0, 7),
-                    knowledgePoints
-                });
+                    // 计算累积知识点总数
+                    const totalKnowledgePoints = Object.keys(tagMap).length;
+
+                    setStats({
+                        totalSessions,
+                        totalTime: totalSessions * 25, // 假设每个会话平均25分钟
+                        totalKnowledgePoints,
+                        thisWeekTime: sessions.length * 25,
+                        streak,
+                        subjectDistribution,
+                        recentActivity: sessions.slice(0, 7),
+                        knowledgePoints
+                    });
+                }
             }
-        }
-        setLoading(false);
-    };
+            setLoading(false);
+        };
 
-    useEffect(() => {
         fetchStatistics();
     }, []);
 

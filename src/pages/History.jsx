@@ -50,7 +50,6 @@ const History = () => {
     const [isDeleting, setIsDeleting] = useState(false);
     const [isExporting, setIsExporting] = useState(false);
     const [showExportMenu, setShowExportMenu] = useState(false);
-    const [totalCreated, setTotalCreated] = useState(0); // 累积总数
 
     // 提取所有唯一的学科
     const allSubjects = [...new Set(sessions.map(s => s.subject || 'General').filter(Boolean))];
@@ -106,7 +105,7 @@ const History = () => {
             }
 
             // 获取当前会话列表
-            const { data, error } = await supabase
+            const { data } = await supabase
                 .from('sessions')
                 .select('*')
                 .eq('user_id', user.id)
@@ -116,14 +115,7 @@ const History = () => {
                 setSessions(data);
             }
 
-            // 获取累积总数（包含已删除）
-            const { data: userStats } = await supabase
-                .from('user_stats')
-                .select('total_sessions_created')
-                .eq('user_id', user.id)
-                .single();
 
-            setTotalCreated(userStats?.total_sessions_created || 0);
             setLoading(false);
         };
 

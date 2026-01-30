@@ -1,4 +1,5 @@
 import { Icons, PracticeProblem, Link, React, generateDefaultContent } from './common';
+import { mathKnowledgeGraph } from '../mathKnowledgeGraph';
 
 const {
     Lightbulb, Target, TrendingUp, Clock, Star, Brain, CheckCircle, Sparkles, ChevronRight, Calculator, Award
@@ -786,6 +787,10 @@ export const grade9Content = {
         }
     }
 };
+
+// Derive grade9Topics from the knowledge graph
+const grade9Data = mathKnowledgeGraph.middle.grade9.semesters;
+const grade9Topics = [...grade9Data.first, ...grade9Data.second];
 
 // 如果有没覆盖到的，这里可以自动填充（目前已全部手动覆盖）
 grade9Topics.forEach(t => {

@@ -25,10 +25,10 @@ const getSubjectConfig = (subject) => {
     return SUBJECT_CONFIG[subject] || SUBJECT_CONFIG['General'];
 };
 
-const StatCard = ({ icon: Icon, label, value, color }) => (
+const StatCard = ({ icon: IconComponent, label, value, color }) => (
     <div className="bg-white p-3 md:p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-2 md:gap-4 dark:bg-slate-800 dark:border-slate-700">
         <div className={`w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center ${color} flex-shrink-0`}>
-            <Icon size={20} className="text-white md:w-6 md:h-6" />
+            <IconComponent size={20} className="text-white md:w-6 md:h-6" />
         </div>
         <div className="text-center md:text-left">
             <p className="text-slate-500 dark:text-slate-400 text-xs md:text-sm font-medium">{label}</p>
