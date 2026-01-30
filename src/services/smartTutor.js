@@ -525,10 +525,10 @@ ${formattedHistory || '(首次对话)'}
      */
     static async generateSummary(userId, topicId) {
         try {
+            /*
             const context = await this.getLearningContext(userId, topicId);
             const history = await this.getConversationHistory(userId, topicId, 20);
-
-            /*
+            
             const prompt = `
 基于以下学习对话,生成一个简短的学习总结。
 
