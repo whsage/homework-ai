@@ -339,7 +339,7 @@ const Dashboard = () => {
                                 在线作业辅导
                             </span>
                             <Link
-                                to="/math-tutoring"
+                                to="/subjects/math"
                                 className="px-3 py-1 bg-gradient-to-r from-indigo-500 to-blue-500 text-white rounded-full border border-indigo-600 hover:from-indigo-600 hover:to-blue-600 hover:shadow-lg transition-all cursor-pointer"
                             >
                                 数学作业辅导 →

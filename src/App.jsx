@@ -10,7 +10,7 @@ import History from './pages/History';
 import Statistics from './pages/Statistics';
 import Settings from './pages/Settings';
 import FAQ from './pages/FAQ';
-import MathTutoring from './pages/MathTutoring';
+
 import Subjects from './pages/Subjects';
 import MathLearning from './pages/subjects/MathLearning';
 import QuadraticFunctions from './pages/subjects/math/QuadraticFunctions';
@@ -28,7 +28,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/reset-password" element={<ResetPassword />} />
-            <Route path="/math-tutoring" element={<MathTutoring />} />
+
 
             <Route path="/" element={<MainLayout />}>
               <Route index element={<Dashboard />} />
