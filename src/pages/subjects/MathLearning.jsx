@@ -20,7 +20,6 @@ import {
     Lightbulb,
     Microscope
 } from 'lucide-react';
-import { useLanguage } from '../../context/LanguageContext';
 
 const MathLearning = () => {
     const [activeGrade, setActiveGrade] = useState('middle');

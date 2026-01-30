@@ -19,10 +19,6 @@ const Statistics = () => {
         knowledgePoints: []
     });
 
-    useEffect(() => {
-        fetchStatistics();
-    }, []);
-
     const fetchStatistics = async () => {
         setLoading(true);
         const { data: { user } } = await supabase.auth.getUser();
@@ -129,6 +125,10 @@ const Statistics = () => {
         }
         setLoading(false);
     };
+
+    useEffect(() => {
+        fetchStatistics();
+    }, []);
 
     // 获取成就徽章
     const getAchievements = () => {
