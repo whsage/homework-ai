@@ -17,6 +17,32 @@ if (API_KEY) {
     console.warn("No API Key found. AI features disabled.");
 }
 
+/**
+ * 通用AI调用接口
+ * @param {string} prompt - 提示词
+ * @param {boolean} jsonMode - 是否强制JSON格式
+ * @returns {Promise<string>} AI响应文本
+ */
+export const callAI = async (prompt, jsonMode = false) => {
+    if (!client) {
+        console.warn("No API Key found. Returning mock response.");
+        return jsonMode ? "{}" : "模拟响应: 请配置API Key";
+    }
+
+    try {
+        const completion = await client.chat.completions.create({
+            model: "qwen-plus",
+            messages: [{ role: "user", content: prompt }],
+            response_format: jsonMode ? { type: "json_object" } : { type: "text" },
+            temperature: 0.7
+        });
+        return completion.choices[0].message.content;
+    } catch (error) {
+        console.error("AI API Error:", error);
+        throw error;
+    }
+};
+
 const SYSTEM_PROMPT = `📚 你是一位具有启发性、温暖且逻辑严密的"全科辅导老师"。你的核心使命是引导学生思考，而非直接灌输答案。
 
 ═══════════════════════════════════════════════════════════════
