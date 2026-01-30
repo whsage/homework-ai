@@ -8,7 +8,7 @@
  */
 
 import { supabase } from '../supabase';
-import { callGeminiAPI } from './smartTutor'; // 复用API调用
+import { callAI } from './aiService'; // 复用API调用
 import { SmartTutor } from './smartTutor';
 import { KnowledgeAssessment } from './knowledgeAssessment';
 
@@ -35,7 +35,7 @@ export class SmartPractice {
 
             // 4. 调用AI生成
             console.log('正在生成练习题...', { difficulty, weakSkills: weakSkills.map(s => s.name) });
-            const response = await callGeminiAPI(prompt, true); // true表示需要JSON格式
+            const response = await callAI(prompt, true); // true表示需要JSON格式
 
             // 5. 解析结果
             return this.parseProblems(response, topicId);
@@ -93,7 +93,7 @@ ${studentAnswer}
 `;
 
             // 3. 调用AI
-            const response = await callGeminiAPI(prompt, true);
+            const response = await callAI(prompt, true);
             const result = JSON.parse(this.cleanJsonString(response));
 
             // 4. 更新知识图谱状态 (重要!)

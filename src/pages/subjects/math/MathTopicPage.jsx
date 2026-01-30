@@ -1,0 +1,96 @@
+
+import { useState, useEffect } from 'react';
+import { useParams, Navigate } from 'react-router-dom';
+import {
+    BookOpen,
+    TrendingUp,
+    Calculator,
+    Award,
+    MessageCircle
+} from 'lucide-react';
+
+import TopicLayout from '../../../components/subjects/common/TopicLayout';
+import AIChatSession from '../../../components/subjects/common/AIChatSession';
+import SmartChat from '../../../components/learning/SmartChat';
+import { mathTopicContent } from '../../../data/mathTopicContent';
+
+const MathTopicPage = () => {
+    const { topicId } = useParams();
+    const [activeTab, setActiveTab] = useState('concept');
+    const [showAIChat, setShowAIChat] = useState(false);
+    const [aiContext, setAiContext] = useState(null);
+
+    // 获取当前知识点数据
+    const topicData = mathTopicContent[topicId];
+
+    // 如果找不到数据，重定向到数学首页
+    if (!topicData) {
+        return <Navigate to="/subjects/math" replace />;
+    }
+
+    const { meta, info, tabs, aiChatTitle, aiChatIntro, aiMessages, aiContext: defaultAiContext } = topicData;
+
+    const handleStartAIChat = (context) => {
+        setAiContext(context || defaultAiContext);
+        setShowAIChat(true);
+    };
+
+    // 默认标签页配置
+    const defaultTabs = [
+        { id: 'concept', label: '核心概念', icon: BookOpen },
+        { id: 'properties', label: '性质', icon: TrendingUp },
+        { id: 'examples', label: '典型例题', icon: Calculator },
+        { id: 'practice', label: '练习题', icon: Award }
+    ];
+
+    return (
+        <TopicLayout
+            meta={meta}
+            info={info}
+            tabs={defaultTabs}
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+            actions={
+                <button
+                    onClick={() => handleStartAIChat(null)}
+                    className="hidden md:flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                >
+                    <MessageCircle className="w-5 h-5" />
+                    {showAIChat ? '关闭AI对话' : 'AI智能对话'}
+                </button>
+            }
+        >
+            {/* 智能对话组件 */}
+            {showAIChat && (
+                <div className="mb-8 animate-fadeIn">
+                    <SmartChat
+                        topicId={info.title}
+                        topicName={info.title}
+                        initialContext={aiContext}
+                        onClose={() => setShowAIChat(false)}
+                    />
+                </div>
+            )}
+
+            {/* AI互动学习引导 (仅在概念标签页显示) */}
+            {activeTab === 'concept' && aiMessages && (
+                <div className="mb-8">
+                    {/* 如果有 AI Messages 才显示这个特定的 Chat Session 预览 */}
+                    <AIChatSession
+                        title={aiChatTitle || "AI互动学习"}
+                        intro={aiChatIntro || "点击开始，AI导师将引导你深入理解。"}
+                        messages={aiMessages}
+                        onStart={() => handleStartAIChat(defaultAiContext)}
+                    />
+                </div>
+            )}
+
+            {/* 标签页内容渲染 */}
+            <div className="mt-8">
+                {tabs[activeTab] || <div className="text-center p-8 text-slate-500">内容建设中...</div>}
+            </div>
+        </TopicLayout>
+    );
+};
+
+export default MathTopicPage;

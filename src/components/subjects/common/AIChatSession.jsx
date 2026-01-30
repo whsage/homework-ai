@@ -1,6 +1,6 @@
 import { MessageCircle, Sparkles } from 'lucide-react';
 
-const AIChatSession = ({ title, summary, messages, userAvatar = "👤", aiAvatar = "🤖" }) => {
+const AIChatSession = ({ title, summary, messages, onStart, userAvatar = "👤", aiAvatar = "🤖" }) => {
     return (
         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
             <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
@@ -47,8 +47,11 @@ const AIChatSession = ({ title, summary, messages, userAvatar = "👤", aiAvatar
                     </div>
                 )}
 
-                <button className="w-full py-4 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105 cursor-not-allowed opacity-60">
-                    开始AI互动学习（即将推出）
+                <button
+                    onClick={onStart}
+                    className="w-full py-4 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                >
+                    开始AI互动学习
                 </button>
             </div>
         </div>

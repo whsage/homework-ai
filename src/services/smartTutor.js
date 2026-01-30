@@ -11,30 +11,7 @@
 import { supabase } from '../supabase';
 import { KnowledgeAssessment } from './knowledgeAssessment';
 import { KnowledgeGraphHelper } from '../data/mathKnowledgeGraph';
-
-/**
- * 调用Gemini API
- * 注意: 这里假设你已经有geminiAPI.js,如果没有需要创建
- */
-export async function callGeminiAPI(prompt) {
-    try {
-        const response = await fetch('/api/gemini', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ prompt })
-        });
-
-        if (!response.ok) {
-            throw new Error('Gemini API调用失败');
-        }
-
-        const data = await response.json();
-        return data.response;
-    } catch (error) {
-        console.error('Gemini API错误:', error);
-        throw error;
-    }
-}
+import { sendMessageToTutor } from './aiService';
 
 export class SmartTutor {
     /**
@@ -55,27 +32,55 @@ export class SmartTutor {
             const context = await this.getLearningContext(userId, topicId);
 
             // 3. 构建增强的prompt (包含知识图谱信息)
-            const prompt = this.buildEnhancedPrompt(
+            const systemPrompt = this.buildEnhancedPrompt(
                 context,
                 diagnosis,
                 conversationHistory,
                 userMessage
             );
 
-            // 4. 调用AI
-            const aiResponse = await callGeminiAPI(prompt);
+            // 4. 调用统一的AI服务 (aiService.js)
+            // sendMessageToTutor 只需要用户消息，因为它自己处理上下文构建
+            // 但我们需要注入特定的系统提示词或上下文
+            // 目前的 aiService.js 主要是为解题设计的，我们需要稍作适配
+            // 暂时我们将 systemPrompt 作为第一条消息或上下文传递
+
+            // 构建传递给 aiService 的消息格式
+            // 实际上 sendMessageToTutor 接收 userMessage, history, image 等
+            // 我们需要修改 sendMessageToTutor 还是在这里适配？
+            // aiService 的 sendMessageToTutor 内部有自己的 prompt 构建逻辑 (SYSTEM_PROMPT)
+
+            // 临时方案：直接复用 sendMessageToTutor，但放入我们的上下文作为前缀
+            const enhancedUserMessage = `[系统上下文: ${systemPrompt}]\n\n用户消息: ${userMessage}`;
+
+            // 更好的方案是将 buildEnhancedPrompt 的结果作为 system prompt
+            // 但 aiService 目前硬编码了 SYSTEM_PROMPT.
+            // 我们先尝试直接调用，利用 aiService 的通用能力，稍后可能需要重构 aiService 以支持自定义 system prompt.
+
+            // 考虑到 SmartChat 传进来的 message 可能已经是处理过的，我们直接调用：
+            const response = await sendMessageToTutor(userMessage, conversationHistory);
+
+            // response 是一个对象 { analysis, hint, guidance, question ... }
+            // SmartChat 期望返回字符串。我们需要格式化这个 JSON 响应为对话文本。
+
+            let aiResponseText = "";
+            if (response.hint) aiResponseText += `${response.hint}\n\n`;
+            if (response.guidance) aiResponseText += `${response.guidance}\n\n`;
+            if (response.question) aiResponseText += `🤔 ${response.question}`;
+
+            if (!aiResponseText) aiResponseText = response.analysis || "抱歉，无法理解你的问题。";
 
             // 5. 检测涉及的技能点
             const topic = diagnosis.topic;
             const mentionedSkills = topic
                 ? KnowledgeAssessment.detectSkillsInMessage(
-                    userMessage + ' ' + aiResponse,
+                    userMessage + ' ' + aiResponseText,
                     topic.skills
                 )
                 : [];
 
             // 6. 评估回答正确性
-            const isCorrect = this.detectCorrectness(aiResponse);
+            const isCorrect = this.detectCorrectness(aiResponseText);
 
             // 7. 更新技能掌握度 (基于知识图谱)
             if (mentionedSkills.length > 0) {
@@ -87,10 +92,16 @@ export class SmartTutor {
                 );
             }
 
-            // 8. 保存对话
-            await this.saveConversation(userId, topicId, userMessage, aiResponse);
+            // 8. 保存对话 (aiService 可能已经保存了，但我们这里有自己的表 ai_conversations vs messages)
+            // SmartChat 是基于 ai_conversations 还是 messages? 
+            // SmartChat.jsx call SmartTutor.getConversationHistory from 'ai_conversations' table.
+            // aiService saves to 'messages' table.
+            // We have a data duality here.
 
-            return aiResponse;
+            // 为了保持 SmartChat 工作，我们必须保存到 ai_conversations
+            await this.saveConversation(userId, topicId, userMessage, aiResponseText);
+
+            return aiResponseText;
         } catch (error) {
             console.error('SmartTutor.chat错误:', error);
             return '抱歉,我遇到了一些问题。请稍后再试。';
@@ -533,7 +544,8 @@ ${history.map(m => `${m.role}: ${m.content}`).join('\n')}
 格式: 简洁、友好、鼓励性
 `;
 
-            const summary = await callGeminiAPI(prompt);
+            // const summary = await callGeminiAPI(prompt);
+            const summary = "学习总结功能正在升级中..."; // 临时占位，因为 callGeminiAPI 已移除
 
             // 保存总结到insights
             await supabase

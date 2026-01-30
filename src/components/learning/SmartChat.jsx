@@ -15,7 +15,7 @@ import { KnowledgeAssessment } from '../../services/knowledgeAssessment';
 import { useUser } from '../../context/UserContext';
 import SmartPracticeSession from './SmartPracticeSession'; // 导入练习组件
 
-const SmartChat = ({ topicId, topicName, onClose }) => {
+const SmartChat = ({ topicId, topicName, onClose, initialContext }) => {
     const { user } = useUser();
     const [mode, setMode] = useState('chat'); // 'chat' | 'practice'
     const [messages, setMessages] = useState([]);
@@ -30,7 +30,7 @@ const SmartChat = ({ topicId, topicName, onClose }) => {
     // 初始化:加载历史对话或AI打招呼
     useEffect(() => {
         initializeChat();
-    }, [topicId]);
+    }, [topicId, initialContext]);
 
     // 加载诊断信息和技能进度
     useEffect(() => {
@@ -46,6 +46,22 @@ const SmartChat = ({ topicId, topicName, onClose }) => {
         setInitializing(true);
 
         try {
+            // 如果有特定的初始上下文（场景），优先使用上下文启动
+            if (initialContext) {
+                const greeting = await SmartTutor.chat(
+                    user.id,
+                    topicId,
+                    `[系统指令: ${initialContext}]`,
+                    []
+                );
+
+                setMessages([
+                    { role: 'assistant', content: greeting, timestamp: new Date().toISOString() }
+                ]);
+                setInitializing(false);
+                return;
+            }
+
             // 尝试加载历史对话
             const history = await SmartTutor.getConversationHistory(user.id, topicId, 10);
 
