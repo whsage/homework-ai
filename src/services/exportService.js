@@ -47,7 +47,7 @@ const getSessionMessages = async (sessionId) => {
                     hint: parsed.hint || '',
                     guidance: parsed.guidance || ''
                 };
-            } catch (_e) {
+            } catch {
                 content = msg.content;
             }
         }
