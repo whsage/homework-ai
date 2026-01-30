@@ -380,7 +380,7 @@ export class KnowledgeAssessment {
     /**
      * 获取学生的学习统计
      */
-    static async getStudentStats(userId, stage = 'all') {
+    static async getStudentStats(userId) {
         try {
             const { data: snapshots } = await supabase
                 .from('topic_snapshots')

@@ -1,6 +1,5 @@
 import { supabase } from '../supabase';
 import { Document, Paragraph, TextRun, ImageRun, HeadingLevel, AlignmentType, Packer } from 'docx';
-import { jsPDF } from 'jspdf';
 
 /**
  * 导出服务 - 处理作业会话的批量导出
@@ -48,7 +47,7 @@ const getSessionMessages = async (sessionId) => {
                     hint: parsed.hint || '',
                     guidance: parsed.guidance || ''
                 };
-            } catch (e) {
+            } catch (_e) {
                 content = msg.content;
             }
         }
@@ -92,7 +91,7 @@ export const exportSessionAsMarkdown = async (session) => {
     markdown += `**消息数量**: ${messages.length}  \n\n`;
     markdown += `---\n\n`;
 
-    messages.forEach((msg, index) => {
+    messages.forEach((msg) => {
         const role = msg.role === 'user' ? '👤 学生' : '🤖 AI导师';
         const time = formatTimestamp(msg.timestamp);
 
@@ -540,12 +539,4 @@ export const exportSessionAsPDF = async (session) => {
     URL.revokeObjectURL(url);
 };
 
-/**
- * HTML 转义函数，防止 XSS
- */
-const escapeHtml = (text) => {
-    if (!text) return '';
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML.replace(/\n/g, '<br>');
-};
+

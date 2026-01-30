@@ -16,6 +16,7 @@ const sampleSession = {
     user_id: 'user123'
 };
 
+/*
 // 示例消息数据
 const sampleMessages = [
     {
@@ -59,6 +60,7 @@ const sampleMessages = [
         image_url: null
     }
 ];
+*/
 
 /**
  * 测试 JSON 导出
