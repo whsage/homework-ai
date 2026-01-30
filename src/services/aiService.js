@@ -424,15 +424,6 @@ const getUserContextInstruction = async () => {
     }
 };
 
-// Helper function to convert file to base64
-const fileToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-    });
-};
 
 /**
  * 智能图片压缩
@@ -743,7 +734,7 @@ export const sendMessageToTutor = async (userMessage, history = [], imageFile = 
             console.error("Parse error:", e);
 
             // Try to extract any useful text from the malformed response
-            let extractedText = responseText;
+            // let extractedText = responseText;
             try {
                 // Try to find the hint or guidance in the malformed JSON
                 const hintMatch = responseText.match(/"hint"\s*:\s*"([^"]+)"/);
@@ -756,7 +747,7 @@ export const sendMessageToTutor = async (userMessage, history = [], imageFile = 
                     question: "能否重新上传一张更清晰的题目图片？",
                     subject: "General"
                 };
-            } catch (extractError) {
+            } catch { // simplified catch
                 parsedResponse = {
                     analysis: "解析失败",
                     hint: "抱歉，我在处理这张图片时遇到了技术问题。😔",

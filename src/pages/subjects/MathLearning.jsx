@@ -25,7 +25,6 @@ import { useLanguage } from '../../context/LanguageContext';
 const MathLearning = () => {
     const [activeGrade, setActiveGrade] = useState('middle');
     const [searchQuery, setSearchQuery] = useState('');
-    const { t } = useLanguage(); // Although not fully used yet, good to have for future
 
     // 辅导内容数据 (来自 MathTutoring)
     const gradeContent = {
