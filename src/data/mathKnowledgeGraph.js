@@ -710,6 +710,7 @@ export const KnowledgeGraphHelper = {
 
     /**
      * 根据ID查找知识点
+     * 支持完整ID (如 'mid-9-1-quadratic-functions') 或简化ID (如 'quadratic-functions')
      */
     findTopicById(topicId) {
         for (const stage of ['elementary', 'middle', 'high']) {
@@ -718,7 +719,13 @@ export const KnowledgeGraphHelper = {
                 const semesters = gradeData.semesters || gradeData.modules;
 
                 for (const semester in semesters) {
-                    const topic = semesters[semester].find(t => t.id === topicId);
+                    // 先尝试精确匹配
+                    let topic = semesters[semester].find(t => t.id === topicId);
+                    if (topic) return topic;
+
+                    // 如果没找到,尝试匹配ID的最后一部分 (URL slug)
+                    // 例如: 'quadratic-functions' 匹配 'mid-9-1-quadratic-functions'
+                    topic = semesters[semester].find(t => t.id.endsWith(topicId) || t.id.endsWith(`-${topicId}`));
                     if (topic) return topic;
                 }
             }

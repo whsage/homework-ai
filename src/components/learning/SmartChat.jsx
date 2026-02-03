@@ -9,11 +9,15 @@
  */
 
 import { useState, useEffect, useRef } from 'react';
-import { MessageCircle, Send, Loader2, Sparkles, Brain, TrendingUp, Target, Award, PenTool } from 'lucide-react';
+import { MessageCircle, Send, Loader2, Sparkles, Brain, TrendingUp, Target, Award, PenTool, Calculator } from 'lucide-react';
 import { SmartTutor } from '../../services/smartTutor';
 import { KnowledgeAssessment } from '../../services/knowledgeAssessment';
 import { useUser } from '../../context/UserContext';
 import SmartPracticeSession from './SmartPracticeSession'; // 导入练习组件
+import ReactMarkdown from 'react-markdown';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css'; // KaTeX样式
 
 const SmartChat = ({ topicId, topicName, onClose, initialContext }) => {
     const { user } = useUser();
@@ -44,6 +48,19 @@ const SmartChat = ({ topicId, topicName, onClose, initialContext }) => {
 
     const initializeChat = async () => {
         setInitializing(true);
+
+        // 检查用户是否登录
+        if (!user || !user.id) {
+            setMessages([
+                {
+                    role: 'assistant',
+                    content: `你好!我是你的AI数学导师 😊\n\n今天我们来学习${topicName},你有什么想问的吗?`,
+                    timestamp: new Date().toISOString()
+                }
+            ]);
+            setInitializing(false);
+            return;
+        }
 
         try {
             // 如果有特定的初始上下文（场景），优先使用上下文启动
@@ -95,6 +112,9 @@ const SmartChat = ({ topicId, topicName, onClose, initialContext }) => {
     };
 
     const loadDiagnosis = async () => {
+        // 如果用户未登录,跳过诊断
+        if (!user || !user.id) return;
+
         try {
             const result = await KnowledgeAssessment.diagnose(user.id, topicId);
             setDiagnosis(result);
@@ -119,9 +139,12 @@ const SmartChat = ({ topicId, topicName, onClose, initialContext }) => {
         setMessages(prev => [...prev, newUserMsg]);
 
         try {
+            // 如果用户未登录,使用临时ID
+            const userId = user?.id || 'guest';
+
             // 获取AI回复
             const aiResponse = await SmartTutor.chat(
-                user.id,
+                userId,
                 topicId,
                 userMessage,
                 messages
@@ -324,6 +347,34 @@ const SmartChat = ({ topicId, topicName, onClose, initialContext }) => {
 
             {/* 输入框 */}
             <div className="smart-chat-input">
+                {/* 快捷按钮 */}
+                <div className="flex gap-2 mb-3">
+                    <button
+                        onClick={() => setInput('请给我一个例子')}
+                        disabled={loading}
+                        className="flex-1 px-3 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-lg text-sm font-medium hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    >
+                        <Calculator className="w-4 h-4" />
+                        示例
+                    </button>
+                    <button
+                        onClick={() => setInput('我想做练习题')}
+                        disabled={loading}
+                        className="flex-1 px-3 py-2 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 rounded-lg text-sm font-medium hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    >
+                        <PenTool className="w-4 h-4" />
+                        练习题
+                    </button>
+                    <button
+                        onClick={() => setInput('请重新讲解一遍')}
+                        disabled={loading}
+                        className="flex-1 px-3 py-2 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded-lg text-sm font-medium hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    >
+                        <MessageCircle className="w-4 h-4" />
+                        重新讲解
+                    </button>
+                </div>
+
                 <div className="flex items-end gap-2">
                     <textarea
                         ref={inputRef}
@@ -376,9 +427,40 @@ const MessageBubble = ({ message }) => {
                     : 'bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-white'
                     }`}
             >
-                <div className="whitespace-pre-wrap break-words">
-                    {message.content}
-                </div>
+                {/* AI消息使用Markdown渲染,用户消息保持纯文本 */}
+                {!isUser ? (
+                    <div className="markdown-content prose prose-sm max-w-none dark:prose-invert">
+                        <ReactMarkdown
+                            remarkPlugins={[remarkMath]}
+                            rehypePlugins={[rehypeKatex]}
+                            components={{
+                                // 自定义样式
+                                p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                                ul: ({ children }) => <ul className="list-disc ml-4 mb-2">{children}</ul>,
+                                ol: ({ children }) => <ol className="list-decimal ml-4 mb-2">{children}</ol>,
+                                li: ({ children }) => <li className="mb-1">{children}</li>,
+                                code: ({ inline, children }) =>
+                                    inline ? (
+                                        <code className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-600 rounded text-sm">
+                                            {children}
+                                        </code>
+                                    ) : (
+                                        <code className="block p-2 bg-slate-200 dark:bg-slate-600 rounded text-sm overflow-x-auto">
+                                            {children}
+                                        </code>
+                                    ),
+                                strong: ({ children }) => <strong className="font-bold text-indigo-600 dark:text-indigo-400">{children}</strong>,
+                                em: ({ children }) => <em className="italic">{children}</em>,
+                            }}
+                        >
+                            {message.content}
+                        </ReactMarkdown>
+                    </div>
+                ) : (
+                    <div className="whitespace-pre-wrap break-words">
+                        {message.content}
+                    </div>
+                )}
 
                 {/* 时间戳 */}
                 <div

@@ -15,7 +15,7 @@ import { sendMessageToTutor } from './aiService';
 
 export class SmartTutor {
     /**
-     * 智能对话 - 核心功能
+     * 智能对话 - 核心功能 (知识点辅导专用)
      * 
      * @param {string} userId - 用户ID
      * @param {string} topicId - 知识点ID
@@ -25,52 +25,40 @@ export class SmartTutor {
      */
     static async chat(userId, topicId, userMessage, conversationHistory = []) {
         try {
-            // 1. 诊断学生水平 (基于知识图谱)
-            const diagnosis = await KnowledgeAssessment.diagnose(userId, topicId);
+            // 1. 诊断学生水平 (基于知识图谱) - 如果失败则使用默认值
+            let diagnosis;
+            try {
+                diagnosis = await KnowledgeAssessment.diagnose(userId, topicId);
+            } catch (diagnosisError) {
+                console.warn('诊断失败,使用默认值:', diagnosisError.message);
+                // 提供默认诊断结果
+                diagnosis = {
+                    topic: {
+                        name: topicId,
+                        skills: ['基础概念', '基本应用'],
+                        difficulty: 0.5
+                    },
+                    currentMastery: 0,
+                    skillBreakdown: {},
+                    weakSkills: [],
+                    prerequisites: [],
+                    readyToLearn: true
+                };
+            }
 
             // 2. 获取学习上下文
             const context = await this.getLearningContext(userId, topicId);
 
-            // 3. 构建增强的prompt (包含知识图谱信息)
-            const systemPrompt = this.buildEnhancedPrompt(
+            // 3. 调用知识点辅导AI (专用服务)
+            const aiResponseText = await this.callKnowledgeTutorAI(
+                userMessage,
+                conversationHistory,
                 context,
                 diagnosis,
-                conversationHistory,
-                userMessage
+                topicId
             );
 
-            // 4. 调用统一的AI服务 (aiService.js)
-            // sendMessageToTutor 只需要用户消息，因为它自己处理上下文构建
-            // 但我们需要注入特定的系统提示词或上下文
-            // 目前的 aiService.js 主要是为解题设计的，我们需要稍作适配
-            // 暂时我们将 systemPrompt 作为第一条消息或上下文传递
-
-            // 构建传递给 aiService 的消息格式
-            // 实际上 sendMessageToTutor 接收 userMessage, history, image 等
-            // 我们需要修改 sendMessageToTutor 还是在这里适配？
-            // aiService 的 sendMessageToTutor 内部有自己的 prompt 构建逻辑 (SYSTEM_PROMPT)
-
-            // 临时方案：直接复用 sendMessageToTutor，但放入我们的上下文作为前缀
-            const enhancedUserMessage = `[系统指令: ${systemPrompt}]\n\n用户消息: ${userMessage}`;
-
-            // 更好的方案是将 buildEnhancedPrompt 的结果作为 system prompt
-            // 但 aiService 目前硬编码了 SYSTEM_PROMPT.
-            // 我们先尝试直接调用，利用 aiService 的通用能力，稍后可能需要重构 aiService 以支持自定义 system prompt.
-
-            // 考虑到 SmartChat 传进来的 message 可能已经是处理过的，我们直接调用：
-            const response = await sendMessageToTutor(enhancedUserMessage, conversationHistory);
-
-            // response 是一个对象 { analysis, hint, guidance, question ... }
-            // SmartChat 期望返回字符串。我们需要格式化这个 JSON 响应为对话文本。
-
-            let aiResponseText = "";
-            if (response.hint) aiResponseText += `${response.hint}\n\n`;
-            if (response.guidance) aiResponseText += `${response.guidance}\n\n`;
-            if (response.question) aiResponseText += `🤔 ${response.question}`;
-
-            if (!aiResponseText) aiResponseText = response.analysis || "抱歉，无法理解你的问题。";
-
-            // 5. 检测涉及的技能点
+            // 4. 检测涉及的技能点
             const topic = diagnosis.topic;
             const mentionedSkills = topic
                 ? KnowledgeAssessment.detectSkillsInMessage(
@@ -79,27 +67,31 @@ export class SmartTutor {
                 )
                 : [];
 
-            // 6. 评估回答正确性
+            // 5. 评估回答正确性
             const isCorrect = this.detectCorrectness(aiResponseText);
 
-            // 7. 更新技能掌握度 (基于知识图谱)
+            // 6. 更新技能掌握度 (基于知识图谱) - 如果失败则跳过
             if (mentionedSkills.length > 0) {
-                await KnowledgeAssessment.updateSkillMastery(
-                    userId,
-                    topicId,
-                    mentionedSkills,
-                    isCorrect
-                );
+                try {
+                    await KnowledgeAssessment.updateSkillMastery(
+                        userId,
+                        topicId,
+                        mentionedSkills,
+                        isCorrect
+                    );
+                } catch (updateError) {
+                    console.warn('更新掌握度失败:', updateError.message);
+                    // 继续执行,不影响对话
+                }
             }
 
-            // 8. 保存对话 (aiService 可能已经保存了，但我们这里有自己的表 ai_conversations vs messages)
-            // SmartChat 是基于 ai_conversations 还是 messages? 
-            // SmartChat.jsx call SmartTutor.getConversationHistory from 'ai_conversations' table.
-            // aiService saves to 'messages' table.
-            // We have a data duality here.
-
-            // 为了保持 SmartChat 工作，我们必须保存到 ai_conversations
-            await this.saveConversation(userId, topicId, userMessage, aiResponseText);
+            // 7. 保存对话到 ai_conversations 表 - 如果失败则跳过
+            try {
+                await this.saveConversation(userId, topicId, userMessage, aiResponseText);
+            } catch (saveError) {
+                console.warn('保存对话失败:', saveError.message);
+                // 继续执行,不影响对话
+            }
 
             return aiResponseText;
         } catch (error) {
@@ -296,6 +288,211 @@ ${formattedHistory || '(首次对话)'}
 
 请用简洁、友好的语言回复学生:
 `;
+    }
+
+    /**
+     * 调用知识点辅导AI (专用服务)
+     * 使用与作业辅导相同的API Key,但使用专门的知识点讲解prompt
+     */
+    static async callKnowledgeTutorAI(userMessage, conversationHistory, context, diagnosis, topicId) {
+        try {
+            // 导入OpenAI client (复用aiService的配置)
+            const OpenAI = (await import('openai')).default;
+            const API_KEY = import.meta.env.VITE_DEEPSEEK_API_KEY;
+
+            if (!API_KEY) {
+                console.warn('No API Key found. Returning fallback response.');
+                return '抱歉,AI服务暂时不可用。请稍后再试。';
+            }
+
+            const client = new OpenAI({
+                apiKey: API_KEY,
+                baseURL: "https://dashscope.aliyuncs.com/compatible-mode/v1",
+                dangerouslyAllowBrowser: true
+            });
+
+            // 构建知识点辅导专用prompt
+            const systemPrompt = this.buildKnowledgeTutoringPrompt(
+                context,
+                diagnosis,
+                topicId
+            );
+
+            // 构建消息数组
+            const messages = [
+                {
+                    role: "system",
+                    content: systemPrompt
+                }
+            ];
+
+            // 添加对话历史 (最近10条)
+            const recentHistory = conversationHistory.slice(-10);
+            recentHistory.forEach(msg => {
+                messages.push({
+                    role: msg.role === 'user' ? 'user' : 'assistant',
+                    content: msg.content
+                });
+            });
+
+            // 添加当前用户消息
+            messages.push({
+                role: "user",
+                content: userMessage
+            });
+
+            // 调用AI API
+            const completion = await client.chat.completions.create({
+                model: "qwen-plus",
+                messages: messages,
+                temperature: 0.7,
+                max_tokens: 1500
+            });
+
+            const responseText = completion.choices[0].message.content;
+            return responseText;
+
+        } catch (error) {
+            console.error('Knowledge Tutor AI Error:', error);
+            return '抱歉,我在思考时遇到了一些问题 😅 请稍后再试。';
+        }
+    }
+
+    /**
+     * 构建知识点辅导专用Prompt
+     * 基于教育理论,根据年级和掌握度调整教学策略
+     */
+    static buildKnowledgeTutoringPrompt(context, diagnosis, topicId) {
+        const { grade, learningStyle, recentPerformance } = context;
+        const { topic, currentMastery, weakSkills, prerequisites } = diagnosis;
+
+        // 推断年级层次
+        const gradeLevel = this.getGradeLevel(grade, topicId);
+
+        // 根据年级选择语言风格
+        const languageStyle = this.getLanguageStyle(gradeLevel);
+
+        // 根据掌握度选择教学策略
+        const teachingStrategy = this.selectStrategy(currentMastery);
+        const teachingApproach = this.getTeachingApproach(currentMastery);
+
+        // 构建薄弱技能提示
+        const weakSkillsHint = weakSkills && weakSkills.length > 0
+            ? `\n【重点关注】学生在以下技能需要加强: ${weakSkills.slice(0, 2).map(s => s.name).join('、')}`
+            : '';
+
+        // 构建前置知识提示
+        const prereqHint = prerequisites && prerequisites.length > 0 && prerequisites.some(p => !p.isMastered)
+            ? `\n【注意】学生的前置知识有欠缺,讲解时需要适当回顾基础。`
+            : '';
+
+        const topicName = topic?.name || '数学知识点';
+        const topicSkills = topic?.skills?.join('、') || '基础概念';
+
+        return `你是一位经验丰富、充满耐心的${gradeLevel}数学AI导师,正在讲解${topicName}。
+
+【教学目标】
+- 知识点: ${topicName}
+- 核心技能: ${topicSkills}
+- 学生掌握度: ${(currentMastery * 100).toFixed(0)}%${weakSkillsHint}${prereqHint}
+
+【学生画像】
+- 年级: ${grade || gradeLevel}
+- 学习风格: ${learningStyle.tutoringStyle || '平衡型'}
+- 最近表现: ${recentPerformance}
+
+【教学策略 - 基于教育理论】
+${teachingStrategy}
+
+【语言风格】
+${languageStyle}
+
+【教学方法】
+- 使用${teachingApproach}
+- ${gradeLevel === '小学' ? '多用生活场景(披萨、苹果等)解释抽象概念' : ''}
+- ${gradeLevel === '初中' ? '通过苏格拉底式提问,引导学生自己发现知识' : ''}
+- ${gradeLevel === '高中' ? '培养抽象思维,多种解法对比,渗透数学思想' : ''}
+- ${gradeLevel === '大学' ? '严格的数学证明,理论推导,实际应用' : ''}
+
+【重要原则】
+1. 每次回复控制在150字以内,避免信息过载
+2. 多用例子和类比,让抽象概念具体化
+3. 不要直接给答案,而是引导思考
+4. 及时鼓励,培养成长型思维
+5. 适时提问,检查理解程度
+6. 用emoji让对话更生动 😊
+
+请用简洁、友好、${gradeLevel}学生能理解的语言进行讲解:`;
+    }
+
+    /**
+     * 推断年级层次
+     */
+    static getGradeLevel(grade, topicId) {
+        // 从用户设置的年级推断
+        if (grade) {
+            if (grade.includes('小学')) return '小学';
+            if (grade.includes('初中')) return '初中';
+            if (grade.includes('高中')) return '高中';
+            if (grade.includes('大学')) return '大学';
+        }
+
+        // 从topicId推断 (作为后备)
+        if (topicId) {
+            // 小学知识点
+            if (topicId.includes('fraction') || topicId.includes('decimal') ||
+                topicId.includes('addition') || topicId.includes('multiplication')) {
+                return '小学';
+            }
+            // 初中知识点
+            if (topicId.includes('quadratic') || topicId.includes('linear') ||
+                topicId.includes('polynomial') || topicId.includes('equation')) {
+                return '初中';
+            }
+            // 高中知识点
+            if (topicId.includes('derivative') || topicId.includes('trigonometry') ||
+                topicId.includes('vector') || topicId.includes('conic')) {
+                return '高中';
+            }
+            // 大学知识点
+            if (topicId.includes('calculus') || topicId.includes('linear-algebra') ||
+                topicId.includes('limit') || topicId.includes('integral')) {
+                return '大学';
+            }
+        }
+
+        // 默认返回初中
+        return '初中';
+    }
+
+    /**
+     * 根据年级获取语言风格
+     * 基于教育理论的年龄特点
+     */
+    static getLanguageStyle(gradeLevel) {
+        const styles = {
+            '小学': `- 亲切活泼,像邻家大哥哥/姐姐
+- 多用emoji (🌟🔥👏),拒绝晦涩术语
+- 使用生活化比喻(披萨、苹果、游戏)
+- 语言简单直白,避免复杂句式`,
+
+            '初中': `- 温和坚定,标准辅导老师
+- 清晰流畅,适当使用专业术语但要解释
+- 既有趣味性又有专业性
+- 引导思考,培养逻辑思维`,
+
+            '高中': `- 专业严谨,学术导师
+- 直击重点,逻辑严密
+- 可以使用数学术语和符号
+- 培养抽象思维和数学素养`,
+
+            '大学': `- 学术导师,专业高效
+- 理论推导,严格证明
+- 注重数学思想和方法
+- 培养研究能力和创新思维`
+        };
+
+        return styles[gradeLevel] || styles['初中'];
     }
 
     /**

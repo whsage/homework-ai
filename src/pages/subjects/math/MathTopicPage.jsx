@@ -65,7 +65,7 @@ const MathTopicPage = () => {
             {showAIChat && (
                 <div className="mb-8 animate-fadeIn">
                     <SmartChat
-                        topicId={info.title}
+                        topicId={topicId}
                         topicName={info.title}
                         initialContext={aiContext}
                         onClose={() => setShowAIChat(false)}
