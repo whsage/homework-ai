@@ -251,9 +251,10 @@ const MathLearning = () => {
                     name: '代数基础',
                     icon: '📐',
                     topics: [
-                        { id: 'rational-numbers', name: '有理数', difficulty: '基础', time: '30分钟', important: true },
-                        { id: 'polynomials', name: '整式', difficulty: '基础', time: '35分钟', important: true },
-                        { id: 'factorization', name: '因式分解', difficulty: '提高', time: '40分钟', important: true }
+                        { id: 'mid-7-1-rational-numbers', name: '有理数', difficulty: '基础', time: '30分钟', important: true },
+                        { id: 'mid-7-1-algebraic-expressions', name: '整式的加减', difficulty: '基础', time: '35分钟', important: true },
+                        { id: 'mid-8-1-factorization', name: '因式分解', difficulty: '提高', time: '40分钟', important: true },
+                        { id: 'mid-8-1-fractions', name: '分式', difficulty: '提高', time: '40分钟', important: true }
                     ]
                 },
                 {
@@ -261,10 +262,10 @@ const MathLearning = () => {
                     name: '方程与不等式',
                     icon: '⚖️',
                     topics: [
-                        { id: 'linear-equations', name: '一元一次方程', difficulty: '基础', time: '30分钟', important: true },
-                        { id: 'linear-equation-systems', name: '二元一次方程组', difficulty: '提高', time: '40分钟', important: true },
-                        { id: 'quadratic-equations', name: '一元二次方程', difficulty: '提高', time: '45分钟', important: true },
-                        { id: 'inequalities', name: '不等式', difficulty: '提高', time: '35分钟', important: false }
+                        { id: 'mid-7-1-equations', name: '一元一次方程', difficulty: '基础', time: '30分钟', important: true },
+                        { id: 'mid-8-1-binary-equations', name: '二元一次方程组', difficulty: '提高', time: '40分钟', important: true },
+                        { id: 'mid-9-1-quadratic-equations', name: '一元二次方程', difficulty: '提高', time: '45分钟', important: true },
+                        { id: 'mid-7-2-inequalities', name: '不等式与不等式组', difficulty: '提高', time: '35分钟', important: true }
                     ]
                 },
                 {
@@ -272,10 +273,10 @@ const MathLearning = () => {
                     name: '函数',
                     icon: '📈',
                     topics: [
-                        { id: 'function-concept', name: '函数的概念', difficulty: '基础', time: '30分钟', important: true },
-                        { id: 'linear-functions', name: '一次函数', difficulty: '提高', time: '40分钟', important: true },
-                        { id: 'inverse-functions', name: '反比例函数', difficulty: '提高', time: '35分钟', important: false },
-                        { id: 'quadratic-functions', name: '二次函数', difficulty: '重点', time: '50分钟', important: true }
+                        { id: 'mid-8-2-functions', name: '函数的概念', difficulty: '基础', time: '30分钟', important: true },
+                        { id: 'mid-8-2-linear-functions', name: '一次函数', difficulty: '提高', time: '40分钟', important: true },
+                        { id: 'mid-9-2-inverse-proportional', name: '反比例函数', difficulty: '提高', time: '35分钟', important: true },
+                        { id: 'mid-9-1-quadratic-functions', name: '二次函数', difficulty: '重点', time: '50分钟', important: true }
                     ]
                 },
                 {
@@ -283,10 +284,24 @@ const MathLearning = () => {
                     name: '平面几何',
                     icon: '🔺',
                     topics: [
-                        { id: 'triangles', name: '三角形', difficulty: '基础', time: '40分钟', important: true },
-                        { id: 'quadrilaterals', name: '四边形', difficulty: '提高', time: '35分钟', important: false },
-                        { id: 'circles', name: '圆', difficulty: '重点', time: '45分钟', important: true },
-                        { id: 'similarity-congruence', name: '相似与全等', difficulty: '重点', time: '50分钟', important: true }
+                        { id: 'mid-7-1-geometry-basic', name: '几何图形初步', difficulty: '基础', time: '30分钟', important: true },
+                        { id: 'mid-8-1-triangles', name: '三角形', difficulty: '基础', time: '40分钟', important: true },
+                        { id: 'mid-8-2-quadrilaterals', name: '四边形', difficulty: '提高', time: '35分钟', important: true },
+                        { id: 'mid-9-1-rotation', name: '旋转', difficulty: '提高', time: '35分钟', important: false },
+                        { id: 'mid-9-1-circle', name: '圆', difficulty: '重点', time: '45分钟', important: true },
+                        { id: 'mid-9-2-similar', name: '相似', difficulty: '重点', time: '50分钟', important: true },
+                        { id: 'mid-9-2-trigonometry', name: '锐角三角函数', difficulty: '重点', time: '45分钟', important: true }
+                    ]
+                },
+                {
+                    id: 'statistics',
+                    name: '统计与概率',
+                    icon: '📊',
+                    topics: [
+                        { id: 'mid-7-2-statistics', name: '数据的收集、整理与描述', difficulty: '基础', time: '35分钟', important: false },
+                        { id: 'mid-7-2-plane-coordinates', name: '平面直角坐标系', difficulty: '基础', time: '30分钟', important: true },
+                        { id: 'mid-8-2-data-analysis', name: '数据的分析', difficulty: '提高', time: '35分钟', important: false },
+                        { id: 'mid-9-2-probability', name: '概率初步', difficulty: '提高', time: '40分钟', important: true }
                     ]
                 }
             ]
@@ -584,7 +599,36 @@ const MathLearning = () => {
 
                                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                                         {module.topics.map((topic) => {
-                                            const isReady = topic.id === 'quadratic-functions';
+                                            // List of all completed middle school math topics
+                                            const completedTopics = [
+                                                // Grade 7
+                                                'mid-7-1-rational-numbers',
+                                                'mid-7-1-algebraic-expressions',
+                                                'mid-7-1-equations',
+                                                'mid-7-1-geometry-basic',
+                                                'mid-7-2-inequalities',
+                                                'mid-7-2-statistics',
+                                                'mid-7-2-plane-coordinates',
+                                                // Grade 8
+                                                'mid-8-1-triangles',
+                                                'mid-8-1-factorization',
+                                                'mid-8-1-fractions',
+                                                'mid-8-1-binary-equations',
+                                                'mid-8-2-quadrilaterals',
+                                                'mid-8-2-functions',
+                                                'mid-8-2-linear-functions',
+                                                'mid-8-2-data-analysis',
+                                                // Grade 9
+                                                'mid-9-1-quadratic-equations',
+                                                'mid-9-1-quadratic-functions',
+                                                'mid-9-1-rotation',
+                                                'mid-9-1-circle',
+                                                'mid-9-2-probability',
+                                                'mid-9-2-inverse-proportional',
+                                                'mid-9-2-similar',
+                                                'mid-9-2-trigonometry'
+                                            ];
+                                            const isReady = activeGrade === 'middle' && completedTopics.includes(topic.id);
                                             const CardContent = () => (
                                                 <>
                                                     {/* Coming Soon Badge - Only for non-ready topics */}

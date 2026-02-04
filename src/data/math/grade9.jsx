@@ -10,63 +10,135 @@ export const grade9Content = {
     'mid-9-1-quadratic-equations': {
         meta: {
             title: "一元二次方程 - 解法与应用 | AI7Miao数学",
-            description: "掌握一元二次方程的定义、解法（配方法、公式法、因式分解法）及根与系数的关系。",
-            keywords: "一元二次方程,求根公式,韦达定理,配方法"
+            description: "掌握一元二次方程的定义、解法(配方法、公式法、因式分解法)及根与系数的关系。通过面积问题理解二次方程的实际意义。",
+            keywords: "一元二次方程,求根公式,韦达定理,配方法,判别式"
         },
         info: {
             title: "一元二次方程",
-            description: "学习如何求解含有一个未知数且最高次数为2的整式方程，掌握解方程的三种核心方法。",
+            description: "学习如何求解含有一个未知数且最高次数为2的整式方程,掌握解方程的三种核心方法。",
             tags: [
                 { text: "九年级", color: "blue" },
                 { text: "代数核心", color: "red" },
                 { text: "45分钟", icon: Clock, color: "slate" }
             ]
         },
-        aiContext: "学生正在学习一元二次方程。请引导学生理解为什么我们需要不同的解法（如配方法导出了公式法）。强调根的判别式（Delta）的几何意义。",
-        aiChatTitle: "AI导师：探索方程的解",
-        aiChatIntro: "一元二次方程的解法多种多样，哪一种最适合你当前的题目？让我们一起探讨。",
+        aiContext: "学生正在学习一元二次方程。请引导学生理解为什么我们需要不同的解法(如配方法导出了公式法)。强调根的判别式(Delta)的几何意义。用面积问题帮助理解。",
+        aiChatTitle: "AI互动学习:探索方程的解",
+        aiChatIntro: "通过面积问题,你将理解二次方程的实际意义。这比直接套公式理解更深刻。",
+        aiMessages: [
+            { role: 'ai', content: '一个长方形花园,长比宽多3米,面积是40平方米。你能求出宽度吗？' },
+            { role: 'user', content: '设宽为x米,那长就是(x+3)米' },
+            { role: 'ai', content: <>对！那面积方程是什么？</> },
+            { role: 'user', content: 'x(x+3) = 40' },
+            { role: 'ai', content: <>完全正确！展开得 x² + 3x = 40,移项得 <strong className="text-indigo-600">x² + 3x - 40 = 0</strong>。这就是一元二次方程！现在怎么解呢？</>, type: 'success' },
+            { role: 'user', content: '嗯...能因式分解吗？' },
+            { role: 'ai', content: <>太棒了！试试十字相乘法。找两个数,相乘得-40,相加得3。</> },
+            { role: 'user', content: '8和-5！所以 (x+8)(x-5) = 0' },
+            { role: 'ai', content: <>完美！所以 x = -8 或 x = 5。但宽度不能是负数,所以<strong className="text-green-600">宽度是5米</strong>！这就是<strong>因式分解法</strong>。</>, type: 'success' },
+            { role: 'user', content: '如果不能因式分解呢？' },
+            { role: 'ai', content: <>好问题！那就用<strong className="text-red-600">求根公式</strong>: x = (-b ± √(b²-4ac)) / 2a。这个公式永远有效！其中 b²-4ac 叫<strong>判别式</strong>,它决定方程有几个解。</> }
+        ],
         tabs: {
             concept: (
-                <div className="space-y-6">
-                    <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm">
-                        <h3 className="text-xl font-bold flex items-center gap-2 mb-4">
-                            <Lightbulb className="text-yellow-500" /> 定义
-                        </h3>
-                        <p className="text-slate-700 dark:text-slate-300">
-                            等号两边都是<strong>整式</strong>，只含有一个未知数（一元），并且未知数的最高次数是<strong>2</strong>（二次）的方程，叫做一元二次方程。
-                        </p>
-                        <div className="mt-4 bg-slate-50 dark:bg-slate-700 p-4 rounded-lg text-center font-mono text-lg">
-                            ax² + bx + c = 0 (a ≠ 0)
+                <div className="space-y-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Lightbulb className="w-6 h-6 text-indigo-600" />
+                            定义与标准形式
+                        </h2>
+
+                        <div className="space-y-6">
+                            <div className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 rounded-xl p-6">
+                                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4">什么是一元二次方程？</h3>
+                                <p className="text-slate-700 dark:text-slate-300 mb-4">
+                                    等号两边都是<strong>整式</strong>,只含有一个未知数(一元),并且未知数的最高次数是<strong>2</strong>(二次)的方程。
+                                </p>
+                                <div className="bg-white dark:bg-slate-700 p-4 rounded-lg">
+                                    <p className="text-sm mb-2">标准形式:</p>
+                                    <code className="text-lg block mb-3">ax² + bx + c = 0  (a≠0)</code>
+                                    <p className="text-sm mb-2">例如:</p>
+                                    <code className="text-sm block">x² - 5x + 6 = 0</code>
+                                    <code className="text-sm block">2x² + 3x - 1 = 0</code>
+                                </div>
+                            </div>
+
+                            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-100 dark:border-blue-800">
+                                <h3 className="text-lg font-bold text-blue-700 dark:text-blue-400 mb-3">求根公式</h3>
+                                <p className="mb-2 text-sm text-slate-700 dark:text-slate-300">当 b² - 4ac ≥ 0 时,方程的实数根为:</p>
+                                <div className="bg-white dark:bg-slate-700 p-4 rounded-lg text-center">
+                                    <code className="text-xl font-bold text-blue-600 dark:text-blue-400">
+                                        x = (-b ± √(b²-4ac)) / 2a
+                                    </code>
+                                </div>
+                            </div>
+
+                            <div className="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-6 border border-purple-200 dark:border-purple-800">
+                                <div className="flex items-start gap-3">
+                                    <Brain className="w-6 h-6 text-purple-600 dark:text-purple-400 flex-shrink-0 mt-1" />
+                                    <div>
+                                        <div className="font-semibold text-purple-700 dark:text-purple-400 mb-2">
+                                            🎓 教育理论支撑
+                                        </div>
+                                        <div className="text-slate-600 dark:text-slate-400 text-sm">
+                                            我们用<strong>面积问题</strong>帮助你理解二次方程的实际意义。
+                                            通过具体问题,让抽象的二次方程变得可以理解和应用。
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div className="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-6">
-                        <h3 className="text-lg font-bold text-blue-800 dark:text-blue-300 mb-3">求根公式</h3>
-                        <p className="mb-2">当 <span className="font-serif">b² - 4ac ≥ 0</span> 时，方程的实数根为：</p>
-                        <code className="block text-center text-xl font-bold text-blue-600 dark:text-blue-400 my-4">
-                            x = (-b ± √(b²-4ac)) / 2a
-                        </code>
                     </div>
                 </div>
             ),
             properties: (
                 <div className="space-y-6">
-                    <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm">
-                        <h3 className="font-bold text-lg mb-4 flex items-center gap-2"><Target className="text-red-500" /> 根的判别式 (Δ)</h3>
-                        <ul className="space-y-3 text-slate-700 dark:text-slate-300">
-                            <li>• <strong>Δ &gt; 0</strong>：方程有两个不相等的实数根。</li>
-                            <li>• <strong>Δ = 0</strong>：方程有两个相等的实数根。</li>
-                            <li>• <strong>Δ &lt; 0</strong>：方程没有实数根。</li>
-                        </ul>
-                    </div>
-                    <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm">
-                        <h3 className="font-bold text-lg mb-4 flex items-center gap-2"><Sparkles className="text-purple-500" /> 韦达定理</h3>
-                        <p className="mb-2">若方程的两根为 x₁ 和 x₂，则：</p>
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="bg-purple-50 dark:bg-purple-900/20 p-3 rounded-lg text-center">
-                                x₁ + x₂ = -b/a
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Target className="w-6 h-6 text-indigo-600" />
+                            根的判别式与韦达定理
+                        </h2>
+
+                        <div className="space-y-6">
+                            <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-xl border border-red-100 dark:border-red-800">
+                                <h3 className="font-bold text-red-700 dark:text-red-400 mb-4 text-lg">根的判别式 (Δ = b² - 4ac)</h3>
+                                <ul className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-green-600">✓</span>
+                                        <div><strong>Δ {'>'} 0</strong>: 方程有两个不相等的实数根</div>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-blue-600">✓</span>
+                                        <div><strong>Δ = 0</strong>: 方程有两个相等的实数根</div>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-red-600">✗</span>
+                                        <div><strong>Δ {'<'} 0</strong>: 方程没有实数根</div>
+                                    </li>
+                                </ul>
                             </div>
-                            <div className="bg-purple-50 dark:bg-purple-900/20 p-3 rounded-lg text-center">
-                                x₁x₂ = c/a
+
+                            <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-xl border border-purple-100 dark:border-purple-800">
+                                <h3 className="font-bold text-purple-700 dark:text-purple-400 mb-4 text-lg">韦达定理</h3>
+                                <p className="mb-4 text-sm text-slate-700 dark:text-slate-300">若方程 ax² + bx + c = 0 的两根为 x₁ 和 x₂,则:</p>
+                                <div className="grid md:grid-cols-2 gap-4">
+                                    <div className="bg-white dark:bg-slate-700 p-4 rounded-lg text-center">
+                                        <p className="text-sm mb-2">两根之和</p>
+                                        <code className="text-lg font-bold">x₁ + x₂ = -b/a</code>
+                                    </div>
+                                    <div className="bg-white dark:bg-slate-700 p-4 rounded-lg text-center">
+                                        <p className="text-sm mb-2">两根之积</p>
+                                        <code className="text-lg font-bold">x₁x₂ = c/a</code>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-xl border border-orange-100 dark:border-orange-800">
+                                <h3 className="font-bold text-orange-700 dark:text-orange-400 mb-3">💡 解法选择技巧</h3>
+                                <ul className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                                    <li>• 能直接开方 → <strong>直接开平方法</strong> (如 x² = 9)</li>
+                                    <li>• 能因式分解 → <strong>因式分解法</strong> (如 x² - 5x + 6 = 0)</li>
+                                    <li>• 其他情况 → <strong>求根公式</strong> (万能方法)</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -75,22 +147,87 @@ export const grade9Content = {
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700">
-                        <h4 className="font-bold mb-2">例1：解方程 x² - 4x + 3 = 0</h4>
+                        <h4 className="font-bold mb-4 text-lg flex items-center gap-2">
+                            <Calculator className="w-5 h-5 text-indigo-600" />
+                            例1:因式分解法
+                        </h4>
                         <div className="text-sm text-slate-600 dark:text-slate-400 space-y-2">
-                            <p><strong>解法一（十字相乘法）：</strong></p>
-                            <p>(x - 1)(x - 3) = 0</p>
-                            <p>∴ x₁ = 1, x₂ = 3</p>
+                            <p><strong>解方程:</strong> x² - 4x + 3 = 0</p>
+                            <p className="mt-3"><strong>解:</strong></p>
+                            <p>因式分解得: (x - 1)(x - 3) = 0</p>
+                            <p>∴ x - 1 = 0 或 x - 3 = 0</p>
+                            <p className="text-green-600 dark:text-green-400 font-bold">∴ x₁ = 1, x₂ = 3</p>
+                        </div>
+                    </div>
+
+                    <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700">
+                        <h4 className="font-bold mb-4 text-lg flex items-center gap-2">
+                            <Calculator className="w-5 h-5 text-indigo-600" />
+                            例2:求根公式法
+                        </h4>
+                        <div className="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                            <p><strong>解方程:</strong> 2x² + 3x - 1 = 0</p>
+                            <p className="mt-3"><strong>解:</strong></p>
+                            <p>a = 2, b = 3, c = -1</p>
+                            <p>Δ = b² - 4ac = 9 - 4×2×(-1) = 17 {'>'} 0</p>
+                            <p>x = (-3 ± √17) / 4</p>
+                            <p className="text-green-600 dark:text-green-400 font-bold">∴ x₁ = (-3+√17)/4, x₂ = (-3-√17)/4</p>
+                        </div>
+                    </div>
+
+                    <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700">
+                        <h4 className="font-bold mb-4 text-lg flex items-center gap-2">
+                            <Calculator className="w-5 h-5 text-indigo-600" />
+                            例3:应用题(面积问题)
+                        </h4>
+                        <div className="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                            <p><strong>问题:</strong>一个长方形花园,长比宽多3米,面积是40平方米,求宽度。</p>
+                            <p className="mt-3"><strong>解:</strong></p>
+                            <p>设宽为x米,则长为(x+3)米</p>
+                            <p>x(x+3) = 40</p>
+                            <p>x² + 3x - 40 = 0</p>
+                            <p>(x+8)(x-5) = 0</p>
+                            <p>x = -8 或 x = 5</p>
+                            <p>∵ 宽度不能为负数</p>
+                            <p className="text-green-600 dark:text-green-400 font-bold">∴ 宽度为5米</p>
                         </div>
                     </div>
                 </div>
             ),
             practice: (
                 <div className="space-y-6">
-                    <PracticeProblem id={101} type="choice"
+                    <PracticeProblem id={922} type="choice"
                         question="方程 x² - 2x = 0 的根是？"
-                        options={[{ label: 'A', value: 'x=2' }, { label: 'B', value: 'x=0' }, { label: 'C', value: 'x1=0, x2=2' }, { label: 'D', value: 'x1=0, x2=-2' }]}
+                        options={[
+                            { label: 'A', value: 'x=2' },
+                            { label: 'B', value: 'x=0' },
+                            { label: 'C', value: 'x₁=0, x₂=2' },
+                            { label: 'D', value: 'x₁=0, x₂=-2' }
+                        ]}
                         answer="C"
-                        explanation="提取公因式 x(x-2)=0，所以 x=0 或 x-2=0。"
+                        explanation="提取公因式 x(x-2)=0,所以 x=0 或 x-2=0。"
+                    />
+                    <PracticeProblem id={923} type="choice"
+                        question="方程 x² - 4x + 5 = 0 的根的情况是？"
+                        options={[
+                            { label: 'A', value: '有两个不相等的实数根' },
+                            { label: 'B', value: '有两个相等的实数根' },
+                            { label: 'C', value: '没有实数根' },
+                            { label: 'D', value: '无法判断' }
+                        ]}
+                        answer="C"
+                        explanation="Δ = (-4)² - 4×1×5 = 16 - 20 = -4 < 0,所以没有实数根。"
+                    />
+                    <PracticeProblem id={924} type="choice"
+                        question="若方程 x² - 3x + k = 0 的两根之积为2,则k的值是？"
+                        options={[
+                            { label: 'A', value: 'k=1' },
+                            { label: 'B', value: 'k=2' },
+                            { label: 'C', value: 'k=3' },
+                            { label: 'D', value: 'k=-2' }
+                        ]}
+                        answer="B"
+                        explanation="根据韦达定理,两根之积 = c/a = k/1 = k = 2。"
                     />
                 </div>
             )

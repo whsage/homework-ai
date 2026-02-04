@@ -1,6 +1,6 @@
 
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import {
     BookOpen,
@@ -30,6 +30,11 @@ const MathTopicPage = () => {
     }
 
     const { meta, info, tabs, aiChatTitle, aiChatIntro, aiMessages, aiContext: defaultAiContext } = topicData;
+
+    // 页面加载时滚动到顶部
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [topicId]);
 
     const handleStartAIChat = (context) => {
         setAiContext(context || defaultAiContext);

@@ -27,7 +27,7 @@ const SmartChat = ({ topicId, topicName, onClose, initialContext }) => {
     const [loading, setLoading] = useState(false);
     const [initializing, setInitializing] = useState(true);
     const [diagnosis, setDiagnosis] = useState(null); // 新增: 诊断信息
-    const [showProgress, setShowProgress] = useState(true); // 新增: 是否显示进度
+    const [showProgress, setShowProgress] = useState(false); // 修改: 默认隐藏进度
     const messagesEndRef = useRef(null);
     const inputRef = useRef(null);
 
