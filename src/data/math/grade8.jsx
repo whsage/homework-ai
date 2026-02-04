@@ -1718,6 +1718,445 @@ export const grade8Content = {
     },
 
     // ==================== 8. 数据的分析 ====================
+    // ==================== 几何进阶 ====================
+    'mid-8-2-pythagorean': {
+        meta: {
+            title: "勾股定理 - 直角三角形的秘密 | AI7Miao数学",
+            description: "探索勾股定理(a²+b²=c²)的由来与应用，理解直角三角形三边关系。通过'穿越草坪'类比理解斜边与直角边的关系。",
+            keywords: "勾股定理,直角三角形,斜边,勾三股四弦五"
+        },
+        info: {
+            title: "勾股定理",
+            description: "勾三股四弦五，中国古代数学的骄傲。通过不同方式证明这一定理，感受数形结合的魅力。",
+            tags: [
+                { text: "几何", color: "blue" },
+                { text: "35分钟", icon: Clock, color: "slate" }
+            ]
+        },
+        aiContext: "学生想走捷径穿过长方形草坪。请通过这个生活场景引入直角三角形三边关系，讲解勾股定理。",
+        aiChatTitle: "AI导师：捷径有多远？",
+        aiChatIntro: "从学校大门到教学楼，是走直角拐弯的路远，还是直接穿过草坪远？远多少？",
+        aiMessages: [
+            { role: 'ai', content: '除此之外，你有没有发现一个有趣的现象？如果你要把一个本来是直角的三角形变形成非直角，哪条边变化了？' },
+            { role: 'user', content: '斜边！' },
+            { role: 'ai', content: <>对！只有在<strong className="text-indigo-600">直角三角形</strong>中，三边才满足那个神奇的公式。你想知道是什么吗？</> },
+            { role: 'user', content: '是a²+b²=c²吗？' },
+            { role: 'ai', content: <>没错！就是<strong className="text-green-600">勾股定理</strong>。想象三个正方形围着一个直角三角形，最大的那个正方形面积刚好等于另外两个之和！</>, type: 'success' },
+            { role: 'user', content: '为什么要叫勾股定理？' },
+            { role: 'ai', content: <>中国古代称直角三角形为勾股形，短的直角边为<strong className="text-blue-600">勾</strong>，长的为<strong className="text-blue-600">股</strong>，斜边为<strong className="text-red-600">弦</strong>。所以叫'勾股定理'。</> },
+            { role: 'user', content: '那勾三股四弦五是什么意思？' },
+            { role: 'ai', content: <>这是最经典的一组整数解！当两条直角边是3和4时，斜边恰好是5 (3²+4²=9+16=25=5²)。这样的数叫<strong className="text-purple-600">勾股数</strong>。</> },
+            { role: 'user', content: '还有别的勾股数吗？' },
+            { role: 'ai', content: <>很多！比如5,12,13或者6,8,10。你能找出规律吗？</>, type: 'success' }
+        ],
+        tabs: {
+            concept: (
+                <div className="space-y-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Lightbulb className="w-6 h-6 text-indigo-600" />
+                            勾股定理
+                        </h2>
+                        <div className="space-y-6">
+                            <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-6 border border-indigo-100 dark:border-indigo-800">
+                                <h3 className="text-xl font-bold text-indigo-800 dark:text-indigo-300 mb-4">定理内容</h3>
+                                <p className="text-lg text-slate-700 dark:text-slate-300 mb-4">
+                                    如果直角三角形的两条直角边长分别为 $a$，$b$，斜边长为 $c$，那么：
+                                </p>
+                                <div className="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm">
+                                    <span className="text-3xl font-bold text-indigo-600 font-serif">a² + b² = c²</span>
+                                </div>
+                                <p className="mt-4 text-sm text-slate-600 dark:text-slate-400">
+                                    注意：这个定理<strong>只适用于直角三角形</strong>。
+                                </p>
+                            </div>
+
+                            <div className="grid md:grid-cols-2 gap-6">
+                                <div className="bg-white dark:bg-slate-700 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-600">
+                                    <h4 className="font-bold text-slate-800 dark:text-white mb-2">常见勾股数</h4>
+                                    <ul className="space-y-2 text-slate-600 dark:text-slate-300">
+                                        <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-green-500" /> 3, 4, 5</li>
+                                        <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-green-500" /> 5, 12, 13</li>
+                                        <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-green-500" /> 6, 8, 10 (3,4,5的2倍)</li>
+                                        <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-green-500" /> 8, 15, 17</li>
+                                    </ul>
+                                </div>
+                                <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-xl border border-purple-100 dark:border-purple-800">
+                                    <h4 className="font-bold text-purple-800 dark:text-purple-300 mb-2">逆定理</h4>
+                                    <p className="text-sm text-purple-700 dark:text-purple-400">
+                                        如果三角形的三边长 $a, b, c$ 满足 $a^2 + b^2 = c^2$，那么这个三角形是<strong>直角三角形</strong>。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Target className="w-6 h-6 text-indigo-600" />
+                            应用场景
+                        </h2>
+                        <div className="space-y-4">
+                            <div className="p-4 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                                <h3 className="font-bold text-slate-800 dark:text-white mb-2">1. 求边长</h3>
+                                <p className="text-slate-600 dark:text-slate-300">已知两条边，求第三条边。例如已知两直角边求斜边：{'$c = \\sqrt{a ^ 2 + b ^ 2}$'}。</p>
+                            </div>
+                            <div className="p-4 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                                <h3 className="font-bold text-slate-800 dark:text-white mb-2">2. 判定直角</h3>
+                                <p className="text-slate-600 dark:text-slate-300">通过计算三边的平方关系，判断一个角是不是直角（如木工检查墙角）。</p>
+                            </div>
+                            <div className="p-4 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                                <h3 className="font-bold text-slate-800 dark:text-white mb-2">3. 最短路径</h3>
+                                <p className="text-slate-600 dark:text-slate-300">将立体图形（如圆柱侧面）展开成平面图形，利用两点之间线段最短解决问题。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            examples: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700">
+                        <h4 className="font-bold mb-4 text-lg flex items-center gap-2">
+                            <Calculator className="w-5 h-5 text-indigo-600" />
+                            例1: 求斜边长度
+                        </h4>
+                        <div className="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                            <p><strong>问题:</strong> 直角三角形的两条直角边长分别为6和8，求斜边长。</p>
+                            <p className="mt-3"><strong>解:</strong></p>
+                            <p>设斜边为c，根据勾股定理：</p>
+                            <p>$c^2 = 6^2 + 8^2 = 36 + 64 = 100$</p>
+                            <p>{'$c = \\sqrt{100} = 10$'}</p>
+                            <p className="text-green-600 dark:text-green-400 font-bold">答: 斜边长为10。</p>
+                        </div>
+                    </div>
+                    <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700">
+                        <h4 className="font-bold mb-4 text-lg flex items-center gap-2">
+                            <Calculator className="w-5 h-5 text-indigo-600" />
+                            例2: 判定直角三角形
+                        </h4>
+                        <div className="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                            <p><strong>问题:</strong> 三角形三边分别为5, 12, 13，它是直角三角形吗？</p>
+                            <p className="mt-3"><strong>解:</strong></p>
+                            <p>计算较短两边的平方和：$5^2 + 12^2 = 25 + 144 = 169$</p>
+                            <p>计算最长边的平方：$13^2 = 169$</p>
+                            <p>因为 $5^2 + 12^2 = 13^2$，满足勾股定理。</p>
+                            <p className="text-green-600 dark:text-green-400 font-bold">答: 是直角三角形。</p>
+                        </div>
+                    </div>
+                </div>
+            ),
+            practice: (
+                <div className="space-y-6">
+                    <PracticeProblem id={810} type="choice"
+                        question="在Rt△ABC中，∠C=90°，a=3，b=4，则c等于？"
+                        options={[
+                            { label: 'A', value: '5' },
+                            { label: 'B', value: '7' },
+                            { label: 'C', value: '25' },
+                            { label: 'D', value: '√7' }
+                        ]}
+                        answer="A"
+                        explanation="根据勾股定理 c² = a² + b² = 3² + 4² = 9 + 16 = 25，所以 c = 5。"
+                    />
+                    <PracticeProblem id={811} type="choice"
+                        question="下列哪组数不是勾股数？"
+                        options={[
+                            { label: 'A', value: '3, 4, 5' },
+                            { label: 'B', value: '6, 8, 10' },
+                            { label: 'C', value: '5, 12, 13' },
+                            { label: 'D', value: '4, 5, 6' }
+                        ]}
+                        answer="D"
+                        explanation="4² + 5² = 16 + 25 = 41 ≠ 6² (36)，所以4, 5, 6不是勾股数。"
+                    />
+                </div>
+            )
+        }
+    },
+    'mid-8-2-parallelograms': {
+        meta: {
+            title: "平行四边形 - 性质与判定 | AI7Miao数学",
+            description: "探究平行四边形的定义、性质和判定方法。通过'伸缩门'类比理解平行四边形的不稳定性。",
+            keywords: "平行四边形,对边平行,对角线,不稳定性"
+        },
+        info: {
+            title: "平行四边形",
+            description: "它是几何世界里的'变色龙'，可以从长方形变成菱形。掌握它的性质，是解决复杂几何题的关键。",
+            tags: [
+                { text: "几何", color: "blue" },
+                { text: "35分钟", icon: Clock, color: "slate" }
+            ]
+        },
+        aiContext: "学生在观察学校的电动伸缩门。请通过伸缩门的例子引入平行四边形的不稳定性。",
+        aiChatTitle: "AI导师：伸缩门的秘密",
+        aiChatIntro: "学校的伸缩门为什么做成一个个菱形格子，而不是三角形？这里藏着几何的智慧。",
+        aiMessages: [
+            { role: 'ai', content: '你注意过学校门口的电动伸缩门吗？它的网格是什么形状？' },
+            { role: 'user', content: '好像是斜着的方块...平行四边形？' },
+            { role: 'ai', content: <>观察得真仔细！为什么要用平行四边形，不用三角形呢？</> },
+            { role: 'user', content: '因为三角形拉不动？' },
+            { role: 'ai', content: <>太聪明了！三角形具有<strong className="text-green-600">稳定性</strong>，一固定就动不了。而平行四边形具有<strong className="text-indigo-600">不稳定性</strong>，容易变形，所以能伸缩自如！</>, type: 'success' },
+            { role: 'user', content: '那平行四边形有什么特别的性质？' },
+            { role: 'ai', content: <>它非常对称！<strong className="text-blue-600">对边平行且相等</strong>，<strong className="text-blue-600">对角相等</strong>。就像照镜子一样规整。</> },
+            { role: 'user', content: '对角线呢？' },
+            { role: 'ai', content: <>对角线更有趣！它们<strong className="text-purple-600">互相平分</strong>。就像两个人平分一个蛋糕，谁也不吃亏。</>, type: 'success' }
+        ],
+        tabs: {
+            concept: (
+                <div className="space-y-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Lightbulb className="w-6 h-6 text-indigo-600" />
+                            平行四边形的性质
+                        </h2>
+                        <div className="space-y-6">
+                            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-100 dark:border-blue-800">
+                                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4">定义</h3>
+                                <p className="text-lg text-slate-700 dark:text-slate-300">
+                                    <strong>两组对边分别平行</strong>的四边形叫做平行四边形。
+                                </p>
+                            </div>
+                            <div className="grid md:grid-cols-2 gap-4">
+                                <div className="bg-white dark:bg-slate-700 p-6 rounded-xl shadow-sm">
+                                    <h4 className="font-bold text-indigo-600 dark:text-indigo-400 mb-2">边的性质</h4>
+                                    <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+                                        <li>• 对边平行 ($AB \parallel CD, AD \parallel BC$)</li>
+                                        <li>• 对边相等 ($AB = CD, AD = BC$)</li>
+                                    </ul>
+                                </div>
+                                <div className="bg-white dark:bg-slate-700 p-6 rounded-xl shadow-sm">
+                                    <h4 className="font-bold text-indigo-600 dark:text-indigo-400 mb-2">角的性质</h4>
+                                    <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+                                        <li>• 对角相等 ($\angle A = \angle C, \angle B = \angle D$)</li>
+                                        <li>• 邻角互补 ($\angle A + \angle B = 180^\circ$)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-100 dark:border-green-800">
+                                <h4 className="font-bold text-green-700 dark:text-green-400 mb-2">对角线性质</h4>
+                                <p className="text-slate-700 dark:text-slate-300">
+                                    平行四边形的<strong>对角线互相平分</strong>。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Target className="w-6 h-6 text-indigo-600" />
+                            平行四边形的判定
+                        </h2>
+                        <ul className="space-y-4 text-slate-700 dark:text-slate-300">
+                            <li className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                                <CheckCircle className="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" />
+                                <div>
+                                    <strong>定义法</strong>：两组对边分别平行的四边形。
+                                </div>
+                            </li>
+                            <li className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                                <CheckCircle className="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" />
+                                <div>
+                                    <strong>边</strong>：两组对边分别相等 / 一组对边平行且相等。
+                                </div>
+                            </li>
+                            <li className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                                <CheckCircle className="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" />
+                                <div>
+                                    <strong>角</strong>：两组对角分别相等。
+                                </div>
+                            </li>
+                            <li className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-700 rounded-lg">
+                                <CheckCircle className="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" />
+                                <div>
+                                    <strong>对角线</strong>：对角线互相平分。
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            ),
+            examples: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700">
+                        <h4 className="font-bold mb-4 text-lg flex items-center gap-2">
+                            <Calculator className="w-5 h-5 text-indigo-600" />
+                            例1: 利用性质求角
+                        </h4>
+                        <div className="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                            <p><strong>问题:</strong> 在平行四边形ABCD中，∠A = 50°，求∠B和∠C的度数。</p>
+                            <p className="mt-3"><strong>解:</strong></p>
+                            <p>∵ 四边形ABCD是平行四边形</p>
+                            <p>∴ ∠C = ∠A = 50° (对角相等)</p>
+                            <p>∴ ∠B + ∠A = 180° (邻角互补)</p>
+                            <p>∴ ∠B = 180° - 50° = 130°</p>
+                            <p className="text-green-600 dark:text-green-400 font-bold">答: ∠B=130°，∠C=50°。</p>
+                        </div>
+                    </div>
+                </div>
+            ),
+            practice: (
+                <div className="space-y-6">
+                    <PracticeProblem id={812} type="choice"
+                        question="下列条件中，不能判定四边形是平行四边形的是？"
+                        options={[
+                            { label: 'A', value: '两组对边分别相等' },
+                            { label: 'B', value: '两组对角分别相等' },
+                            { label: 'C', value: '一组对边平行且相等' },
+                            { label: 'D', value: '一组对边平行，另一组对边相等' }
+                        ]}
+                        answer="D"
+                        explanation="D选项可能是等腰梯形，不一定是平行四边形。必须是一组对边'平行且相等'。"
+                    />
+                </div>
+            )
+        }
+    },
+
+    // ==================== 函数进阶 ====================
+    'mid-8-2-inverse-proportional': {
+        meta: {
+            title: "反比例函数 - 变量的跷跷板 | AI7Miao数学",
+            description: "理解反比例函数(y=k/x)的定义、图像和性质。通过'分蛋糕'类比理解变量间此消彼长的关系。",
+            keywords: "反比例函数,双曲线,k值,几何意义"
+        },
+        info: {
+            title: "反比例函数",
+            description: "当一个量变大，另一个量反而变小，且乘积固定。这是生活中常见的'此消彼长'规律。",
+            tags: [
+                { text: "函数", color: "purple" },
+                { text: "35分钟", icon: Clock, color: "slate" }
+            ]
+        },
+        aiContext: "学生在分生日蛋糕。请通过'人数越多，每人分得越少'的例子引入反比例函数。",
+        aiChatTitle: "AI导师：蛋糕怎么分？",
+        aiChatIntro: "如果有一个巨大的生日蛋糕，怎么分才公平？人数和每人分到的量有什么关系？",
+        aiMessages: [
+            { role: 'ai', content: '今天是你的生日聚会！如果只有一个朋友来，他能吃多少蛋糕？' },
+            { role: 'user', content: '整个蛋糕都给他！' },
+            { role: 'ai', content: <>对(100%)。那如果来了2个人呢？4个人呢？</> },
+            { role: 'user', content: '2人每人一半(50%)，4人每人四分之一(25%)。' },
+            { role: 'ai', content: <>发现规律了吗？<strong className="text-indigo-600">人数越多，每人分得越少</strong>。但是人数 × 每人的量 = ?</> },
+            { role: 'user', content: '总是等于1个蛋糕！' },
+            { role: 'ai', content: <>太棒了！这就是<strong className="text-green-600">反比例函数</strong>的核心：两个变量的<strong className="text-purple-600">乘积是一个常数</strong> (xy = k)。</>, type: 'success' },
+            { role: 'user', content: '那它的图像是什么样的？' },
+            { role: 'ai', content: <>它是一对优美的<strong className="text-blue-600">双曲线</strong>。永远无限接近坐标轴，但永远不会相交（因为人数不能是0，分到的量也不能是0）。</> },
+            { role: 'user', content: 'k值有什么作用？' },
+            { role: 'ai', content: <>k决定了双曲线的位置。k&gt;0在第一、三象限，k&lt;0在第二、四象限。就像跷跷板的支点，决定了平衡的方式。</>, type: 'success' }
+        ],
+        tabs: {
+            concept: (
+                <div className="space-y-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Lightbulb className="w-6 h-6 text-indigo-600" />
+                            反比例函数定义
+                        </h2>
+                        <div className="space-y-6">
+                            <div className="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-6 border border-purple-100 dark:border-purple-800">
+                                <h3 className="text-xl font-bold text-purple-800 dark:text-purple-300 mb-4">基本形式</h3>
+                                <p className="text-lg text-slate-700 dark:text-slate-300 mb-4">
+                                    一般地，形如 {'$y = \\frac{k}{x}$'} (k为常数，{'$k \\neq 0$'}) 的函数，叫做反比例函数。
+                                </p>
+                                <div className="bg-white dark:bg-slate-800 p-6 rounded-xl text-center shadow-sm">
+                                    <span className="text-3xl font-bold text-purple-600 font-serif">y = k/x</span>
+                                    <span className="ml-4 text-slate-500">(xy = k)</span>
+                                </div>
+                            </div>
+                            <div className="grid md:grid-cols-2 gap-4">
+                                <div className="bg-white dark:bg-slate-700 p-6 rounded-xl shadow-sm">
+                                    <h4 className="font-bold text-indigo-600 dark:text-indigo-400 mb-2">自变量范围</h4>
+                                    <p className="text-sm text-slate-600 dark:text-slate-300">
+                                        $x \neq 0$ (分母不能为0)
+                                    </p>
+                                </div>
+                                <div className="bg-white dark:bg-slate-700 p-6 rounded-xl shadow-sm">
+                                    <h4 className="font-bold text-indigo-600 dark:text-indigo-400 mb-2">函数值范围</h4>
+                                    <p className="text-sm text-slate-600 dark:text-slate-300">
+                                        $y \neq 0$ (分子不为0，商也不为0)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Target className="w-6 h-6 text-indigo-600" />
+                            图像与性质
+                        </h2>
+                        <div className="grid md:grid-cols-2 gap-6">
+                            <div className="bg-slate-50 dark:bg-slate-700 p-6 rounded-xl">
+                                <h3 className="font-bold text-slate-800 dark:text-white mb-4 text-center">k &gt; 0</h3>
+                                <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-300">
+                                    <li>• 图像位于: <strong>第一、三象限</strong></li>
+                                    <li>• 增减性: 在每个象限内，y随x的增大而<strong>减小</strong></li>
+                                    <li>• 例子: y = 2/x</li>
+                                </ul>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700 p-6 rounded-xl">
+                                <h3 className="font-bold text-slate-800 dark:text-white mb-4 text-center">k &lt; 0</h3>
+                                <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-300">
+                                    <li>• 图像位于: <strong>第二、四象限</strong></li>
+                                    <li>• 增减性: 在每个象限内，y随x的增大而<strong>增大</strong></li>
+                                    <li>• 例子: y = -2/x</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="mt-6 bg-yellow-50 dark:bg-yellow-900/20 p-6 rounded-xl border border-yellow-100 dark:border-yellow-800">
+                            <h4 className="font-bold text-yellow-800 dark:text-yellow-400 mb-2">k的几何意义</h4>
+                            <p className="text-sm text-yellow-700 dark:text-yellow-300">
+                                过双曲线上任一点P(x,y)向x轴、y轴作垂线，构成的矩形面积为 <strong>|k|</strong>。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            ),
+            examples: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700">
+                        <h4 className="font-bold mb-4 text-lg flex items-center gap-2">
+                            <Calculator className="w-5 h-5 text-indigo-600" />
+                            例1: 求解析式
+                        </h4>
+                        <div className="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                            <p><strong>问题:</strong> 已知反比例函数 {'$y = \\frac{k}{x}$'} 的图像经过点(2, 4)，求k的值。</p>
+                            <p className="mt-3"><strong>解:</strong></p>
+                            <p>将点(2, 4)代入解析式：</p>
+                            <p>{'$4 = \\frac{k}{2}$'}</p>
+                            <p>解得 $k = 4 \times 2 = 8$</p>
+                            <p className="text-green-600 dark:text-green-400 font-bold">答: k = 8，解析式为 {'$y = \\frac{8}{x}$'}。</p>
+                        </div>
+                    </div>
+                </div>
+            ),
+            practice: (
+                <div className="space-y-6">
+                    <PracticeProblem id={813} type="choice"
+                        question="反比例函数 y = 6/x 的图像位于哪些象限？"
+                        options={[
+                            { label: 'A', value: '第一、二象限' },
+                            { label: 'B', value: '第一、三象限' },
+                            { label: 'C', value: '第二、四象限' },
+                            { label: 'D', value: '第三、四象限' }
+                        ]}
+                        answer="B"
+                        explanation="因为 k = 6 > 0，所以图像位于第一、三象限。"
+                    />
+                </div>
+            )
+        }
+    },
+
+    // ==================== 几何进阶 ====================
     'mid-8-2-data-analysis': {
         meta: {
             title: "数据的分析 - 平均数、众数、中位数 | AI7Miao数学",
@@ -1729,100 +2168,73 @@ export const grade8Content = {
             description: "别被平均数骗了!掌握中位数和众数,才能全面看清数据的真相。还有方差告诉你数据稳不稳。",
             tags: [
                 { text: "统计", color: "green" },
-                { text: "35分钟", icon: Clock, color: "slate" }
+                { text: "应用", color: "blue" },
+                { text: "40分钟", icon: Clock, color: "slate" }
             ]
         },
-        aiContext: "学生在比较两组数据。请通过'班级平均分相同,但一个班两极分化严重'的例子解释方差的意义。引导学生理解稳定性的重要性。",
-        aiChatTitle: "AI互动学习:谁是射击冠军？",
-        aiChatIntro: "甲乙两人平均环数一样,该派谁去参加奥运会？这需要看不一样的指标。",
+        aiContext: "学生正在学习数据分析指标。利用'射击比赛选拔'的场景，比较两个平均分相同但稳定性不同的选手，引出方差的概念。",
+        aiChatTitle: "AI导师：谁是神枪手？",
+        aiChatIntro: "假如你是教练，要选一名射击手参加奥运会。甲乙两人平均成绩都是9环，你会选谁？这取决于谁更'稳'。",
         aiMessages: [
-            { role: 'ai', content: '甲乙两名射击选手,5次成绩分别是:甲(8,9,10,9,9) 乙(7,10,10,10,8)。谁的平均分高？' },
-            { role: 'user', content: '让我算算...都是9环！' },
-            { role: 'ai', content: <>对！<strong className="text-indigo-600">平均数</strong>都是9。但如果只能派一个人去奥运会,你选谁？</> },
-            { role: 'user', content: '这...平均分一样,怎么选？' },
-            { role: 'ai', content: <>关键看<strong className="text-green-600">稳定性</strong>！甲的成绩是8,9,10,9,9,波动小。乙是7,10,10,10,8,起伏大。</>, type: 'success' },
-            { role: 'user', content: '明白了！要选稳定的甲！' },
-            { role: 'ai', content: <>完全正确！这种稳定性用<strong className="text-red-600">方差</strong>来衡量。方差越小,数据越稳定！</> },
-            { role: 'user', content: '那中位数和众数是什么？' },
-            { role: 'ai', content: <>好问题！<strong>中位数</strong>是排序后中间的数,不受极端值影响。<strong>众数</strong>是出现最多的数。</> },
-            { role: 'user', content: '所以平均数、中位数、众数从不同角度看数据！' },
-            { role: 'ai', content: <>太棒了！<strong className="text-purple-600">平均数看总体,中位数看中间,众数看流行,方差看稳定</strong>。全面分析才能看清真相！</>, type: 'success' }
+            { role: 'ai', content: '教练遇到难题了！甲和乙最近5次射击的平均成绩都是9环。甲的成绩是: 8, 9, 9, 9, 10。乙的成绩是: 7, 8, 9, 10, 11。你觉得谁更厉害？' },
+            { role: 'user', content: '平均分一样...但感觉甲的成绩比较集中？' },
+            { role: 'ai', content: <>观察得真敏锐！甲的成绩都在9环附近，波动很小；乙的成绩忽高忽低，波动很大。</> },
+            { role: 'user', content: '那应该选甲，因为他发挥稳定！' },
+            { role: 'ai', content: <>完全正确！在数学上，我们用<strong className="text-purple-600">方差</strong>来描述这种波动的大小。甲的方差小，乙的方差大。</>, type: 'success' },
+            { role: 'user', content: '方差怎么算呢？' },
+            { role: 'ai', content: <>方差就是：(每个数据 - 平均数)的平方，再求平均。它衡量了数据和平均数的偏离程度。</> }
         ],
         tabs: {
             concept: (
-                <div className="space-y-8">
-                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
-                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
-                            <Lightbulb className="w-6 h-6 text-indigo-600" />
-                            集中趋势的三个指标
-                        </h2>
-
-                        <div className="space-y-6">
-                            <div className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 rounded-xl p-6">
-                                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4">平均数</h3>
-                                <div className="space-y-3">
-                                    <p className="text-slate-700 dark:text-slate-300">
-                                        所有数据的<strong>总和</strong>除以<strong>个数</strong>
-                                    </p>
-                                    <div className="bg-white dark:bg-slate-700 p-4 rounded-lg">
-                                        <code className="text-lg">平均数 = (x₁ + x₂ + ... + xₙ) / n</code>
-                                    </div>
-                                    <div className="text-sm space-y-1">
-                                        <p><strong className="text-indigo-600">优点</strong>: 利用了所有数据,代表性强</p>
-                                        <p><strong className="text-red-600">缺点</strong>: 易受极端值影响</p>
-                                        <p><strong>例子</strong>: 班级平均分、平均工资</p>
-                                    </div>
-                                </div>
+                <div className="space-y-6">
+                    <div className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 rounded-xl p-6">
+                        <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4">平均数</h3>
+                        <div className="space-y-3">
+                            <p className="text-slate-700 dark:text-slate-300">
+                                所有数据的<strong>总和</strong>除以<strong>个数</strong>
+                            </p>
+                            <div className="bg-white dark:bg-slate-700 p-4 rounded-lg">
+                                <code className="text-lg">平均数 = (x₁ + x₂ + ... + xₙ) / n</code>
                             </div>
-
-                            <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl p-6">
-                                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4">中位数</h3>
-                                <div className="space-y-3">
-                                    <p className="text-slate-700 dark:text-slate-300">
-                                        将数据<strong>从小到大排序</strong>后,位于<strong>中间</strong>的数
-                                    </p>
-                                    <div className="bg-white dark:bg-slate-700 p-4 rounded-lg text-sm">
-                                        <p>• 奇数个数据:取中间那个</p>
-                                        <p>• 偶数个数据:取中间两个的平均</p>
-                                    </div>
-                                    <div className="text-sm space-y-1">
-                                        <p><strong className="text-green-600">优点</strong>: 不受极端值影响</p>
-                                        <p><strong className="text-red-600">缺点</strong>: 没有利用所有数据</p>
-                                        <p><strong>例子</strong>: 房价中位数(避免豪宅拉高平均)</p>
-                                    </div>
-                                </div>
+                            <div className="text-sm space-y-1">
+                                <p><strong className="text-indigo-600">优点</strong>: 利用了所有数据,代表性强</p>
+                                <p><strong className="text-red-600">缺点</strong>: 易受极端值影响</p>
+                                <p><strong>例子</strong>: 班级平均分、平均工资</p>
                             </div>
+                        </div>
+                    </div>
 
-                            <div className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 rounded-xl p-6">
-                                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4">众数</h3>
-                                <div className="space-y-3">
-                                    <p className="text-slate-700 dark:text-slate-300">
-                                        在一组数据中<strong>出现次数最多</strong>的数
-                                    </p>
-                                    <div className="bg-white dark:bg-slate-700 p-4 rounded-lg text-sm">
-                                        <p>• 可能有多个众数</p>
-                                        <p>• 也可能没有众数(所有数据出现次数相同)</p>
-                                    </div>
-                                    <div className="text-sm space-y-1">
-                                        <p><strong className="text-orange-600">优点</strong>: 反映数据的集中点</p>
-                                        <p><strong>例子</strong>: 最受欢迎的鞋码、热销商品</p>
-                                    </div>
-                                </div>
+                    <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl p-6">
+                        <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4">中位数</h3>
+                        <div className="space-y-3">
+                            <p className="text-slate-700 dark:text-slate-300">
+                                将数据<strong>从小到大排序</strong>后,位于<strong>中间</strong>的数
+                            </p>
+                            <div className="bg-white dark:bg-slate-700 p-4 rounded-lg text-sm">
+                                <p>• 奇数个数据:取中间那个</p>
+                                <p>• 偶数个数据:取中间两个的平均</p>
                             </div>
+                            <div className="text-sm space-y-1">
+                                <p><strong className="text-green-600">优点</strong>: 不受极端值影响</p>
+                                <p><strong className="text-red-600">缺点</strong>: 没有利用所有数据</p>
+                                <p><strong>例子</strong>: 房价中位数(避免豪宅拉高平均)</p>
+                            </div>
+                        </div>
+                    </div>
 
-                            <div className="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-6 border border-purple-200 dark:border-purple-800">
-                                <div className="flex items-start gap-3">
-                                    <Brain className="w-6 h-6 text-purple-600 dark:text-purple-400 flex-shrink-0 mt-1" />
-                                    <div>
-                                        <div className="font-semibold text-purple-700 dark:text-purple-400 mb-2">
-                                            🎓 教育理论支撑
-                                        </div>
-                                        <div className="text-slate-600 dark:text-slate-400 text-sm">
-                                            我们用<strong>射击比赛选手</strong>的例子帮助你理解数据分析的不同指标。
-                                            从实际问题出发,理解为什么需要多个指标来全面描述数据。
-                                        </div>
-                                    </div>
-                                </div>
+                    <div className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 rounded-xl p-6">
+                        <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4">众数</h3>
+                        <div className="space-y-3">
+                            <p className="text-slate-700 dark:text-slate-300">
+                                在一组数据中<strong>出现次数最多</strong>的数
+                            </p>
+                            <div className="bg-white dark:bg-slate-700 p-4 rounded-lg text-sm">
+                                <p>• 可能有多个众数</p>
+                                <p>• 也可能没有众数(所有数据出现次数相同)</p>
+                            </div>
+                            <div className="text-sm space-y-1">
+                                <p><strong className="text-orange-600">优点</strong>: 反映数据的集中点</p>
+                                <p><strong>例子</strong>: 最受欢迎的鞋码、热销商品</p>
                             </div>
                         </div>
                     </div>
@@ -1967,8 +2379,11 @@ const grade8Topics = [
     { id: 'mid-8-1-fractions', name: '分式' },
     { id: 'mid-8-1-binary-equations', name: '二元一次方程组' },
     { id: 'mid-8-2-quadrilaterals', name: '四边形' },
+    { id: 'mid-8-2-parallelograms', name: '平行四边形' },
+    { id: 'mid-8-2-pythagorean', name: '勾股定理' },
     { id: 'mid-8-2-functions', name: '函数' },
     { id: 'mid-8-2-linear-functions', name: '一次函数' },
+    { id: 'mid-8-2-inverse-proportional', name: '反比例函数' },
     { id: 'mid-8-2-data-analysis', name: '数据的分析' }
 ];
 grade8Topics.forEach(t => {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
     BookOpen,
@@ -27,11 +27,35 @@ const QuadraticFunctions = () => {
     const [activeTab, setActiveTab] = useState('concept');
     const [showAIChat, setShowAIChat] = useState(false);
     const [aiContext, setAiContext] = useState(null);
+    const aiChatRef = useRef(null);
+
+    // 页面加载时滚动到顶部
+    useEffect(() => {
+        const scrollToTop = () => {
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        };
+        scrollToTop();
+        const timer = setTimeout(scrollToTop, 50);
+        return () => clearTimeout(timer);
+    }, []);
 
     const handleStartAIChat = (context) => {
         setAiContext(context);
         setShowAIChat(true);
+        if (showAIChat && aiChatRef.current) {
+            aiChatRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     };
+
+    // 监听 showAIChat 变化
+    useEffect(() => {
+        if (showAIChat && aiChatRef.current) {
+            const timer = setTimeout(() => {
+                aiChatRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+            return () => clearTimeout(timer);
+        }
+    }, [showAIChat]);
 
     // 1. 页面元数据配置
     const meta = {
@@ -95,7 +119,7 @@ const QuadraticFunctions = () => {
         >
             {/* 智能对话组件 */}
             {showAIChat && (
-                <div className="mb-8 animate-fadeIn">
+                <div ref={aiChatRef} className="mb-8 animate-fadeIn scroll-mt-24">
                     <SmartChat
                         topicId="二次函数"
                         topicName="二次函数"

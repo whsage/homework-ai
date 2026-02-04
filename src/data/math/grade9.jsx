@@ -618,52 +618,115 @@ export const grade9Content = {
             tags: [{ text: "几何核心", color: "indigo" }, { text: "难点", color: "red" }]
         },
         aiContext: "学生正在学习圆的性质。请重点讲解垂径定理的推导过程，利用'折纸'的思想来辅助理解对称性。",
-        aiChatTitle: "AI导师：探索完美的圆",
-        aiChatIntro: "你知道为什么车轮设计成圆形的吗？圆不仅美，而且充满了智慧。",
+        aiChatTitle: "AI互动学习:井盖为什么是圆的？",
+        aiChatIntro: "除了美观，圆形井盖还有一个关乎安全的重要特性。这与圆的几何性质有关。",
+        aiMessages: [
+            { role: 'ai', content: '你在马路上见过很多井盖吧？它们大多数是什么形状的？' },
+            { role: 'user', content: '圆形的！' },
+            { role: 'ai', content: <>对！那你知道为什么不用方形的吗？如果井盖不小心立起来，方形的会怎么样？</> },
+            { role: 'user', content: '方形的对角线比较长，可能会掉下去？' },
+            { role: 'ai', content: <>太聪明了！方形的对角线长度 &gt; 边长。而圆不同，圆上的点到圆心的距离都<strong className="text-green-600">相等</strong>(半径)。所以不管怎么转，圆的宽度(直径)都是一样的，绝不会掉下去！</>, type: 'success' },
+            { role: 'user', content: '原来是这样！那垂径定理是什么？' },
+            { role: 'ai', content: <>想象你在切西瓜(圆)。如果你垂直于直径切一刀，切出来的两半西瓜皮(弧)是不是一样的？</> },
+            { role: 'user', content: '是对称的！' },
+            { role: 'ai', content: <>没错！这就是<strong className="text-blue-600">垂径定理</strong>：垂直于弦的直径，平分这条弦，并且平分弦所对的两条弧。圆是轴对称图形！</>, type: 'success' }
+        ],
         tabs: {
             concept: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm">
-                        <h3 className="font-bold text-lg mb-4">圆的定义</h3>
-                        <p>平面上到定点的距离等于定长的所有点组成的图形叫做圆。</p>
+                        <h3 className="font-bold text-lg mb-4 text-indigo-700 dark:text-indigo-400">圆的定义与对称性</h3>
+                        <p className="mb-4">平面上到定点的距离等于定长的所有点组成的图形叫做圆。</p>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-xl">
+                                <h4 className="font-bold mb-2">轴对称性</h4>
+                                <p className="text-sm">圆是轴对称图形，任意一条直径所在的直线都是它的对称轴。</p>
+                            </div>
+                            <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-xl">
+                                <h4 className="font-bold mb-2">旋转不变性</h4>
+                                <p className="text-sm">圆绕圆心旋转任意角度，都能与原图形重合。</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             ),
             properties: (
-                <div className="space-y-4">
-                    <div className="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-xl border-l-4 border-indigo-500">
-                        <h4 className="font-bold text-indigo-700 dark:text-indigo-300">垂径定理</h4>
-                        <p>垂直于弦的直径平分这条弦，并且平分弦所对的两条弧。</p>
-                    </div>
-                    <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-xl border-l-4 border-purple-500">
-                        <h4 className="font-bold text-purple-700 dark:text-purple-300">圆周角定理</h4>
-                        <p>在同圆或等圆中，同弧或等弧所对的圆周角相等，都等于这条弧所对的圆心角的一半。</p>
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Target className="w-6 h-6 text-indigo-600" />
+                            核心定理
+                        </h2>
+                        <div className="space-y-4">
+                            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-800">
+                                <h4 className="font-bold text-blue-700 dark:text-blue-400 text-lg mb-3">1. 垂径定理</h4>
+                                <p className="text-slate-700 dark:text-slate-300">
+                                    垂直于弦的直径<strong>平分这条弦</strong>，并且<strong>平分弦所对的两条弧</strong>。
+                                </p>
+                                <div className="mt-3 bg-white dark:bg-slate-700 p-3 rounded text-sm text-slate-600 dark:text-slate-400">
+                                    推论：平分弦（不是直径）的直径垂直于弦，并且平分弦所对的两条弧。
+                                </div>
+                            </div>
+                            <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-100 dark:border-green-800">
+                                <h4 className="font-bold text-green-700 dark:text-green-400 text-lg mb-3">2. 圆周角定理</h4>
+                                <p className="text-slate-700 dark:text-slate-300">
+                                    在同圆或等圆中，同弧或等弧所对的圆周角相等，都等于这条弧所对的圆心角的<strong>一半</strong>。
+                                </p>
+                                <div className="mt-3 grid grid-cols-2 gap-3 text-sm">
+                                    <div className="bg-white dark:bg-slate-700 p-2 rounded">
+                                        直径所对的圆周角是<strong>直角(90°)</strong>
+                                    </div>
+                                    <div className="bg-white dark:bg-slate-700 p-2 rounded">
+                                        90°的圆周角所对的弦是<strong>直径</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             ),
             examples: (
-                <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl">
-                    <h4 className="font-bold mb-2">例题：利用垂径定理计算</h4>
-                    <p>已知⊙O半径为5，弦AB长为8，求圆心O到弦AB的距离。</p>
-                    <p className="mt-2 text-sm text-slate-600">
-                        解：过O作OD⊥AB于D。<br />
-                        ∵ OD⊥AB, AB=8<br />
-                        ∴ AD = 1/2 AB = 4 (垂径定理)<br />
-                        在Rt△OAD中，OD = √(OA²-AD²) = √(5²-4²) = 3。
-                    </p>
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700">
+                        <h4 className="font-bold mb-4 text-lg flex items-center gap-2">
+                            <Calculator className="w-5 h-5 text-indigo-600" />
+                            例1: 垂径定理应用
+                        </h4>
+                        <div className="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                            <p><strong>问题:</strong> 已知⊙O半径为5，弦AB长为8，求圆心O到弦AB的距离。</p>
+                            <p className="mt-3"><strong>解:</strong></p>
+                            <p>过O作OD⊥AB于D。</p>
+                            <p>∵ OD⊥AB, AB=8</p>
+                            <p>∴ AD = {'\\frac{1}{2}'}AB = 4 (垂径定理)</p>
+                            <p>在Rt△OAD中，OD = {'\\sqrt{OA ^ 2 - AD ^ 2} = \\sqrt{5 ^ 2 - 4 ^ 2} = \\sqrt{9} = 3'}</p>
+                            <p className="text-green-600 dark:text-green-400 font-bold">答: 距离为3。</p>
+                        </div>
+                    </div>
                 </div>
             ),
             practice: (
-                <PracticeProblem id={301} type="text"
-                    question="已知圆心角∠AOB=100°，则它所对的圆周角∠ACB的度数是？"
-                    answer="50°"
-                    explanation="同弧所对的圆周角等于圆心角的一半。100° ÷ 2 = 50°。"
-                />
+                <div className="space-y-6">
+                    <PracticeProblem id={301} type="text"
+                        question="已知圆心角∠AOB=100°，则它所对的圆周角∠ACB的度数是？"
+                        answer="50°"
+                        explanation="同弧所对的圆周角等于圆心角的一半。100° ÷ 2 = 50°。"
+                    />
+                    <PracticeProblem id={302} type="choice"
+                        question="如图，AB是⊙O的直径，∠ABC=30°，则∠BAC = ?"
+                        options={[
+                            { label: 'A', value: '30°' },
+                            { label: 'B', value: '60°' },
+                            { label: 'C', value: '90°' },
+                            { label: 'D', value: '45°' }
+                        ]}
+                        answer="B"
+                        explanation="因为AB是直径，所以∠C=90°。在Rt△ABC中，∠BAC = 90° - ∠ABC = 90° - 30° = 60°。"
+                    />
+                </div>
             )
         }
     },
 
-    // ==================== 25. 概率初步 ====================
     'mid-9-2-probability': {
         meta: {
             title: "概率初步 - 随机事件与概率计算 | AI7Miao数学",
@@ -732,6 +795,13 @@ export const grade9Content = {
         aiContext: "学生学习反比例函数。请对比'一次函数'（直线）和'反比例函数'（双曲线）的区别。强调 k 的几何意义（矩形面积）。",
         aiChatTitle: "AI导师：探索双曲线",
         aiChatIntro: "两个量，一个变大，另一个反而变小，它们的积是定值。这就是反比例的魔力。",
+        aiMessages: [
+            { role: 'ai', content: '我们来分蛋糕！如果有一个大蛋糕，分给的人越少，每个人分到的蛋糕就...？' },
+            { role: 'user', content: '得到的蛋糕越多！' },
+            { role: 'ai', content: <>没错！<strong className="text-indigo-600">人数 × 每人的量 = 蛋糕总数(定值)</strong>。这就是反比例关系。如果用 y 表示每人的量，x 表示人数，k 表示蛋糕总数，公式是什么？</> },
+            { role: 'user', content: 'y = k / x' },
+            { role: 'ai', content: <>完全正确！这叫<strong className="text-blue-600">反比例函数</strong>。它的图像是两条弯曲的线，叫双曲线。k决定了它们的位置！</>, type: 'success' }
+        ],
         tabs: {
             concept: (
                 <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl">
@@ -791,6 +861,13 @@ export const grade9Content = {
         aiContext: "学生正在学习相似。请用'全等是相似的特例（相似比为1）'这个观点来帮助学生迁移知识。",
         aiChatTitle: "AI导师：放缩的世界",
         aiChatIntro: "如何测量金字塔的高度？不用爬上去，利用影子的'相似'关系就能算出。",
+        aiMessages: [
+            { role: 'ai', content: '如果在手机上放大一张照片，照片里的人变样了吗？' },
+            { role: 'user', content: '样子没变，只是变大了。' },
+            { role: 'ai', content: <>对！这就是<strong className="text-indigo-600">相似</strong>。形状相同，大小不同。在几何中，这意味着对应的角相等，对应的边...？</> },
+            { role: 'user', content: '对应的边成比例？' },
+            { role: 'ai', content: <>正解！如果把照片放大2倍，那么照片里所有的长度都变成了原来的2倍。这个2就是<strong className="text-blue-600">相似比</strong>。</>, type: 'success' }
+        ],
         tabs: {
             concept: (
                 <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl">
@@ -847,6 +924,13 @@ export const grade9Content = {
         aiContext: "学生初学三角函数，容易混淆 sin, cos, tan。请提供记忆口诀（如'对边比斜边是正弦'）。",
         aiChatTitle: "AI导师：角与边的桥梁",
         aiChatIntro: "只知道一个角度，怎么算出楼有多高？三角函数是解决这个问题的金钥匙。",
+        aiMessages: [
+            { role: 'ai', content: '要把一把梯子斜靠在墙上，如果梯子和地面的角度越陡，梯子顶端是越高还是越低？' },
+            { role: 'user', content: '越高！' },
+            { role: 'ai', content: <>没错。这个高度(对边)和梯子长度(斜边)的比值，就由角度决定。我们给这些比值起了名字：正弦、余弦、正切。</> },
+            { role: 'user', content: '怎么区分它们呢？' },
+            { role: 'ai', content: <>有个口诀：<br /><strong className="text-indigo-600">正(sin)对</strong>：对边/斜边<br /><strong className="text-blue-600">余(cos)邻</strong>：邻边/斜边<br /><strong className="text-purple-600">切(tan)对临</strong>：对边/邻边</>, type: 'success' }
+        ],
         tabs: {
             concept: (
                 <div className="space-y-6">

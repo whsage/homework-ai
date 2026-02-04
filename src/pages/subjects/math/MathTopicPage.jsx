@@ -1,6 +1,6 @@
 
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import {
     BookOpen,
@@ -20,6 +20,30 @@ const MathTopicPage = () => {
     const [activeTab, setActiveTab] = useState('concept');
     const [showAIChat, setShowAIChat] = useState(false);
     const [aiContext, setAiContext] = useState(null);
+    const aiChatRef = useRef(null);
+
+    // 页面加载时滚动到顶部 - 使用 requestAnimationFrame 确保在渲染后执行
+    useEffect(() => {
+        // 强制滚动到顶部，增加一个小延时以应对可能的布局偏移
+        const scrollToTop = () => {
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        };
+
+        scrollToTop();
+        const timer = setTimeout(scrollToTop, 50);
+        return () => clearTimeout(timer);
+    }, [topicId]);
+
+    // 监听 showAIChat 变化，自动滚动到 AI 对话区域
+    useEffect(() => {
+        if (showAIChat && aiChatRef.current) {
+            // 给予一点时间让 DOM 渲染完成
+            const timer = setTimeout(() => {
+                aiChatRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+            return () => clearTimeout(timer);
+        }
+    }, [showAIChat]);
 
     // 获取当前知识点数据
     const topicData = mathTopicContent[topicId];
@@ -31,14 +55,13 @@ const MathTopicPage = () => {
 
     const { meta, info, tabs, aiChatTitle, aiChatIntro, aiMessages, aiContext: defaultAiContext } = topicData;
 
-    // 页面加载时滚动到顶部
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [topicId]);
-
     const handleStartAIChat = (context) => {
         setAiContext(context || defaultAiContext);
         setShowAIChat(true);
+        // 如果已经显示，直接滚动
+        if (showAIChat && aiChatRef.current) {
+            aiChatRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     };
 
     // 默认标签页配置
@@ -68,7 +91,7 @@ const MathTopicPage = () => {
         >
             {/* 智能对话组件 */}
             {showAIChat && (
-                <div className="mb-8 animate-fadeIn">
+                <div ref={aiChatRef} className="mb-8 animate-fadeIn scroll-mt-24">
                     <SmartChat
                         topicId={topicId}
                         topicName={info.title}

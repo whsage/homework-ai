@@ -28,7 +28,7 @@ const SmartChat = ({ topicId, topicName, onClose, initialContext }) => {
     const [initializing, setInitializing] = useState(true);
     const [diagnosis, setDiagnosis] = useState(null); // 新增: 诊断信息
     const [showProgress, setShowProgress] = useState(false); // 修改: 默认隐藏进度
-    const messagesEndRef = useRef(null);
+    const chatContainerRef = useRef(null);
     const inputRef = useRef(null);
 
     // 初始化:加载历史对话或AI打招呼
@@ -178,7 +178,13 @@ const SmartChat = ({ topicId, topicName, onClose, initialContext }) => {
     };
 
     const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        if (chatContainerRef.current) {
+            const { scrollHeight, clientHeight } = chatContainerRef.current;
+            chatContainerRef.current.scrollTo({
+                top: scrollHeight - clientHeight,
+                behavior: 'smooth'
+            });
+        }
     };
 
     if (initializing) {
@@ -322,7 +328,10 @@ const SmartChat = ({ topicId, topicName, onClose, initialContext }) => {
             )}
 
             {/* 消息列表 */}
-            <div className="smart-chat-messages">
+            <div
+                className="smart-chat-messages"
+                ref={chatContainerRef}
+            >
                 {messages.map((msg, index) => (
                     <MessageBubble key={index} message={msg} />
                 ))}
@@ -341,8 +350,6 @@ const SmartChat = ({ topicId, topicName, onClose, initialContext }) => {
                         </div>
                     </div>
                 )}
-
-                <div ref={messagesEndRef} />
             </div>
 
             {/* 输入框 */}
