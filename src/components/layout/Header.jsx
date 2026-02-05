@@ -169,6 +169,14 @@ const Header = ({ onMenuClick }) => {
 
             <div className="flex items-center gap-4">
                 <button
+                    onClick={toggleTheme}
+                    className="p-2 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                    title={theme === 'dark' ? t('header.lightMode') : t('header.darkMode')}
+                >
+                    {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+                </button>
+
+                <button
                     onClick={toggleLanguage}
                     className="p-2 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors flex items-center gap-1"
                     title={language === 'zh' ? 'Switch to English' : '切换到中文'}

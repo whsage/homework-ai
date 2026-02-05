@@ -185,7 +185,7 @@ const ProfileSettings = () => {
 
     // 展示视图组件
     const ProfileDisplay = () => (
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
             <div className="h-32 bg-gradient-to-r from-blue-500 to-indigo-600 relative">
                 {/* 背景装饰 */}
                 <div className="absolute inset-0 opacity-20 pattern-grid-lg"></div>
@@ -239,7 +239,7 @@ const ProfileSettings = () => {
                         </p>
                     </div>
 
-                    <div className="p-4 bg-slate-50 dark:bg-slate-700/30 rounded-xl border border-slate-100 dark:border-slate-700">
+                    <div className="p-4 bg-slate-50 dark:bg-slate-700/30 rounded-xl border border-slate-200 dark:border-slate-700">
                         <h4 className="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2 flex items-center gap-2">
                             <User size={16} /> {t('profile.bioTitle')}
                         </h4>
@@ -265,8 +265,8 @@ const ProfileSettings = () => {
             {!isEditing ? (
                 <ProfileDisplay />
             ) : (
-                <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 p-6 space-y-8 animate-fade-in">
-                    <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-700 pb-4">
+                <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 space-y-8 animate-fade-in">
+                    <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-4">
                         <h3 className="text-lg font-bold text-slate-800 dark:text-white">{t('profile.editTitle')}</h3>
                         <button
                             onClick={() => {
@@ -305,7 +305,7 @@ const ProfileSettings = () => {
                                             onClick={() => handleAvatarSelect(url)}
                                             className={`relative w-12 h-12 rounded-full overflow-hidden border-2 transition-all transform hover:scale-105 ${formData.avatar === url
                                                 ? 'border-indigo-600 ring-2 ring-indigo-200 dark:ring-indigo-900'
-                                                : 'border-slate-100 opacity-70 hover:opacity-100 dark:border-slate-600'
+                                                : 'border-slate-200 opacity-70 hover:opacity-100 dark:border-slate-600'
                                                 }`}
                                             title="选择头像"
                                         >
@@ -371,7 +371,7 @@ const ProfileSettings = () => {
                     </div>
 
                     {/* 底部操作栏 */}
-                    <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100 dark:border-slate-700">
+                    <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-700">
                         <button
                             onClick={() => {
                                 setFormData(settings.profile);

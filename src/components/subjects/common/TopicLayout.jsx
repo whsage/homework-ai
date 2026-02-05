@@ -97,7 +97,7 @@ const TopicLayout = ({
             </section>
 
             {/* Content */}
-            <section className="py-8 md:py-12 px-4 md:px-6 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 min-h-screen">
+            <section className="py-8 md:py-12 px-4 md:px-6 bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 min-h-screen">
                 <div className="max-w-7xl mx-auto">
                     {children}
                 </div>

@@ -431,7 +431,7 @@ const MessageBubble = ({ message }) => {
             <div
                 className={`max-w-[75%] rounded-2xl px-4 py-3 ${isUser
                     ? 'bg-indigo-600 text-white'
-                    : 'bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-white'
+                    : 'bg-white border border-slate-200 dark:border-slate-700 dark:bg-slate-700 text-slate-800 dark:text-white'
                     }`}
             >
                 {/* AI消息使用Markdown渲染,用户消息保持纯文本 */}
