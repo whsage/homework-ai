@@ -101,6 +101,7 @@ const Subjects = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {/* Mathematics (Active) */}
                         <Link
+                            to="/subjects/math"
                             className="group relative flex flex-col bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-300 dark:border-slate-600 shadow-sm hover:shadow-md hover:border-indigo-500 dark:hover:border-indigo-500 transition-all hover:-translate-y-1"
                         >
                             <div className="flex items-start justify-between mb-4">
