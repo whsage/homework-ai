@@ -7,7 +7,8 @@ import {
     TrendingUp,
     Calculator,
     Award,
-    MessageCircle
+    MessageCircle,
+    MousePointer2
 } from 'lucide-react';
 
 import TopicLayout from '../../../components/subjects/common/TopicLayout';
@@ -67,6 +68,7 @@ const MathTopicPage = () => {
     // 默认标签页配置
     const defaultTabs = [
         { id: 'concept', label: '核心概念', icon: BookOpen },
+        ...(tabs.interactive ? [{ id: 'interactive', label: '互动实验室', icon: MousePointer2 }] : []),
         { id: 'properties', label: '性质', icon: TrendingUp },
         { id: 'examples', label: '典型例题', icon: Calculator },
         { id: 'practice', label: '练习题', icon: Award }

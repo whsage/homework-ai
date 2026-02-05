@@ -337,7 +337,7 @@ const SmartChat = ({ topicId, topicName, onClose, initialContext }) => {
                 ))}
 
                 {loading && (
-                    <div className="flex items-start gap-3 mb-4">
+                    <div className="flex items-start gap-2 mb-4">
                         <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
                             <Brain className="w-5 h-5 text-white" />
                         </div>
@@ -419,7 +419,7 @@ const MessageBubble = ({ message }) => {
     const isUser = message.role === 'user';
 
     return (
-        <div className={`flex items-start gap-3 mb-4 ${isUser ? 'flex-row-reverse' : ''}`}>
+        <div className={`flex items-start gap-2 mb-4 ${isUser ? 'flex-row-reverse' : ''}`}>
             {/* 头像 */}
             {!isUser && (
                 <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">

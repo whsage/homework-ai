@@ -10,14 +10,14 @@ const AIChatSession = ({ title, summary, messages, onStart, userAvatar = "👤",
 
             <div className="space-y-4">
                 {messages.map((msg, index) => (
-                    <div key={index} className={`flex gap-4 ${msg.role === 'user' ? 'justify-end' : ''}`}>
+                    <div key={index} className={`flex gap-2 ${msg.role === 'user' ? 'justify-end' : ''}`}>
                         {msg.role === 'ai' && (
                             <div className="flex-shrink-0 w-10 h-10 bg-indigo-100 dark:bg-indigo-900/30 rounded-full flex items-center justify-center">
                                 <span className="text-lg">{aiAvatar}</span>
                             </div>
                         )}
 
-                        <div className={`flex-1 max-w-md p-4 rounded-xl ${msg.role === 'user'
+                        <div className={`max-w-md p-4 rounded-xl ${msg.role === 'user'
                             ? 'bg-blue-50 dark:bg-blue-900/20'
                             : msg.type === 'success'
                                 ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800'

@@ -1,5 +1,10 @@
 import { Icons, PracticeProblem, Link, React, generateDefaultContent } from './common';
 import { mathKnowledgeGraph } from '../mathKnowledgeGraph';
+import RotationDiagram from '../../components/subjects/math/diagrams/RotationDiagram';
+import CircleChordDiagram from '../../components/subjects/math/diagrams/CircleChordDiagram';
+import SimilarityDiagram from '../../components/subjects/math/diagrams/SimilarityDiagram';
+import TrigFunctionsDiagram from '../../components/subjects/math/diagrams/TrigFunctionsDiagram';
+import { MousePointer2 } from 'lucide-react';
 
 const {
     Lightbulb, Target, TrendingUp, Clock, Star, Brain, CheckCircle, Sparkles, ChevronRight, Calculator, Award
@@ -565,6 +570,26 @@ export const grade9Content = {
         aiChatTitle: "AI导师：一起转动世界",
         aiChatIntro: "你能找到旋转中心吗？让我们一起来玩一个'大家来找茬'的游戏，看看哪些图形是旋转得到的。",
         tabs: {
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：图形的旋转
+                        </h2>
+
+                        <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 mb-4">
+                            <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
+                                拖动滑块改变<strong>旋转角</strong>。观察：
+                                1. 对应点到旋转中心 O 的距离相等 (OA = OA')。
+                                2. 旋转前后图形全等。
+                            </p>
+
+                            <RotationDiagram />
+                        </div>
+                    </div>
+                </div>
+            ),
             concept: (
                 <div className="space-y-6">
                     <div className="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 p-6 rounded-2xl">
@@ -632,6 +657,26 @@ export const grade9Content = {
             { role: 'ai', content: <>没错！这就是<strong className="text-blue-600">垂径定理</strong>：垂直于弦的直径，平分这条弦，并且平分弦所对的两条弧。圆是轴对称图形！</>, type: 'success' }
         ],
         tabs: {
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：垂径定理
+                        </h2>
+
+                        <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 mb-4">
+                            <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
+                                拖动圆上的点 <strong>B</strong>。观察：
+                                1. 蓝色线段 <strong>CD</strong> (直径) 始终垂直于 弦 <strong>AB</strong>。
+                                2. 被直径分成的两条线段 <strong>AE</strong> 和 <strong>EB</strong> 长度相等。
+                            </p>
+
+                            <CircleChordDiagram />
+                        </div>
+                    </div>
+                </div>
+            ),
             concept: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm">
@@ -869,6 +914,26 @@ export const grade9Content = {
             { role: 'ai', content: <>正解！如果把照片放大2倍，那么照片里所有的长度都变成了原来的2倍。这个2就是<strong className="text-blue-600">相似比</strong>。</>, type: 'success' }
         ],
         tabs: {
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：图形的相似
+                        </h2>
+
+                        <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 mb-4">
+                            <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
+                                拖动滑块改变<strong>相似比 k</strong>。观察：
+                                1. 对应角始终相等 (∠A=∠A', ∠B=∠B', ∠C=∠C')。
+                                2. 对应边成比例 (A'B'/AB = k)。
+                            </p>
+
+                            <SimilarityDiagram />
+                        </div>
+                    </div>
+                </div>
+            ),
             concept: (
                 <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl">
                     <h3 className="font-bold mb-2">判定定理</h3>
@@ -932,6 +997,26 @@ export const grade9Content = {
             { role: 'ai', content: <>有个口诀：<br /><strong className="text-indigo-600">正(sin)对</strong>：对边/斜边<br /><strong className="text-blue-600">余(cos)邻</strong>：邻边/斜边<br /><strong className="text-purple-600">切(tan)对临</strong>：对边/邻边</>, type: 'success' }
         ],
         tabs: {
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：锐角三角函数
+                        </h2>
+
+                        <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 mb-4">
+                            <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
+                                拖动圆上的点 <strong>B</strong> 改变角度。观察：
+                                1. <strong>sin θ</strong> (红线) 随角度增大而增大。
+                                2. <strong>cos θ</strong> (蓝线) 随角度增大而减小。
+                            </p>
+
+                            <TrigFunctionsDiagram />
+                        </div>
+                    </div>
+                </div>
+            ),
             concept: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl">

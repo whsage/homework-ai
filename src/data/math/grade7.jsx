@@ -1,4 +1,7 @@
 import { Icons, PracticeProblem, Link, React, generateDefaultContent } from './common';
+import MathDiagram from '../../components/subjects/math/MathDiagram';
+import ShortestPathDiagram from '../../components/subjects/math/diagrams/ShortestPathDiagram';
+import { MousePointer2 } from 'lucide-react';
 
 const {
     Lightbulb, Target, TrendingUp, Clock, Star, Brain, CheckCircle, Sparkles, ChevronRight, Calculator, Award, AlertCircle
@@ -960,6 +963,25 @@ export const grade7Content = {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：两点之间，线段最短
+                        </h2>
+
+                        <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 mb-4">
+                            <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
+                                拖动下图中绿色的点 <strong>P</strong>。你会发现，无论 P 点在哪里，折线 A-P-B 的长度总是大于线段 A-B 的长度。
+                                只有当 P 点在线段 AB 上时，距离才最短。
+                            </p>
+
+                            <ShortestPathDiagram />
                         </div>
                     </div>
                 </div>

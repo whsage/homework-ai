@@ -1,4 +1,7 @@
 import { Icons, PracticeProblem, Link, React, generateDefaultContent } from './common';
+import TrianglePropertiesDiagram from '../../components/subjects/math/diagrams/TrianglePropertiesDiagram';
+import ParallelogramDiagram from '../../components/subjects/math/diagrams/ParallelogramDiagram';
+import { MousePointer2 } from 'lucide-react';
 
 const {
     Lightbulb, Target, TrendingUp, Clock, Star, Brain, CheckCircle, Sparkles, ChevronRight, Calculator, Award
@@ -91,6 +94,27 @@ export const grade8Content = {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：三角形的性质
+                        </h2>
+
+                        <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 mb-4">
+                            <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
+                                拖动三角形的三个顶点 <strong>A, B, C</strong>，观察边长和角度的变化。
+                                验证以下性质：
+                                1. 三角形内角和永远是 180°。
+                                2. "大边对大角"。
+                            </p>
+
+                            <TrianglePropertiesDiagram />
                         </div>
                     </div>
                 </div>
@@ -1905,6 +1929,26 @@ export const grade8Content = {
             { role: 'ai', content: <>对角线更有趣！它们<strong className="text-purple-600">互相平分</strong>。就像两个人平分一个蛋糕，谁也不吃亏。</>, type: 'success' }
         ],
         tabs: {
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：平行四边形
+                        </h2>
+
+                        <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 mb-4">
+                            <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
+                                拖动顶点 <strong>A, B, D</strong> 改变形状。观察：
+                                1. 对边始终平行且相等。
+                                2. 对角线 <strong>AC</strong> 和 <strong>BD</strong> 始终互相平分 (O是中点)。
+                            </p>
+
+                            <ParallelogramDiagram />
+                        </div>
+                    </div>
+                </div>
+            ),
             concept: (
                 <div className="space-y-8">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">

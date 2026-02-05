@@ -1,9 +1,33 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Brain, Calculator, Search, BookOpen, Atom, Languages, Globe } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import { KnowledgeGraphHelper } from '../data/mathKnowledgeGraph';
 
 const Subjects = () => {
+    const navigate = useNavigate();
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+    const [showResults, setShowResults] = useState(false);
+
+    const handleSearch = (e) => {
+        const query = e.target.value;
+        setSearchQuery(query);
+
+        if (query.trim().length > 0) {
+            const results = KnowledgeGraphHelper.searchTopics(query);
+            setSearchResults(results);
+            setShowResults(true);
+        } else {
+            setShowResults(false);
+        }
+    };
+
+    const handleTopicClick = (topic) => {
+        // Navigate to math topic page
+        // Use unified route pattern: /subjects/math/:topicId
+        navigate(`/subjects/math/${topic.id}`);
+    };
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
             <Helmet>
@@ -18,19 +42,52 @@ const Subjects = () => {
                         探索知识的海洋
                     </h1>
                     <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                        选择一个学科，开启基于 K12 知识图谱的系统化学习之旅。我们的 AI 导师将全程陪伴，个性化指导。
+                        选择一个学科，开启基于新课标知识图谱的系统化学习之旅。我们的 AI 导师将全程陪伴，个性化指导。
                     </p>
 
                     {/* Search (Decorator) */}
                     <div className="max-w-xl mx-auto mt-8 relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <Search className="h-5 w-5 text-slate-400" />
+                        <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <Search className="h-5 w-5 text-slate-400" />
+                            </div>
+                            <input
+                                type="text"
+                                value={searchQuery}
+                                onChange={handleSearch}
+                                placeholder="搜索具体的知识点，例如 '二次函数'..."
+                                className="block w-full pl-10 pr-3 py-3 border border-slate-300 dark:border-slate-700 rounded-xl leading-5 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm shadow-sm transition-all"
+                            />
                         </div>
-                        <input
-                            type="text"
-                            placeholder="搜索具体的知识点，例如 '二次函数'..."
-                            className="block w-full pl-10 pr-3 py-3 border border-slate-300 dark:border-slate-700 rounded-xl leading-5 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm shadow-sm transition-all"
-                        />
+
+                        {/* Search Results Dropdown */}
+                        {showResults && (
+                            <div className="absolute z-10 w-full mt-2 bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 max-h-60 overflow-y-auto">
+                                {searchResults.length > 0 ? (
+                                    <ul className="py-2">
+                                        {searchResults.map((topic) => (
+                                            <li key={topic.id}>
+                                                <button
+                                                    onClick={() => handleTopicClick(topic)}
+                                                    className="w-full text-left px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+                                                >
+                                                    <div className="font-medium text-slate-900 dark:text-white">
+                                                        {topic.name}
+                                                    </div>
+                                                    <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                                                        {topic.gradeName} · 包含 {topic.skills?.length || 0} 个技能点
+                                                    </div>
+                                                </button>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                ) : (
+                                    <div className="px-4 py-3 text-sm text-slate-500 dark:text-slate-400 text-center">
+                                        未找到匹配的知识点
+                                    </div>
+                                )}
+                            </div>
+                        )}
                     </div>
                 </header>
 

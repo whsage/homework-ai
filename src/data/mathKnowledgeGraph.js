@@ -739,6 +739,53 @@ export const KnowledgeGraphHelper = {
     generateLearningPath(startTopic, endTopic) {
         // 使用拓扑排序生成学习路径
         // 实现略...
+    },
+
+    /**
+     * 搜索知识点
+     * @param {string} query 搜索关键词
+     * @returns {Array} 匹配的知识点列表
+     */
+    searchTopics(query) {
+        if (!query || query.trim().length === 0) return [];
+
+        const searchTerm = query.toLowerCase().trim();
+        const results = [];
+
+        for (const stage of ['elementary', 'middle', 'high']) {
+            if (!mathKnowledgeGraph[stage]) continue;
+
+            for (const grade in mathKnowledgeGraph[stage]) {
+                const gradeData = mathKnowledgeGraph[stage][grade];
+                const gradeName = gradeData.name;
+                const semesters = gradeData.semesters || gradeData.modules;
+
+                for (const semester in semesters) {
+                    semesters[semester].forEach(topic => {
+                        // 匹配名称
+                        if (topic.name.toLowerCase().includes(searchTerm)) {
+                            results.push({
+                                ...topic,
+                                gradeName,
+                                stage
+                            });
+                            return;
+                        }
+
+                        // 匹配技能点
+                        if (topic.skills && topic.skills.some(skill => skill.toLowerCase().includes(searchTerm))) {
+                            results.push({
+                                ...topic,
+                                gradeName,
+                                stage
+                            });
+                        }
+                    });
+                }
+            }
+        }
+
+        return results;
     }
 };
 

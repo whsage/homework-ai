@@ -141,7 +141,7 @@ const Header = ({ onMenuClick }) => {
     };
 
     return (
-        <header className="h-16 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between px-6 sticky top-0 z-10 w-full transition-colors duration-200">
+        <header className="h-16 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between px-6 sticky top-0 z-40 w-full transition-colors duration-200">
             <div className="flex items-center gap-4">
                 <button
                     onClick={onMenuClick}
