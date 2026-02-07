@@ -8,7 +8,8 @@ import {
     Calculator,
     Award,
     MessageCircle,
-    MousePointer2
+    MousePointer2,
+    ChevronRight
 } from 'lucide-react';
 
 import TopicLayout from '../../../components/subjects/common/TopicLayout';

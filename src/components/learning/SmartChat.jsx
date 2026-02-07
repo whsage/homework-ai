@@ -6,9 +6,10 @@
  * - 实时消息流
  * - 打字机效果
  * - 自动滚动
+ * - 错误边界捕捉
  */
 
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { MessageCircle, Send, Loader2, Sparkles, Brain, TrendingUp, Target, Award, PenTool, Calculator } from 'lucide-react';
 import { SmartTutor } from '../../services/smartTutor';
 import { KnowledgeAssessment } from '../../services/knowledgeAssessment';
@@ -19,7 +20,48 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css'; // KaTeX样式
 
-const SmartChat = ({ topicId, topicName, onClose, initialContext }) => {
+// 错误边界组件
+class ErrorBoundary extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { hasError: false, error: null, errorInfo: null };
+    }
+
+    static getDerivedStateFromError(error) {
+        return { hasError: true };
+    }
+
+    componentDidCatch(error, errorInfo) {
+        this.setState({ error, errorInfo });
+        console.error("SmartChat Error Boundary caught an error", error, errorInfo);
+    }
+
+    render() {
+        if (this.state.hasError) {
+            return (
+                <div className="p-4 m-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
+                    <h2 className="text-lg font-bold mb-2">出错了</h2>
+                    <p className="mb-2">我们遇到了一些问题，导致对话框无法显示。</p>
+                    <details className="whitespace-pre-wrap text-xs font-mono bg-red-100 p-2 rounded overflow-auto max-h-40">
+                        {this.state.error && this.state.error.toString()}
+                        <br />
+                        {this.state.errorInfo && this.state.errorInfo.componentStack}
+                    </details>
+                    <button
+                        onClick={() => this.setState({ hasError: false })}
+                        className="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 text-sm"
+                    >
+                        重试
+                    </button>
+                </div>
+            );
+        }
+
+        return this.props.children;
+    }
+}
+
+const SmartChatContent = ({ topicId, topicName, onClose, initialContext }) => {
     const { user } = useUser();
     const [mode, setMode] = useState('chat'); // 'chat' | 'practice'
     const [messages, setMessages] = useState([]);
@@ -418,6 +460,53 @@ const SmartChat = ({ topicId, topicName, onClose, initialContext }) => {
 const MessageBubble = ({ message }) => {
     const isUser = message.role === 'user';
 
+    const renderContent = (content) => {
+        if (typeof content === 'string') {
+            return (
+                <ReactMarkdown
+                    remarkPlugins={[remarkMath]}
+                    rehypePlugins={[rehypeKatex]}
+                    components={{
+                        // 自定义样式
+                        p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                        ul: ({ children }) => <ul className="list-disc ml-4 mb-2">{children}</ul>,
+                        ol: ({ children }) => <ol className="list-decimal ml-4 mb-2">{children}</ol>,
+                        li: ({ children }) => <li className="mb-1">{children}</li>,
+                        code: ({ inline, children }) =>
+                            inline ? (
+                                <code className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-600 rounded text-sm">
+                                    {children}
+                                </code>
+                            ) : (
+                                <code className="block p-2 bg-slate-200 dark:bg-slate-600 rounded text-sm overflow-x-auto">
+                                    {children}
+                                </code>
+                            ),
+                        strong: ({ children }) => <strong className="font-bold text-indigo-600 dark:text-indigo-400">{children}</strong>,
+                        em: ({ children }) => <em className="italic">{children}</em>,
+                    }}
+                >
+                    {content}
+                </ReactMarkdown>
+            );
+        }
+
+        if (React.isValidElement(content)) {
+            return content;
+        }
+
+        // Object fallback
+        if (typeof content === 'object') {
+            return (
+                <code className="block p-2 bg-slate-100 dark:bg-slate-800 rounded text-xs overflow-x-auto">
+                    {JSON.stringify(content, null, 2)}
+                </code>
+            );
+        }
+
+        return String(content);
+    };
+
     return (
         <div className={`flex items-start gap-2 mb-4 ${isUser ? 'flex-row-reverse' : ''}`}>
             {/* 头像 */}
@@ -434,34 +523,10 @@ const MessageBubble = ({ message }) => {
                     : 'bg-white border border-slate-200 dark:border-slate-700 dark:bg-slate-700 text-slate-800 dark:text-white'
                     }`}
             >
-                {/* AI消息使用Markdown渲染,用户消息保持纯文本 */}
+                {/* AI消息根据内容类型渲染 */}
                 {!isUser ? (
                     <div className="markdown-content prose prose-sm max-w-none dark:prose-invert">
-                        <ReactMarkdown
-                            remarkPlugins={[remarkMath]}
-                            rehypePlugins={[rehypeKatex]}
-                            components={{
-                                // 自定义样式
-                                p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
-                                ul: ({ children }) => <ul className="list-disc ml-4 mb-2">{children}</ul>,
-                                ol: ({ children }) => <ol className="list-decimal ml-4 mb-2">{children}</ol>,
-                                li: ({ children }) => <li className="mb-1">{children}</li>,
-                                code: ({ inline, children }) =>
-                                    inline ? (
-                                        <code className="px-1.5 py-0.5 bg-slate-200 dark:bg-slate-600 rounded text-sm">
-                                            {children}
-                                        </code>
-                                    ) : (
-                                        <code className="block p-2 bg-slate-200 dark:bg-slate-600 rounded text-sm overflow-x-auto">
-                                            {children}
-                                        </code>
-                                    ),
-                                strong: ({ children }) => <strong className="font-bold text-indigo-600 dark:text-indigo-400">{children}</strong>,
-                                em: ({ children }) => <em className="italic">{children}</em>,
-                            }}
-                        >
-                            {message.content}
-                        </ReactMarkdown>
+                        {renderContent(message.content)}
                     </div>
                 ) : (
                     <div className="whitespace-pre-wrap break-words">
@@ -474,10 +539,10 @@ const MessageBubble = ({ message }) => {
                     className={`text-xs mt-1 ${isUser ? 'text-indigo-200' : 'text-slate-400 dark:text-slate-500'
                         }`}
                 >
-                    {new Date(message.timestamp).toLocaleTimeString('zh-CN', {
+                    {message.timestamp ? new Date(message.timestamp).toLocaleTimeString('zh-CN', {
                         hour: '2-digit',
                         minute: '2-digit'
-                    })}
+                    }) : ''}
                 </div>
             </div>
 
@@ -489,5 +554,12 @@ const MessageBubble = ({ message }) => {
         </div>
     );
 };
+
+// 导出包装了错误边界的组件
+const SmartChat = (props) => (
+    <ErrorBoundary>
+        <SmartChatContent {...props} />
+    </ErrorBoundary>
+);
 
 export default SmartChat;

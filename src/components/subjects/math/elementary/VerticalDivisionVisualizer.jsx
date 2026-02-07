@@ -1,101 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Play, RotateCcw, ChevronRight, ChevronLeft } from 'lucide-react';
 
 const VerticalDivisionVisualizer = () => {
     const [dividend, setDividend] = useState(432);
     const [divisor, setDivisor] = useState(24);
-    const [steps, setSteps] = useState([]);
     const [currentStep, setCurrentStep] = useState(0);
 
-    useEffect(() => {
-        if (!dividend || !divisor || divisor === 0) return;
-        generateSteps();
-    }, [dividend, divisor]);
-
-    const generateSteps = () => {
+    const steps = useMemo(() => {
         const divString = dividend.toString();
         const divisorVal = divisor;
-        const newSteps = [];
-
-        let currentState = {
-            quotient: Array(divString.length).fill(''),
-            rows: [], // { type: 'product'|'remainder'|'bringDown', val: number, indent: number, operator: '-' }
-            active: { type: 'start' }, // { type, index, val }
-            message: "准备开始：从最高位开始除。"
-        };
-
-        // Initial Step
-        newSteps.push(JSON.parse(JSON.stringify(currentState)));
-
+        const calcSteps = [];
         let remainder = 0;
-        let i = 0;
+        let p = 0;
 
-        while (i < divString.length) {
-            const digit = parseInt(divString[i]);
-            let currentVal = remainder * 10 + digit;
-
-            // Step: Focus on current number
-            currentState.active = { type: 'dividend', index: i };
-            let msg = "";
-            let chunkVal = currentVal;
-
-            let q = Math.floor(currentVal / divisorVal);
-
-            // Skip leading zeros in quotient visualization if logic requires, but let's be explicit
-            if (q === 0 && newSteps.length <= 1 && i < divString.length - 1) {
-                currentState.message = `${currentVal} 比 ${divisorVal} 小，不够除，看前两位。`;
-                newSteps.push(JSON.parse(JSON.stringify(currentState)));
-
-                remainder = currentVal;
-                i++;
-                continue;
-            }
-
-            // 1. Focus Step
-            currentState.message = `用 ${currentVal} 除以 ${divisorVal}，商是几？`;
-            newSteps.push(JSON.parse(JSON.stringify(currentState)));
-
-            // 2. Quotient Step
-            currentState.quotient[i] = q;
-            currentState.active = { type: 'quotient', index: i };
-            currentState.message = `商 ${q}，写在 ${digit} 的上面。`;
-            newSteps.push(JSON.parse(JSON.stringify(currentState)));
-
-            // 3. Multiply Step (Product)
-            const product = q * divisorVal;
-            currentState.rows.push({ type: 'product', val: product, indent: i, operator: '-' });
-            currentState.active = { type: 'product', rowIndex: currentState.rows.length - 1 };
-            currentState.message = `${divisorVal} × ${q} = ${product}`;
-            newSteps.push(JSON.parse(JSON.stringify(currentState)));
-
-            // 4. Subtract Step (Remainder)
+        for (let i = 0; i < divString.length; i++) {
+            const currentDigit = parseInt(divString[i]);
+            const currentVal = remainder * 10 + currentDigit;
+            const quotient = Math.floor(currentVal / divisorVal);
+            const product = quotient * divisorVal;
             const newRemainder = currentVal - product;
-            currentState.rows.push({ type: 'remainder', val: newRemainder, indent: i });
-            currentState.active = { type: 'remainder', rowIndex: currentState.rows.length - 1 };
-            currentState.message = `${currentVal} - ${product} = ${newRemainder}`;
-            newSteps.push(JSON.parse(JSON.stringify(currentState)));
+
+            calcSteps.push({
+                stepIndex: i,
+                currentDigit,
+                currentVal,
+                quotient,
+                product,
+                remainder: newRemainder,
+                p: p
+            });
 
             remainder = newRemainder;
-
-            // 5. Bring Down Step (if not last digit)
-            if (i < divString.length - 1) {
-                const nextDigit = divString[i + 1];
-                currentState.message = `把个位的 ${nextDigit} 落下来。`;
-                const lastRowIdx = currentState.rows.length - 1;
-                currentState.rows[lastRowIdx].broughtDown = nextDigit;
-                newSteps.push(JSON.parse(JSON.stringify(currentState)));
-            }
-
-            i++;
+            p++;
         }
+        return calcSteps;
+    }, [dividend, divisor]);
 
-        currentState.message = "计算完成！";
-        currentState.active = { type: 'finish' };
-        newSteps.push(JSON.parse(JSON.stringify(currentState)));
 
-        setSteps(newSteps);
-        setCurrentStep(0);
-    };
+
 
     const renderGrid = () => {
         if (steps.length === 0) return null;

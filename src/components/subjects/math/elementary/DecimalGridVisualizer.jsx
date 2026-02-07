@@ -1,109 +1,32 @@
 import React, { useState } from 'react';
-import { Plus, Minus, Equal } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
+
+const ResultGrid = ({ count1, total }) => {
+    return (
+        <div className="grid grid-cols-10 gap-0.5 border border-slate-300 bg-slate-300 p-0.5">
+            {[...Array(100)].map((_, i) => (
+                <div
+                    key={i}
+                    className={`w-6 h-6 sm:w-8 sm:h-8 ${i < count1
+                        ? 'bg-blue-500'
+                        : i < total
+                            ? 'bg-green-500'
+                            : 'bg-white'
+                        }`}
+                />
+            ))}
+        </div>
+    );
+};
 
 const DecimalGridVisualizer = () => {
     const [num1, setNum1] = useState(0.24);
     const [num2, setNum2] = useState(0.35);
-    const [operation, setOperation] = useState('add'); // 'add' or 'subtract'
+    const [operation, setOperation] = useState('add');
 
-    const Grid = ({ value, color = "bg-blue-500", label, showGrid = true }) => {
-        // Value is 0 to 1. 
-        // 10x10 grid.
-        const cells = Array(100).fill(0);
-        const filledCount = Math.round(value * 100);
-
-        return (
-            <div className="flex flex-col items-center">
-                <div className="relative w-48 h-48 bg-white border-2 border-slate-800 dark:border-slate-400 grid grid-cols-10 grid-rows-10">
-                    {cells.map((_, i) => (
-                        <div
-                            key={i}
-                            className={`border-[0.5px] border-slate-200 dark:border-slate-700 ${i < filledCount ? color : ''}`}
-                        >
-                        </div>
-                    ))}
-                    {/* Tenths lines (every 10 cells) thicker? Optional */}
-                </div>
-                <div className="mt-2 font-mono font-bold text-slate-700 dark:text-slate-300">
-                    {label} ({value.toFixed(2)})
-                </div>
-            </div>
-        );
-    };
-
-    // For addition: Show Grid 1 (Part) + Grid 2 (Part) = Grid 3 (Total)
-    // Actually, combining them on one grid is better for determining sum.
-
-    // Combined Grid Visual
-    const ResultGrid = () => {
-        const sum = num1 + num2;
-        const count1 = Math.round(num1 * 100);
-        const count2 = Math.round(num2 * 100);
-
-        // If sum > 1, we need multiple grids.
-        // Let's handle up to 2.0
-
-        const renderSingleGrid = (offset, label) => {
-            const cells = Array(100).fill(0);
-            return (
-                <div className="relative w-48 h-48 bg-white border-2 border-slate-800 dark:border-slate-400 grid grid-cols-10 grid-rows-10">
-                    {cells.map((_, i) => {
-                        const globalIndex = offset + i;
-                        let cellColor = "";
-
-                        if (operation === 'add') {
-                            if (globalIndex < count1) {
-                                cellColor = "bg-blue-400"; // Num1
-                            } else if (globalIndex < count1 + count2) {
-                                cellColor = "bg-green-400"; // Num2
-                            }
-                        } else {
-                            // Subtraction: Show Num1, then cross out Num2 amount?
-                            // Or just show result?
-                            // Visualizing subtraction:
-                            // Show Num1 (Blue).
-                            // Highlight last N cells (Num2) in Red/Crossed?
-                            if (globalIndex < count1) {
-                                if (globalIndex >= count1 - count2) {
-                                    cellColor = "bg-red-400/50 striped"; // Removed part
-                                } else {
-                                    cellColor = "bg-blue-400"; // Remaining
-                                }
-                            }
-                        }
-
-                        return (
-                            <div
-                                key={i}
-                                className={`border-[0.5px] border-slate-200 dark:border-slate-700 ${cellColor}`}
-                            ></div>
-                        );
-                    })}
-                </div>
-            );
-        };
-
-        return (
-            <div className="flex gap-4">
-                <div className="flex flex-col items-center">
-                    {renderSingleGrid(0)}
-                    <div className="mt-2 font-bold text-slate-700 dark:text-slate-300">
-                        {operation === 'add' ? '和' : '差'}
-                        : {(operation === 'add' ? num1 + num2 : Math.max(0, num1 - num2)).toFixed(2)}
-                    </div>
-                </div>
-                {/* If sum > 1, show second grid */}
-                {(operation === 'add' && num1 + num2 > 1) && (
-                    <div className="flex flex-col items-center">
-                        {renderSingleGrid(100)}
-                        <div className="mt-2 text-slate-500">
-                            (超过 1.0 的部分)
-                        </div>
-                    </div>
-                )}
-            </div>
-        );
-    };
+    const count1 = Math.round(num1 * 100);
+    const count2 = Math.round(num2 * 100);
+    const total = count1 + count2;
 
     return (
         <div className="flex flex-col items-center p-6 bg-white dark:bg-slate-800 rounded-xl shadow-sm">
@@ -128,7 +51,6 @@ const DecimalGridVisualizer = () => {
                     >
                         <Plus className="w-5 h-5" />
                     </button>
-                    {/* Subtraction support is tricky visually if num1 < num2, let's disable for now or clamp */}
                     <button
                         onClick={() => {
                             setOperation('subtract');
@@ -155,16 +77,12 @@ const DecimalGridVisualizer = () => {
             </div>
 
             <div className="flex flex-wrap lg:flex-nowrap justify-center gap-8 items-center bg-slate-50 dark:bg-slate-900/50 p-8 rounded-xl w-full">
-                {/* Visuals */}
-                {/* <div className="flex gap-4 opacity-50 scale-75 origin-right lg:hidden">
-                    <Grid value={num1} color="bg-blue-500" label="数1" />
-                    <div className="flex items-center text-3xl text-slate-400">{operation === 'add' ? '+' : '-'}</div>
-                    <Grid value={num2} color="bg-green-500" label="数2" />
-                 </div>
-                 
-                 <div className="hidden lg:flex items-center text-3xl text-slate-400">=</div> */}
+                <ResultGrid count1={count1} total={total} />
+            </div>
 
-                <ResultGrid />
+            <div className="mt-4 font-bold text-slate-700 dark:text-slate-300">
+                {operation === 'add' ? '和' : '差'}
+                : {(operation === 'add' ? num1 + num2 : Math.max(0, num1 - num2)).toFixed(2)}
             </div>
 
             <p className="mt-4 text-slate-500 text-sm">
