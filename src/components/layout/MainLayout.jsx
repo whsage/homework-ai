@@ -1,11 +1,20 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Header from './Header';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { supabase } from '../../supabase';
 
 const MainLayout = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const { pathname } = useLocation();
+    const mainRef = useRef(null);
+
+    // 路由切换时自动滚动到顶部
+    useEffect(() => {
+        if (mainRef.current) {
+            mainRef.current.scrollTop = 0;
+        }
+    }, [pathname]);
 
     // 检查欢迎回来和周年纪念通知
     useEffect(() => {
@@ -102,7 +111,7 @@ const MainLayout = () => {
 
             <div className="flex-1 flex flex-col h-full overflow-hidden">
                 <Header onMenuClick={() => setIsMobileMenuOpen(true)} />
-                <main className="flex-1 overflow-y-auto scroll-smooth">
+                <main ref={mainRef} className="flex-1 overflow-y-auto scroll-smooth">
                     <Outlet />
                 </main>
             </div>

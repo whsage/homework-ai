@@ -12,7 +12,8 @@ import {
     CheckCircle,
     Brain,
     Sparkles,
-    ChevronRight
+    ChevronRight,
+    AlertCircle
 } from 'lucide-react';
 import PracticeProblem from '../../components/subjects/practice/PracticeProblem';
 import { Link } from 'react-router-dom';
@@ -31,7 +32,8 @@ export const Icons = {
     CheckCircle,
     Brain,
     Sparkles,
-    ChevronRight
+    ChevronRight,
+    AlertCircle
 };
 
 export { PracticeProblem, Link, React };

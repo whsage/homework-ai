@@ -23,17 +23,9 @@ const MathTopicPage = () => {
     const [aiContext, setAiContext] = useState(null);
     const aiChatRef = useRef(null);
 
-    // 页面加载时滚动到顶部 - 使用 requestAnimationFrame 确保在渲染后执行
-    useEffect(() => {
-        // 强制滚动到顶部，增加一个小延时以应对可能的布局偏移
-        const scrollToTop = () => {
-            window.scrollTo({ top: 0, behavior: 'instant' });
-        };
+    // 页面加载时滚动到顶部 - 已由 MainLayout 统一处理
+    // 这里的 window.scrollTo 无效，因为滚动容器是 main 元素
 
-        scrollToTop();
-        const timer = setTimeout(scrollToTop, 50);
-        return () => clearTimeout(timer);
-    }, [topicId]);
 
     // 监听 showAIChat 变化，自动滚动到 AI 对话区域
     useEffect(() => {
@@ -120,7 +112,16 @@ const MathTopicPage = () => {
             <div className="mt-8">
                 {tabs[activeTab] || <div className="text-center p-8 text-slate-500">内容建设中...</div>}
             </div>
-        </TopicLayout>
+
+            {/* Mobile AI Chat FAB */}
+            <button
+                onClick={() => handleStartAIChat(null)}
+                className="md:hidden fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-full shadow-lg shadow-indigo-500/30 flex items-center justify-center hover:scale-105 active:scale-95 transition-all"
+                aria-label="AI智能对话"
+            >
+                {showAIChat ? <ChevronRight className="w-8 h-8 rotate-90" /> : <MessageCircle className="w-8 h-8" />}
+            </button>
+        </TopicLayout >
     );
 };
 

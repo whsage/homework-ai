@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import {
     Search,
@@ -21,9 +21,33 @@ import {
     Microscope
 } from 'lucide-react';
 
+import { knowledgeBase } from '../../data/mathCurriculum';
+
 const MathLearning = () => {
+    const [searchParams] = useSearchParams();
     const [activeGrade, setActiveGrade] = useState('middle');
     const [searchQuery, setSearchQuery] = useState('');
+    const [elementaryGrade, setElementaryGrade] = useState(1); // 1-6 for elementary grades
+    const [elementaryTrack, setElementaryTrack] = useState('l1'); // 'l1' or 'l2'
+
+    // Handle initial state from URL query params
+    useEffect(() => {
+        const type = searchParams.get('gradeType');
+        const level = searchParams.get('gradeLevel');
+        const track = searchParams.get('track');
+
+        if (type && ['elementary', 'middle', 'high', 'college'].includes(type)) {
+            setActiveGrade(type);
+        }
+
+        if (level && !isNaN(parseInt(level))) {
+            setElementaryGrade(parseInt(level));
+        }
+
+        if (track && ['l1', 'l2'].includes(track)) {
+            setElementaryTrack(track);
+        }
+    }, [searchParams]);
 
     // 辅导内容数据 (来自 MathTutoring)
     const gradeContent = {
@@ -202,196 +226,7 @@ const MathLearning = () => {
         }
     };
 
-    // 知识点数据结构
-    const knowledgeBase = {
-        elementary: {
-            name: '小学数学',
-            icon: '🎨',
-            color: 'from-pink-500 to-rose-500',
-            modules: [
-                {
-                    id: 'arithmetic',
-                    name: '算术基础',
-                    icon: '🔢',
-                    topics: [
-                        { id: 'addition-subtraction', name: '加减法', difficulty: '基础', time: '20分钟', important: true },
-                        { id: 'multiplication-division', name: '乘除法', difficulty: '基础', time: '25分钟', important: true },
-                        { id: 'mixed-operations', name: '四则混合运算', difficulty: '提高', time: '30分钟', important: true }
-                    ]
-                },
-                {
-                    id: 'fractions',
-                    name: '分数与小数',
-                    icon: '📊',
-                    topics: [
-                        { id: 'fraction-concept', name: '分数的认识', difficulty: '基础', time: '25分钟', important: true },
-                        { id: 'decimal-concept', name: '小数的认识', difficulty: '基础', time: '20分钟', important: true },
-                        { id: 'percentage', name: '百分数', difficulty: '提高', time: '30分钟', important: false }
-                    ]
-                },
-                {
-                    id: 'geometry',
-                    name: '图形认识',
-                    icon: '🔺',
-                    topics: [
-                        { id: 'basic-shapes', name: '基本图形', difficulty: '基础', time: '20分钟', important: false },
-                        { id: 'perimeter-area', name: '周长与面积', difficulty: '提高', time: '35分钟', important: true },
-                        { id: 'volume', name: '体积', difficulty: '提高', time: '30分钟', important: false }
-                    ]
-                }
-            ]
-        },
-        middle: {
-            name: '初中数学',
-            icon: '🧠',
-            color: 'from-blue-500 to-indigo-500',
-            modules: [
-                {
-                    id: 'algebra',
-                    name: '代数基础',
-                    icon: '📐',
-                    topics: [
-                        { id: 'mid-7-1-rational-numbers', name: '有理数', difficulty: '基础', time: '30分钟', important: true },
-                        { id: 'mid-7-1-algebraic-expressions', name: '整式的加减', difficulty: '基础', time: '35分钟', important: true },
-                        { id: 'mid-8-1-factorization', name: '因式分解', difficulty: '提高', time: '40分钟', important: true },
-                        { id: 'mid-8-1-fractions', name: '分式', difficulty: '提高', time: '40分钟', important: true }
-                    ]
-                },
-                {
-                    id: 'equations',
-                    name: '方程与不等式',
-                    icon: '⚖️',
-                    topics: [
-                        { id: 'mid-7-1-equations', name: '一元一次方程', difficulty: '基础', time: '30分钟', important: true },
-                        { id: 'mid-8-1-binary-equations', name: '二元一次方程组', difficulty: '提高', time: '40分钟', important: true },
-                        { id: 'mid-9-1-quadratic-equations', name: '一元二次方程', difficulty: '提高', time: '45分钟', important: true },
-                        { id: 'mid-7-2-inequalities', name: '不等式与不等式组', difficulty: '提高', time: '35分钟', important: true }
-                    ]
-                },
-                {
-                    id: 'functions',
-                    name: '函数',
-                    icon: '📈',
-                    topics: [
-                        { id: 'mid-8-2-functions', name: '函数的概念', difficulty: '基础', time: '30分钟', important: true },
-                        { id: 'mid-8-2-linear-functions', name: '一次函数', difficulty: '提高', time: '40分钟', important: true },
-                        { id: 'mid-9-2-inverse-proportional', name: '反比例函数', difficulty: '提高', time: '35分钟', important: true },
-                        { id: 'mid-9-1-quadratic-functions', name: '二次函数', difficulty: '重点', time: '50分钟', important: true }
-                    ]
-                },
-                {
-                    id: 'geometry',
-                    name: '平面几何',
-                    icon: '🔺',
-                    topics: [
-                        { id: 'mid-7-1-geometry-basic', name: '几何图形初步', difficulty: '基础', time: '30分钟', important: true },
-                        { id: 'mid-8-1-triangles', name: '三角形', difficulty: '基础', time: '40分钟', important: true },
-                        { id: 'mid-8-2-quadrilaterals', name: '四边形', difficulty: '提高', time: '35分钟', important: true },
-                        { id: 'mid-9-1-rotation', name: '旋转', difficulty: '提高', time: '35分钟', important: false },
-                        { id: 'mid-9-1-circle', name: '圆', difficulty: '重点', time: '45分钟', important: true },
-                        { id: 'mid-9-2-similar', name: '相似', difficulty: '重点', time: '50分钟', important: true },
-                        { id: 'mid-9-2-trigonometry', name: '锐角三角函数', difficulty: '重点', time: '45分钟', important: true }
-                    ]
-                },
-                {
-                    id: 'statistics',
-                    name: '统计与概率',
-                    icon: '📊',
-                    topics: [
-                        { id: 'mid-7-2-statistics', name: '数据的收集、整理与描述', difficulty: '基础', time: '35分钟', important: false },
-                        { id: 'mid-7-2-plane-coordinates', name: '平面直角坐标系', difficulty: '基础', time: '30分钟', important: true },
-                        { id: 'mid-8-2-data-analysis', name: '数据的分析', difficulty: '提高', time: '35分钟', important: false },
-                        { id: 'mid-9-2-probability', name: '概率初步', difficulty: '提高', time: '40分钟', important: true }
-                    ]
-                }
-            ]
-        },
-        high: {
-            name: '高中数学',
-            icon: '🎓',
-            color: 'from-purple-500 to-pink-500',
-            modules: [
-                {
-                    id: 'functions-calculus',
-                    name: '函数与导数',
-                    icon: '📊',
-                    topics: [
-                        { id: 'function-properties', name: '函数的性质', difficulty: '基础', time: '40分钟', important: true },
-                        { id: 'derivatives', name: '导数', difficulty: '重点', time: '60分钟', important: true },
-                        { id: 'derivative-applications', name: '导数的应用', difficulty: '重点', time: '55分钟', important: true }
-                    ]
-                },
-                {
-                    id: 'trigonometry',
-                    name: '三角函数',
-                    icon: '📐',
-                    topics: [
-                        { id: 'trig-functions', name: '三角函数', difficulty: '基础', time: '45分钟', important: true },
-                        { id: 'trig-identities', name: '三角恒等变换', difficulty: '提高', time: '50分钟', important: true },
-                        { id: 'trig-graphs', name: '三角函数图像', difficulty: '提高', time: '40分钟', important: false }
-                    ]
-                },
-                {
-                    id: 'solid-geometry',
-                    name: '立体几何',
-                    icon: '🎲',
-                    topics: [
-                        { id: 'space-vectors', name: '空间向量', difficulty: '重点', time: '50分钟', important: true },
-                        { id: 'solid-volume', name: '立体图形体积', difficulty: '提高', time: '45分钟', important: false },
-                        { id: 'solid-surface', name: '立体图形表面积', difficulty: '提高', time: '40分钟', important: false }
-                    ]
-                },
-                {
-                    id: 'analytic-geometry',
-                    name: '解析几何',
-                    icon: '📏',
-                    topics: [
-                        { id: 'lines-circles', name: '直线与圆', difficulty: '基础', time: '45分钟', important: true },
-                        { id: 'conic-sections', name: '圆锥曲线', difficulty: '重点', time: '60分钟', important: true }
-                    ]
-                }
-            ]
-        },
-        college: {
-            name: '大学数学',
-            icon: '🔬',
-            color: 'from-green-500 to-teal-500',
-            modules: [
-                {
-                    id: 'calculus',
-                    name: '高等数学',
-                    icon: '∫',
-                    topics: [
-                        { id: 'limits', name: '极限', difficulty: '基础', time: '50分钟', important: true },
-                        { id: 'derivatives-advanced', name: '微分', difficulty: '重点', time: '60分钟', important: true },
-                        { id: 'integrals', name: '积分', difficulty: '重点', time: '70分钟', important: true },
-                        { id: 'series', name: '级数', difficulty: '提高', time: '55分钟', important: false }
-                    ]
-                },
-                {
-                    id: 'linear-algebra',
-                    name: '线性代数',
-                    icon: '🔢',
-                    topics: [
-                        { id: 'matrices', name: '矩阵', difficulty: '基础', time: '45分钟', important: true },
-                        { id: 'determinants', name: '行列式', difficulty: '提高', time: '50分钟', important: true },
-                        { id: 'vector-spaces', name: '向量空间', difficulty: '重点', time: '60分钟', important: true },
-                        { id: 'eigenvalues', name: '特征值与特征向量', difficulty: '重点', time: '55分钟', important: true }
-                    ]
-                },
-                {
-                    id: 'probability',
-                    name: '概率论',
-                    icon: '🎲',
-                    topics: [
-                        { id: 'random-variables', name: '随机变量', difficulty: '基础', time: '50分钟', important: true },
-                        { id: 'distributions', name: '概率分布', difficulty: '重点', time: '60分钟', important: true },
-                        { id: 'law-large-numbers', name: '大数定律', difficulty: '提高', time: '45分钟', important: false }
-                    ]
-                }
-            ]
-        }
-    };
+
 
     const grades = [
         { id: 'elementary', label: '小学', icon: '🎨' },
@@ -403,13 +238,33 @@ const MathLearning = () => {
     const currentGrade = knowledgeBase[activeGrade];
     const currentTutoring = gradeContent[activeGrade];
 
-    // 搜索功能
-    const filteredModules = currentGrade.modules.map(module => ({
-        ...module,
-        topics: module.topics.filter(topic =>
-            topic.name.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-    })).filter(module => module.topics.length > 0);
+    // 搜索功能 - Handle both module-based and grade-based structures
+    let filteredModules = [];
+    if (activeGrade === 'elementary' && currentGrade.grades) {
+        // For elementary: filter within selected grade and track
+        const selectedGrade = currentGrade.grades.find(g => g.id === `grade-${elementaryGrade}`);
+        if (selectedGrade) {
+            const selectedTrackData = selectedGrade.tracks[elementaryTrack];
+            if (selectedTrackData) {
+                filteredModules = [{
+                    id: elementaryTrack,
+                    name: selectedTrackData.name,
+                    icon: selectedTrackData.icon,
+                    topics: selectedTrackData.topics.filter(topic =>
+                        topic.name.toLowerCase().includes(searchQuery.toLowerCase())
+                    )
+                }].filter(module => module.topics.length > 0);
+            }
+        }
+    } else if (currentGrade.modules) {
+        // For middle/high/college: use existing module-based logic
+        filteredModules = currentGrade.modules.map(module => ({
+            ...module,
+            topics: module.topics.filter(topic =>
+                topic.name.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+        })).filter(module => module.topics.length > 0);
+    }
 
     return (
         <>
@@ -573,6 +428,74 @@ const MathLearning = () => {
                             </div>
                         </div>
 
+                        {/* Elementary Grade Selector & Track Toggle */}
+                        {activeGrade === 'elementary' && (
+                            <div className="mb-12 space-y-6">
+                                {/* Grade Selector (1-6) */}
+                                <div className="bg-gradient-to-r from-pink-50 to-rose-50 dark:from-pink-900/20 dark:to-rose-900/20 rounded-2xl p-6 border border-pink-100 dark:border-pink-800/30">
+                                    <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 text-center">
+                                        选择年级
+                                    </h3>
+                                    <div className="flex flex-wrap justify-center gap-3">
+                                        {[1, 2, 3, 4, 5, 6].map((grade) => {
+                                            const gradeData = currentGrade.grades?.find(g => g.id === `grade-${grade}`);
+                                            return (
+                                                <button
+                                                    key={grade}
+                                                    onClick={() => setElementaryGrade(grade)}
+                                                    className={`px-6 py-3 rounded-xl font-semibold transition-all ${elementaryGrade === grade
+                                                        ? 'bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-lg scale-105'
+                                                        : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:shadow-md'
+                                                        }`}
+                                                >
+                                                    <div className="text-lg">{grade}年级</div>
+                                                    {gradeData && (
+                                                        <div className="text-xs mt-1 opacity-80">{gradeData.subtitle}</div>
+                                                    )}
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+
+                                {/* L1/L2 Track Toggle */}
+                                <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-700">
+                                    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                                        <div>
+                                            <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-1">
+                                                学习难度
+                                            </h3>
+                                            <p className="text-sm text-slate-600 dark:text-slate-400">
+                                                选择适合你的学习路径
+                                            </p>
+                                        </div>
+                                        <div className="flex gap-3">
+                                            <button
+                                                onClick={() => setElementaryTrack('l1')}
+                                                className={`px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 ${elementaryTrack === 'l1'
+                                                    ? 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg'
+                                                    : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:shadow-md'
+                                                    }`}
+                                            >
+                                                <span className="text-xl">📚</span>
+                                                <span>基础达标 (L1)</span>
+                                            </button>
+                                            <button
+                                                onClick={() => setElementaryTrack('l2')}
+                                                className={`px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 ${elementaryTrack === 'l2'
+                                                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
+                                                    : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:shadow-md'
+                                                    }`}
+                                            >
+                                                <span className="text-xl">🧠</span>
+                                                <span>思维进阶 (L2)</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
                         {/* Knowledge Modules Header */}
                         <div className="text-center mb-8">
                             <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2">
@@ -599,8 +522,16 @@ const MathLearning = () => {
 
                                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                                         {module.topics.map((topic) => {
-                                            // List of all completed middle school math topics
+                                            // List of all completed math topics
                                             const completedTopics = [
+                                                // Grade 4
+                                                'g4-l1-large-numbers',
+                                                'g4-l1-angle-measurement',
+                                                'g4-l1-division-two-digit',
+                                                'g4-l1-decimal-ops',
+                                                'g4-l1-mixed-ops',
+                                                'g4-l1-parallel-trapezoid',
+                                                'g4-l1-bar-chart',
                                                 // Grade 7
                                                 'mid-7-1-rational-numbers',
                                                 'mid-7-1-algebraic-expressions',
@@ -628,7 +559,7 @@ const MathLearning = () => {
                                                 'mid-9-2-similar',
                                                 'mid-9-2-trigonometry'
                                             ];
-                                            const isReady = activeGrade === 'middle' && completedTopics.includes(topic.id);
+                                            const isReady = completedTopics.includes(topic.id);
                                             const CardContent = () => (
                                                 <>
                                                     {/* Coming Soon Badge - Only for non-ready topics */}

@@ -19,6 +19,7 @@ export const grade7Content = {
             title: "有理数",
             description: "欢迎来到初中数学！数字的世界扩大了，我们不仅有正数，还有负数。准备好进入更广阔的数学宇宙了吗？",
             tags: [
+                { text: "七年级", color: "blue" },
                 { text: "数学基石", color: "indigo" },
                 { text: "入门必修", color: "red" },
                 { text: "30分钟", icon: Clock, color: "slate" }

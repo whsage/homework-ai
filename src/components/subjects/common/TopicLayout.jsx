@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowLeft, MessageCircle, ChevronRight } from 'lucide-react';
+import { ArrowLeft, MessageCircle, ChevronRight, Home, ChevronLeft } from 'lucide-react';
+import { getAdjacentTopics } from '../../../data/mathCurriculum';
 
 const TopicLayout = ({
     meta,           // { title, description, keywords }
@@ -11,6 +12,42 @@ const TopicLayout = ({
     actions,        // optional right-side actions in header (e.g. AI button)
     children        // main content
 }) => {
+    const { topicId } = useParams();
+    const { prev, next } = topicId ? getAdjacentTopics(topicId) : { prev: null, next: null };
+
+    // Breadcrumb logic
+    const getBreadcrumbs = () => {
+        const gradeTag = info.tags.find(t => t.text.includes('年级'));
+        const breadcrumbs = [];
+
+        // 1. Math Home
+        breadcrumbs.push({ label: '数学', link: '/subjects/math' });
+
+        if (gradeTag) {
+            const text = gradeTag.text;
+            const numMap = { '一': 1, '二': 2, '三': 3, '四': 4, '五': 5, '六': 6, '七': 7, '八': 8, '九': 9 };
+            const num = Object.entries(numMap).find(([k]) => text.includes(k))?.[1];
+
+            if (num) {
+                // 2. Stage (Primary/Middle)
+                if (num <= 6) {
+                    breadcrumbs.push({ label: '小学', link: '/subjects/math?gradeType=elementary' });
+                    // 3. Grade
+                    breadcrumbs.push({ label: text, link: `/subjects/math?gradeType=elementary&gradeLevel=${num}` });
+                } else if (num >= 7 && num <= 9) {
+                    breadcrumbs.push({ label: '初中', link: '/subjects/math?gradeType=middle' });
+                    // Middle school modules
+                    breadcrumbs.push({ label: text, link: `/subjects/math?gradeType=middle` });
+                }
+            } else {
+                // Fallback if no specific grade number found but "Grade" tag exists
+                breadcrumbs.push({ label: text, link: '/subjects/math' });
+            }
+        }
+        return breadcrumbs;
+    };
+
+    const breadcrumbs = getBreadcrumbs();
 
     // Tag rendering helper
     const renderTag = (tag, index) => {
@@ -43,13 +80,24 @@ const TopicLayout = ({
             {/* Header */}
             <section className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
                 <div className="max-w-7xl mx-auto px-4 md:px-6 py-6">
-                    <Link
-                        to="/subjects/math"
-                        className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 mb-4 transition-colors"
-                    >
-                        <ArrowLeft className="w-4 h-4" />
-                        返回知识点中心
-                    </Link>
+                    {/* Breadcrumbs */}
+                    <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6 overflow-x-auto no-scrollbar whitespace-nowrap">
+                        <Link to="/" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                            <Home className="w-4 h-4" />
+                        </Link>
+                        {breadcrumbs.map((crumb, index) => (
+                            <div key={index} className="flex items-center gap-2">
+                                <ChevronRight className="w-4 h-4 flex-shrink-0 text-slate-300" />
+                                <Link to={crumb.link} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                                    {crumb.label}
+                                </Link>
+                            </div>
+                        ))}
+                        <ChevronRight className="w-4 h-4 flex-shrink-0 text-slate-300" />
+                        <span className="font-medium text-slate-800 dark:text-slate-200 truncate max-w-[200px] md:max-w-none">
+                            {info.title}
+                        </span>
+                    </nav>
 
                     <div className="flex items-start justify-between">
                         <div>
@@ -72,8 +120,8 @@ const TopicLayout = ({
                 </div>
             </section>
 
-            {/* Tabs */}
-            <section className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-30 shadow-sm">
+            {/* Tabs - Sticky */}
+            <section className="sticky top-0 z-30 bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm border-b border-slate-200 dark:border-slate-700 shadow-sm transition-all duration-300">
                 <div className="max-w-7xl mx-auto px-4 md:px-6">
                     <div className="flex gap-2 overflow-x-auto no-scrollbar">
                         {tabs.map((tab) => {
@@ -82,9 +130,9 @@ const TopicLayout = ({
                                 <button
                                     key={tab.id}
                                     onClick={() => onTabChange(tab.id)}
-                                    className={`flex items-center gap-2 px-6 py-4 font-semibold transition-all whitespace-nowrap ${activeTab === tab.id
-                                        ? 'text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 dark:border-indigo-400'
-                                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
+                                    className={`flex items-center gap-2 px-6 py-4 font-semibold transition-all whitespace-nowrap border-b-2 hover:bg-slate-50 dark:hover:bg-slate-700/50 ${activeTab === tab.id
+                                        ? 'text-indigo-600 dark:text-indigo-400 border-indigo-600 dark:border-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/10'
+                                        : 'text-slate-600 dark:text-slate-400 border-transparent hover:text-slate-800 dark:hover:text-slate-200'
                                         }`}
                                 >
                                     {Icon && <Icon className="w-5 h-5" />}
@@ -97,37 +145,77 @@ const TopicLayout = ({
             </section>
 
             {/* Content */}
-            <section className="py-8 md:py-12 px-4 md:px-6 bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 min-h-screen">
-                <div className="max-w-7xl mx-auto">
+            <section className="py-8 md:py-12 px-4 md:px-6 bg-slate-50 dark:bg-slate-900 min-h-screen">
+                <div className="max-w-7xl mx-auto space-y-8">
                     {children}
+
+                    {/* Bottom Navigation */}
+                    {(prev || next) && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
+                            {prev ? (
+                                <Link
+                                    to={prev.link}
+                                    className="group flex flex-col p-6 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-500 hover:shadow-md transition-all text-left"
+                                >
+                                    <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-2">
+                                        <ChevronLeft className="w-4 h-4" />
+                                        上一节
+                                    </div>
+                                    <span className="text-lg font-semibold text-slate-800 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
+                                        {prev.name}
+                                    </span>
+                                </Link>
+                            ) : (
+                                <div /> /* Spacer */
+                            )}
+
+                            {next ? (
+                                <Link
+                                    to={next.link}
+                                    className="group flex flex-col p-6 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-500 hover:shadow-md transition-all text-right items-end"
+                                >
+                                    <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-2">
+                                        下一节
+                                        <ChevronRight className="w-4 h-4" />
+                                    </div>
+                                    <span className="text-lg font-semibold text-slate-800 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
+                                        {next.name}
+                                    </span>
+                                </Link>
+                            ) : null}
+                        </div>
+                    )}
                 </div>
             </section>
 
-            {/* Shared Footer CTA - Can be overridden or hidden if needed via props, but beneficial to keep standard */}
-            <section className="py-12 md:py-16 px-4 md:px-6 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+            {/* Shared Footer CTA */}
+            <section className="py-12 md:py-16 px-4 md:px-6 bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-slate-800 dark:to-slate-900">
                 <div className="max-w-4xl mx-auto text-center">
-                    <div className="bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl p-12 shadow-2xl">
-                        <h2 className="text-3xl font-bold text-white mb-4">
-                            准备好开始练习了吗？
-                        </h2>
-                        <p className="text-xl text-indigo-100 mb-8">
-                            如果你遇到难题，可以上传获得AI辅导
-                        </p>
-                        <Link
-                            to="/new"
-                            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-indigo-600 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all"
-                        >
-                            上传作业题目
-                            <ChevronRight className="w-5 h-5" />
-                        </Link>
+                    <div className="bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl p-12 shadow-2xl relative overflow-hidden">
+                        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
+                        <div className="relative z-10">
+                            <h2 className="text-3xl font-bold text-white mb-4">
+                                准备好开始练习了吗？
+                            </h2>
+                            <p className="text-xl text-indigo-100 mb-8">
+                                如果你遇到难题，可以上传获得AI辅导
+                            </p>
+                            <Link
+                                to="/new"
+                                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-indigo-600 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                            >
+                                上传作业题目
+                                <ChevronRight className="w-5 h-5" />
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </section>
 
             {/* SEO Keywords Footer */}
-            <section className="py-8 px-4 md:px-6 bg-slate-100 dark:bg-slate-900">
+            <section className="py-8 px-4 md:px-6 bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
                 <div className="max-w-7xl mx-auto text-center">
-                    <div className="text-xs text-slate-500 dark:text-slate-400 space-y-2">
+                    <div className="text-xs text-slate-500 dark:text-slate-500 space-y-2">
                         <p>
                             <strong>相关内容：</strong>
                             {meta.keywords.split(',').join(' | ')}
