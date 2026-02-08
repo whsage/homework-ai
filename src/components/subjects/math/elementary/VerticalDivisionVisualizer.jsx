@@ -7,32 +7,103 @@ const VerticalDivisionVisualizer = () => {
     const [currentStep, setCurrentStep] = useState(0);
 
     const steps = useMemo(() => {
-        const divString = dividend.toString();
+        const divStr = dividend.toString();
         const divisorVal = divisor;
         const calcSteps = [];
-        let remainder = 0;
-        let p = 0;
 
-        for (let i = 0; i < divString.length; i++) {
-            const currentDigit = parseInt(divString[i]);
-            const currentVal = remainder * 10 + currentDigit;
-            const quotient = Math.floor(currentVal / divisorVal);
-            const product = quotient * divisorVal;
-            const newRemainder = currentVal - product;
+        // Initial state: Show dividend and divisor
+        calcSteps.push({
+            quotient: Array(divStr.length).fill(' '),
+            rows: [],
+            active: { type: 'dividend', index: 0 },
+            message: `我们要计算 ${dividend} ÷ ${divisor}。先看被除数的前几位。`
+        });
 
-            calcSteps.push({
-                stepIndex: i,
-                currentDigit,
-                currentVal,
-                quotient,
-                product,
-                remainder: newRemainder,
-                p: p
+        let currentRemainder = 0;
+        let p = 0; // current position in dividend
+        let currentQuotientArr = Array(divStr.length).fill(' ');
+        let currentRows = [];
+
+        // Long division simulation
+        while (p < divStr.length) {
+            const digit = parseInt(divStr[p]);
+            const valBefore = currentRemainder * 10 + digit;
+
+            // Step 1: Bring down / Look at current value
+            // If it's the first step or we have a remainder, we explain bringing down
+            currentRows.push({
+                val: valBefore,
+                type: 'bringDown',
+                indent: p
             });
 
-            remainder = newRemainder;
+            calcSteps.push({
+                quotient: [...currentQuotientArr],
+                rows: [...currentRows],
+                active: { type: 'bringDown', rowIndex: currentRows.length - 1 },
+                message: p === 0 ? `看最高位 ${digit}。` : `把 ${digit} 落下，现在是 ${valBefore}。`
+            });
+
+            // Step 2: Quotient
+            const q = Math.floor(valBefore / divisorVal);
+            currentQuotientArr[p] = q.toString();
+
+            calcSteps.push({
+                quotient: [...currentQuotientArr],
+                rows: [...currentRows],
+                active: { type: 'quotient', index: p },
+                message: `${valBefore} 除以 ${divisorVal}，商是 ${q}。`
+            });
+
+            // Step 3: Multiply
+            const product = q * divisorVal;
+            if (product > 0 || p === divStr.length - 1) {
+                currentRows.push({
+                    val: product,
+                    type: 'product',
+                    indent: p,
+                    operator: '-'
+                });
+
+                calcSteps.push({
+                    quotient: [...currentQuotientArr],
+                    rows: [...currentRows],
+                    active: { type: 'product', rowIndex: currentRows.length - 1 },
+                    message: `${q} 乘以 ${divisorVal} 等于 ${product}。`
+                });
+
+                // Step 4: Remainder
+                currentRemainder = valBefore - product;
+
+                // Only push remainder row if we are not at the very last digit OR if there's more to come
+                // Actually always show remainder
+                currentRows.push({
+                    val: currentRemainder,
+                    type: 'remainder',
+                    indent: p
+                });
+
+                calcSteps.push({
+                    quotient: [...currentQuotientArr],
+                    rows: [...currentRows],
+                    active: { type: 'remainder', rowIndex: currentRows.length - 1 },
+                    message: `${valBefore} 减去 ${product}，余数是 ${currentRemainder}。`
+                });
+            } else {
+                currentRemainder = valBefore;
+            }
+
             p++;
         }
+
+        // Final step: Completion
+        calcSteps.push({
+            quotient: [...currentQuotientArr],
+            rows: [...currentRows],
+            active: { type: 'none' },
+            message: `计算完成！${dividend} ÷ ${divisor} = ${Math.floor(dividend / divisor)} ... ${dividend % divisor}`
+        });
+
         return calcSteps;
     }, [dividend, divisor]);
 
