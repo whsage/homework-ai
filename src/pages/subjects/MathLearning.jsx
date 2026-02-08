@@ -316,8 +316,8 @@ const MathLearning = () => {
                                 <div className="text-sm text-slate-600 dark:text-slate-400">知识点</div>
                             </div>
                             <div className="bg-white dark:bg-slate-800 rounded-xl p-6 text-center shadow-lg">
-                                <div className="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">4</div>
-                                <div className="text-sm text-slate-600 dark:text-slate-400">年级覆盖</div>
+                                <div className="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">20+</div>
+                                <div className="text-sm text-slate-600 dark:text-slate-400">覆盖年级</div>
                             </div>
                             <div className="bg-white dark:bg-slate-800 rounded-xl p-6 text-center shadow-lg">
                                 <div className="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">AI</div>
@@ -336,10 +336,10 @@ const MathLearning = () => {
                     <div className="max-w-7xl mx-auto">
                         <div className="text-center mb-8">
                             <h2 className="text-3xl font-bold text-slate-800 dark:text-white mb-4">
-                                选择你的年级
+                                选择您的阶段
                             </h2>
                             <p className="text-slate-600 dark:text-slate-400">
-                                不同年级，不同的知识体系，循序渐进
+                                不同阶段，不同知识体系
                             </p>
                         </div>
 
