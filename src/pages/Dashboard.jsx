@@ -123,7 +123,7 @@ const Dashboard = () => {
     const nickname = settings?.profile?.nickname;
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-8 p-6 md:p-8">
             {/* Welcome Section */}
             <div>
                 <h1 className="text-2xl font-bold text-slate-800 dark:text-white flex items-center gap-2 h-9">
