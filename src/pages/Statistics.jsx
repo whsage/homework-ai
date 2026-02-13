@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../supabase';
 import { Calendar, Clock, BookOpen, TrendingUp, Award, Flame, BarChart3, PieChart, Hash } from 'lucide-react';
-
+import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '../context/LanguageContext';
 
 const Statistics = () => {
@@ -173,184 +173,192 @@ const Statistics = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-indigo-900/20 dark:to-slate-900 p-6">
-            <div className="max-w-7xl mx-auto">
-                {/* 页面标题 */}
-                <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
-                        <BarChart3 className="text-blue-600" size={32} />
-                        {t('statistics.title')}
-                    </h1>
-                    <p className="text-slate-600 dark:text-slate-400">{t('statistics.subtitle')}</p>
-                </div>
+        <>
+            <Helmet>
+                <title>学习统计 - 数据分析与成就 | AI7Miao</title>
+                <meta name="description" content="查看详细的学习统计数据，包括作业完成情况、学科分布、知识点掌握和学习成就。AI7Miao帮您追踪学习进步。" />
+                <meta name="keywords" content="学习统计,数据分析,学习成就,作业统计,进度追踪" />
+            </Helmet>
 
-                {/* 核心数据卡片 */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                    {/* 总作业数 */}
-                    <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-shadow">
-                        <div className="flex items-center justify-between mb-4">
-                            <BookOpen size={32} className="opacity-80" />
-                            <div className="text-right">
-                                <div className="text-4xl font-bold">{stats.totalSessions}</div>
-                                <div className="text-sm opacity-90 mt-1">次</div>
-                            </div>
-                        </div>
-                        <div className="text-sm font-medium opacity-90">{t('statistics.totalSessions')}</div>
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-indigo-900/20 dark:to-slate-900 p-6">
+                <div className="max-w-7xl mx-auto">
+                    {/* 页面标题 */}
+                    <div className="mb-8">
+                        <h1 className="text-3xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
+                            <BarChart3 className="text-blue-600" size={32} />
+                            {t('statistics.title')}
+                        </h1>
+                        <p className="text-slate-600 dark:text-slate-400">{t('statistics.subtitle')}</p>
                     </div>
 
-                    {/* 学习时长 */}
-                    <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-shadow">
-                        <div className="flex items-center justify-between mb-4">
-                            <Clock size={32} className="opacity-80" />
-                            <div className="text-right">
-                                <div className="text-4xl font-bold">{Math.floor(stats.totalTime / 60)}</div>
-                                <div className="text-sm opacity-90 mt-1">小时</div>
+                    {/* 核心数据卡片 */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        {/* 总作业数 */}
+                        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-shadow">
+                            <div className="flex items-center justify-between mb-4">
+                                <BookOpen size={32} className="opacity-80" />
+                                <div className="text-right">
+                                    <div className="text-4xl font-bold">{stats.totalSessions}</div>
+                                    <div className="text-sm opacity-90 mt-1">次</div>
+                                </div>
                             </div>
+                            <div className="text-sm font-medium opacity-90">{t('statistics.totalSessions')}</div>
                         </div>
-                        <div className="text-sm font-medium opacity-90">{t('statistics.totalTime')}</div>
+
+                        {/* 学习时长 */}
+                        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-shadow">
+                            <div className="flex items-center justify-between mb-4">
+                                <Clock size={32} className="opacity-80" />
+                                <div className="text-right">
+                                    <div className="text-4xl font-bold">{Math.floor(stats.totalTime / 60)}</div>
+                                    <div className="text-sm opacity-90 mt-1">小时</div>
+                                </div>
+                            </div>
+                            <div className="text-sm font-medium opacity-90">{t('statistics.totalTime')}</div>
+                        </div>
+
+                        {/* 累积知识点数 */}
+                        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-shadow">
+                            <div className="flex items-center justify-between mb-4">
+                                <Hash size={32} className="opacity-80" />
+                                <div className="text-right">
+                                    <div className="text-4xl font-bold">{stats.totalKnowledgePoints}</div>
+                                    <div className="text-sm opacity-90 mt-1">个</div>
+                                </div>
+                            </div>
+                            <div className="text-sm font-medium opacity-90">{t('statistics.totalKnowledgePoints')}</div>
+                        </div>
+
+                        {/* 连续打卡 */}
+                        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-shadow">
+                            <div className="flex items-center justify-between mb-4">
+                                <Flame size={32} className="opacity-80" />
+                                <div className="text-right">
+                                    <div className="text-4xl font-bold">{stats.streak}</div>
+                                    <div className="text-sm opacity-90 mt-1">天</div>
+                                </div>
+                            </div>
+                            <div className="text-sm font-medium opacity-90">{t('statistics.streak')}</div>
+                        </div>
                     </div>
 
-                    {/* 累积知识点数 */}
-                    <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-shadow">
-                        <div className="flex items-center justify-between mb-4">
-                            <Hash size={32} className="opacity-80" />
-                            <div className="text-right">
-                                <div className="text-4xl font-bold">{stats.totalKnowledgePoints}</div>
-                                <div className="text-sm opacity-90 mt-1">个</div>
-                            </div>
-                        </div>
-                        <div className="text-sm font-medium opacity-90">{t('statistics.totalKnowledgePoints')}</div>
-                    </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        {/* 左侧：学科分布 */}
+                        <div className="lg:col-span-2 space-y-6">
+                            {/* 学科分布 */}
+                            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
+                                <div className="flex items-center gap-2 mb-6">
+                                    <PieChart className="text-blue-600" size={24} />
+                                    <h2 className="text-xl font-bold text-slate-800 dark:text-white">{t('statistics.subjectDistribution')}</h2>
+                                </div>
 
-                    {/* 连续打卡 */}
-                    <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-shadow">
-                        <div className="flex items-center justify-between mb-4">
-                            <Flame size={32} className="opacity-80" />
-                            <div className="text-right">
-                                <div className="text-4xl font-bold">{stats.streak}</div>
-                                <div className="text-sm opacity-90 mt-1">天</div>
-                            </div>
-                        </div>
-                        <div className="text-sm font-medium opacity-90">{t('statistics.streak')}</div>
-                    </div>
-                </div>
+                                {stats.subjectDistribution.length > 0 ? (
+                                    <div className="space-y-4">
+                                        {stats.subjectDistribution.map((subject, index) => (
+                                            <div key={index} className="space-y-2">
+                                                <div className="flex items-center justify-between text-sm">
+                                                    <span className="font-medium text-slate-700 dark:text-slate-200">{subject.name}</span>
+                                                    <span className="text-slate-600 dark:text-slate-400">{subject.count} 次 ({subject.percentage}%)</span>
+                                                </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    {/* 左侧：学科分布 */}
-                    <div className="lg:col-span-2 space-y-6">
-                        {/* 学科分布 */}
-                        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
-                            <div className="flex items-center gap-2 mb-6">
-                                <PieChart className="text-blue-600" size={24} />
-                                <h2 className="text-xl font-bold text-slate-800 dark:text-white">{t('statistics.subjectDistribution')}</h2>
-                            </div>
 
-                            {stats.subjectDistribution.length > 0 ? (
-                                <div className="space-y-4">
-                                    {stats.subjectDistribution.map((subject, index) => (
-                                        <div key={index} className="space-y-2">
-                                            <div className="flex items-center justify-between text-sm">
-                                                <span className="font-medium text-slate-700 dark:text-slate-200">{subject.name}</span>
-                                                <span className="text-slate-600 dark:text-slate-400">{subject.count} 次 ({subject.percentage}%)</span>
+                                                <div className="h-3 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                                                    <div
+                                                        className={`h-full ${subjectColors[subject.name] || subjectColors['其他']} transition-all duration-500`}
+                                                        style={{ width: `${subject.percentage}%` }}
+                                                    />
+                                                </div>
                                             </div>
-
-
-                                            <div className="h-3 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
-                                                <div
-                                                    className={`h-full ${subjectColors[subject.name] || subjectColors['其他']} transition-all duration-500`}
-                                                    style={{ width: `${subject.percentage}%` }}
-                                                />
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            ) : (
-                                <div className="text-center py-8 text-slate-400">
-                                    <PieChart size={48} className="mx-auto mb-3 opacity-50" />
-                                    <p>{t('statistics.noSubjectData')}</p>
-                                </div>
-                            )}
-                        </div>
-
-                        {/* 知识点云图 */}
-                        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
-                            <div className="flex items-center gap-2 mb-6">
-                                <Hash className="text-purple-600" size={24} />
-                                <h2 className="text-xl font-bold text-slate-800 dark:text-white">{t('statistics.hotKnowledgePoints')}</h2>
-                            </div>
-
-                            {stats.knowledgePoints && stats.knowledgePoints.length > 0 ? (
-                                <div className="flex flex-wrap gap-3">
-                                    {stats.knowledgePoints.map((tag, index) => {
-                                        // 简单的标签样式，根据热度稍微调整大小或颜色
-                                        const isHot = index < 5;
-                                        return (
-                                            <span
-                                                key={index}
-                                                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${isHot
-                                                    ? 'bg-purple-100 text-purple-700 border border-purple-200 dark:bg-purple-900/30 dark:text-purple-300 dark:border-purple-700'
-                                                    : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600 dark:hover:bg-slate-600'
-                                                    }`}
-                                            >
-                                                #{tag.name}
-                                                <span className="ml-1 opacity-60 text-xs">×{tag.count}</span>
-                                            </span>
-                                        );
-                                    })}
-                                </div>
-                            ) : (
-                                <div className="text-center py-8 text-slate-400">
-                                    <Hash size={48} className="mx-auto mb-3 opacity-50" />
-                                    <p>{t('statistics.noKnowledgePoints')}</p>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-
-                    {/* 右侧：成就系统 */}
-                    <div className="space-y-6">
-                        {/* 成就徽章 */}
-                        <div className="bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-2xl shadow-lg p-6 border-2 border-yellow-200 dark:border-yellow-700">
-                            <div className="flex items-center gap-2 mb-6">
-                                <Award className="text-yellow-600 dark:text-yellow-500" size={24} />
-                                <h2 className="text-xl font-bold text-slate-800 dark:text-white">{t('statistics.achievements')}</h2>
-                            </div>
-
-                            <div className="grid grid-cols-2 gap-4">
-                                {achievements.map((achievement, index) => (
-                                    <div key={index} className="bg-white dark:bg-slate-700/50 rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow">
-                                        <div className="text-4xl mb-2">{achievement.icon}</div>
-                                        <div className="font-semibold text-slate-800 dark:text-slate-200 text-sm mb-1">{achievement.name}</div>
-                                        <div className="text-xs text-slate-500 dark:text-slate-400">{achievement.desc}</div>
+                                        ))}
                                     </div>
-                                ))}
+                                ) : (
+                                    <div className="text-center py-8 text-slate-400">
+                                        <PieChart size={48} className="mx-auto mb-3 opacity-50" />
+                                        <p>{t('statistics.noSubjectData')}</p>
+                                    </div>
+                                )}
+                            </div>
 
-                                {achievements.length === 0 && (
-                                    <div className="col-span-2 text-center py-8 text-slate-400">
-                                        <Award size={48} className="mx-auto mb-3 opacity-50" />
-                                        <p className="text-sm">{t('statistics.unlock')}</p>
+                            {/* 知识点云图 */}
+                            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
+                                <div className="flex items-center gap-2 mb-6">
+                                    <Hash className="text-purple-600" size={24} />
+                                    <h2 className="text-xl font-bold text-slate-800 dark:text-white">{t('statistics.hotKnowledgePoints')}</h2>
+                                </div>
+
+                                {stats.knowledgePoints && stats.knowledgePoints.length > 0 ? (
+                                    <div className="flex flex-wrap gap-3">
+                                        {stats.knowledgePoints.map((tag, index) => {
+                                            // 简单的标签样式，根据热度稍微调整大小或颜色
+                                            const isHot = index < 5;
+                                            return (
+                                                <span
+                                                    key={index}
+                                                    className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${isHot
+                                                        ? 'bg-purple-100 text-purple-700 border border-purple-200 dark:bg-purple-900/30 dark:text-purple-300 dark:border-purple-700'
+                                                        : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600 dark:hover:bg-slate-600'
+                                                        }`}
+                                                >
+                                                    #{tag.name}
+                                                    <span className="ml-1 opacity-60 text-xs">×{tag.count}</span>
+                                                </span>
+                                            );
+                                        })}
+                                    </div>
+                                ) : (
+                                    <div className="text-center py-8 text-slate-400">
+                                        <Hash size={48} className="mx-auto mb-3 opacity-50" />
+                                        <p>{t('statistics.noKnowledgePoints')}</p>
                                     </div>
                                 )}
                             </div>
                         </div>
 
-                        {/* 激励语 */}
-                        <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-lg p-6 text-white">
-                            <div className="text-center">
-                                <div className="text-6xl mb-4">🎓</div>
-                                <h3 className="text-xl font-bold mb-2">{t('statistics.keepGoing')}</h3>
-                                <p className="text-sm opacity-90 leading-relaxed">
-                                    {stats.totalSessions === 0 && t('statistics.startFirst')}
-                                    {stats.totalSessions > 0 && stats.totalSessions < 10 && t('statistics.keepItUp')}
-                                    {stats.totalSessions >= 10 && stats.totalSessions < 50 && t('statistics.accumulating')}
-                                    {stats.totalSessions >= 50 && t('statistics.master')}
-                                </p>
+                        {/* 右侧：成就系统 */}
+                        <div className="space-y-6">
+                            {/* 成就徽章 */}
+                            <div className="bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-2xl shadow-lg p-6 border-2 border-yellow-200 dark:border-yellow-700">
+                                <div className="flex items-center gap-2 mb-6">
+                                    <Award className="text-yellow-600 dark:text-yellow-500" size={24} />
+                                    <h2 className="text-xl font-bold text-slate-800 dark:text-white">{t('statistics.achievements')}</h2>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-4">
+                                    {achievements.map((achievement, index) => (
+                                        <div key={index} className="bg-white dark:bg-slate-700/50 rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+                                            <div className="text-4xl mb-2">{achievement.icon}</div>
+                                            <div className="font-semibold text-slate-800 dark:text-slate-200 text-sm mb-1">{achievement.name}</div>
+                                            <div className="text-xs text-slate-500 dark:text-slate-400">{achievement.desc}</div>
+                                        </div>
+                                    ))}
+
+                                    {achievements.length === 0 && (
+                                        <div className="col-span-2 text-center py-8 text-slate-400">
+                                            <Award size={48} className="mx-auto mb-3 opacity-50" />
+                                            <p className="text-sm">{t('statistics.unlock')}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* 激励语 */}
+                            <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-lg p-6 text-white">
+                                <div className="text-center">
+                                    <div className="text-6xl mb-4">🎓</div>
+                                    <h3 className="text-xl font-bold mb-2">{t('statistics.keepGoing')}</h3>
+                                    <p className="text-sm opacity-90 leading-relaxed">
+                                        {stats.totalSessions === 0 && t('statistics.startFirst')}
+                                        {stats.totalSessions > 0 && stats.totalSessions < 10 && t('statistics.keepItUp')}
+                                        {stats.totalSessions >= 10 && stats.totalSessions < 50 && t('statistics.accumulating')}
+                                        {stats.totalSessions >= 50 && t('statistics.master')}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

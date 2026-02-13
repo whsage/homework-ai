@@ -1,5 +1,6 @@
 import { HelpCircle, BookOpen, DollarSign, Shield, Zap, MessageCircle } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { Helmet } from 'react-helmet-async';
 
 const FAQItem = ({ question, answer, icon: IconComponent }) => {
     return (
@@ -54,57 +55,65 @@ const FAQ = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 transition-colors duration-200">
-            <div className="max-w-6xl mx-auto px-6 py-12">
-                {/* Header */}
-                <div className="text-center mb-12">
-                    <h1 className="text-4xl font-bold text-slate-800 dark:text-white mb-4">{t('faq.title')}</h1>
-                    <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                        {t('faq.subtitle')}
-                    </p>
-                </div>
+        <>
+            <Helmet>
+                <title>常见问题 - AI作业辅导FAQ | AI7Miao</title>
+                <meta name="description" content="AI7Miao作业辅导平台常见问题解答，了解如何使用AI智能辅导、苏格拉底式教学方法和学习数据统计功能。" />
+                <meta name="keywords" content="常见问题,FAQ,作业辅导,AI辅导,使用帮助" />
+            </Helmet>
 
-                {/* FAQ Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                    {faqs.map((faq, index) => (
-                        <FAQItem key={index} {...faq} />
-                    ))}
-                </div>
-
-                {/* Additional Info */}
-                <div className="bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl p-8 text-white text-center">
-                    <h2 className="text-2xl font-bold mb-4">{t('faq.stillHaveQuestions')}</h2>
-                    <p className="mb-6 text-indigo-100">
-                        {t('faq.helpText')}
-                    </p>
-                    <button
-                        onClick={() => window.location.href = '/'}
-                        className="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-colors"
-                    >
-                        {t('faq.startUsing')}
-                    </button>
-                </div>
-
-                {/* Features Highlight */}
-                <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-white dark:bg-slate-800 rounded-xl p-6 text-center">
-                        <div className="text-4xl mb-3">🎯</div>
-                        <h3 className="font-semibold text-slate-800 dark:text-white mb-2">{t('faq.features.guided')}</h3>
-                        <p className="text-sm text-slate-600 dark:text-slate-400">{t('faq.features.guidedDesc')}</p>
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 transition-colors duration-200">
+                <div className="max-w-6xl mx-auto px-6 py-12">
+                    {/* Header */}
+                    <div className="text-center mb-12">
+                        <h1 className="text-4xl font-bold text-slate-800 dark:text-white mb-4">{t('faq.title')}</h1>
+                        <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                            {t('faq.subtitle')}
+                        </p>
                     </div>
-                    <div className="bg-white dark:bg-slate-800 rounded-xl p-6 text-center">
-                        <div className="text-4xl mb-3">📚</div>
-                        <h3 className="font-semibold text-slate-800 dark:text-white mb-2">{t('faq.features.fullSubject')}</h3>
-                        <p className="text-sm text-slate-600 dark:text-slate-400">{t('faq.features.fullSubjectDesc')}</p>
+
+                    {/* FAQ Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                        {faqs.map((faq, index) => (
+                            <FAQItem key={index} {...faq} />
+                        ))}
                     </div>
-                    <div className="bg-white dark:bg-slate-800 rounded-xl p-6 text-center">
-                        <div className="text-4xl mb-3">📊</div>
-                        <h3 className="font-semibold text-slate-800 dark:text-white mb-2">{t('faq.features.stats')}</h3>
-                        <p className="text-sm text-slate-600 dark:text-slate-400">{t('faq.features.statsDesc')}</p>
+
+                    {/* Additional Info */}
+                    <div className="bg-gradient-to-r from-indigo-600 to-blue-600 rounded-2xl p-8 text-white text-center">
+                        <h2 className="text-2xl font-bold mb-4">{t('faq.stillHaveQuestions')}</h2>
+                        <p className="mb-6 text-indigo-100">
+                            {t('faq.helpText')}
+                        </p>
+                        <button
+                            onClick={() => window.location.href = '/'}
+                            className="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition-colors"
+                        >
+                            {t('faq.startUsing')}
+                        </button>
+                    </div>
+
+                    {/* Features Highlight */}
+                    <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="bg-white dark:bg-slate-800 rounded-xl p-6 text-center">
+                            <div className="text-4xl mb-3">🎯</div>
+                            <h3 className="font-semibold text-slate-800 dark:text-white mb-2">{t('faq.features.guided')}</h3>
+                            <p className="text-sm text-slate-600 dark:text-slate-400">{t('faq.features.guidedDesc')}</p>
+                        </div>
+                        <div className="bg-white dark:bg-slate-800 rounded-xl p-6 text-center">
+                            <div className="text-4xl mb-3">📚</div>
+                            <h3 className="font-semibold text-slate-800 dark:text-white mb-2">{t('faq.features.fullSubject')}</h3>
+                            <p className="text-sm text-slate-600 dark:text-slate-400">{t('faq.features.fullSubjectDesc')}</p>
+                        </div>
+                        <div className="bg-white dark:bg-slate-800 rounded-xl p-6 text-center">
+                            <div className="text-4xl mb-3">📊</div>
+                            <h3 className="font-semibold text-slate-800 dark:text-white mb-2">{t('faq.features.stats')}</h3>
+                            <p className="text-sm text-slate-600 dark:text-slate-400">{t('faq.features.statsDesc')}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
