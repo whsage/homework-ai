@@ -42,4 +42,18 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-math': ['mafs', 'katex', 'rehype-katex', 'remark-math'],
+          'vendor-utils': ['lucide-react', 'clsx', 'tailwind-merge', 'axios'],
+          'vendor-pdf': ['jspdf', 'html2pdf.js', 'docx'],
+          'vendor-ai': ['openai', '@google/generative-ai']
+        }
+      }
+    },
+    chunkSizeWarningLimit: 1000
+  }
 })
