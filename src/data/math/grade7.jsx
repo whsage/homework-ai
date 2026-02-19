@@ -310,7 +310,7 @@ export const grade7Content = {
     },
 
     // ==================== 2. 整式的加减 ====================
-    'mid-7-1-algebraic-expressions': {
+    'mid-7-1-algebraic-ops': {
         meta: {
             title: "整式的加减 - 合并同类项与去括号 | AI7Miao数学",
             description: "从数字运算过渡到字母运算。学习单项式、多项式、同类项的概念,掌握整式的加减运算法则。通过水果分类比喻,理解同类项概念。",
@@ -586,7 +586,7 @@ export const grade7Content = {
     },
 
     // ==================== 3. 一元一次方程 ====================
-    'mid-7-1-equations': {
+    'mid-7-1-linear-equations': {
         meta: {
             title: "一元一次方程 - 移项与解方程 | AI7Miao数学",
             description: "掌握等式的性质,熟练运用去分母、去括号、移项、合并同类项等步骤解一元一次方程。通过天平类比理解等式性质。",
@@ -1124,6 +1124,8 @@ export const grade7Content = {
     },
 
     // ==================== 5. 不等式与不等式组 ====================
+    'mid-7-2-absolute-value-adv': generateDefaultContent('mid-7-2-absolute-value-adv', '绝对值进阶', '七年级'),
+
     'mid-7-2-inequalities': {
         meta: {
             title: "不等式与不等式组 - 范围的描述 | AI7Miao数学",
@@ -1352,7 +1354,7 @@ export const grade7Content = {
     },
 
     // ==================== 6. 数据的收集、整理与描述 ====================
-    'mid-7-2-statistics': {
+    'mid-7-2-data-handling': {
         meta: {
             title: "数据的收集与整理 - 统计图表 | AI7Miao数学",
             description: "了解全面调查与抽样调查,会看条形图、折线图、扇形图和直方图。通过调查问卷类比理解数据收集的科学方法。",

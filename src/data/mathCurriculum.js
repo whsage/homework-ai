@@ -180,64 +180,181 @@ export const knowledgeBase = {
         name: '初中数学',
         icon: '🧠',
         color: 'from-blue-500 to-indigo-500',
-        modules: [
+        grades: [
             {
-                id: 'algebra',
-                name: '代数基础',
-                icon: '📐',
-                topics: [
-                    { id: 'mid-7-1-rational-numbers', name: '有理数', difficulty: '基础', time: '30分钟', important: true },
-                    { id: 'mid-7-1-algebraic-expressions', name: '整式的加减', difficulty: '基础', time: '35分钟', important: true },
-                    { id: 'mid-8-1-factorization', name: '因式分解', difficulty: '提高', time: '40分钟', important: true },
-                    { id: 'mid-8-1-fractions', name: '分式', difficulty: '提高', time: '40分钟', important: true }
-                ]
+                id: 'grade-7',
+                name: '初一',
+                subtitle: '从算术到代数',
+                tracks: {
+                    l1: {
+                        name: '基础达标',
+                        icon: '📚',
+                        topics: [
+                            {
+                                id: 'mid-7-1-rational-numbers',
+                                name: '有理数',
+                                difficulty: '基础',
+                                time: '30分钟',
+                                important: true,
+                                specialFeature: 'interactive',
+                                desc: '通过数轴行走实验理解正负数加减'
+                            },
+                            { id: 'mid-7-1-algebraic-ops', name: '整式的加减', difficulty: '基础', time: '35分钟', important: true },
+                            {
+                                id: 'mid-7-1-linear-equations',
+                                name: '一元一次方程',
+                                difficulty: '基础',
+                                time: '30分钟',
+                                important: true,
+                                specialFeature: 'interactive',
+                                desc: '天平平衡实验'
+                            },
+                            {
+                                id: 'mid-7-1-geometry-basic',
+                                name: '几何图形初步',
+                                difficulty: '基础',
+                                time: '30分钟',
+                                important: true,
+                                specialFeature: 'interactive',
+                                desc: '动态角度构造'
+                            }
+                        ]
+                    },
+                    l2: {
+                        name: '思维进阶',
+                        icon: '🧠',
+                        topics: [
+                            { id: 'mid-7-2-absolute-value-adv', name: '绝对值进阶', difficulty: '提高', time: '45分钟', important: false },
+                            { id: 'mid-7-2-inequalities', name: '一元一次不等式组', difficulty: '提高', time: '35分钟', important: true },
+                            { id: 'mid-7-2-data-handling', name: '数据的收集与整理', difficulty: '基础', time: '30分钟', important: false }
+                        ]
+                    }
+                }
             },
             {
-                id: 'equations',
-                name: '方程与不等式',
-                icon: '⚖️',
-                topics: [
-                    { id: 'mid-7-1-equations', name: '一元一次方程', difficulty: '基础', time: '30分钟', important: true },
-                    { id: 'mid-8-1-binary-equations', name: '二元一次方程组', difficulty: '提高', time: '40分钟', important: true },
-                    { id: 'mid-9-1-quadratic-equations', name: '一元二次方程', difficulty: '提高', time: '45分钟', important: true },
-                    { id: 'mid-7-2-inequalities', name: '不等式与不等式组', difficulty: '提高', time: '35分钟', important: true }
-                ]
+                id: 'grade-8',
+                name: '初二',
+                subtitle: '几何证明与函数入门',
+                tracks: {
+                    l1: {
+                        name: '基础达标',
+                        icon: '📚',
+                        topics: [
+                            {
+                                id: 'mid-8-1-triangles',
+                                name: '三角形基础',
+                                difficulty: '基础',
+                                time: '40分钟',
+                                important: true,
+                                specialFeature: 'interactive',
+                                desc: '拖动顶点观察内角和'
+                            },
+                            { id: 'mid-8-1-congruence', name: '全等三角形判定', difficulty: '重点', time: '50分钟', important: true },
+                            {
+                                id: 'mid-8-1-axial-symmetry',
+                                name: '轴对称',
+                                difficulty: '基础',
+                                time: '35分钟',
+                                important: true,
+                                specialFeature: 'interactive',
+                                desc: '镜像绘图实验'
+                            },
+                            { id: 'mid-8-1-roots', name: '实数（平方根/立方根）', difficulty: '基础', time: '30分钟', important: false },
+                            {
+                                id: 'mid-8-1-linear-functions',
+                                name: '一次函数',
+                                difficulty: '重点',
+                                time: '45分钟',
+                                important: true,
+                                specialFeature: 'interactive',
+                                desc: '斜率截距滑动条实验'
+                            }
+                        ]
+                    },
+                    l2: {
+                        name: '思维进阶',
+                        icon: '🧠',
+                        topics: [
+                            { id: 'mid-8-2-factorization-adv', name: '因式分解进阶', difficulty: '提高', time: '40分钟', important: true },
+                            {
+                                id: 'mid-8-2-geometry-proofs',
+                                name: '几何证明技巧（辅助线）',
+                                difficulty: '难点',
+                                time: '50分钟',
+                                important: true
+                            },
+                            {
+                                id: 'mid-8-2-quadrilaterals',
+                                name: '平行四边形',
+                                difficulty: '提高',
+                                time: '45分钟',
+                                important: true,
+                                specialFeature: 'interactive',
+                                desc: '动态平行四边形性质探索'
+                            },
+                            { id: 'mid-8-2-fractions-adv', name: '分式方程应用', difficulty: '提高', time: '40分钟', important: true }
+                        ]
+                    }
+                }
             },
             {
-                id: 'functions',
-                name: '函数',
-                icon: '📈',
-                topics: [
-                    { id: 'mid-8-2-functions', name: '函数的概念', difficulty: '基础', time: '30分钟', important: true },
-                    { id: 'mid-8-2-linear-functions', name: '一次函数', difficulty: '提高', time: '40分钟', important: true },
-                    { id: 'mid-9-2-inverse-proportional', name: '反比例函数', difficulty: '提高', time: '35分钟', important: true },
-                    { id: 'mid-9-1-quadratic-functions', name: '二次函数', difficulty: '重点', time: '50分钟', important: true }
-                ]
-            },
-            {
-                id: 'geometry',
-                name: '平面几何',
-                icon: '🔺',
-                topics: [
-                    { id: 'mid-7-1-geometry-basic', name: '几何图形初步', difficulty: '基础', time: '30分钟', important: true },
-                    { id: 'mid-8-1-triangles', name: '三角形', difficulty: '基础', time: '40分钟', important: true },
-                    { id: 'mid-8-2-isosceles-triangle', name: '轴对称', difficulty: '基础', time: '35分钟', important: true },
-                    { id: 'mid-8-2-congruence', name: '全等三角形', difficulty: '重点', time: '50分钟', important: true },
-                    { id: 'mid-9-1-parallelogram', name: '平行四边形', difficulty: '提高', time: '45分钟', important: true },
-                    { id: 'mid-9-2-similarity', name: '相似三角形', difficulty: '难点', time: '60分钟', important: true },
-                    { id: 'mid-9-2-trigonometry', name: '锐角三角函数', difficulty: '难点', time: '50分钟', important: true },
-                    { id: 'mid-9-2-circles', name: '圆', difficulty: '难点', time: '60分钟', important: true }
-                ]
-            },
-            {
-                id: 'statistics',
-                name: '统计与概率',
-                icon: '📊',
-                topics: [
-                    { id: 'mid-7-2-data', name: '数据的收集、整理与描述', difficulty: '基础', time: '30分钟', important: false },
-                    { id: 'mid-8-2-statistics', name: '数据的分析', difficulty: '基础', time: '35分钟', important: false },
-                    { id: 'mid-9-1-probability', name: '概率初步', difficulty: '基础', time: '35分钟', important: true }
-                ]
+                id: 'grade-9',
+                name: '初三',
+                subtitle: '圆与二次函数',
+                tracks: {
+                    l1: {
+                        name: '基础达标',
+                        icon: '📚',
+                        topics: [
+                            { id: 'mid-9-1-quadratic-equations', name: '一元二次方程', difficulty: '重点', time: '45分钟', important: true },
+                            {
+                                id: 'mid-9-1-rotation',
+                                name: '旋转',
+                                difficulty: '基础',
+                                time: '30分钟',
+                                important: true,
+                                specialFeature: 'interactive',
+                                desc: '中心旋转实验'
+                            },
+                            {
+                                id: 'mid-9-1-circles-basic',
+                                name: '圆的基本性质',
+                                difficulty: '重点',
+                                time: '40分钟',
+                                important: true,
+                                specialFeature: 'interactive',
+                                desc: '圆周角定理动态演示'
+                            },
+                            { id: 'mid-9-1-probability', name: '概率初步', difficulty: '基础', time: '35分钟', important: true }
+                        ]
+                    },
+                    l2: {
+                        name: '思维进阶',
+                        icon: '🧠',
+                        topics: [
+                            {
+                                id: 'mid-9-2-quadratic-functions',
+                                name: '二次函数',
+                                difficulty: '难点',
+                                time: '60分钟',
+                                important: true,
+                                specialFeature: 'interactive',
+                                desc: '抛物线参数变形实验'
+                            },
+                            {
+                                id: 'mid-9-2-similarity',
+                                name: '相似三角形',
+                                difficulty: '难点',
+                                time: '60分钟',
+                                important: true,
+                                specialFeature: 'interactive',
+                                desc: '图形位似变换'
+                            },
+                            { id: 'mid-9-2-trigonometry', name: '锐角三角函数', difficulty: '重点', time: '50分钟', important: true },
+                            { id: 'mid-9-2-circles-adv', name: '圆与直线的位置关系', difficulty: '难点', time: '55分钟', important: true }
+                        ]
+                    }
+                }
             }
         ]
     },
@@ -245,7 +362,147 @@ export const knowledgeBase = {
         name: '高中数学',
         icon: '⚡',
         color: 'from-violet-500 to-purple-500',
-        modules: []
+        grades: [
+            {
+                id: 'grade-10',
+                name: '高一',
+                subtitle: '函数与抽象思维',
+                tracks: {
+                    l1: {
+                        name: '基础达标',
+                        icon: '📚',
+                        topics: [
+                            {
+                                id: 'high-10-1-sets',
+                                name: '集合与逻辑',
+                                difficulty: '基础',
+                                time: '35分钟',
+                                important: true,
+                                specialFeature: 'interactive',
+                                desc: '集合韦恩图填色'
+                            },
+                            { id: 'high-10-1-functions', name: '函数的性质', difficulty: '重点', time: '45分钟', important: true },
+                            {
+                                id: 'high-10-1-exp-log',
+                                name: '指数与对数函数',
+                                difficulty: '重点',
+                                time: '50分钟',
+                                important: true,
+                                specialFeature: 'interactive',
+                                desc: '函数增长率竞速'
+                            },
+                            { id: 'high-10-1-vectors', name: '平面向量', difficulty: '基础', time: '40分钟', important: true }
+                        ]
+                    },
+                    l2: {
+                        name: '思维进阶',
+                        icon: '🧠',
+                        topics: [
+                            {
+                                id: 'high-10-2-trig-graphs',
+                                name: '三角函数图像与性质',
+                                difficulty: '难点',
+                                time: '55分钟',
+                                important: true,
+                                specialFeature: 'interactive',
+                                desc: '单位圆与正弦波生成'
+                            },
+                            { id: 'high-10-2-trig-identities', name: '三角恒等变换', difficulty: '难点', time: '50分钟', important: true },
+                            { id: 'high-10-2-complex-numbers', name: '复数', difficulty: '基础', time: '30分钟', important: false }
+                        ]
+                    }
+                }
+            },
+            {
+                id: 'grade-11',
+                name: '高二',
+                subtitle: '空间想象与解析几何',
+                tracks: {
+                    l1: {
+                        name: '基础达标',
+                        icon: '📚',
+                        topics: [
+                            {
+                                id: 'high-11-1-solid-geometry',
+                                name: '立体几何初步',
+                                difficulty: '基础',
+                                time: '40分钟',
+                                important: true,
+                                specialFeature: 'interactive',
+                                desc: '3D几何体旋转与截面'
+                            },
+                            {
+                                id: 'high-11-1-lines-circles',
+                                name: '直线与圆',
+                                difficulty: '重点',
+                                time: '45分钟',
+                                important: true,
+                                specialFeature: 'interactive',
+                                desc: '直线与圆位置关系动态演示'
+                            },
+                            { id: 'high-11-1-statistics', name: '统计案例', difficulty: '基础', time: '35分钟', important: false }
+                        ]
+                    },
+                    l2: {
+                        name: '思维进阶',
+                        icon: '🧠',
+                        topics: [
+                            {
+                                id: 'high-11-2-conics',
+                                name: '圆锥曲线',
+                                difficulty: '难点',
+                                time: '60分钟',
+                                important: true,
+                                specialFeature: 'interactive',
+                                desc: '椭圆定义与绘制实验'
+                            },
+                            { id: 'high-11-2-space-vectors', name: '空间向量与立体几何', difficulty: '难点', time: '50分钟', important: true },
+                            { id: 'high-11-2-sequence', name: '数列', difficulty: '重点', time: '50分钟', important: true }
+                        ]
+                    }
+                }
+            },
+            {
+                id: 'grade-12',
+                name: '高三',
+                subtitle: '微积分初步与综合',
+                tracks: {
+                    l1: {
+                        name: '基础达标',
+                        icon: '📚',
+                        topics: [
+                            {
+                                id: 'high-12-1-derivatives-calc',
+                                name: '导数的几何意义',
+                                difficulty: '重点',
+                                time: '45分钟',
+                                important: true,
+                                specialFeature: 'interactive',
+                                desc: '切线斜率动态冲浪'
+                            },
+                            {
+                                id: 'high-12-1-counting',
+                                name: '计数原理与分布',
+                                difficulty: '基础',
+                                time: '35分钟',
+                                important: true,
+                                specialFeature: 'interactive',
+                                desc: '高尔顿板概率分布实验'
+                            }
+                        ]
+                    },
+                    l2: {
+                        name: '思维进阶',
+                        icon: '🧠',
+                        topics: [
+                            { id: 'high-12-2-derivative-apps', name: '导数的综合应用', difficulty: '难点', time: '60分钟', important: true },
+                            { id: 'high-12-2-random-variables', name: '随机变量及其分布', difficulty: '重点', time: '50分钟', important: true },
+                            { id: 'high-12-2-parametric-polar', name: '参数方程与极坐标', difficulty: '提高', time: '40分钟', important: false }
+                        ]
+                    }
+                }
+            }
+        ]
     },
     college: {
         name: '大学数学',
@@ -259,32 +516,43 @@ export const knowledgeBase = {
 export const getFlattenedTopics = () => {
     const topics = [];
 
-    // Elementary
-    knowledgeBase.elementary.grades.forEach(grade => {
-        Object.values(grade.tracks).forEach(track => {
-            track.topics.forEach(topic => {
-                topics.push({
-                    ...topic,
-                    grade: grade.name,
-                    stage: '小学',
-                    link: `/subjects/math/${topic.id}`,
-                    gradeLevel: parseInt(grade.id.replace('grade-', ''))
+    // Helper function to process grades
+    const processGrades = (grades, stageName) => {
+        if (!grades) return;
+        grades.forEach(grade => {
+            Object.values(grade.tracks).forEach(track => {
+                track.topics.forEach(topic => {
+                    topics.push({
+                        ...topic,
+                        grade: grade.name,
+                        stage: stageName,
+                        link: `/subjects/math/${topic.id}`,
+                        // Extract number for sorting if needed, e.g., 'grade-7' -> 7
+                        gradeLevel: parseInt(grade.id.replace('grade-', ''))
+                    });
                 });
             });
         });
-    });
+    };
 
-    // Middle
-    knowledgeBase.middle.modules.forEach(module => {
-        module.topics.forEach(topic => {
-            topics.push({
-                ...topic,
-                module: module.name,
-                stage: '初中',
-                link: `/subjects/math/${topic.id}`
+    // Process all stages that use the grade structure
+    processGrades(knowledgeBase.elementary.grades, '小学');
+    processGrades(knowledgeBase.middle.grades, '初中');
+    processGrades(knowledgeBase.high.grades, '高中');
+
+    // College (if it uses modules or needs future restructuring, handle separately)
+    if (knowledgeBase.college.modules) {
+        knowledgeBase.college.modules.forEach(module => {
+            module.topics.forEach(topic => {
+                topics.push({
+                    ...topic,
+                    module: module.name,
+                    stage: '大学',
+                    link: `/subjects/math/${topic.id}`
+                });
             });
         });
-    });
+    }
 
     return topics;
 };

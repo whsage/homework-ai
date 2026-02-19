@@ -27,8 +27,10 @@ const MathLearning = () => {
     const [searchParams] = useSearchParams();
     const [activeGrade, setActiveGrade] = useState('middle');
     const [searchQuery, setSearchQuery] = useState('');
-    const [elementaryGrade, setElementaryGrade] = useState(1); // 1-6 for elementary grades
-    const [elementaryTrack, setElementaryTrack] = useState('l1'); // 'l1' or 'l2'
+
+    // Unified state for sub-grades and tracks
+    const [currentSubGrade, setCurrentSubGrade] = useState(7); // Default to a valid grade
+    const [currentTrack, setCurrentTrack] = useState('l1'); // 'l1' or 'l2'
 
     // Handle initial state from URL query params
     useEffect(() => {
@@ -41,13 +43,20 @@ const MathLearning = () => {
         }
 
         if (level && !isNaN(parseInt(level))) {
-            setElementaryGrade(parseInt(level));
+            setCurrentSubGrade(parseInt(level));
         }
 
         if (track && ['l1', 'l2'].includes(track)) {
-            setElementaryTrack(track);
+            setCurrentTrack(track);
         }
     }, [searchParams]);
+
+    // Reset sub-grade when activeGrade changes to valid defaults
+    useEffect(() => {
+        if (activeGrade === 'elementary') setCurrentSubGrade(1);
+        else if (activeGrade === 'middle') setCurrentSubGrade(7);
+        else if (activeGrade === 'high') setCurrentSubGrade(10);
+    }, [activeGrade]);
 
     // 辅导内容数据 (来自 MathTutoring)
     const gradeContent = {
@@ -238,16 +247,16 @@ const MathLearning = () => {
     const currentGrade = knowledgeBase[activeGrade];
     const currentTutoring = gradeContent[activeGrade];
 
-    // 搜索功能 - Handle both module-based and grade-based structures
+    // 搜索功能 - Standardized for all grade-based levels
     let filteredModules = [];
-    if (activeGrade === 'elementary' && currentGrade.grades) {
-        // For elementary: filter within selected grade and track
-        const selectedGrade = currentGrade.grades.find(g => g.id === `grade-${elementaryGrade}`);
-        if (selectedGrade) {
-            const selectedTrackData = selectedGrade.tracks[elementaryTrack];
+    if (currentGrade.grades) {
+        // For Elementary, Middle, High: filter within selected grade and track
+        const selectedGradeData = currentGrade.grades.find(g => g.id === `grade-${currentSubGrade}`);
+        if (selectedGradeData) {
+            const selectedTrackData = selectedGradeData.tracks[currentTrack];
             if (selectedTrackData) {
                 filteredModules = [{
-                    id: elementaryTrack,
+                    id: currentTrack,
                     name: selectedTrackData.name,
                     icon: selectedTrackData.icon,
                     topics: selectedTrackData.topics.filter(topic =>
@@ -257,7 +266,7 @@ const MathLearning = () => {
             }
         }
     } else if (currentGrade.modules) {
-        // For middle/high/college: use existing module-based logic
+        // For College (or others using modules): use existing module-based logic
         filteredModules = currentGrade.modules.map(module => ({
             ...module,
             topics: module.topics.filter(topic =>
@@ -428,29 +437,30 @@ const MathLearning = () => {
                             </div>
                         </div>
 
-                        {/* Elementary Grade Selector & Track Toggle */}
-                        {activeGrade === 'elementary' && (
+                        {/* Grade Selector & Track Toggle (Unified for Elementary, Middle, High) */}
+                        {currentGrade.grades && (
                             <div className="mb-12 space-y-6">
-                                {/* Grade Selector (1-6) */}
+                                {/* Grade Selector */}
                                 <div className="bg-gradient-to-r from-pink-50 to-rose-50 dark:from-pink-900/20 dark:to-rose-900/20 rounded-2xl p-6 border border-pink-100 dark:border-pink-800/30">
                                     <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 text-center">
                                         选择年级
                                     </h3>
                                     <div className="flex flex-wrap justify-center gap-3">
-                                        {[1, 2, 3, 4, 5, 6].map((grade) => {
-                                            const gradeData = currentGrade.grades?.find(g => g.id === `grade-${grade}`);
+                                        {currentGrade.grades.map((grade) => {
+                                            // grade.id format 'grade-7' -> 7
+                                            const gradeNum = parseInt(grade.id.replace('grade-', ''));
                                             return (
                                                 <button
-                                                    key={grade}
-                                                    onClick={() => setElementaryGrade(grade)}
-                                                    className={`px-6 py-3 rounded-xl font-semibold transition-all ${elementaryGrade === grade
+                                                    key={grade.id}
+                                                    onClick={() => setCurrentSubGrade(gradeNum)}
+                                                    className={`px-6 py-3 rounded-xl font-semibold transition-all ${currentSubGrade === gradeNum
                                                         ? 'bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-lg scale-105'
                                                         : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:shadow-md'
                                                         }`}
                                                 >
-                                                    <div className="text-lg">{grade}年级</div>
-                                                    {gradeData && (
-                                                        <div className="text-xs mt-1 opacity-80">{gradeData.subtitle}</div>
+                                                    <div className="text-lg">{grade.name}</div>
+                                                    {grade.subtitle && (
+                                                        <div className="text-xs mt-1 opacity-80">{grade.subtitle}</div>
                                                     )}
                                                 </button>
                                             );
@@ -471,8 +481,8 @@ const MathLearning = () => {
                                         </div>
                                         <div className="flex gap-3">
                                             <button
-                                                onClick={() => setElementaryTrack('l1')}
-                                                className={`px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 ${elementaryTrack === 'l1'
+                                                onClick={() => setCurrentTrack('l1')}
+                                                className={`px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 ${currentTrack === 'l1'
                                                     ? 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg'
                                                     : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:shadow-md'
                                                     }`}
@@ -481,8 +491,8 @@ const MathLearning = () => {
                                                 <span>基础达标 (L1)</span>
                                             </button>
                                             <button
-                                                onClick={() => setElementaryTrack('l2')}
-                                                className={`px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 ${elementaryTrack === 'l2'
+                                                onClick={() => setCurrentTrack('l2')}
+                                                className={`px-6 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 ${currentTrack === 'l2'
                                                     ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
                                                     : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:shadow-md'
                                                     }`}
@@ -498,6 +508,7 @@ const MathLearning = () => {
 
                         {/* Knowledge Modules Header */}
                         <div className="text-center mb-8">
+
                             <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2">
                                 {currentGrade.name}知识体系
                             </h2>
@@ -534,30 +545,55 @@ const MathLearning = () => {
                                                 'g4-l1-bar-chart',
                                                 // Grade 7
                                                 'mid-7-1-rational-numbers',
-                                                'mid-7-1-algebraic-expressions',
-                                                'mid-7-1-equations',
+                                                'mid-7-1-algebraic-ops',
+                                                'mid-7-1-linear-equations',
                                                 'mid-7-1-geometry-basic',
+                                                'mid-7-2-absolute-value-adv',
                                                 'mid-7-2-inequalities',
-                                                'mid-7-2-statistics',
+                                                'mid-7-2-data-handling',
                                                 'mid-7-2-plane-coordinates',
                                                 // Grade 8
                                                 'mid-8-1-triangles',
                                                 'mid-8-1-factorization',
                                                 'mid-8-1-fractions',
-                                                'mid-8-1-binary-equations',
+                                                'mid-8-1-linear-functions',
+                                                'mid-8-1-axial-symmetry',
+                                                'mid-8-1-roots',
+                                                'mid-8-1-congruence',
                                                 'mid-8-2-quadrilaterals',
-                                                'mid-8-2-functions',
-                                                'mid-8-2-linear-functions',
-                                                'mid-8-2-data-analysis',
+                                                'mid-8-2-geometry-proofs',
+                                                'mid-8-2-factorization-adv',
+                                                'mid-8-2-fractions-adv',
                                                 // Grade 9
                                                 'mid-9-1-quadratic-equations',
-                                                'mid-9-1-quadratic-functions',
                                                 'mid-9-1-rotation',
-                                                'mid-9-1-circle',
-                                                'mid-9-2-probability',
-                                                'mid-9-2-inverse-proportional',
-                                                'mid-9-2-similar',
-                                                'mid-9-2-trigonometry'
+                                                'mid-9-1-circles-basic',
+                                                'mid-9-1-probability',
+                                                'mid-9-2-quadratic-functions',
+                                                'mid-9-2-similarity',
+                                                'mid-9-2-trigonometry',
+                                                'mid-9-2-circles-adv',
+                                                // Grade 10
+                                                'high-10-1-sets',
+                                                'high-10-1-functions',
+                                                'high-10-1-exp-log',
+                                                'high-10-1-vectors',
+                                                'high-10-2-trig-graphs',
+                                                'high-10-2-trig-identities',
+                                                'high-10-2-complex-numbers',
+                                                // Grade 11
+                                                'high-11-1-solid-geometry',
+                                                'high-11-1-lines-circles',
+                                                'high-11-1-statistics',
+                                                'high-11-2-conics',
+                                                'high-11-2-space-vectors',
+                                                'high-11-2-sequence',
+                                                // Grade 12
+                                                'high-12-1-derivatives-calc',
+                                                'high-12-1-counting',
+                                                'high-12-2-derivative-apps',
+                                                'high-12-2-random-variables',
+                                                'high-12-2-parametric-polar'
                                             ];
                                             const isReady = completedTopics.includes(topic.id);
                                             const CardContent = () => (
@@ -588,6 +624,12 @@ const MathLearning = () => {
                                                                 <span className="px-2 py-1 bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400 rounded-full flex items-center gap-1">
                                                                     <Star className="w-3 h-3" />
                                                                     重要
+                                                                </span>
+                                                            )}
+                                                            {topic.specialFeature === 'interactive' && (
+                                                                <span className="px-2 py-1 bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400 rounded-full flex items-center gap-1">
+                                                                    <Sparkles className="w-3 h-3" />
+                                                                    互动实验
                                                                 </span>
                                                             )}
                                                         </div>
