@@ -4,7 +4,12 @@ import { grade9Content } from './math/grade9';
 import { grade10Content } from './math/grade10';
 import { grade11Content } from './math/grade11';
 import { grade12Content } from './math/grade12';
+import { grade1Content } from './math/grade1';
+import { grade2Content } from './math/grade2';
+import { grade3Content } from './math/grade3';
 import { grade4Content } from './math/grade4';
+import { grade5Content } from './math/grade5';
+import { grade6Content } from './math/grade6';
 import RationalNumbers from './math/content/grade7/rationalNumbers';
 import TriangleBasics from './math/content/grade8/triangles';
 import SetsAndLogic from './math/content/grade10/sets';
@@ -12,7 +17,12 @@ import { Target, Star, Brain, Lightbulb, CheckCircle2, Calculator, ArrowRight, P
 
 // 导出合并后的内容
 export const mathTopicContent = {
+    ...grade1Content,
+    ...grade2Content,
+    ...grade3Content,
     ...grade4Content,
+    ...grade5Content,
+    ...grade6Content,
     ...grade7Content,
     ...grade8Content,
     ...grade9Content,

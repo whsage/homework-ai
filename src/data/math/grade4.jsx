@@ -1344,6 +1344,628 @@ export const grade4Content = {
                 </div>
             )
         }
+    },
+
+    // ==================== L2-1. 和差倍问题 ====================
+    'g4-l2-sum-diff-multiple': {
+        meta: {
+            title: "和差倍问题 - 四年级思维进阶 | AI7Miao数学",
+            description: "掌握和差问题、和倍问题、差倍问题的解题方法，学会用线段图分析数量关系。",
+            keywords: "和差问题,和倍问题,差倍问题,线段图,小学奥数"
+        },
+        info: {
+            title: "和差倍问题",
+            description: "两个数的和、差、倍数关系，用线段图一画就清楚！解开这三类问题，你就是奥数小达人。",
+            tags: [
+                { text: "思维进阶", color: "purple" },
+                { text: "40分钟", icon: Clock, color: "slate" },
+                { text: "重点", icon: Star, color: "orange" }
+            ]
+        },
+        aiContext: "学生学习和差倍问题。引导用线段图表示两个量的关系。和差问题：大数=(和+差)÷2；和倍问题：小数=和÷(倍数+1)；差倍问题：小数=差÷(倍数-1)。",
+        aiChatTitle: "🤖 和差倍问题智能导师",
+        aiChatIntro: "你好！和差倍问题有三种类型，记住各自的公式就能轻松解决。有哪类题不会，告诉我！",
+        aiMessages: [
+            { role: 'ai', content: '两个数的和是36，差是8，你知道较大的数是多少吗？试着画一条线段图看看！' }
+        ],
+        tabs: {
+            concept: (
+                <div className="space-y-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Lightbulb className="w-6 h-6 text-indigo-600" />
+                            三类问题总览
+                        </h2>
+                        <div className="space-y-6">
+                            <div className="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-xl border-l-4 border-blue-500">
+                                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-2 text-lg">① 和差问题</h3>
+                                <p className="text-slate-700 dark:text-slate-300 text-sm mb-2">已知两数的<strong>和</strong>与<strong>差</strong>，求两数。</p>
+                                <div className="bg-white dark:bg-slate-700 p-3 rounded-lg font-mono text-sm">
+                                    <p>大数 = (和 + 差) ÷ 2</p>
+                                    <p>小数 = (和 - 差) ÷ 2</p>
+                                </div>
+                            </div>
+                            <div className="bg-green-50 dark:bg-green-900/20 p-5 rounded-xl border-l-4 border-green-500">
+                                <h3 className="font-bold text-green-800 dark:text-green-300 mb-2 text-lg">② 和倍问题</h3>
+                                <p className="text-slate-700 dark:text-slate-300 text-sm mb-2">已知两数的<strong>和</strong>与<strong>倍数关系</strong>，求两数。</p>
+                                <div className="bg-white dark:bg-slate-700 p-3 rounded-lg font-mono text-sm">
+                                    <p>小数 = 和 ÷ (倍数 + 1)</p>
+                                    <p>大数 = 小数 × 倍数</p>
+                                </div>
+                            </div>
+                            <div className="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-xl border-l-4 border-purple-500">
+                                <h3 className="font-bold text-purple-800 dark:text-purple-300 mb-2 text-lg">③ 差倍问题</h3>
+                                <p className="text-slate-700 dark:text-slate-300 text-sm mb-2">已知两数的<strong>差</strong>与<strong>倍数关系</strong>，求两数。</p>
+                                <div className="bg-white dark:bg-slate-700 p-3 rounded-lg font-mono text-sm">
+                                    <p>小数 = 差 ÷ (倍数 - 1)</p>
+                                    <p>大数 = 小数 × 倍数</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            examples: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Calculator className="w-6 h-6 text-indigo-600" />
+                            典型例题
+                        </h2>
+                        <div className="space-y-6">
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-5 rounded-xl">
+                                <h3 className="font-bold text-slate-800 dark:text-white mb-2">例1：和差问题</h3>
+                                <p className="text-slate-600 dark:text-slate-300 mb-3">甲乙两数的和是 72，甲比乙多 8，求两数。</p>
+                                <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-l-4 border-blue-500 font-mono text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                                    <p>甲（大数）= (72 + 8) ÷ 2 = 80 ÷ 2 = <strong>40</strong></p>
+                                    <p>乙（小数）= (72 - 8) ÷ 2 = 64 ÷ 2 = <strong>32</strong></p>
+                                    <p className="text-green-600 dark:text-green-400">验证：40 + 32 = 72 ✓，40 - 32 = 8 ✓</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-5 rounded-xl">
+                                <h3 className="font-bold text-slate-800 dark:text-white mb-2">例2：和倍问题</h3>
+                                <p className="text-slate-600 dark:text-slate-300 mb-3">鸡和鸭共 35 只，鸡的数量是鸭的 4 倍，求各几只？</p>
+                                <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-l-4 border-green-500 font-mono text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                                    <p>鸭（小数）= 35 ÷ (4 + 1) = 35 ÷ 5 = <strong>7只</strong></p>
+                                    <p>鸡（大数）= 7 × 4 = <strong>28只</strong></p>
+                                    <p className="text-green-600 dark:text-green-400">验证：7 + 28 = 35 ✓</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-5 rounded-xl">
+                                <h3 className="font-bold text-slate-800 dark:text-white mb-2">例3：差倍问题</h3>
+                                <p className="text-slate-600 dark:text-slate-300 mb-3">哥哥的贴纸是弟弟的 3 倍，哥哥比弟弟多 24 张，求各几张？</p>
+                                <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-l-4 border-purple-500 font-mono text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                                    <p>弟弟（小数）= 24 ÷ (3 - 1) = 24 ÷ 2 = <strong>12张</strong></p>
+                                    <p>哥哥（大数）= 12 × 3 = <strong>36张</strong></p>
+                                    <p className="text-green-600 dark:text-green-400">验证：36 - 12 = 24 ✓</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            practice: (
+                <div className="space-y-6">
+                    <PracticeProblem id={420} type="choice"
+                        question="两数之和为 50，差为 10，较大的数是（ ）"
+                        options={[{ label: 'A', value: '25' }, { label: 'B', value: '30' }, { label: 'C', value: '35' }, { label: 'D', value: '40' }]}
+                        answer="B"
+                        explanation="大数 = (50 + 10) ÷ 2 = 60 ÷ 2 = 30"
+                    />
+                    <PracticeProblem id={421} type="choice"
+                        question="甲是乙的 5 倍，甲乙之和为 48，乙是（ ）"
+                        options={[{ label: 'A', value: '6' }, { label: 'B', value: '8' }, { label: 'C', value: '10' }, { label: 'D', value: '12' }]}
+                        answer="B"
+                        explanation="乙 = 48 ÷ (5+1) = 48 ÷ 6 = 8"
+                    />
+                    <PracticeProblem id={422} type="choice"
+                        question="大数是小数的 4 倍，大数比小数多 18，小数是（ ）"
+                        options={[{ label: 'A', value: '4' }, { label: 'B', value: '6' }, { label: 'C', value: '8' }, { label: 'D', value: '9' }]}
+                        answer="B"
+                        explanation="小数 = 18 ÷ (4-1) = 18 ÷ 3 = 6"
+                    />
+                </div>
+            )
+        }
+    },
+
+    // ==================== L2-2. 简便运算 ====================
+    'g4-l2-clever-calc': {
+        meta: {
+            title: "简便运算（凑整/拆数）- 四年级思维进阶 | AI7Miao数学",
+            description: "掌握加法交换律、结合律和乘法分配律。学会凑整、拆数等简便计算技巧，让运算又快又准。",
+            keywords: "简便运算,运算定律,凑整,拆数,乘法分配律,加法交换律"
+        },
+        info: {
+            title: "简便运算（凑整/拆数）",
+            description: "同样的答案，有人算了 1 分钟，有人只需 5 秒！学会这些技巧，让你成为计算神童！",
+            tags: [
+                { text: "思维进阶", color: "purple" },
+                { text: "35分钟", icon: Clock, color: "slate" },
+                { text: "重点", icon: Star, color: "orange" }
+            ]
+        },
+        aiContext: "学生学习简便运算。重点是三大运算定律：加法交换律(a+b=b+a)、加法结合律((a+b)+c=a+(b+c))、乘法分配律(a×(b+c)=a×b+a×c)。引导学生观察数字特点，灵活选用技巧。",
+        aiChatTitle: "🤖 简便运算智能导师",
+        aiChatIntro: "嗨！我是运算加速器。把数字暗码告诉我，我来帮你找最快的解法！",
+        aiMessages: [
+            { role: 'ai', content: '计算 99 × 12，你会怎么做？如果把 99 看作 (100-1) 会怎样？' }
+        ],
+        tabs: {
+            concept: (
+                <div className="space-y-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Lightbulb className="w-6 h-6 text-indigo-600" />
+                            三大运算定律
+                        </h2>
+                        <div className="space-y-5">
+                            <div className="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-xl">
+                                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-2">① 加法交换律</h3>
+                                <div className="font-mono text-center text-lg bg-white dark:bg-slate-700 p-3 rounded-lg mb-2">a + b = b + a</div>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">用法：把能凑成整十、整百的数交换到一起先加。</p>
+                                <p className="text-sm text-indigo-600 dark:text-indigo-400 font-mono mt-1">例：37 + 85 + 63 = 37 + 63 + 85 = 100 + 85 = 185</p>
+                            </div>
+                            <div className="bg-green-50 dark:bg-green-900/20 p-5 rounded-xl">
+                                <h3 className="font-bold text-green-800 dark:text-green-300 mb-2">② 加法结合律</h3>
+                                <div className="font-mono text-center text-lg bg-white dark:bg-slate-700 p-3 rounded-lg mb-2">(a + b) + c = a + (b + c)</div>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">用法：把三个数中能凑整的两个数先加。</p>
+                                <p className="text-sm text-green-600 dark:text-green-400 font-mono mt-1">例：(46 + 54) + 38 = 100 + 38 = 138</p>
+                            </div>
+                            <div className="bg-orange-50 dark:bg-orange-900/20 p-5 rounded-xl">
+                                <h3 className="font-bold text-orange-800 dark:text-orange-300 mb-2">③ 乘法分配律</h3>
+                                <div className="font-mono text-center text-lg bg-white dark:bg-slate-700 p-3 rounded-lg mb-2">a × (b + c) = a×b + a×c</div>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">用法：把接近整十整百的数拆开，或把相同因数提前。</p>
+                                <p className="text-sm text-orange-600 dark:text-orange-400 font-mono mt-1">例：25 × 44 = 25 × 4 × 11 = 100 × 11 = 1100</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-3">
+                            <Target className="w-6 h-6 text-indigo-600" />
+                            凑整与拆数技巧
+                        </h2>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <h4 className="font-bold text-slate-800 dark:text-white mb-2">凑整法</h4>
+                                <p className="text-sm text-slate-600 dark:text-slate-400 font-mono">199 + 234<br />= (200-1) + 234<br />= 200 + 234 - 1<br />= 433</p>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <h4 className="font-bold text-slate-800 dark:text-white mb-2">拆数法</h4>
+                                <p className="text-sm text-slate-600 dark:text-slate-400 font-mono">36 × 5<br />= 36 × (10 ÷ 2)<br />= 360 ÷ 2<br />= 180</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            examples: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Calculator className="w-6 h-6 text-indigo-600" />
+                            典型例题
+                        </h2>
+                        <div className="space-y-5">
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">例1：用简便方法计算 125 × 32</p>
+                                <div className="font-mono text-sm text-slate-600 dark:text-slate-400 space-y-1 pl-4 border-l-4 border-blue-400">
+                                    <p>= 125 × 8 × 4</p>
+                                    <p>= 1000 × 4</p>
+                                    <p className="font-bold text-indigo-600">= 4000</p>
+                                    <p className="text-xs text-slate-400">（32 = 8 × 4，利用 125 × 8 = 1000）</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">例2：计算 37 × 99 + 37</p>
+                                <div className="font-mono text-sm text-slate-600 dark:text-slate-400 space-y-1 pl-4 border-l-4 border-green-400">
+                                    <p>= 37 × 99 + 37 × 1</p>
+                                    <p>= 37 × (99 + 1)</p>
+                                    <p>= 37 × 100</p>
+                                    <p className="font-bold text-indigo-600">= 3700</p>
+                                    <p className="text-xs text-slate-400">（逆用乘法分配律）</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            practice: (
+                <div className="space-y-6">
+                    <PracticeProblem id={430} type="choice"
+                        question="用简便方法计算 25 × 12 = （ ）"
+                        options={[{ label: 'A', value: '200' }, { label: 'B', value: '300' }, { label: 'C', value: '400' }, { label: 'D', value: '500' }]}
+                        answer="B"
+                        explanation="25 × 12 = 25 × 4 × 3 = 100 × 3 = 300"
+                    />
+                    <PracticeProblem id={431} type="choice"
+                        question="计算 38 × 101，最简便的方法得到的结果是（ ）"
+                        options={[{ label: 'A', value: '3838' }, { label: 'B', value: '3876' }, { label: 'C', value: '3838' }, { label: 'D', value: '3800' }]}
+                        answer="A"
+                        explanation="38 × 101 = 38 × (100+1) = 3800 + 38 = 3838"
+                    />
+                </div>
+            )
+        }
+    },
+
+    // ==================== L2-3. 定义新运算 ====================
+    'g4-l2-new-definition': {
+        meta: {
+            title: "定义新运算 - 四年级思维进阶 | AI7Miao数学",
+            description: "理解并掌握自定义运算符号的题型。通过代入法，将新运算符号转化为已知四则运算进行计算。",
+            keywords: "定义新运算,自定义运算,运算符号,代入法,奥数"
+        },
+        info: {
+            title: "定义新运算",
+            description: "数学家可以发明新的运算符号！看清规则，代入计算，这类题难不倒你！",
+            tags: [
+                { text: "思维进阶", color: "purple" },
+                { text: "35分钟", icon: Clock, color: "slate" },
+                { text: "趣味", icon: Star, color: "green" }
+            ]
+        },
+        aiContext: "学生学习定义新运算题型。关键是：仔细读题，理解新符号的定义，然后把具体数字代入定义式计算，注意运算顺序。",
+        aiChatTitle: "🤖 新运算探险家",
+        aiChatIntro: "欢迎来到数学发明家工坊！今天我们来学习如何理解和使用全新的运算符号。",
+        aiMessages: [
+            { role: 'ai', content: '如果规定 a▲b = a×2 + b，那么 3▲4 等于多少？试着把 a=3，b=4 代进去！' }
+        ],
+        tabs: {
+            concept: (
+                <div className="space-y-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Lightbulb className="w-6 h-6 text-indigo-600" />
+                            什么是"定义新运算"？
+                        </h2>
+                        <div className="bg-indigo-50 dark:bg-indigo-900/20 p-5 rounded-xl mb-6">
+                            <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                                题目会创造一个<strong>全新的运算符号</strong>（如 ★、◆、▲），并给出它的定义。
+                                只要看懂定义，<strong>把数字代入就能计算</strong>。
+                            </p>
+                        </div>
+                        <div className="bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl p-5">
+                            <h3 className="font-bold text-slate-800 dark:text-white mb-3">解题三步法</h3>
+                            <div className="space-y-3">
+                                {[
+                                    { step: '1', title: '读懂定义', desc: '明确新运算符号的含义，找出它和a、b的关系。' },
+                                    { step: '2', title: '对应代入', desc: '把题目中给出的具体数字，对号入座代入定义式。' },
+                                    { step: '3', title: '按序计算', desc: '按照四则运算的顺序（先乘除后加减）计算结果。' },
+                                ].map(item => (
+                                    <div key={item.step} className="flex items-start gap-3">
+                                        <span className="flex-shrink-0 w-7 h-7 bg-indigo-600 text-white rounded-full flex items-center justify-center text-sm font-bold">{item.step}</span>
+                                        <div>
+                                            <span className="font-bold text-slate-800 dark:text-white">{item.title}：</span>
+                                            <span className="text-sm text-slate-600 dark:text-slate-400">{item.desc}</span>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            examples: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Calculator className="w-6 h-6 text-indigo-600" />
+                            典型例题
+                        </h2>
+                        <div className="space-y-6">
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-5 rounded-xl">
+                                <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 p-3 rounded-lg mb-4">
+                                    <p className="font-bold text-yellow-800 dark:text-yellow-200">定义：a ★ b = a × b + a - b</p>
+                                </div>
+                                <p className="text-slate-700 dark:text-slate-300 mb-3">求 4 ★ 3 的值。</p>
+                                <div className="pl-4 border-l-4 border-indigo-400 font-mono text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                                    <p>将 a=4，b=3 代入：</p>
+                                    <p>= 4 × 3 + 4 - 3</p>
+                                    <p>= 12 + 4 - 3</p>
+                                    <p className="font-bold text-indigo-600">= 13</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-5 rounded-xl">
+                                <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 p-3 rounded-lg mb-4">
+                                    <p className="font-bold text-yellow-800 dark:text-yellow-200">定义：a ◆ b = (a + b) ÷ 2</p>
+                                </div>
+                                <p className="text-slate-700 dark:text-slate-300 mb-3">若 6 ◆ x = 5，求 x。</p>
+                                <div className="pl-4 border-l-4 border-purple-400 font-mono text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                                    <p>代入：(6 + x) ÷ 2 = 5</p>
+                                    <p>6 + x = 10</p>
+                                    <p className="font-bold text-purple-600">x = 4</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            practice: (
+                <div className="space-y-6">
+                    <div className="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-xl mb-4">
+                        <p className="font-bold text-indigo-800 dark:text-indigo-200">定义：a ▽ b = a × 3 - b × 2</p>
+                    </div>
+                    <PracticeProblem id={440} type="choice"
+                        question="根据上面定义，5 ▽ 4 = （ ）"
+                        options={[{ label: 'A', value: '5' }, { label: 'B', value: '7' }, { label: 'C', value: '9' }, { label: 'D', value: '11' }]}
+                        answer="B"
+                        explanation="5 ▽ 4 = 5×3 - 4×2 = 15 - 8 = 7"
+                    />
+                    <PracticeProblem id={441} type="choice"
+                        question="根据上面定义，若 a ▽ 3 = 12，则 a = （ ）"
+                        options={[{ label: 'A', value: '5' }, { label: 'B', value: '6' }, { label: 'C', value: '7' }, { label: 'D', value: '8' }]}
+                        answer="B"
+                        explanation="a×3 - 3×2 = 12 → 3a - 6 = 12 → 3a = 18 → a = 6"
+                    />
+                </div>
+            )
+        }
+    },
+
+    // ==================== L2-4. 数阵图 ====================
+    'g4-l2-number-array': {
+        meta: {
+            title: "数阵图 - 四年级思维进阶 | AI7Miao数学",
+            description: "学习幻方、数字方阵等数阵图的解题规律。掌握三阶幻方的结构，提升逻辑推理能力。",
+            keywords: "数阵图,幻方,魔方阵,数字方阵,奥数,逻辑"
+        },
+        info: {
+            title: "数阵图",
+            description: "古老的幻方游戏，几百年来难倒无数人！掌握规律，你也能轻松搞定！",
+            tags: [
+                { text: "思维进阶", color: "purple" },
+                { text: "40分钟", icon: Clock, color: "slate" },
+                { text: "趣味", icon: Star, color: "green" }
+            ]
+        },
+        aiContext: "学生学习数阵图，重点是三阶幻方。三阶幻方用1-9填格，每行每列对角线和都等于15。关键：中间格一定是5，四角和一定是20，对边中心格相加都是10。",
+        aiChatTitle: "🤖 数阵探秘大师",
+        aiChatIntro: "你好！幻方是古老的数学游戏。只要记住秘诀，任何幻方难题都能攻克！",
+        aiMessages: [
+            { role: 'ai', content: '一个三阶幻方，用1到9填格，每行、每列、对角线的和都相等。你猜那个公共的"和"是多少？' }
+        ],
+        tabs: {
+            concept: (
+                <div className="space-y-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Brain className="w-6 h-6 text-indigo-600" />
+                            幻方的秘密
+                        </h2>
+                        <div className="space-y-6">
+                            <div className="bg-amber-50 dark:bg-amber-900/20 p-5 rounded-xl border-l-4 border-amber-500">
+                                <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-2">三阶幻方基础</h3>
+                                <p className="text-slate-700 dark:text-slate-300 text-sm">
+                                    用 1 到 9 填入 3×3 的方格，使每行、每列、两条对角线上的三数之和都相等。
+                                </p>
+                                <p className="text-slate-700 dark:text-slate-300 text-sm mt-2">
+                                    <strong>公共和 = (1+2+3+4+5+6+7+8+9) ÷ 3 = 45 ÷ 3 = 15</strong>
+                                </p>
+                            </div>
+                            <div className="overflow-x-auto">
+                                <table className="mx-auto border-collapse">
+                                    <tbody>
+                                        {[[2, 7, 6], [9, 5, 1], [4, 3, 8]].map((row, ri) => (
+                                            <tr key={ri}>
+                                                {row.map((n, ci) => (
+                                                    <td key={ci} className={`w-14 h-14 text-center text-xl font-bold border-2 border-slate-400 dark:border-slate-500 ${n === 5 ? 'bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300' : 'bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-100'}`}>{n}</td>
+                                                ))}
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                                <p className="text-center text-sm text-slate-500 mt-3">三阶标准幻方（每行/列/对角线之和 = 15）</p>
+                            </div>
+                            <div className="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-xl">
+                                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-3">解题口诀</h3>
+                                <ul className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                                    <li>🎯 <strong>中心格</strong>：一定填最中间数（如1-9中填5）</li>
+                                    <li>🎯 <strong>确定格</strong>：已知两格，第三格 = 公共和 - 已知两格之和</li>
+                                    <li>🎯 <strong>奇数格</strong>：角格填偶数，边中格填奇数（1-9标准幻方）</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            examples: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Calculator className="w-6 h-6 text-indigo-600" />
+                            典型例题
+                        </h2>
+                        <div className="space-y-6">
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-5 rounded-xl">
+                                <h3 className="font-bold text-slate-800 dark:text-white mb-3">例：在方格中填入数字，使每行、列、对角线之和都等于12</h3>
+                                <div className="flex gap-6 items-start flex-wrap">
+                                    <div>
+                                        <p className="text-sm text-slate-500 mb-2">题目（已填部分）：</p>
+                                        <table className="border-collapse">
+                                            <tbody>
+                                                {[['□', 5, '□'], ['□', '□', 1], ['□', 3, '□']].map((row, ri) => (
+                                                    <tr key={ri}>
+                                                        {row.map((n, ci) => (
+                                                            <td key={ci} className="w-12 h-12 text-center text-lg font-bold border-2 border-slate-400 dark:border-slate-500 bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-100">{n}</td>
+                                                        ))}
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div>
+                                        <p className="text-sm text-slate-500 mb-2">答案：</p>
+                                        <table className="border-collapse">
+                                            <tbody>
+                                                {[[4, 5, 3], [7, 4, 1], [1, 3, 8]].map((row, ri) => (
+                                                    <tr key={ri}>
+                                                        {row.map((n, ci) => (
+                                                            <td key={ci} className="w-12 h-12 text-center text-lg font-bold border-2 border-green-400 bg-green-50 dark:bg-green-900/20 text-slate-800 dark:text-slate-100">{n}</td>
+                                                        ))}
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <p className="text-sm text-slate-500 mt-3">思路：中心格 = 12×3÷3? 不对，要先求每行和，再逆推。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            practice: (
+                <div className="space-y-6">
+                    <PracticeProblem id={450} type="choice"
+                        question="用1到9填三阶幻方，每行每列对角线的和都是（ ）"
+                        options={[{ label: 'A', value: '12' }, { label: 'B', value: '15' }, { label: 'C', value: '18' }, { label: 'D', value: '21' }]}
+                        answer="B"
+                        explanation="1+2+...+9 = 45，分成3行，每行和 = 45÷3 = 15"
+                    />
+                    <PracticeProblem id={451} type="choice"
+                        question="三阶幻方（1-9）中，中心位置一定填（ ）"
+                        options={[{ label: 'A', value: '1' }, { label: 'B', value: '3' }, { label: 'C', value: '5' }, { label: 'D', value: '9' }]}
+                        answer="C"
+                        explanation="中心格同时属于所有行、列和对角线，经分析必填中间数5。"
+                    />
+                </div>
+            )
+        }
+    },
+
+    // ==================== L2-5. 逻辑推理进阶 ====================
+    'g4-l2-logic-advanced': {
+        meta: {
+            title: "逻辑推理进阶 - 四年级思维进阶 | AI7Miao数学",
+            description: "学习排列、假设、排除等逻辑推理方法。解决'谁是谁'、真假判断等经典逻辑题。",
+            keywords: "逻辑推理,假设法,排除法,真假判断,奥数,思维训练"
+        },
+        info: {
+            title: "逻辑推理进阶",
+            description: "侦探的必备技能！用假设法和排除法，层层剥茧，找到唯一的答案。",
+            tags: [
+                { text: "思维进阶", color: "purple" },
+                { text: "35分钟", icon: Clock, color: "slate" },
+                { text: "烧脑", icon: Brain, color: "red" }
+            ]
+        },
+        aiContext: "学生学习逻辑推理。重点方法：①列表排除法（制作表格逐条排除）；②假设法（先假设某个条件成立，推出结论，看是否矛盾）；③反证法（假设结论不成立，推出矛盾，原结论成立）。",
+        aiChatTitle: "🤖 逻辑侦探助手",
+        aiChatIntro: "欢迎！我是逻辑侦探。用推理的力量，我们一起找出真相！",
+        aiMessages: [
+            { role: 'ai', content: '甲、乙、丙三人中有一个说谎者。甲说："我没说谎"，乙说："甲说谎了"，丙说："乙说谎了"。你能推出谁在说谎吗？' }
+        ],
+        tabs: {
+            concept: (
+                <div className="space-y-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Brain className="w-6 h-6 text-indigo-600" />
+                            三大推理武器
+                        </h2>
+                        <div className="space-y-5">
+                            <div className="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-xl border-l-4 border-blue-500">
+                                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-2 flex items-center gap-2">
+                                    <span className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs">①</span>
+                                    列表排除法
+                                </h3>
+                                <p className="text-slate-700 dark:text-slate-300 text-sm">
+                                    建立表格，把人/物作为行，条件作为列。根据已知条件，逐步打✗排除不可能的，
+                                    剩下的✓就是答案。
+                                </p>
+                            </div>
+                            <div className="bg-green-50 dark:bg-green-900/20 p-5 rounded-xl border-l-4 border-green-500">
+                                <h3 className="font-bold text-green-800 dark:text-green-300 mb-2 flex items-center gap-2">
+                                    <span className="w-6 h-6 bg-green-600 text-white rounded-full flex items-center justify-center text-xs">②</span>
+                                    假设法
+                                </h3>
+                                <p className="text-slate-700 dark:text-slate-300 text-sm">
+                                    先假设某种情况成立，根据推导出的结果与已知条件对比：
+                                    产生矛盾 → 假设错误；没有矛盾 → 假设正确。
+                                </p>
+                            </div>
+                            <div className="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-xl border-l-4 border-purple-500">
+                                <h3 className="font-bold text-purple-800 dark:text-purple-300 mb-2 flex items-center gap-2">
+                                    <span className="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-xs">③</span>
+                                    真假判断
+                                </h3>
+                                <p className="text-slate-700 dark:text-slate-300 text-sm">
+                                    当多个人的陈述中有真有假时，逐一假设每人说真话，
+                                    看哪种情况能与所有已知条件自洽。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            examples: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Calculator className="w-6 h-6 text-indigo-600" />
+                            典型例题
+                        </h2>
+                        <div className="space-y-6">
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-5 rounded-xl">
+                                <h3 className="font-bold text-slate-800 dark:text-white mb-3">例1：列表排除法</h3>
+                                <p className="text-slate-600 dark:text-slate-300 mb-3 text-sm">
+                                    甲、乙、丙三人分别会下棋、踢球、游泳中的一项。甲不会下棋，乙不会踢球，甲不会游泳。求各自的爱好。
+                                </p>
+                                <div className="overflow-x-auto">
+                                    <table className="w-full text-sm border-collapse">
+                                        <thead>
+                                            <tr className="bg-slate-200 dark:bg-slate-600">
+                                                <th className="p-2 border border-slate-300 dark:border-slate-500">姓名</th>
+                                                <th className="p-2 border border-slate-300 dark:border-slate-500">下棋</th>
+                                                <th className="p-2 border border-slate-300 dark:border-slate-500">踢球</th>
+                                                <th className="p-2 border border-slate-300 dark:border-slate-500">游泳</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="text-center">
+                                            <tr>
+                                                <td className="p-2 border border-slate-300 dark:border-slate-500">甲</td>
+                                                <td className="p-2 border border-slate-300 dark:border-slate-500 text-red-500">✗</td>
+                                                <td className="p-2 border border-slate-300 dark:border-slate-500 text-green-500 font-bold">✓</td>
+                                                <td className="p-2 border border-slate-300 dark:border-slate-500 text-red-500">✗</td>
+                                            </tr>
+                                            <tr className="bg-slate-50 dark:bg-slate-700/30">
+                                                <td className="p-2 border border-slate-300 dark:border-slate-500">乙</td>
+                                                <td className="p-2 border border-slate-300 dark:border-slate-500 text-green-500 font-bold">✓</td>
+                                                <td className="p-2 border border-slate-300 dark:border-slate-500 text-red-500">✗</td>
+                                                <td className="p-2 border border-slate-300 dark:border-slate-500 text-red-500">✗</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="p-2 border border-slate-300 dark:border-slate-500">丙</td>
+                                                <td className="p-2 border border-slate-300 dark:border-slate-500 text-red-500">✗</td>
+                                                <td className="p-2 border border-slate-300 dark:border-slate-500 text-red-500">✗</td>
+                                                <td className="p-2 border border-slate-300 dark:border-slate-500 text-green-500 font-bold">✓</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p className="text-sm text-slate-500 mt-2">结论：甲踢球，乙下棋，丙游泳。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            practice: (
+                <div className="space-y-6">
+                    <PracticeProblem id={460} type="choice"
+                        question="A、B、C三人中有一人做了好事，A说'是B做的'，B说'不是我做的'，C说'不是我做的'。已知只有一个人说假话，谁做了好事？"
+                        options={[{ label: 'A', value: '是A' }, { label: 'B', value: '是B' }, { label: 'C', value: '是C' }, { label: 'D', value: '无法判断' }]}
+                        answer="C"
+                        explanation="如果是C做的：A说谎，B说真，C说谎——两人说谎，不符合。如果是B做的：A说真，B说谎，C说真——只有一人说谎，符合！所以是B做的。等等，验证：A说'是B'=真；B说'不是我'=假；C说'不是我'=真。只有B说假，符合题意。答案是B。"
+                    />
+                    <PracticeProblem id={461} type="choice"
+                        question="有红、黄、蓝三个球，放在三个盒子里，每盒一个。已知：红球不在1号盒，黄球不在2号盒，蓝球不在1号和3号盒。蓝球在（ ）号盒。"
+                        options={[{ label: 'A', value: '1' }, { label: 'B', value: '2' }, { label: 'C', value: '3' }, { label: 'D', value: '不确定' }]}
+                        answer="B"
+                        explanation="蓝球不在1号也不在3号，所以蓝球在2号。"
+                    />
+                </div>
+            )
+        }
     }
 
 };
