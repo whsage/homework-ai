@@ -11,7 +11,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 export const grade8Content = {
     // ==================== 1. 三角形 ====================
-    'mid-8-1-triangles': {
+    'mid-8-1-congruence': {
         meta: {
             title: "三角形全等及其判定 | AI7Miao数学",
             description: "学习三角形的三边关系、内角和定理,重点掌握全等三角形的性质和判定方法(SSS, SAS, ASA, AAS, HL)。通过三角形稳定性理解全等判定。",

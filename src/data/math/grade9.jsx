@@ -270,7 +270,7 @@ export const grade9Content = {
     },
 
     // ==================== 22. 二次函数 (保留原有) ====================
-    'mid-9-1-quadratic-functions': {
+    'mid-9-2-quadratic-functions': {
         meta: {
             title: "二次函数知识点详解 - 图像性质与应用 | AI7Miao数学学习",
             description: "详细讲解二次函数的概念、图像、性质和应用。包括配方法、顶点式、一般式等，提供AI互动学习和练习题。基于建构主义学习理论，引导式教学。",
@@ -661,7 +661,7 @@ export const grade9Content = {
     },
 
     // ==================== 24. 圆 ====================
-    'mid-9-1-circle': {
+    'mid-9-1-circles-basic': {
         meta: {
             title: "圆的性质与计算 - 垂径定理与圆周角 | AI7Miao数学",
             description: "深入学习圆的所有性质：垂径定理、圆心角与圆周角的关系、切线的判定与性质。",
@@ -802,7 +802,7 @@ export const grade9Content = {
         }
     },
 
-    'mid-9-2-probability': {
+    'mid-9-1-probability': {
         meta: {
             title: "概率初步 - 随机事件与概率计算 | AI7Miao数学",
             description: "理解确定性事件与随机事件，掌握用列举法（列表、画树状图）求概率。",
@@ -922,7 +922,7 @@ export const grade9Content = {
     },
 
     // ==================== 27. 相似 ====================
-    'mid-9-2-similar': {
+    'mid-9-2-similarity': {
         meta: {
             title: "相似图形 - 相似三角形判定与性质 | AI7Miao数学",
             description: "学习相似图形的概念，重点掌握相似三角形的判定定理（AA, SAS, SSS）及性质。",
