@@ -28,15 +28,15 @@ export const grade4Content = {
                 { text: "重要", icon: Star, color: "orange" }
             ]
         },
-        aiContext: "学生在学习大数。请用中国人口、地球到月球距离等实际例子帮助理解大数的意义。引导学生发现数位规律。",
-        aiChatTitle: "AI互动学习:发现数位的秘密",
-        aiChatIntro: "通过中国人口等实际例子,你将理解大数的意义和数位规律。",
+        aiContext: "想象你在统计全国小朋友的糖果！从万到亿，数字变大后，分级读取是关键。用中国人口、国家领土面积等宏大场景引入。鼓励学生发现『四位一级』的规律。",
+        aiChatTitle: "大数王国的侦探：发现数位的规律",
+        aiChatIntro: "哇！快看这些庞大的数字！中国有 1411780000 人，地球到太阳有 149600000 千米。数字这么多，我们要怎么一眼认出它们呢？",
         aiMessages: [
-            { role: 'ai', content: '你知道中国有多少人口吗？大约14亿人！你能写出这个数吗？' },
-            { role: 'user', content: '1400000000？' },
-            { role: 'ai', content: <>太棒了！这个数读作"十四亿"。你发现了吗？每<strong>四位</strong>一组，会更容易读！</>, type: 'success' },
-            { role: 'user', content: '对！14,0000,0000，分成"亿"、"万"、"个"三组！' },
-            { role: 'ai', content: <>完全正确！这就是<strong className="text-indigo-600">数位分级</strong>的秘密。现在你已经掌握了认识大数的关键！</>, type: 'success' }
+            { role: 'ai', content: '如果给你一串很长的数字，像 1411780000，你会觉得眼花缭乱吗？' },
+            { role: 'user', content: '会啊，数零都数晕了！' },
+            { role: 'ai', content: '别担心！数学里有一个超级魔法，叫“数位分级”。就像把很多糖果装进小袋子一样，每**四位**画一个分级线，你发现了什么？' },
+            { role: 'user', content: '14, 1178, 0000。分成三段了！' },
+            { role: 'ai', content: <>太聪明了！这就是“亿级”、“万级”和“个级”。读起来就像：十四亿，一千一百七十八万。是不是一下就清晰了？🌟</>, type: 'success' },
         ],
         tabs: {
             concept: (
@@ -44,57 +44,65 @@ export const grade4Content = {
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Lightbulb className="w-6 h-6 text-indigo-600" />
-                            什么是大数？
+                            大数王国的“排队规则” 🏰
                         </h2>
 
                         <div className="space-y-6">
-                            <div className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 rounded-xl p-6">
-                                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4">数位与计数单位</h3>
-                                <div className="bg-white dark:bg-slate-700 p-4 rounded-lg overflow-x-auto">
+                            <div className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 rounded-xl p-6 border-l-4 border-indigo-500">
+                                <p className="text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
+                                    🤔 想象一下，如果有几千个小朋友在操场排队，肯定乱哄哄的！<br />
+                                    数学家为了管理这些大数字，给它们分成了三个“班级”，每个班里只能住 **4个** 成员：
+                                </p>
+                                <div className="bg-white dark:bg-slate-700 p-4 rounded-lg overflow-x-auto shadow-sm">
                                     <table className="w-full text-sm">
                                         <thead>
-                                            <tr className="border-b border-slate-200 dark:border-slate-600">
-                                                <th className="p-2 text-center" colSpan="4">亿级</th>
-                                                <th className="p-2 text-center" colSpan="4">万级</th>
-                                                <th className="p-2 text-center" colSpan="4">个级</th>
+                                            <tr className="border-b border-slate-200 dark:border-slate-600 text-indigo-600 dark:text-indigo-400">
+                                                <th className="p-2 text-center" colSpan="4">🚀 亿级 (亿)</th>
+                                                <th className="p-2 text-center" colSpan="4">🌾 万级 (万)</th>
+                                                <th className="p-2 text-center" colSpan="4">🏠 个级 (个)</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr className="text-center">
+                                            <tr className="text-center text-slate-500">
                                                 <td className="p-2 border-r">千亿</td>
                                                 <td className="p-2 border-r">百亿</td>
                                                 <td className="p-2 border-r">十亿</td>
-                                                <td className="p-2 border-r font-bold">亿</td>
+                                                <td className="p-2 border-r font-bold text-slate-800 dark:text-white">亿</td>
                                                 <td className="p-2 border-r">千万</td>
                                                 <td className="p-2 border-r">百万</td>
                                                 <td className="p-2 border-r">十万</td>
-                                                <td className="p-2 border-r font-bold">万</td>
+                                                <td className="p-2 border-r font-bold text-slate-800 dark:text-white">万</td>
                                                 <td className="p-2 border-r">千</td>
                                                 <td className="p-2 border-r">百</td>
                                                 <td className="p-2 border-r">十</td>
-                                                <td className="p-2 font-bold">个</td>
+                                                <td className="p-2 font-bold text-slate-800 dark:text-white">个</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
+                                <p className="mt-4 text-xs text-slate-500 italic flex items-center gap-1">
+                                    <Sparkles className="w-3 h-3" /> 记住了吗？四颗小红星一组，数学从此变轻松！
+                                </p>
                             </div>
 
                             <div className="grid md:grid-cols-2 gap-6">
-                                <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-800">
-                                    <div className="text-3xl mb-3">👥</div>
-                                    <h3 className="font-bold text-slate-800 dark:text-white mb-2">中国人口</h3>
+                                <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-800 group hover:shadow-md transition-all">
+                                    <div className="text-3xl mb-3">🛰️</div>
+                                    <h3 className="font-bold text-slate-800 dark:text-white mb-2">天上的距离</h3>
                                     <p className="text-slate-600 dark:text-slate-400 text-sm">
-                                        约14亿人<br />
-                                        写作：1,400,000,000
+                                        地球到太阳约：<br />
+                                        <span className="font-mono text-indigo-600 font-bold">1,4960,0000</span> 千米<br />
+                                        读作：一亿四千九百六十万
                                     </p>
                                 </div>
 
-                                <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-100 dark:border-green-800">
-                                    <div className="text-3xl mb-3">🌍</div>
-                                    <h3 className="font-bold text-slate-800 dark:text-white mb-2">地球到月球</h3>
+                                <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-100 dark:border-green-800 group hover:shadow-md transition-all">
+                                    <div className="text-3xl mb-3">📽️</div>
+                                    <h3 className="font-bold text-slate-800 dark:text-white mb-2">超火的电影</h3>
                                     <p className="text-slate-600 dark:text-slate-400 text-sm">
-                                        约384,000千米<br />
-                                        读作：三十八万四千千米
+                                        某大片的播放量：<br />
+                                        <span className="font-mono text-green-600 font-bold">38,4500,0000</span> 次<br />
+                                        读作：三十八亿四千五百万
                                     </p>
                                 </div>
                             </div>
@@ -132,31 +140,29 @@ export const grade4Content = {
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
-                            <TrendingUp className="w-6 h-6 text-indigo-600" />
-                            数的改写与省略
+                            <AlertCircle className="w-6 h-6 text-orange-500" />
+                            躲避“大数陷阱”：读零的奥秘 🤫
                         </h2>
 
-                        <div className="space-y-6">
-                            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-800">
-                                <h3 className="font-bold text-blue-700 dark:text-blue-400 mb-4 text-lg">改写成"万"或"亿"作单位</h3>
-                                <p className="text-sm text-slate-700 dark:text-slate-300 mb-4">
-                                    去掉末尾的4个0（或8个0），加上"万"（或"亿"）字。
+                        <div className="space-y-4">
+                            <div className="bg-orange-50 dark:bg-orange-900/20 p-5 rounded-xl border-l-4 border-orange-400">
+                                <p className="text-sm text-slate-700 dark:text-slate-300">
+                                    数字越大，里面的 **0** 就越多。记住这个口诀，你就是读数小天才：
                                 </p>
-                                <div className="bg-white dark:bg-slate-700 p-4 rounded-lg">
-                                    <code className="text-sm block">1,000,000 = 100万</code>
-                                    <code className="text-sm block">500,000,000 = 5亿</code>
-                                </div>
+                                <ul className="mt-3 space-y-3 font-medium text-slate-700 dark:text-slate-200">
+                                    <li className="flex items-center gap-2">🏮 每级【末尾】的 0，通通 **不读**！<span className="text-xs text-slate-400">(如 5000 万)</span></li>
+                                    <li className="flex items-center gap-2">🛑 【中间】有 0 时，不管有几个，**只读一个**！<span className="text-xs text-slate-400">(如 5007 万)</span></li>
+                                </ul>
                             </div>
 
-                            <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-100 dark:border-green-800">
-                                <h3 className="font-bold text-green-700 dark:text-green-400 mb-4 text-lg">省略万位或亿位后面的尾数</h3>
-                                <p className="text-sm text-slate-700 dark:text-slate-300 mb-4">
-                                    用<strong>四舍五入</strong>法，看千位或千万位上的数。
+                            <div className="bg-indigo-50 dark:bg-indigo-900/20 p-5 rounded-xl border-l-4 border-indigo-400">
+                                <h3 className="font-bold text-indigo-800 dark:text-indigo-300 mb-2">💡 四舍五入的“魔法师”</h3>
+                                <p className="text-sm text-slate-700 dark:text-slate-300 mb-2">
+                                    想把 1,2345 变成“约多少万”？
                                 </p>
-                                <div className="bg-white dark:bg-slate-700 p-4 rounded-lg">
-                                    <code className="text-sm block">1,234,567 ≈ 123万（四舍五入到万位）</code>
-                                    <code className="text-sm block">987,654,321 ≈ 10亿（四舍五入到亿位）</code>
-                                </div>
+                                <p className="text-sm text-slate-600 dark:text-slate-400 bg-white/50 dark:bg-black/20 p-3 rounded">
+                                    盯着 **千位** 上的数字：它是 0-4 就舍掉，5-9 就往前加 1。这就像是在玩“能量条”游戏，能量不到 5 就无法升级哦！
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -237,15 +243,15 @@ export const grade4Content = {
                 { text: "重要", icon: Star, color: "orange" }
             ]
         },
-        aiContext: "学生正在学习角的度量。请指导学生如何使用量角器（中心对顶点，零线对一边）。解释不同角的特征。如果学生问为什么角有大小，解释角的大小与两边张开的程度有关。",
-        aiChatTitle: "AI互动学习：量角小达人",
-        aiChatIntro: "你好！我是量角小助手。你知道量角器上的中心点和零刻度线有什么用吗？让我们一起来测量几个角吧！",
+        aiContext: "想象你有一把调皮的剪刀或一扇会动的门！角的大小就是它们『张开的程度』。用时钟、剪刀、书角来引入。鼓励学生动手模仿『中心点』和『零刻度线』的对齐。强调角的大小与边长无关，只看『张开度』。",
+        aiChatTitle: "角的捉迷藏：谁张得更大？",
+        aiChatIntro: "嘿！快看看你的时钟，时针和分针正张着大嘴巴呢！它们张开的大小，就是我们今天要抓的“角”。",
         aiMessages: [
-            { role: 'ai', content: '看看你手中的量角器（或者屏幕上的），你发现了什么？' },
-            { role: 'user', content: '有好多刻度线，还有一个中心点。' },
-            { role: 'ai', content: '观察得真仔细！量角的第一步就是：**中心对顶点**。把量角器的中心点对准角的顶点。接下来呢？' },
-            { role: 'user', content: '是要把一条线对准零刻度吗？' },
-            { role: 'ai', content: <>没错！**零线对一边**。让角的一条边和量角器的0刻度线重合。然后看另一条边指着多少度，这就是这个角的大小！</>, type: 'success' },
+            { role: 'ai', content: '如果你慢慢把门推开，门和墙之间的“角”是变大了还是变小了？' },
+            { role: 'user', content: '变大了！' },
+            { role: 'ai', content: '没错！角就像张开的嘴巴。那我们要怎么精准地量出嘴巴张了多大呢？这就需要一个超级工具——**量角器**。' },
+            { role: 'user', content: '我看到了，它像个半圆。' },
+            { role: 'ai', content: <>太棒了！记住我们的量角密语：**“中心对顶点，零线对一边”**。就像给角戴上一顶半圆形的帽子，另一条边指着的数字，就是它的“张开度”啦！试试看？🌟</>, type: 'success' },
         ],
         tabs: {
             interactive: (
@@ -273,24 +279,21 @@ export const grade4Content = {
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <BookOpen className="w-6 h-6 text-indigo-600" />
-                            角的定义与分类
+                            捕捉“张开的嘴巴” ✂️
                         </h2>
 
                         <div className="grid md:grid-cols-2 gap-6 mb-8">
-                            <div className="bg-indigo-50 dark:bg-indigo-900/20 p-6 rounded-xl">
-                                <h3 className="font-bold text-indigo-800 dark:text-indigo-300 mb-3">⚡️ 什么是角？</h3>
-                                <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-                                    从一点引出两条<strong>射线</strong>所组成的图形叫做角。
-                                    <br />
-                                    <span className="text-sm text-slate-500">（注意：角的大小与边的长短无关，只与两边叉开的大小有关）</span>
+                            <div className="bg-indigo-50 dark:bg-indigo-900/20 p-6 rounded-xl border-l-4 border-indigo-500">
+                                <h3 className="font-bold text-indigo-800 dark:text-indigo-300 mb-3">🤔 角是什么？</h3>
+                                <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-sm">
+                                    想象两根吸管连在一起，把它们拉开，中间出来的图形就是 **角**！<br />
+                                    那个连接点叫 **顶点**，两根吸管就是角的 **两条边**。
                                 </p>
                             </div>
-                            <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-xl">
-                                <h3 className="font-bold text-purple-800 dark:text-purple-300 mb-3">📏 角的度量单位</h3>
-                                <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-                                    角的计量单位是"度"，用符号"°"表示。
-                                    <br />
-                                    把半圆分成180等份，每一份所对的角的大小是1度，记作1°。
+                            <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-xl border-l-4 border-purple-500">
+                                <h3 className="font-bold text-purple-800 dark:text-purple-300 mb-3">📏 怎么量大小？</h3>
+                                <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-sm">
+                                    我们用“度(° )”来当单位。想象把一个圆平均切成 **360块** 细细的披萨，每一块的角度就是 1°。
                                 </p>
                             </div>
                         </div>
@@ -494,17 +497,15 @@ export const grade4Content = {
                 { text: "重点难点", icon: Star, color: "orange" }
             ]
         },
-        aiContext: "学生正在学习除数是两位数的除法。重点辅导试商方法（把除数看作整十数）。如果余数比除数大，说明商小了，要调大。",
-        aiChatTitle: "运算小助手",
-        aiChatIntro: "你好！我是你的除法教练。遇到试商困难了吗？",
+        aiContext: "想象你正在给全校班级分发新课本！除数从 9 变成了 24，这时候“试商”变成了有趣的猜谜游戏。解释把除数看作整十数是为了缩小“猜测范围”。鼓励学生多尝试，调商是正常的修正过程。",
+        aiChatTitle: "分发达人：挑战两位数大餐",
+        aiChatIntro: "哇！这次我们面对的除数可变大了，像 24 人分 192 本书。一次能分几个？咱们一起来猜猜看！",
         aiMessages: [
-            { role: 'ai', content: '计算 192 ÷ 24 时，你会把 24 看作多少来试商？' },
-            { role: 'user', content: '看作 20？' },
-            { role: 'ai', content: '对的！192 里面大约有几个 20？' },
-            { role: 'user', content: '9 个。' },
-            { role: 'ai', content: '那我们试试商 9。24 × 9 = 216，比 192 大了。说明什么？' },
-            { role: 'user', content: '商大了，要改小。' },
-            { role: 'ai', content: '非常聪明！这就是"调商"。我们在互动演示里试一试吧。', type: 'success' }
+            { role: 'ai', content: '计算 192 ÷ 24 时，如果把 24 假装看成 20，你觉得 192 里面大约能住进几个 20？' },
+            { role: 'user', content: '19÷2... 大约 9 个？' },
+            { role: 'ai', content: '眼力不错！那我们就试着在商的位置写上 9。可是计算发现 24 × 9 = 216，哎呀，披萨不够分了！这说明什么？' },
+            { role: 'user', content: '商要变小一点。' },
+            { role: 'ai', content: <>太聪明了！这就是“调商”。商改成 8 试试：24 × 8 = 192。刚好分完！这就像玩拼图，大胆试，错了就换一块！🌟</>, type: 'success' }
         ],
         tabs: {
             interactive: (
@@ -673,16 +674,16 @@ export const grade4Content = {
                 { text: "重点", icon: Star, color: "orange" }
             ]
         },
-        aiContext: "学生正在做小数加减法。重点是理解'相同数位对齐'，也就是'小数点对齐'。利用百格图帮助学生建立数位概念。",
-        aiChatTitle: "小数精灵",
-        aiChatIntro: "嗨！我是小数精灵。你知道 0.1 和 0.01 谁大吗？",
+        aiContext: "想象你在逛文具店！0.1 元就是 1 角，0.01 元就是 1 分。小数加减就像是把元对元、角对角放进钱包。强调小数点就像一根“定海神针”，它们必须对齐，也就是“相同单位”才能相加。",
+        aiChatTitle: "小数森林：小数点奇遇记",
+        aiChatIntro: "嗨！我是小数精灵。在森林里，1.2 米的小兔子和 0.5 米的小刺猬站在一起，它们一共有多高呢？",
         aiMessages: [
-            { role: 'ai', content: '计算 1.2 + 0.5 时，你是怎么对齐的？' },
-            { role: 'user', content: '末尾对齐？' },
-            { role: 'ai', content: '哎呀，那可就错了！整数加法是末尾对齐，小数加法要**小数点对齐**。' },
-            { role: 'user', content: '为什么？' },
-            { role: 'ai', content: '因为只有相同数位上的数才能相加减。个位加个位，十分位加十分位。小数点对齐了，数位就对齐了。' },
-            { role: 'ai', content: '来试试互动演示，看看小数点对齐的神奇效果！', type: 'success' }
+            { role: 'ai', content: '计算 1.2 + 0.5 时，你要把谁和谁对齐呢？' },
+            { role: 'user', content: '把 2 和 5 对齐？' },
+            { role: 'ai', content: '没错！但最稳妥的办法是把那两个亮亮的**小数点**对齐。' },
+            { role: 'user', content: '为什么要小数点对齐？' },
+            { role: 'ai', content: '因为小数点一站稳，元、角、分（也就是数位）就全归位啦！就像穿衣服，袖子对袖子，裤脚对裤脚，才不会穿歪呀！' },
+            { role: 'ai', content: '来！去百格图里看看 1.2 是怎么和 0.5 抱在一起的吧！🌟', type: 'success' }
         ],
         tabs: {
             interactive: (
@@ -853,15 +854,15 @@ export const grade4Content = {
                 { text: "难点", icon: Star, color: "orange" }
             ]
         },
-        aiContext: "学生正在学习四则混合运算。重点是掌握运算顺序：先乘除后加减，有括号先算括号。常见错误是受数字诱惑，先算好算的而违背顺序。",
-        aiChatTitle: "秩序管理员",
-        aiChatIntro: "我是运算王国的秩序管理员。请出示你的'运算通行证'！",
+        aiContext: "想象你正在参加一场数学王国的速度竞赛！加减乘除就是不同的路段。重点是“交通规则”：括号是特权车先走，乘除法是快车道，加减法是慢车道。如果只有快车或只有慢车，就按从左到右的顺序。引导学生发现，顺序变了，终点（答案）也会变哦！",
+        aiChatTitle: "运算指挥官：红绿灯下的秩序",
+        aiChatIntro: "滴滴！我是你的数学领航员。前方有一堆算式堵车了，你能帮它们理顺顺序吗？",
         aiMessages: [
-            { role: 'ai', content: '计算 12 ÷ 6 × 2，应该先算什么？' },
-            { role: 'user', content: '先算 6 × 2？' },
-            { role: 'ai', content: '滴滴！违章了！乘除法是同级运算，要从左往右算。先算 12 ÷ 6 = 2，再算 2 × 2 = 4。' },
-            { role: 'user', content: '如果不按顺序会怎样？' },
-            { role: 'ai', content: '后果很严重！如果你先算 6 × 2 = 12，那么 12 ÷ 12 = 1。答案完全不同。来，我们去演示区看看。', type: 'success' }
+            { role: 'ai', content: '计算 12 ÷ 6 × 2，如果我们先算乘法，答案会是什么？' },
+            { role: 'user', content: '12 ÷ 12 = 1。' },
+            { role: 'ai', content: '那如果我们按顺序算除法呢？' },
+            { role: 'user', content: '2 × 2 = 4。' },
+            { role: 'ai', content: <>哇！同一个算式，顺序不一样，结果竟然差了这么多！这就是为什么我们要有**“运算通行证”**。括号就像救护车，总能最先通过！明白了吗？🌟</>, type: 'success' }
         ],
         tabs: {
             interactive: (
@@ -1005,15 +1006,15 @@ export const grade4Content = {
                 { text: "30分钟", icon: Clock, color: "slate" }
             ]
         },
-        aiContext: "学生正在探讨平行四边形和梯形。引导学生观察对边是否平行。如果学生分不清两者区别，强调：只有一组对边平行的是梯形，两组都平行的是平行四边形。",
-        aiChatTitle: "AI几何探索助手",
-        aiChatIntro: "你好！我是图形小侦探。你能帮我分辨哪些是平行四边形，哪些是梯形吗？",
+        aiContext: "想象你正在搭一个神奇的框架！两根平行的竹竿就像火车轨道，永远不会打架。如果一个四边形有两组这样的“轨道”，它就是平行四边形；如果只有一组像梯子那样的，就是梯形。鼓励学生观察生活中的窗户、栅栏，感受图形的“稳定感”和“对称美”。",
+        aiChatTitle: "几何魔术师：变幻的四边形",
+        aiChatIntro: "嘿！如果你把一个长方形捏住对角使劲一拉，它会变成什么样子呢？",
         aiMessages: [
-            { role: 'ai', content: '四边形家族很热闹。如果一个四边形的两组对边分别平行，它叫什么名字？' },
-            { role: 'user', content: '是平行四边形！' },
-            { role: 'ai', content: '回答正确！那如果只有一组对边平行呢？比如像梯子那一形状的？' },
-            { role: 'user', content: '那就是梯形。' },
-            { role: 'ai', content: <>没错。我们在互动实验室里试着拖动一下顶点，看看能不能把平行四边形变成梯形？或者改变它们的高？</>, type: 'success' },
+            { role: 'ai', content: '看看你的栅栏或者梯子，你发现它们的边有什么共同点吗？' },
+            { role: 'user', content: '有些边是斜着的，有些边一直平行。' },
+            { role: 'ai', content: '观察入微！如果一个图形的上下两边像铁轨一样永远不相交，我们就叫它“对边平行”。如果左右两边也平行，它就是**平行四边形**。那要是左右跑偏了，只有上下平行呢？' },
+            { role: 'user', content: '那就变成了梯形！' },
+            { role: 'ai', content: <>太神了！就像魔术一样，只要改变平行的边数，图形就换了个身份。快去互动实验室，用手拉拉它们吧！🌟</>, type: 'success' },
         ],
         tabs: {
             interactive: (
@@ -1208,14 +1209,14 @@ export const grade4Content = {
                 { text: "有趣", icon: Star, color: "green" }
             ]
         },
-        aiContext: "学生正在学习统计图和平均数。重点是能够从图中获取信息，并理解平均数代表一组数据的整体水平，而不是具体某一个数。",
-        aiChatTitle: "数据侦探",
-        aiChatIntro: "你好！我是数据侦探。这里有一组神秘数据，你能帮我分析一下吗？",
+        aiContext: "想象你正在当一名小小记者！通过采访大家最爱吃的水果，把数字变成一排排漂亮的“柱子”。条形图就是数字的“个头对比”。平均数则是要把这些柱子“削平”，看看大家都过得怎么样。用“分糖果”或“砍高补低”来生动解释平均数。",
+        aiChatTitle: "数据小记者：让数字说话",
+        aiChatIntro: "你好！我是数据侦探官。如果你想一眼看出谁是最受欢迎的项目，条形图就是你的超级透视镜！",
         aiMessages: [
-            { role: 'ai', content: '如果我们班这一次数学测验的平均分是 90 分，是不是说明每个人都考了 90 分？' },
-            { role: 'user', content: '不是。' },
-            { role: 'ai', content: '这就对了！有的同学考 100，有的考 80，平均下来是 90。平均数代表的是咱们班的**整体水平**。' },
-            { role: 'ai', content: '想不想看看平均数是怎么"变"出来的？去互动演示区试试"移多补少"吧！', type: 'success' }
+            { role: 'ai', content: '如果你有三袋糖果，分别是 2 块、4 块、6 块。如果你想让每个袋子里的糖果一样多，你会怎么做？' },
+            { role: 'user', content: '把 6 块的那袋分 2 块给第一袋。' },
+            { role: 'ai', content: '棒极了！这样每个袋子都有 4 块糖了。这里的 4，就是这组糖果的**平均数**。' },
+            { role: 'ai', content: '平均数就像一个公平的天平，把多的补给少的。想看看你的数据怎么变公平吗？点击互动区试试！', type: 'success' }
         ],
         tabs: {
             interactive: (
@@ -1362,11 +1363,15 @@ export const grade4Content = {
                 { text: "重点", icon: Star, color: "orange" }
             ]
         },
-        aiContext: "学生学习和差倍问题。引导用线段图表示两个量的关系。和差问题：大数=(和+差)÷2；和倍问题：小数=和÷(倍数+1)；差倍问题：小数=差÷(倍数-1)。",
-        aiChatTitle: "🤖 和差倍问题智能导师",
-        aiChatIntro: "你好！和差倍问题有三种类型，记住各自的公式就能轻松解决。有哪类题不会，告诉我！",
+        aiContext: "想象你正在分糖果！如果你和朋友一共有 36 块，你比他多 8 块，怎么分才公平？引导学生先“削减”多出来的部分，让两人相等。通过画线段图，把抽象的和、差、倍变成看得见的“长度”。让学生体会“先求一份量”的神奇之处。",
+        aiChatTitle: "分糖果专家：和差倍的秘密",
+        aiChatIntro: "嘿！如果我有两堆神秘的宝藏，我知道它们的总数，也知道它们差多少，你能帮我把它们找出来吗？",
         aiMessages: [
-            { role: 'ai', content: '两个数的和是36，差是8，你知道较大的数是多少吗？试着画一条线段图看看！' }
+            { role: 'ai', content: '两个数的和是 36，差是 8。如果我们先把那个多出的 8 给“藏起来”，剩下的数会发生什么？' },
+            { role: 'user', content: '剩下的数就是 36 - 8 = 28。' },
+            { role: 'ai', content: '对呀！这时候两个数就变得“一模一样”了。那其中一个（小数）是多少呢？' },
+            { role: 'user', content: '28 ÷ 2 = 14！' },
+            { role: 'ai', content: <>太棒了！找到了小的，大的只要再加回那个 8 就行了（14 + 8 = 22）。这就是**“和差术”**！是不是像破解密码一样有趣？🌟</>, type: 'success' }
         ],
         tabs: {
             concept: (
@@ -1485,11 +1490,15 @@ export const grade4Content = {
                 { text: "重点", icon: Star, color: "orange" }
             ]
         },
-        aiContext: "学生学习简便运算。重点是三大运算定律：加法交换律(a+b=b+a)、加法结合律((a+b)+c=a+(b+c))、乘法分配律(a×(b+c)=a×b+a×c)。引导学生观察数字特点，灵活选用技巧。",
-        aiChatTitle: "🤖 简便运算智能导师",
-        aiChatIntro: "嗨！我是运算加速器。把数字暗码告诉我，我来帮你找最快的解法！",
+        aiContext: "想象你是一个数学魔术师！别人在埋头苦算，你却能秒出答案。重点是寻找“好朋友数字”（比如 125 和 8，25 和 4）。利用加法和乘法的“搬家权”（交换律和结合律），还有“拆礼物”（分配律）。鼓励学生先观察再动笔，寻找数字里的“彩蛋”。",
+        aiChatTitle: "运算加速器：数字的捷径",
+        aiChatIntro: "嘘！我发现了一些数字之间的秘密协议，能让计算瞬间变简单。想跟我一起学“瞬发魔法”吗？",
         aiMessages: [
-            { role: 'ai', content: '计算 99 × 12，你会怎么做？如果把 99 看作 (100-1) 会怎样？' }
+            { role: 'ai', content: '计算 99 × 12，如果你老老实实列竖式，可能要算半天。你有更好玩的办法吗？' },
+            { role: 'user', content: '把 99 看成 100 减 1？' },
+            { role: 'ai', content: '妙极了！(100 - 1) × 12 = 1200 - 12 = 1188。瞧，嘴巴动一动，答案就出来啦！' },
+            { role: 'user', content: '那 25 × 44 呢？' },
+            { role: 'ai', content: <>嘿嘿，寻找 25 的好伙伴 4！把 44 拆成 4 × 11。25 × 4 = 100，再乘 11 就是 1100。这就是**“拆数魔法”**！🌟</>, type: 'success' }
         ],
         tabs: {
             concept: (
@@ -1604,11 +1613,13 @@ export const grade4Content = {
                 { text: "趣味", icon: Star, color: "green" }
             ]
         },
-        aiContext: "学生学习定义新运算题型。关键是：仔细读题，理解新符号的定义，然后把具体数字代入定义式计算，注意运算顺序。",
-        aiChatTitle: "🤖 新运算探险家",
-        aiChatIntro: "欢迎来到数学发明家工坊！今天我们来学习如何理解和使用全新的运算符号。",
+        aiContext: "想象你闯进了一个外星实验室！那里的符号和我们的不一样。比如他们的“★”代表“先乘 2 再加 3”。重点是“翻译”——把陌生的符号翻译成我们熟悉的加减乘除。引导学生像玩游戏代入招式表一样，把数字“送进”符号机器里。",
+        aiChatTitle: "密码破译员：神秘的特殊符号",
+        aiChatIntro: "你好，探险家！我发现了一些从未见过的运算符号。你能帮我破解它们的“操作手册”吗？",
         aiMessages: [
-            { role: 'ai', content: '如果规定 a▲b = a×2 + b，那么 3▲4 等于多少？试着把 a=3，b=4 代进去！' }
+            { role: 'ai', content: '如果我发明一个符号 a▲b = a×2 + b，那么你觉得 3▲4 应该是多少？' },
+            { role: 'user', content: '3×2 + 4 = 10？' },
+            { role: 'ai', content: 'Bingo！完全正确！你已经掌握了外星数学的精髓：**“对号入座”**。不管符号长多奇怪，只要看清它的说明书，就能轻松搞定！🌟' }
         ],
         tabs: {
             concept: (
@@ -1718,11 +1729,13 @@ export const grade4Content = {
                 { text: "趣味", icon: Star, color: "green" }
             ]
         },
-        aiContext: "学生学习数阵图，重点是三阶幻方。三阶幻方用1-9填格，每行每列对角线和都等于15。关键：中间格一定是5，四角和一定是20，对边中心格相加都是10。",
-        aiChatTitle: "🤖 数阵探秘大师",
-        aiChatIntro: "你好！幻方是古老的数学游戏。只要记住秘诀，任何幻方难题都能攻克！",
+        aiContext: "想象你正在排座次！每个人都有不同的分量（数字），你要让每一排、每一列的“总重量”都相等。利用“三阶幻方”引入，讲述洛书古老的传说。引导学生发现中间那个“定海神针”（中心数）的作用。强调“平衡”是数阵图的终极奥义。",
+        aiChatTitle: "数阵指挥家：寻找完美的平衡",
+        aiChatIntro: "欢迎来到九宫格迷宫！这里每一个数字都想找到自己的位置，让团队的力量（和）达到和谐统一。",
         aiMessages: [
-            { role: 'ai', content: '一个三阶幻方，用1到9填格，每行、每列、对角线的和都相等。你猜那个公共的"和"是多少？' }
+            { role: 'ai', content: '在 1 到 9 的幻方里，如果每一行、每一列的和都是 15，你猜最中间的那个数字是谁？' },
+            { role: 'user', content: '是 5 吗？' },
+            { role: 'ai', content: '机智！5 就像是轴心，支撑着整个方阵。有了它，其他的数字就能通过“对对碰”找到自己的位置。我们去互动区试试，能不能布出你的阵法？🌟' }
         ],
         tabs: {
             concept: (
@@ -1849,11 +1862,13 @@ export const grade4Content = {
                 { text: "烧脑", icon: Brain, color: "red" }
             ]
         },
-        aiContext: "学生学习逻辑推理。重点方法：①列表排除法（制作表格逐条排除）；②假设法（先假设某个条件成立，推出结论，看是否矛盾）；③反证法（假设结论不成立，推出矛盾，原结论成立）。",
-        aiChatTitle: "🤖 逻辑侦探助手",
-        aiChatIntro: "欢迎！我是逻辑侦探。用推理的力量，我们一起找出真相！",
+        aiContext: "想象你正在当一名大侦探（比如福尔摩斯）！遇到复杂的情况，我们先大胆“假设”。如果假设的情况推导下去发生了冲突（打架），那我们就找到了真相。引导学生学会列表记录线索，像拼图一样把真相拼凑出来。",
+        aiChatTitle: "大侦探剧场：谁在说真话？",
+        aiChatIntro: "嘘！案发现场留下了三句证词，但其中只有一句是真话。你能用你的“假设放大镜”找出真相吗？",
         aiMessages: [
-            { role: 'ai', content: '甲、乙、丙三人中有一个说谎者。甲说："我没说谎"，乙说："甲说谎了"，丙说："乙说谎了"。你能推出谁在说谎吗？' }
+            { role: 'ai', content: '甲说：“乙在说谎”；乙说：“丙在说谎”；丙说：“我没说谎”。如果我们先假设甲说的是真话，会发生什么呢？' },
+            { role: 'user', content: '那乙就是在说谎。' },
+            { role: 'ai', content: '如果乙在说谎，那他说的“丙在说谎”就是假的，说明丙没说谎。哎？这跟丙自己说的“我没说谎”对上了！这就说明我们的假设成功了！🌟' }
         ],
         tabs: {
             concept: (

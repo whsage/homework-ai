@@ -9,9 +9,14 @@ export const grade6Content = {
     'g6-l1-fraction-ops': {
         meta: { title: "分数四则运算 - 六年级数学", description: "掌握分数加减乘除的计算方法及混合运算。", keywords: "分数运算,分数混合运算,六年级数学" },
         info: { title: "分数四则运算", description: "通分、约分、乘分子分母……分数运算全掌握！", tags: [{ text: "基础达标", color: "blue" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
-        aiContext: "分数加减：通分后分子加减，分母不变。分数乘法：分子×分子，分母×分母，能约分先约分。分数除法：乘以除数的倒数。混合运算：遵循先乘除后加减，有括号先算括号。",
-        aiChatTitle: "🤖 分数运算师", aiChatIntro: "通分、倒数、约分——分数运算的三大法宝！",
-        aiMessages: [{ role: 'ai', content: '1/2+1/3，分母不同怎么加？先找公分母6，变成3/6+2/6！' }],
+        aiContext: "想象你正在分一块超级大披萨！分数加减就像把不同切法的披萨拼在一起（通分），而乘法则是“份数的份数”。重点是理解“倒数”的魔力——除以一个数，等于乘它的倒数。引导学生思考：为什么分母越大，这一块反而越小？让数字在脑海里变成真实的食物和比例。",
+        aiChatTitle: "分数主厨：精准的比例",
+        aiChatIntro: "嘿！我的厨房里现在一片混乱，1/2 加 1/3 到底是多少？你能帮我用“通分魔法”变出答案吗？",
+        aiMessages: [
+            { role: 'ai', content: '我们要把 1/2 的蛋糕和 1/3 的蛋糕合在一起。由于“切块”的大小不一样，我们没法直接加。你觉得我们需要把它们都切成多少份，大小才一样？' },
+            { role: 'user', content: '切成 6 份。' },
+            { role: 'ai', content: '太聪明了！这就是“公分母”。1/2 变成了 3/6，1/3 变成了 2/6。加在一起就是 5/6。看，只要步调一致，分数加法就像数数一样简单！🌟' }
+        ],
         tabs: {
             concept: (
                 <div className="space-y-6">
@@ -80,9 +85,14 @@ export const grade6Content = {
     'g6-l1-circle': {
         meta: { title: "圆的认识与面积 - 六年级数学", description: "认识圆的各部分，掌握圆的周长和面积公式。", keywords: "圆,半径,直径,圆周率,圆的面积,六年级数学" },
         info: { title: "圆的认识与面积", description: "圆周率π是个神奇的数！用它算出圆的周长和面积！", tags: [{ text: "基础达标", color: "blue" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
-        aiContext: "圆的基本量：半径r、直径d=2r、圆心。圆周长C=2πr=πd。圆面积S=πr²。π≈3.14。注意区分周长（边长）和面积（内部），两者公式不同。",
-        aiChatTitle: "🤖 圆的专家", aiChatIntro: "π是无限不循环小数，约等于3.14，学会用它！",
-        aiMessages: [{ role: 'ai', content: '用硬币绕一圈，量出周长，除以直径，你算出了π！π≈3.14159…' }],
+        aiContext: "想象你正在围着一个圆圆的湖泊散步！圆的周长就是你走的这一圈。重点是认识那个神秘的“π”，它是圆的周长与直径之间永远不变的“死忠粉”。面积公式 πr² 则可以通过把圆切成无数个扇形拼成长方形来理解。引导学生感受圆形这种“完美曲线”的对称美。",
+        aiChatTitle: "圆周探险家：寻找神秘的 π",
+        aiChatIntro: "你好！我发现无论圆有多大，周长和直径的比值总是一个定值。你想亲手把这个秘密约等于 3.14 的数字找出来吗？",
+        aiMessages: [
+            { role: 'ai', content: '如果你有一个直径 10 厘米的圆盘，你觉得围着它绕一圈，距离会比 30 厘米多还是少？' },
+            { role: 'user', content: '多一点，因为 π 大于 3。' },
+            { role: 'ai', content: '精辟！大约是 31.4 厘米。π 就像是一个无边无际的向导，带我们算出圆的一切。记住了吗？周长看直径(πd)，面积看半径的平方(πr²)！🌟' }
+        ],
         tabs: {
             concept: (
                 <div className="space-y-6">
@@ -151,9 +161,16 @@ export const grade6Content = {
     'g6-l1-ratio-proportion': {
         meta: { title: "比和比例 - 六年级数学", description: "理解比和比例的概念，学会求比值、化简比，解比例方程。", keywords: "比,比例,比值,正比例,反比例,六年级数学" },
         info: { title: "比和比例", description: "比是两数之商，比例是两个相等的比。学会它，解解应用题！", tags: [{ text: "基础达标", color: "blue" }, { text: "35分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
-        aiContext: "比a:b=a÷b（b≠0）；比值=a÷b。化简比：除以最大公因数。比例：a:b=c:d（四个数两两之比相等），外项之积=内项之积（交叉相乘）。解比例：x:6=4:3→3x=24→x=8。",
-        aiChatTitle: "🤖 比例小达人", aiChatIntro: "交叉相乘是解比例的核心！外项乘积=内项乘积！",
-        aiMessages: [{ role: 'ai', content: '比例a:b=c:d，有什么神奇性质？交叉相乘：a×d=b×c！试试验证！' }],
+        aiContext: "想象你正在调制一种“黄金比例”的果汁！2 份橙汁加 3 份水，味道才最棒。重点是理解比意味着“相互的关系”。比例则是这种关系的“复制粘贴”。引导学生发现交叉相乘的“平衡术”：外项积 = 内项积。让学生在生活中寻找比例，比如地图的缩放、照片的裁切。",
+        aiChatTitle: "比例建筑师：微缩世界的秘密",
+        aiChatIntro: "嘿！我想把这栋 10 米高的大楼缩成一个模型。如果大楼高与宽的比是 2:1，我的模型应该怎么设计？",
+        aiMessages: [
+            { role: 'ai', content: '如果一个比例是 x:6 = 4:3，这里的 x 就像是一个待解的密码。你觉得 3 扩充到 6 变大了几倍？' },
+            { role: 'user', content: '2 倍。' },
+            { role: 'ai', content: '既然右边变大了 2 倍，为了保持平衡，左边的 4 也得变大 2 倍。所以 x 等于多少？' },
+            { role: 'user', content: '8！' },
+            { role: 'ai', content: <>太棒了！比例就是一种“同步节奏”。只要节奏合上了，所有的比例题都能迎刃而解！🌟</>, type: 'success' }
+        ],
         tabs: {
             concept: (
                 <div className="space-y-6">
@@ -207,9 +224,14 @@ export const grade6Content = {
     'g6-l1-pie-chart': {
         meta: { title: "扇形统计图 - 六年级数学", description: "学会读懂和绘制扇形统计图，理解百分比与圆心角的关系。", keywords: "扇形统计图,饼图,百分比,圆心角,六年级数学" },
         info: { title: "扇形统计图（饼图）", description: "用圆表示100%，每个扇形代表一部分比例！读懂饼图，数据一目了然！", tags: [{ text: "基础达标", color: "blue" }, { text: "25分钟", icon: Clock, color: "slate" }] },
-        aiContext: "扇形图：整圆=100%，每个扇形面积代表相应百分比。圆心角=百分比×360°。读图：看扇形大小判断占比；计算：百分比=扇形角度÷360°。应用：调查结果、预算分配等数据分析。",
-        aiChatTitle: "🤖 数据分析师", aiChatIntro: "扇形统计图让数据的比例关系一目了然！",
-        aiMessages: [{ role: 'ai', content: '如果某班男生占60%，那男生的扇形圆心角应该是多少度？60%×360°=？' }],
+        aiContext: "想象你正在分一块超级大比萨，每个人想吃的口味比例都不一样！扇形统计图就是把这个圆圈分给不同百分比的人。重点是理解“局部占整体”的概念。圆心角就是那块披萨张开的“嘴角”度数。引导学生根据百分比来估算扇形的大小，学会看图说故事。",
+        aiChatTitle: "饼图小分析：数据的果酱盘",
+        aiChatIntro: "你好！如果把全班的兴趣爱好画成一个大圆圆，你想看看哪个项目的“地盘”最大吗？",
+        aiMessages: [
+            { role: 'ai', content: '如果咱们班有 60% 的同学喜欢足球，你觉得足球的扇形面积会超过半个圆吗？' },
+            { role: 'user', content: '会，因为半个圆是 50%。' },
+            { role: 'ai', content: '完全正确！这块“足球披萨”的圆心角会有 216 度（360 × 60%）。一眼看去，足球确实是咱们班的大热门！🌟' }
+        ],
         tabs: {
             concept: (
                 <div className="space-y-6">
@@ -258,9 +280,14 @@ export const grade6Content = {
     'g6-l1-negative-numbers': {
         meta: { title: "负数的认识 - 六年级数学", description: "初步认识负数，理解正负数在实际生活中的意义，学会比较负数大小。", keywords: "负数,正数,数轴,六年级数学" },
         info: { title: "负数的认识", description: "零下5度怎么表示？地下室楼层怎么标记？负数帮你解决这些问题！", tags: [{ text: "基础达标", color: "blue" }, { text: "25分钟", icon: Clock, color: "slate" }] },
-        aiContext: "负数：比0小的数，用负号(-)表示。温度0℃以下用负数；海拔以海平面为0，低于海平面用负数；银行存款为正，支出可为负。比较：在数轴上越靠右越大；-2>-5（-2在-5右边）。",
-        aiChatTitle: "🤖 负数小达人", aiChatIntro: "负号一个小横线，改变了数的方向！",
-        aiMessages: [{ role: 'ai', content: '-3和-7哪个更大？在数轴上找一找：-3在-7的右边，所以-3 > -7！' }],
+        aiContext: "想象你正在深海潜水，或者坐电梯去地下车库！0 就是海平面或者地面，向上是正，向下就是负。负数给数字插上了“方向”的翅膀。重点是负数大小的比较：欠债 2 元比欠债 5 元“更富有”。引导学生在数轴上寻找位置，感受负数的温度感。",
+        aiChatTitle: "地下探险家：0 往下的世界",
+        aiChatIntro: "嘿！如果电梯带你去了 -2 层，你觉得你是升高了还是降低了？欢迎来到负数的神奇领地。",
+        aiMessages: [
+            { role: 'ai', content: '-3 度和 -7 度，你觉得哪边更冷，哪个数字在数轴上更靠左？' },
+            { role: 'user', content: '-7 度更冷，它更靠左。' },
+            { role: 'ai', content: '没错！在负数的世界里，离 0 越远就越“冷”（越小）。所以 -3 其实比 -7 要大哦。记住，越靠右，越强大！🌟' }
+        ],
         tabs: {
             concept: (
                 <div className="space-y-6">
@@ -311,9 +338,14 @@ export const grade6Content = {
     'g6-l2-work-problem': {
         meta: { title: "工程问题 - 六年级思维进阶", description: "学习以整体工作量为1的方法，解决工程类应用题。", keywords: "工程问题,工作效率,合作完成,六年级思维进阶" },
         info: { title: "工程问题（合作完工）", description: "甲10天做完一件工程，乙15天，合作几天完成？把总量设为1！", tags: [{ text: "思维进阶", color: "purple" }, { text: "45分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
-        aiContext: "工程问题：把整件工程量设为1。效率=1÷完成时间。合作时间=1÷(效率甲+效率乙)。甲先做再合做：甲做部分+合做部分=总量1。注意：管道注水/排水类：注水效率为正，排水为负。",
-        aiChatTitle: "🤖 工程计算师", aiChatIntro: "整体设为1，效率相加，工程问题迎刃而解！",
-        aiMessages: [{ role: 'ai', content: '甲一天完成1/10，乙一天完成1/15，合作一天完成多少？换算成分数加一加！' }],
+        aiContext: "想象你正在和朋友一起搭一个巨大的乐高城堡！重点是理解“合作的力量”。一个人做可能要 10 天，两个人合作时间肯定会缩短。引导学生把整个工程看作“1”，计算每个人每天能完成的“那一小片”是多少（工作效率）。把效率加起来，就能算出并肩作战的速度。",
+        aiChatTitle: "大坝工程师：并肩作战的效率",
+        aiChatIntro: "嘿！我们要修一个水坝。甲队单独修要 10 天，乙队要 15 天。你觉得他们联手的话，大约几天能修好？",
+        aiMessages: [
+            { role: 'ai', content: '如果甲每小时能铲 1/10 的土，乙能铲 1/15。他们合在一起一小时能铲多少？' },
+            { role: 'user', content: '1/10 + 1/15 = 1/6。' },
+            { role: 'ai', content: '太棒了！每小时能推进 1/6，那整项工程“1”需要几个小时呢？1 ÷ (1/6) = 6。看，协作让不可能变成了可能！🌟' }
+        ],
         tabs: {
             concept: (
                 <div className="space-y-6">
@@ -365,9 +397,14 @@ export const grade6Content = {
     'g6-l2-concentration': {
         meta: { title: "浓度问题 - 六年级思维进阶", description: "学习溶液浓度的计算，解决混合、稀释、蒸发等浓度变化问题。", keywords: "浓度问题,溶液,溶质,溶剂,六年级思维进阶" },
         info: { title: "浓度问题（混合/稀释）", description: "盐水中盐占多少？稀释后浓度变几倍？浓度问题是生活里的数学！", tags: [{ text: "思维进阶", color: "purple" }, { text: "45分钟", icon: Clock, color: "slate" }] },
-        aiContext: "浓度=溶质÷溶液×100%；溶液=溶质+溶剂。混合：(溶质1+溶质2)÷(溶液1+溶液2)=混合浓度。稀释：加水后溶质不变，浓度降低；蒸发水：浓度升高。",
-        aiChatTitle: "🤖 浓度计算师", aiChatIntro: "溶质/溶液=浓度——把握这个比值就把握了一切！",
-        aiMessages: [{ role: 'ai', content: '100g盐水中有20g盐，浓度是多少？20÷100×100%=20%！再加50g水，浓度变多少？' }],
+        aiContext: "想象你正在调制一瓶超级无敌咸的盐水，或者是在实验室做化学实验！重点是关注“溶质”（那个盐或酒精）到底占了整杯液体的几分之几。无论是加水冲淡，还是晒太阳蒸发，那个盐一直都在那里，没多也没少。引导学生抓住“溶质不变”这个定海神针。",
+        aiChatTitle: "炼金术师：浓度的秘密配方",
+        aiChatIntro: "你好！你想调配出一杯口感完美的柠檬水吗？我们需要精准控制每一滴糖浆的占比。",
+        aiMessages: [
+            { role: 'ai', content: '100 克盐水里有 20 克盐，现在的浓度是 20%。如果我再加 100 克清水，盐变多了吗？' },
+            { role: 'user', content: '盐没变。' },
+            { role: 'ai', content: '机智！盐还是 20 克，但水变成了 200 克。所以现在的浓度变成了 20 ÷ 200 = 10%。这就是稀释的魔法：量变大，味变淡！🌟' }
+        ],
         tabs: {
             concept: (
                 <div className="space-y-6">
@@ -417,9 +454,14 @@ export const grade6Content = {
     'g6-l2-complex-distance': {
         meta: { title: "复杂行程（多次相遇/折返）- 六年级思维进阶", description: "解决多次相遇及折返问题，理解路程比=速度比的关系。", keywords: "复杂行程,多次相遇,折返问题,六年级思维进阶" },
         info: { title: "复杂行程（多次相遇/折返）", description: "两人来回走，第N次相遇在哪里？掌握路程倍数规律！", tags: [{ text: "思维进阶", color: "purple" }, { text: "50分钟", icon: Clock, color: "slate" }] },
-        aiContext: "多次相遇：第N次相遇时，两人合走路程=(2N-1)×总路程（相向出发）。路程比=速度比=各自走的路程之比。折返：在某端折返后相当于反方向运动，灵活处理。高级技巧：以总路程为单位，数合走几个总路程。",
-        aiChatTitle: "🤖 行程高手", aiChatIntro: "多次相遇有规律！合走路程=奇数倍全程！",
-        aiMessages: [{ role: 'ai', content: '甲乙从两端出发，第一次相遇时合走1个全程，第二次呢？合走了几个全程？' }],
+        aiContext: "想象你正在看一场精彩的马拉松拉锯战！两名选手在跑道上不停地擦肩而过。重点是发现其中的数学韵律：相向而行时，每相遇一次，他们合走的路程都是 2 倍的全程（除了第一次）。引导学生学会用“合走几个全程”来代替复杂的距离计算。",
+        aiChatTitle: "时空穿梭机：路上的重逢",
+        aiChatIntro: "欢迎回到跑道！甲乙两名选手在两端来回奔跑，他们第 3 次擦肩而过时，合起来跑了几个全程？",
+        aiMessages: [
+            { role: 'ai', content: '甲乙从 A、B 两端出发，第一次相遇用了 1 个全程。如果他们继续往前走，折返回来再相遇，总共合走了几个全程？' },
+            { role: 'user', content: '3 个全程。' },
+            { role: 'ai', content: '正是如此！第一次是 1，第二次是 3，第三次是 5。发现规律了吗？奇数倍的全程就是他们相会的时刻！🌟' }
+        ],
         tabs: {
             concept: (
                 <div className="space-y-6">
@@ -464,9 +506,14 @@ export const grade6Content = {
     'g6-l2-number-theory-adv': {
         meta: { title: "数论进阶（余数/同余）- 六年级思维进阶", description: "学习余数性质和同余理论，解决整除和余数类竞赛问题。", keywords: "余数,同余,数论进阶,六年级思维进阶" },
         info: { title: "数论进阶（余数/同余）", description: "除以7余3和除以7余5，两数之积除以7余几？余数运算很有规律！", tags: [{ text: "思维进阶", color: "purple" }, { text: "45分钟", icon: Clock, color: "slate" }] },
-        aiContext: "余数性质：(a+b)÷m的余数=(a的余数+b的余数)÷m的余数；(a×b)÷m的余数=(余数a×余数b)÷m的余数。同余：a≡b(mod m)表示a和b同除以m余数相同。周期问题：找规律的余数。",
-        aiChatTitle: "🤖 余数侦探", aiChatIntro: "余数有规律，学会同余就能解决复杂整除题！",
-        aiMessages: [{ role: 'ai', content: '13÷7=1余6；8÷7=1余1；(13×8)÷7的余数是6×1=6÷7=6！就是这么简单！' }],
+        aiContext: "想象你闯进了一个周期循环的迷宫！无论是日历排班还是路灯闪烁，余数就是那个“剩下的尾巴”。重点是理解同余的魅力：如果两个数除以 7 的余数一样，那它们在日历上的位置也一样。引导学生学会用余数来解决那些“大得算不出来”的指数难题。",
+        aiChatTitle: "余数侦探：寻找循环的周期",
+        aiChatIntro: "嘿！如果今天是星期一，你能不用数日子，就大声告诉我第 100 天是星期几吗？",
+        aiMessages: [
+            { role: 'ai', content: '13 除以 7 余 6，8 除以 7 余 1。如果把这两个数乘起来，(13 × 8) 除以 7 余几？' },
+            { role: 'user', content: '6 × 1 = 6。' },
+            { role: 'ai', content: '太棒了！这就是余数的乘法魔法。不需要真的去算 13 × 8，只要算余数的乘积就行！你已经拿到了数论的高级入场券。🌟' }
+        ],
         tabs: {
             concept: (
                 <div className="space-y-6">
@@ -513,9 +560,14 @@ export const grade6Content = {
     'g6-l2-geometry-adv': {
         meta: { title: "几何进阶（组合图形/阴影面积）- 六年级思维进阶", description: "解决组合图形和阴影面积问题，综合运用各种面积公式。", keywords: "组合图形,阴影面积,几何进阶,六年级思维进阶" },
         info: { title: "几何进阶（组合图形/阴影面积）", description: "从大图减小图，或者拼图分解——阴影面积的解题有套路！", tags: [{ text: "思维进阶", color: "purple" }, { text: "50分钟", icon: Clock, color: "slate" }] },
-        aiContext: "组合图形面积：加法（拆分为简单图形相加）或减法（大图形-挖去部分）。阴影面积技巧：找对称性；等积代换；圆与正方形的关系（内切圆：r=边长/2）。经典题型：方圆交叉阴影、多圆相切阴影。",
-        aiChatTitle: "🤖 几何面积大师", aiChatIntro: "加法减法交替用，阴影面积不发愁！",
-        aiMessages: [{ role: 'ai', content: '正方形内有一个内切圆，阴影部分（正方形-圆）面积怎么算？正方形面积=边长²，圆面积=π(边长/2)²！' }],
+        aiContext: "想象你是一个拼图大师，正在挑战一张极其复杂的剪贴画！那些不规则的阴影，其实是由圆、正方形、三角形拼凑或者挖空而成的。重点是掌握“组合与拆分”的艺术。引导学生寻找图形里的对称轴，或者用大图形减去小图形的办法。让学生体会“化繁为简”的几何之美。",
+        aiChatTitle: "影子魔术师：计算隐藏的面积",
+        aiChatIntro: "嘘！在这些方方圆圆的重叠中，藏着一块神秘的阴影。你能用你的“图形切割刀”把它独立算出来吗？",
+        aiMessages: [
+            { role: 'ai', content: '如果一个大正方形里抠掉了一个最大的圆，剩下的四个角落，怎么算最简单？' },
+            { role: 'user', content: '用正方形面积减去圆面积。' },
+            { role: 'ai', content: '正解！这就叫“减法策略”。那如果是两片交叠的叶子呢？可能需要先算出一个半圆再减去三角形，然后再×2。这就是拼图的乐趣！🌟' }
+        ],
         tabs: {
             concept: (
                 <div className="space-y-6">
