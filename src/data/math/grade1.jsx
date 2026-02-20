@@ -17,18 +17,18 @@ export const grade1Content = {
         },
         info: {
             title: "20以内加减法",
-            description: "数学的第一步！从10以内到20以内，加减法是一切计算的基础。学会凑十法，让你算得又快又准！",
+            description: "把加减法变成装苹果的游戏！学会凑十法，你就是心算小天才！🍎",
             tags: [
                 { text: "基础达标", color: "blue" },
                 { text: "25分钟", icon: Clock, color: "slate" },
                 { text: "重点", icon: Star, color: "orange" }
             ]
         },
-        aiContext: "学生学习20以内加减法。重点引导：凑十法（如8+6=8+2+4=14）、数的分解（14=10+4）。鼓励学生用手指或数线辅助计算，理解运算意义而不是死记硬背。",
-        aiChatTitle: "🤖 加减法小帮手",
-        aiChatIntro: "你好！我是你的数学小助手。关于加法和减法，有什么不懂的地方吗？",
+        aiContext: "学生学习20以内加减法。必须使用苏格拉底式提问。用装满10个苹果的箱子或者分糖果的情境（如8+6，问：左手8个，右手6个，先把左边凑成满10，要从右边拿几个？）。切忌直接给出公式或算理。",
+        aiChatTitle: "🍎 苹果小管家",
+        aiChatIntro: "我有一个装苹果的魔法箱，最多只能装10个！一起来玩装箱游戏吧！",
         aiMessages: [
-            { role: 'ai', content: '8 + 6 等于多少？想一想：8 再加几就到10了？用凑十法试试！' }
+            { role: 'ai', content: '箱子里已经有 8 个红苹果咯！外面还有 6 个青苹果。如果我们想先把箱子装满（10个），你需要从外面拿几个放进去呢？' }
         ],
         tabs: {
             concept: (
@@ -40,33 +40,38 @@ export const grade1Content = {
                         </h2>
                         <div className="space-y-5">
                             <div className="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-xl border-l-4 border-blue-500">
-                                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-2">什么是凑十法？</h3>
-                                <p className="text-slate-700 dark:text-slate-300 text-sm">计算超过10的加法时，先把一个数凑成10，再加剩余的数。</p>
+                                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-2">好满的苹果箱 🍎</h3>
+                                <p className="text-slate-700 dark:text-slate-300 text-sm">
+                                    "你有一个神奇的苹果箱，这个箱子最多只能装 10 个苹果！"<br /><br />
+                                    "假设你左手有 8 个红苹果，右手有 6 个青苹果。想先把 1 个箱子装满，我们需要从右手借几个苹果过来呢？"
+                                </p>
                             </div>
                             <div className="bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl p-5">
-                                <h3 className="font-bold text-slate-800 dark:text-white mb-4">核心步骤（以 8+6 为例）</h3>
+                                <h3 className="font-bold text-slate-800 dark:text-white mb-4">装箱大作战（8 + 6 = ?）</h3>
                                 <div className="space-y-3">
                                     {[
-                                        { step: '1', content: '找到差几到10：8 差 2 到 10', color: 'bg-blue-600' },
-                                        { step: '2', content: '把另一个数拆开：6 = 2 + 4', color: 'bg-green-600' },
-                                        { step: '3', content: '先凑10：8 + 2 = 10', color: 'bg-purple-600' },
-                                        { step: '4', content: '再加剩余：10 + 4 = 14', color: 'bg-orange-600' },
+                                        { step: '1', content: '🤔 看看大箱子：8 个苹果，还差 2 个就满 10 个啦！', color: 'bg-blue-600' },
+                                        { step: '2', content: '🖐️ 从右手拿：把 6 个拿 2 个过去（6 可以分成 2 和 4）', color: 'bg-green-600' },
+                                        { step: '3', content: '📦 箱子装满啦：8 + 2 = 10', color: 'bg-purple-600' },
+                                        { step: '4', content: '🌟 总共多少个：装满的 10 个，加上外面剩下的 4 个，10 + 4 = 14！你真棒！', color: 'bg-orange-600' },
                                     ].map(item => (
                                         <div key={item.step} className="flex items-center gap-3">
-                                            <span className={`flex-shrink-0 w-7 h-7 ${item.color} text-white rounded-full flex items-center justify-center text-sm font-bold`}>{item.step}</span>
+                                            <span className={`flex-shrink-0 w-7 h-7 flex items-center justify-center text-sm font-bold text-white rounded-full ${item.color}`}>{item.step}</span>
                                             <span className="text-slate-700 dark:text-slate-300 font-mono text-sm">{item.content}</span>
                                         </div>
                                     ))}
                                 </div>
                             </div>
                             <div className="bg-green-50 dark:bg-green-900/20 p-5 rounded-xl border-l-4 border-green-500">
-                                <h3 className="font-bold text-green-800 dark:text-green-300 mb-3">20以内减法</h3>
-                                <p className="text-slate-700 dark:text-slate-300 text-sm mb-2">方法：把被减数分成 10 和几，用 10 减，再加剩下的几。</p>
+                                <h3 className="font-bold text-green-800 dark:text-green-300 mb-3">🍬 分糖果咯（20以内的减法）</h3>
+                                <p className="text-slate-700 dark:text-slate-300 text-sm mb-3">
+                                    "假设你有 15 颗糖，朋友想要 8 颗。你可以怎么分给他呢？"<br />
+                                    "对啦！我们可以先拿一整盒（10颗）的糖，从里面拿出 8 颗给他！"
+                                </p>
                                 <div className="bg-white dark:bg-slate-700 p-3 rounded-lg font-mono text-sm text-slate-600 dark:text-slate-400">
-                                    <p>15 - 8 = ?</p>
-                                    <p>→ 15 = 10 + 5</p>
-                                    <p>→ 10 - 8 = 2</p>
-                                    <p>→ 2 + 5 = <strong className="text-green-600">7</strong></p>
+                                    <p>🤔 15 颗糖 = 1 一整盒(10颗) + 散装的(5颗)</p>
+                                    <p>🎁 从整盒里拿 8 颗给他：10 - 8 = 2</p>
+                                    <p>🌟 手里剩下的糖：整盒剩下的 2 颗 + 散装的 5 颗，2 + 5 = <strong className="text-green-600">7 颗</strong>！真聪明！</p>
                                 </div>
                             </div>
                         </div>
@@ -76,15 +81,15 @@ export const grade1Content = {
             properties: (
                 <div className="space-y-6">
                     <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
-                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 易错点警示</h3>
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 小心陷阱盲区！</h3>
                         <div className="grid md:grid-cols-2 gap-4">
                             <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
-                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 错误做法</p>
-                                <p className="text-sm text-slate-600 dark:text-slate-400">8 + 6 = 15 （靠数手指，容易数错）</p>
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 笨办法，容易出错哦</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">8 + 6 = 15 （如果靠一个一个数手指，一不小心就数错啦！）</p>
                             </div>
                             <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
-                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 正确做法</p>
-                                <p className="text-sm text-slate-600 dark:text-slate-400">8 + 2凑10，剩下4，10+4=14</p>
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 心算小天才的妙招</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">👀 看到 8 就想 2，先把 8 凑成 10！外面还剩下 4，加在一起就是 14 啦！多快！</p>
                             </div>
                         </div>
                     </div>
@@ -102,12 +107,12 @@ export const grade1Content = {
                         </h2>
                         <div className="space-y-5">
                             {[
-                                { q: '9 + 5', step1: '9 差 1 到 10，把 5 拆成 1 + 4', step2: '9 + 1 = 10，10 + 4 = 14', ans: '14' },
-                                { q: '7 + 8', step1: '7 差 3 到 10，把 8 拆成 3 + 5', step2: '7 + 3 = 10，10 + 5 = 15', ans: '15' },
-                                { q: '13 - 6', step1: '13 = 10 + 3，10 - 6 = 4', step2: '4 + 3 = 7', ans: '7' },
+                                { q: '停车场里有 9 辆🚗，又开来了 5 辆。现在有几辆汽车呢？', step1: '📦 想一想：9 辆车加上 1 辆车就凑成满排 10 辆啦！', step2: '把开来的 5 辆车分成 1 辆和 4 辆。', ans: '最前面的 10 辆，加上剩下的 4 辆，一共 14 辆！(9 + 5 = 14)' },
+                                { q: '小猫钓了 7 条🐟，又钓了 8 条，一共几条鱼？', step1: '📦 想一想：7 条鱼再加 3 条就是一满桶 10 条！', step2: '把 8 条鱼分出 3 条放进桶里。', ans: '满桶 10 条，加上外面的 5 条，一共 15 条鱼！(7 + 8 = 15)' },
+                                { q: '你有 13 个包子🥟，如果给小狗 6 个，还剩多少个呢？', step1: '🧐 想象 13个包子 = 一大蒸笼(10个) + 盘子上的 3 个。', step2: '我们从蒸笼里拿出 6 个包子给小狗，蒸笼里还剩 4 个。', ans: '蒸笼剩里的 4 个，加盘子上的 3 个，还剩 7 个啦！(13 - 6 = 7)' },
                             ].map((ex, i) => (
                                 <div key={i} className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
-                                    <p className="font-bold text-slate-800 dark:text-white mb-2 text-lg">例{i + 1}：{ex.q} = ?</p>
+                                    <p className="font-bold text-slate-800 dark:text-white mb-2 text-lg">挑战 {i + 1}：{ex.q}</p>
                                     <div className="pl-4 border-l-4 border-indigo-400 font-mono text-sm text-slate-600 dark:text-slate-400 space-y-1">
                                         <p>{ex.step1}</p>
                                         <p>{ex.step2}</p>
@@ -159,18 +164,18 @@ export const grade1Content = {
         },
         info: {
             title: "100以内认知",
-            description: "从 1 到 100，数字的世界越来越大！学会认数、读数、写数和比较大小，踏上数学探索之旅！",
+            description: "从 1 到 100，数字的世界越来越大！把10根小棒捆成一捆，我们一起来数数吧！🔢",
             tags: [
                 { text: "基础达标", color: "blue" },
                 { text: "20分钟", icon: Clock, color: "slate" },
                 { text: "重点", icon: Star, color: "orange" }
             ]
         },
-        aiContext: "学生学习100以内的数。重点：数位（十位、个位）、数的组成（37=3个十+7个一）、顺序（前一个后一个）、大小比较（先比十位再比个位）。用具体实物帮助理解。",
-        aiChatTitle: "🤖 数字探索家",
-        aiChatIntro: "你好！数字的世界很神奇。我们来一起认识100以内的数吧！",
+        aiContext: "学生学习100以内的数。必须使用苏格拉底式提问。用『整捆的小棒（10根）』和『散落的小棒（1根）』的情境来讲解十位和个位。大小比较时，引导提问：『要比谁的小棒多，是先看整捆的，还是先看散落的呢？』",
+        aiChatTitle: "🪵 魔法小木匠",
+        aiChatIntro: "我有好多好多神奇的魔法小木棍，每 10 根就能变成一大捆！一起来搭积木吧！",
         aiMessages: [
-            { role: 'ai', content: '你知道 35 是由几个十和几个一组成的吗？拿小棒来摆一摆！' }
+            { role: 'ai', content: '如果在桌子上，有 3 大捆木棍，旁边还有散落的 5 根。你能不能猜出桌上一共有多少根木棍呢？' }
         ],
         tabs: {
             concept: (
@@ -178,34 +183,54 @@ export const grade1Content = {
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Lightbulb className="w-6 h-6 text-indigo-600" />
-                            数位与数的组成
+                            整捆与散落的小木棍 🪵
                         </h2>
                         <div className="space-y-5">
                             <div className="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-xl">
-                                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-3">数位表</h3>
+                                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-3">神秘的数位表</h3>
+                                <p className="text-slate-700 dark:text-slate-300 text-sm mb-4">
+                                    "想象一下，把 10 根小木棍用小皮筋捆成一大捆。这『一捆』就是十位，而那些还没捆上的『单根』就是个位啦！"
+                                </p>
                                 <div className="flex gap-4 justify-center">
-                                    {[{ pos: '十位', color: 'bg-orange-500', example: '3' }, { pos: '个位', color: 'bg-blue-500', example: '7' }].map(d => (
+                                    {[{ pos: '十位 (整捆)', color: 'bg-orange-500', example: '3' }, { pos: '个位 (单根)', color: 'bg-blue-500', example: '7' }].map(d => (
                                         <div key={d.pos} className="text-center">
                                             <div className={`w-16 h-16 ${d.color} text-white text-2xl font-bold rounded-xl flex items-center justify-center shadow-lg mb-2`}>{d.example}</div>
                                             <p className="text-sm font-bold text-slate-700 dark:text-slate-300">{d.pos}</p>
                                         </div>
                                     ))}
                                 </div>
-                                <p className="text-center text-slate-600 dark:text-slate-400 mt-3 text-sm font-mono">37 = 3个十 + 7个一</p>
+                                <p className="text-center text-slate-600 dark:text-slate-400 mt-3 text-sm font-mono">所以 37 = 3 大捆 + 7 单根</p>
                             </div>
                             <div className="bg-green-50 dark:bg-green-900/20 p-5 rounded-xl border-l-4 border-green-500">
-                                <h3 className="font-bold text-green-800 dark:text-green-300 mb-2">大小比较规则</h3>
+                                <h3 className="font-bold text-green-800 dark:text-green-300 mb-2">比一比，谁的木棍多？</h3>
+                                <p className="text-sm text-slate-700 dark:text-slate-300 mb-2">如果要比谁的木棍多，你会怎么比呢？</p>
                                 <ol className="space-y-1 text-sm text-slate-700 dark:text-slate-300 list-decimal list-inside">
-                                    <li>两位数 &gt; 一位数（如 23 &gt; 9）</li>
-                                    <li>同是两位数：<strong>先比十位</strong>，十位大的数大</li>
-                                    <li>十位相同：<strong>再比个位</strong></li>
+                                    <li>当然是<strong>先看谁的『整捆』多啦！</strong>（先比十位，十位大，数就大）</li>
+                                    <li>如果整捆的数量一样多，那我们就去<strong>比比『单根』的数量</strong>。（再比个位）</li>
                                 </ol>
-                                <p className="text-sm font-mono text-green-700 dark:text-green-400 mt-2">例：57 &gt; 52（十位同，个位 7 &gt; 2）</p>
+                                <p className="text-sm font-mono text-green-700 dark:text-green-400 mt-2">例子：57 &gt; 52（大家都有 5 大捆，但我有 7 单根，比你 2 单根多！）</p>
                             </div>
                             <div className="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-xl border-l-4 border-purple-500">
-                                <h3 className="font-bold text-purple-800 dark:text-purple-300 mb-2">数的顺序</h3>
-                                <p className="text-sm text-slate-700 dark:text-slate-300">47 的前一个数是 <strong>46</strong>，后一个数是 <strong>48</strong>。</p>
-                                <p className="text-sm text-slate-700 dark:text-slate-300 mt-1">整十数：10、20、30…每次多 10。</p>
+                                <h3 className="font-bold text-purple-800 dark:text-purple-300 mb-2">找邻居（数的顺序）</h3>
+                                <p className="text-sm text-slate-700 dark:text-slate-300">47 的前面是 <strong>46</strong>，后面是 <strong>48</strong>。</p>
+                                <p className="text-sm text-slate-700 dark:text-slate-300 mt-1">如果是整捆整捆地增加：10、20、30…每次都会多出 1 大捆（多10根）。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 小心陷阱盲区！</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 容易中招的笨办法</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">比较 39 和 41 大小时，看 9 比 1 大，就觉得 39 更大。</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 心算小天才的妙招</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">记住！永远先看『整捆』！39 只有 3 捆，41 可是有 4 捆！散落的单根再怎么多，也比不上一大捆呢！</p>
                             </div>
                         </div>
                     </div>
@@ -216,22 +241,22 @@ export const grade1Content = {
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Calculator className="w-6 h-6 text-indigo-600" />
-                            典型例题
+                            带着故事来挑战
                         </h2>
                         <div className="space-y-5">
                             <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
-                                <p className="font-bold text-slate-800 dark:text-white mb-2">例1：说出 64 的组成</p>
-                                <div className="pl-4 border-l-4 border-blue-400 font-mono text-sm text-slate-600 dark:text-slate-400">
-                                    <p>6 在十位，表示 6 个十 = 60</p>
-                                    <p>4 在个位，表示 4 个一 = 4</p>
-                                    <p className="text-indigo-600 font-bold">64 = 60 + 4 = 6个十+4个一</p>
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战1：说出 64 是怎么组成的？</p>
+                                <div className="pl-4 border-l-4 border-blue-400 font-mono text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                                    <p>🪵 6 在十位上，说明有 6 大捆，就是 60 根；</p>
+                                    <p>🪵 4 在个位上，说明还有 4 个单根；</p>
+                                    <p className="text-indigo-600 font-bold">答：64 就是 6 个十 加上 4 个一！</p>
                                 </div>
                             </div>
                             <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
-                                <p className="font-bold text-slate-800 dark:text-white mb-2">例2：比较 78 和 83 的大小</p>
-                                <div className="pl-4 border-l-4 border-green-400 font-mono text-sm text-slate-600 dark:text-slate-400">
-                                    <p>十位：7 &lt; 8</p>
-                                    <p className="text-green-600 font-bold">所以 78 &lt; 83</p>
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战2：明明有 78 颗星星，红红有 83 颗星星，谁的星星比较多？</p>
+                                <div className="pl-4 border-l-4 border-green-400 font-mono text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                                    <p>🤔 我们先看能装满几个大盒子（十位）：明明有 7 盒，红红有 8 盒！</p>
+                                    <p className="text-green-600 font-bold">所以因为 7 &lt; 8，当然是红红的 83 颗星星更多啦！</p>
                                 </div>
                             </div>
                         </div>
@@ -272,17 +297,17 @@ export const grade1Content = {
         },
         info: {
             title: "认识图形（长正圆）",
-            description: "图形就在我们身边！积木、书本、时钟……认识它们的形状，打开几何世界的大门！",
+            description: "找找身边藏着的神奇形状！像三明治一样的三角形，像披萨一样的圆形🥪🍕！",
             tags: [
                 { text: "基础达标", color: "blue" },
                 { text: "20分钟", icon: Clock, color: "slate" }
             ]
         },
-        aiContext: "学生学习认识基本平面图形。重点：长方形（4个角都是直角，对边相等）、正方形（4个角都是直角，4边相等）、三角形（3条边3个角）、圆（没有角，没有直边）。结合生活物品帮助识别。",
-        aiChatTitle: "🤖 图形小侦探",
-        aiChatIntro: "嗨！我们身边到处都是图形。我来帮你认识这些可爱的图形！",
+        aiContext: "学生学习认识基本平面图形。必须使用苏格拉底式提问。用三明治、魔方、黑板、披萨等实物情境。重点强调特征的发现而不是背诵定义（如：看看手机的四个角是不是都是直直的？）。",
+        aiChatTitle: "🍕 形状探险家",
+        aiChatIntro: "找一找，你身边有没有像大披萨一样的圆，或者像课桌一样的长方形？一起来探险吧！",
         aiMessages: [
-            { role: 'ai', content: '看看你的橡皮，它是什么形状？角是什么样的？数一数有几条边？' }
+            { role: 'ai', content: '想象一块好吃的三明治，它有几个尖尖的角？有几条直直的边呀？' }
         ],
         tabs: {
             concept: (
@@ -290,34 +315,37 @@ export const grade1Content = {
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Lightbulb className="w-6 h-6 text-indigo-600" />
-                            四种基本图形
+                            寻找身边的形状精灵 🕵️‍♂️
                         </h2>
                         <div className="grid md:grid-cols-2 gap-5">
-                            {[
-                                { name: '长方形', features: ['4条边，对边相等', '4个直角', '像书本、黑板'], color: 'bg-blue-50 dark:bg-blue-900/20 border-blue-400', icon: '▬' },
-                                { name: '正方形', features: ['4条边，4边相等', '4个直角', '像魔方的一面'], color: 'bg-green-50 dark:bg-green-900/20 border-green-400', icon: '■' },
-                                { name: '三角形', features: ['3条边，3个角', '最稳固的图形', '像山峰、三角架'], color: 'bg-orange-50 dark:bg-orange-900/20 border-orange-400', icon: '▲' },
-                                { name: '圆', features: ['没有角，没有直边', '各方向宽度相同', '像车轮、硬币'], color: 'bg-purple-50 dark:bg-purple-900/20 border-purple-400', icon: '●' },
-                            ].map(shape => (
-                                <div key={shape.name} className={`p-5 rounded-xl border-l-4 ${shape.color}`}>
-                                    <div className="flex items-center gap-3 mb-3">
-                                        <span className="text-3xl">{shape.icon}</span>
-                                        <h3 className="text-lg font-bold text-slate-800 dark:text-white">{shape.name}</h3>
-                                    </div>
-                                    <ul className="space-y-1">
-                                        {shape.features.map((f, i) => (
-                                            <li key={i} className="text-sm text-slate-600 dark:text-slate-400 flex items-center gap-2">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-slate-400 flex-shrink-0"></span>
-                                                {f}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            ))}
+                            <div className="p-5 rounded-xl border-l-4 bg-blue-50 dark:bg-blue-900/20 border-blue-400">
+                                <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-2">🚪 长方形精灵</h3>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">
+                                    "看看家里的<strong>门</strong>和<strong>手机屏幕</strong>！我有 4 个直直的角，两长两短 4 条边，对着的边一样长我才开心！"
+                                </p>
+                            </div>
+                            <div className="p-5 rounded-xl border-l-4 bg-green-50 dark:bg-green-900/20 border-green-400">
+                                <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-2">🎲 正方形精灵</h3>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">
+                                    "我像一面<strong>魔方</strong>！我也有 4 个直直的角，但是，我的 4 条边都一模一样长哦，胖乎乎的很稳当！"
+                                </p>
+                            </div>
+                            <div className="p-5 rounded-xl border-l-4 bg-orange-50 dark:bg-orange-900/20 border-orange-400">
+                                <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-2">🥪 三角形精灵</h3>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">
+                                    "我像好吃的<strong>三明治</strong>和切开的<strong>西瓜</strong>！我只有 3 个尖尖的角和 3 条边！"
+                                </p>
+                            </div>
+                            <div className="p-5 rounded-xl border-l-4 bg-purple-50 dark:bg-purple-900/20 border-purple-400">
+                                <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-2">🍕 圆形精灵</h3>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">
+                                    "我像圆圆的<strong>大披萨</strong>和汽车的<strong>轮子</strong>！我身上一个角也没有，圆溜溜的，可以到处滚来滚去！"
+                                </p>
+                            </div>
                         </div>
                         <div className="mt-6 bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-xl border-l-4 border-yellow-400">
-                            <p className="font-bold text-yellow-800 dark:text-yellow-300 mb-1">💡 正方形是特殊的长方形</p>
-                            <p className="text-sm text-slate-600 dark:text-slate-400">正方形的4条边都相等，长方形只要求对边相等。所以正方形一定是长方形！</p>
+                            <p className="font-bold text-yellow-800 dark:text-yellow-300 mb-1">💡 小秘密：它们是亲兄弟！</p>
+                            <p className="text-sm text-slate-600 dark:text-slate-400">正方形其实是长方形的亲弟弟哦！长方形只要把所有边变成一样长，就变身成正方形啦！</p>
                         </div>
                     </div>
                 </div>
@@ -325,15 +353,15 @@ export const grade1Content = {
             properties: (
                 <div className="space-y-6">
                     <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
-                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 易错图案</h3>
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 形状变身小陷阱</h3>
                         <div className="grid md:grid-cols-2 gap-4">
                             <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
-                                <p className="text-red-500 font-bold mb-2">❌ 不是长方形</p>
-                                <p className="text-sm text-slate-600 dark:text-slate-400">虽然有四个角，但角不是直直的（平行四边形）。</p>
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 假装长方形</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">并不是所有有4个角的都是长方形哦！如果它的角斜向一边，不是像桌角那样大大的『直直的角』，它就不是长方形！</p>
                             </div>
                             <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
-                                <p className="text-green-500 font-bold mb-2">✅ 是正方形</p>
-                                <p className="text-sm text-slate-600 dark:text-slate-400">就算斜着放，只要四根边一样长，角是直直的角，它依然是正方形（像钻石一样）！</p>
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 躲猫猫的正方形</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">斜着放的正方形就变成别人了吗？当然不是！即使它像一颗倾斜的钻石💎，只要4根边一样长，角是直直的角，它就永远是正方形！</p>
                             </div>
                         </div>
                     </div>
@@ -347,23 +375,23 @@ export const grade1Content = {
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Calculator className="w-6 h-6 text-indigo-600" />
-                            典型例题
+                            带着故事来挑战
                         </h2>
                         <div className="space-y-5">
                             <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
-                                <p className="font-bold text-slate-800 dark:text-white mb-2">例1：判断正误</p>
-                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">"正方形一定是长方形"——这句话对吗？</p>
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战1：魔法变身</p>
+                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">🤔 "正方形说：我其实是一个特别特别完美的的长方形！" ——你觉得他说得对吗？</p>
                                 <div className="pl-4 border-l-4 border-green-400 text-sm text-slate-600 dark:text-slate-400">
-                                    <p>✅ <strong>对</strong>。正方形有4个直角且对边相等，满足长方形的所有条件，同时4边相等是额外条件。</p>
+                                    <p>✅ <strong>对的啦！</strong>正方形有4个直直的角，对着的边也一样长，它完成了长方形所有的任务要求呢！而且它还超额完成了“四边一样长”，特别完美！</p>
                                 </div>
                             </div>
                             <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
-                                <p className="font-bold text-slate-800 dark:text-white mb-2">例2：生活中找图形</p>
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战2：生活中找精灵</p>
                                 <div className="grid grid-cols-2 gap-3 text-sm">
-                                    {[['🚪 门', '长方形'], ['⏰ 时钟', '圆形'], ['📐 三角板', '三角形'], ['🎮 手机屏幕', '长方形']].map(([obj, shape]) => (
+                                    {[['🚪 房间门', '长方形'], ['⏰ 闹钟', '圆形'], ['📐 切好的披萨', '三角形'], ['📱 手机屏幕', '长方形']].map(([obj, shape]) => (
                                         <div key={obj} className="bg-white dark:bg-slate-700 p-3 rounded-lg flex items-center gap-2">
                                             <span>{obj}</span>
-                                            <span className="text-indigo-600 dark:text-indigo-400 font-bold ml-auto">→ {shape}</span>
+                                            <span className="text-indigo-600 dark:text-indigo-400 font-bold ml-auto">是什么？ {shape}！</span>
                                         </div>
                                     ))}
                                 </div>
@@ -400,17 +428,17 @@ export const grade1Content = {
         },
         info: {
             title: "位置与钟表",
-            description: "知道自己在哪里，知道现在几点钟——位置和时间是生活中最实用的数学！",
+            description: "变成小小领航员和小闹钟！学会分清左右，看懂时间，再也不会迷路或者迟到啦！🧭",
             tags: [
                 { text: "基础达标", color: "blue" },
                 { text: "25分钟", icon: Clock, color: "slate" }
             ]
         },
-        aiContext: "学生学习位置（上下左右前后）和钟表（整时、半时）。位置：参照物很重要，以谁为参照说出方向。钟表：整时时分针指12，半时时分针指6。时钟顺时针转动。",
-        aiChatTitle: "🤖 方向与时间向导",
-        aiChatIntro: "你好！你会看钟表吗？知道左边和右边吗？让我们一起来学！",
+        aiContext: "学生学习位置（上下左右前后）和钟表（整时、半时）。必须使用苏格拉底式提问。用排队、吃饭拿筷子等情境讲解左右；用『长针走到最顶上』讲解整时。不直接给出死记硬背的法则。",
+        aiChatTitle: "🧭 迷路小指南针",
+        aiChatIntro: "滴答滴答！我们来玩个游戏吧：你吃饭是用哪只手拿筷子的呀？",
         aiMessages: [
-            { role: 'ai', content: '看看时钟：当时针指向3，分针指向12，现在是几时？' }
+            { role: 'ai', content: '看看家里的钟表：如果长长的大指针指着最上面的 12，短指针指着 3，那是几点钟啦？是要吃下午茶了吗？' }
         ],
         tabs: {
             concept: (
@@ -418,7 +446,7 @@ export const grade1Content = {
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Lightbulb className="w-6 h-6 text-indigo-600" />
-                            位置方向
+                            你在哪儿呢？📍
                         </h2>
                         <div className="grid grid-cols-3 gap-2 max-w-xs mx-auto mb-6">
                             {['上', '前', '左', '中', '右', '', '下', '后', ''].map((dir, i) => (
@@ -428,30 +456,62 @@ export const grade1Content = {
                             ))}
                         </div>
                         <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-xl border-l-4 border-yellow-400 mb-5">
-                            <p className="font-bold text-yellow-800 dark:text-yellow-300 mb-1">⚠️ 注意参照物</p>
-                            <p className="text-sm text-slate-600 dark:text-slate-400">说位置必须有参照物！"小明的左边是小花"和"小花的右边是小明"说的是同一件事。</p>
+                            <p className="font-bold text-yellow-800 dark:text-yellow-300 mb-2">💡 谁是导游？</p>
+                            <p className="text-sm text-slate-600 dark:text-slate-400">
+                                说话的时候，必须要有一个"导游"！<br />
+                                比如：如果你站在我的前面，那我肯定在你的后面呀。"导游"变了，方向就不一样啦！
+                            </p>
                         </div>
                     </div>
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Target className="w-6 h-6 text-indigo-600" />
-                            认识钟表
+                            滴答滴答的时间精灵 ⏰
                         </h2>
                         <div className="space-y-4">
                             <div className="grid md:grid-cols-2 gap-4">
                                 <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl">
-                                    <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-2">整时</h3>
-                                    <p className="text-sm text-slate-600 dark:text-slate-400">分针指向 <strong>12</strong>，时针指向几就是几时。</p>
-                                    <p className="font-mono text-indigo-600 text-sm mt-1">分针→12，时针→3 = 3时整</p>
+                                    <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-2">整点啦！</h3>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                                        长长的分针跑到 <strong>最顶上 (12)</strong>，短针指着几，就是几点钟！
+                                    </p>
+                                    <p className="font-mono text-indigo-600 text-sm mt-2">🕒 长针指 12，短针指 3 ＝ 3点钟啦</p>
                                 </div>
                                 <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-xl">
-                                    <h3 className="font-bold text-green-800 dark:text-green-300 mb-2">半时</h3>
-                                    <p className="text-sm text-slate-600 dark:text-slate-400">分针指向 <strong>6</strong>，时针过几就是几时半。</p>
-                                    <p className="font-mono text-indigo-600 text-sm mt-1">分针→6，时针过3 = 3时半</p>
+                                    <h3 className="font-bold text-green-800 dark:text-green-300 mb-2">跑到一半（半点）</h3>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                                        长长的分针跑到 <strong>最底下 (6)</strong>，它跑了一半，所以叫"半"点！
+                                    </p>
+                                    <p className="font-mono text-indigo-600 text-sm mt-2">🕞 长针指 6，短针走过 3 ＝ 3点半啦</p>
                                 </div>
                             </div>
                             <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl text-center text-sm text-slate-600 dark:text-slate-400">
-                                🕐 时钟顺时针转动：时针（短）、分针（长）、秒针（最细最长）
+                                🏃‍♂️ 记住：长针跑得快（分针），短针跑得慢（时针）！
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 小心迷路陷阱</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 左右不分</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">一转身就不知道哪边是左、哪边是右了！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 小秘诀找手</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">大多数小朋友是用 右手 拿筷子吃饭、拿铅笔写字的哦！伸出拿筷子的手，它就是右边！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 粗心看错针</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">把短针当成分针，把长针当成时针！把"12点过3分"当成"3点"！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 精明看表法</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">看表别着急！先找又长又细的"长分针"，如果它站得直直的（指着12），再去看看"短时针"指着几，就是几点钟啦！</p>
                             </div>
                         </div>
                     </div>
@@ -462,22 +522,24 @@ export const grade1Content = {
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Calculator className="w-6 h-6 text-indigo-600" />
-                            典型例题
+                            带着故事来挑战
                         </h2>
                         <div className="space-y-5">
                             <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
-                                <p className="font-bold text-slate-800 dark:text-white mb-2">例1：位置判断</p>
-                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">小红坐在第3排第2座，小明坐在第3排第4座。小红在小明的哪边？</p>
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战1：座位大冒险</p>
+                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">如果在看电影，你的座位在小明的<strong>左边</strong>。那对小明来说，你在他的哪边呢？</p>
                                 <div className="pl-4 border-l-4 border-blue-400 text-sm text-slate-600 dark:text-slate-400">
-                                    <p>第2座在第4座的<strong className="text-indigo-600">左边</strong>，所以小红在小明的左边。</p>
+                                    <p>🤔 当"导游"变成小明，方向就反过来啦！</p>
+                                    <p>你在小明的<strong className="text-indigo-600">左边</strong>。</p>
                                 </div>
                             </div>
                             <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
-                                <p className="font-bold text-slate-800 dark:text-white mb-2">例2：看钟表</p>
-                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">时针在7和8之间（偏向8），分针指向6，是什么时间？</p>
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战2：几点看动画片？</p>
+                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">时针跑到跑到7和8之间，分针乖乖地跑到最下面的 6，妈妈说可以看动画片了。现在是几点呀？</p>
                                 <div className="pl-4 border-l-4 border-green-400 text-sm text-slate-600 dark:text-slate-400">
-                                    <p>分针指向6 → 是半时。时针刚过7 → 7时半。</p>
-                                    <p className="text-green-600 font-bold">答：7时半（即7:30）</p>
+                                    <p>分针指到 6 → 跑到一半啦，是个"半点"！</p>
+                                    <p>时针走过了 7，还没到 8 → 刚过 7点。</p>
+                                    <p className="text-green-600 font-bold">答：是 7点半！动画片马上开始！</p>
                                 </div>
                             </div>
                         </div>
@@ -513,17 +575,17 @@ export const grade1Content = {
         },
         info: {
             title: "巧算加减法",
-            description: "同样的算式，聪明的人能更快算出来！学会技巧，让数字乖乖听你的话！",
+            description: "变成魔法小算盘！学会牵手凑整的魔法，让数字听你的话，算得又快又准！🎩",
             tags: [
                 { text: "思维进阶", color: "purple" },
                 { text: "30分钟", icon: Clock, color: "slate" }
             ]
         },
-        aiContext: "学生学习加减法巧算。重点：加法交换律（8+5=5+8）、加法结合律（凑整：2+7+8=2+8+7=17）、找规律凑整（把相加等于10的数凑在一起）。引导学生发现数字中的规律。",
-        aiChatTitle: "🤖 计算小达人",
-        aiChatIntro: "算题可以有捷径！我来告诉你如何把算式变简单。",
+        aiContext: "学生学习加减法巧算。必须使用苏格拉底式提问。用『找朋友（凑成10）』的情境来讲解加法交换律和结合律。如：8和谁是好朋友呀？把好朋友先拉在一起好不好？避免使用生硬的数学定律名词。",
+        aiChatTitle: "🧙‍♂️ 魔法数字小精灵",
+        aiChatIntro: "嘿！我是魔法小精灵，告诉你个秘密：数字们都有最好的朋友，加在一起刚好是10！",
         aiMessages: [
-            { role: 'ai', content: '计算 3+8+7+2，你有办法不按顺序、更快算出来吗？先找找哪两个数加起来是10！' }
+            { role: 'ai', content: '如果让你算 3+8+7+2，你能在里面找到两对『好朋友』吗？它们是谁和谁牵手呢？' }
         ],
         tabs: {
             concept: (
@@ -531,31 +593,48 @@ export const grade1Content = {
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Brain className="w-6 h-6 text-purple-600" />
-                            巧算秘笈
+                            寻找数字好朋友 👫
                         </h2>
                         <div className="space-y-5">
                             <div className="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-xl border-l-4 border-purple-500">
-                                <h3 className="font-bold text-purple-800 dark:text-purple-300 mb-3">🔀 加法交换律</h3>
-                                <p className="text-sm text-slate-700 dark:text-slate-300 mb-2">两个数相加，交换位置结果不变。</p>
+                                <h3 className="font-bold text-purple-800 dark:text-purple-300 mb-3">🔀 交换位置，魔力不变</h3>
+                                <p className="text-sm text-slate-700 dark:text-slate-300 mb-2">如果有 8 个🍎，再给你 5 个...和先给你 5 个，再给 8 个，是不是完全一样多呀？顺序变了，总数可不会变！</p>
                                 <p className="font-mono text-purple-700 dark:text-purple-400">8 + 5 = 5 + 8 = 13</p>
                             </div>
                             <div className="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-xl border-l-4 border-blue-500">
-                                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-3">🎯 凑整法（找"好朋友"）</h3>
-                                <p className="text-sm text-slate-700 dark:text-slate-300 mb-2">多个数相加时，先把加起来等于10的数凑在一起。</p>
+                                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-3">🎯 牵手凑满十（凑整法）</h3>
+                                <p className="text-sm text-slate-700 dark:text-slate-300 mb-2">遇到好几串数字相加时，快去帮它们找能凑成整整“10”的『好朋友』！好朋友先牵手，算起来就超级快啦！</p>
                                 <div className="font-mono text-sm text-blue-700 dark:text-blue-400 space-y-1 bg-white dark:bg-slate-700 p-3 rounded-lg">
                                     <p>3 + 8 + 7 + 2</p>
-                                    <p>= (3 + 7) + (8 + 2)  ← 凑成两个10</p>
-                                    <p>= 10 + 10 = <strong>20</strong></p>
+                                    <p>= (3 和 7 牵手) + (8 和 2 牵手) </p>
+                                    <p>= 10 + 10 = <strong>20</strong>！</p>
                                 </div>
                             </div>
                             <div className="bg-green-50 dark:bg-green-900/20 p-5 rounded-xl border-l-4 border-green-500">
-                                <h3 className="font-bold text-green-800 dark:text-green-300 mb-3">➕➖ 加减混合巧算</h3>
-                                <p className="text-sm text-slate-700 dark:text-slate-300 mb-2">相邻的加减可以调整顺序：先算容易的部分。</p>
+                                <h3 className="font-bold text-green-800 dark:text-green-300 mb-3">➕➖ 加减混合跳跳棋</h3>
+                                <p className="text-sm text-slate-700 dark:text-slate-300 mb-2">如果是加减法连在一起玩跳跳棋，我们可以挑最容易跳的那一步先走哦！</p>
                                 <div className="font-mono text-sm text-green-700 dark:text-green-400 space-y-1 bg-white dark:bg-slate-700 p-3 rounded-lg">
                                     <p>15 - 8 + 5</p>
-                                    <p>= 15 + 5 - 8  ← 先加5</p>
-                                    <p>= 20 - 8 = <strong>12</strong></p>
+                                    <p>= 15 先加上好算的 5，再去减 8 </p>
+                                    <p>= 20 - 8 = <strong>12</strong>！是不是很轻松？</p>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 魔法迷乱点</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 从头死死地算</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">比如算 1+2+3+4... 如果傻乎乎地一个一个往后加，手指头都不够用啦，而且超级容易错！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 聪明找好朋友配对</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">记住啦！数字里到处藏着好朋友，只要你先去找好朋友，再长的算式都是纸老虎！</p>
                             </div>
                         </div>
                     </div>
@@ -566,18 +645,18 @@ export const grade1Content = {
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Calculator className="w-6 h-6 text-indigo-600" />
-                            典型例题
+                            带着故事来挑战
                         </h2>
                         <div className="space-y-5">
                             {[
-                                { q: '1+2+3+4+5+6+7+8+9', hint: '找"好朋友"：1+9=10, 2+8=10, 3+7=10, 4+6=10，共4个10，再加5', ans: '45' },
-                                { q: '18 - 9 + 2', hint: '先计算 18 + 2 = 20，再 20 - 9 = 11', ans: '11' },
+                                { q: '1+2+3+4+5+6+7+8+9 = ?', hint: '🧐 找找好朋友：1和9，2和8，3和7，4和6。哇！有4对好朋友就是40！', ans: '最孤单的 5 加上去，就是 45 啦！' },
+                                { q: '18 - 9 + 2 = ?', hint: '🤝 先让 18 找好朋友 2 牵手，变成大整数 20！再减 9！', ans: '20 - 9 = 11！太简单啦！' },
                             ].map((ex, i) => (
                                 <div key={i} className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
-                                    <p className="font-bold text-slate-800 dark:text-white mb-2">例{i + 1}：{ex.q} = ?</p>
+                                    <p className="font-bold text-slate-800 dark:text-white mb-2">挑战{i + 1}：{ex.q}</p>
                                     <div className="pl-4 border-l-4 border-purple-400 text-sm text-slate-600 dark:text-slate-400">
                                         <p>{ex.hint}</p>
-                                        <p className="text-purple-600 font-bold mt-1">答：{ex.ans}</p>
+                                        <p className="text-purple-600 font-bold mt-1">完美解答：{ex.ans}</p>
                                     </div>
                                 </div>
                             ))}
@@ -613,17 +692,17 @@ export const grade1Content = {
         },
         info: {
             title: "火柴棒数学",
-            description: "小小火柴棒，大大数学脑！移动一根或者添加几根，图形就变了，你能找到规律吗？",
+            description: "化身小小魔术师！移动一根神奇的火柴棒，或者加上几根，图形就大变样啦！🪄",
             tags: [
                 { text: "思维进阶", color: "purple" },
                 { text: "25分钟", icon: Clock, color: "slate" }
             ]
         },
-        aiContext: "学生学习火柴棒数学。三类题型：①用火柴棒拼图形（如3根拼三角形，4根拼正方形）；②规律题（每次多几根）；③移动题（移动x根变成y个图形）。引导学生画图分析。",
-        aiChatTitle: "🤖 火柴棒侦探",
-        aiChatIntro: "火柴棒游戏既好玩又烧脑！我们一起来挑战！",
+        aiContext: "学生学习火柴棒数学。必须使用苏格拉底式提问。把火柴棒想象成盖房子的木头或有魔力的树枝。拼图形时引导提问：如果两个房间连在一起（共用一堵墙壁），咱们能不能互相借用一根木头省材料呢？",
+        aiChatTitle: "🪄 火柴棒魔术师",
+        aiChatIntro: "大变活人？不，我是大变图形！你准备好手中的火柴棒了吗？一起来变魔术！",
         aiMessages: [
-            { role: 'ai', content: '用火柴棒拼1个正方形需要4根。那拼2个正方形（共用一条边）需要几根？先画一画再数！' }
+            { role: 'ai', content: '如果拼 1 个正方形的房间要 4 根木头，现在我想在旁边紧挨着再搭一个房间，咱们能不能聪明地『借用』一根木头呢？这样一共需要几根呀？' }
         ],
         tabs: {
             concept: (
@@ -631,37 +710,46 @@ export const grade1Content = {
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Lightbulb className="w-6 h-6 text-purple-600" />
-                            火柴棒规律
+                            魔法木头搭积木 🔥
                         </h2>
                         <div className="space-y-5">
                             <div className="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-xl">
-                                <h3 className="font-bold text-purple-800 dark:text-purple-300 mb-3">基本图形用几根？</h3>
+                                <h3 className="font-bold text-purple-800 dark:text-purple-300 mb-3">造小房子要几根木头？</h3>
                                 <div className="grid grid-cols-3 gap-3">
-                                    {[{ shape: '三角形', n: 3, emoji: '▲' }, { shape: '正方形', n: 4, emoji: '■' }, { shape: '长方形', n: 4, emoji: '▬' }].map(s => (
+                                    {[{ shape: '三角形帐篷', n: 3, emoji: '▲' }, { shape: '正方形房间', n: 4, emoji: '■' }, { shape: '长方形大厅', n: 4, emoji: '▬' }].map(s => (
                                         <div key={s.shape} className="text-center bg-white dark:bg-slate-700 p-3 rounded-lg">
                                             <span className="text-2xl">{s.emoji}</span>
                                             <p className="text-sm font-bold text-slate-700 dark:text-slate-300 mt-1">{s.shape}</p>
-                                            <p className="text-purple-600 font-bold">{s.n} 根</p>
+                                            <p className="text-purple-600 font-bold">{s.n} 根能搭好</p>
                                         </div>
                                     ))}
                                 </div>
                             </div>
                             <div className="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-xl border-l-4 border-blue-500">
-                                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-3">共边规律（正方形为例）</h3>
-                                <div className="space-y-2 text-sm font-mono text-slate-700 dark:text-slate-300">
-                                    <p>拼 1 个：4 根</p>
-                                    <p>拼 2 个（共1条边）：4 + 3 = 7 根</p>
-                                    <p>拼 3 个（共2条边）：4 + 3 + 3 = 10 根</p>
-                                    <p className="text-blue-600 dark:text-blue-400 font-bold">规律：4 + (n-1)×3 根</p>
+                                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-3">聪明地“借用”墙壁（共边规律）</h3>
+                                <p className="text-sm text-slate-700 dark:text-slate-300 mb-2">如果你要搭 2 个连在一起的正方形房间。本来 4 + 4 需要 8 根对不对？但是！中间那堵墙是可以互相『借用』的！省下一根，只需要拿 7 根木头啦！</p>
+                                <div className="space-y-2 text-sm font-mono text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-700 p-3 rounded-lg">
+                                    <p>🏠 搭第 1 个房间：老老实实用 4 根。</p>
+                                    <p>🏠+🏠 搭连着的第 2 个房间：借用了一面墙，只要再拿新木头 3 根！(4 + 3 = 7)</p>
+                                    <p>🏠+🏠+🏠 搭连着的第 3 个房间：又借用了一面墙，又要 3 根！(4 + 3 + 3 = 10)</p>
                                 </div>
                             </div>
-                            <div className="bg-orange-50 dark:bg-orange-900/20 p-5 rounded-xl border-l-4 border-orange-500">
-                                <h3 className="font-bold text-orange-800 dark:text-orange-300 mb-2">解题步骤</h3>
-                                <ol className="space-y-1 text-sm text-slate-600 dark:text-slate-400 list-decimal list-inside">
-                                    <li>画出图形，数清楚根数</li>
-                                    <li>找每次增加的规律</li>
-                                    <li>用规律推算答案</li>
-                                </ol>
+                        </div>
+                    </div>
+                </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 不能犯的迷糊错误</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 忘了借用墙壁</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">搭3个连在一起的正方形房间，你觉得要 3 × 4 = 12 根木头，那太浪费啦！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 聪明规划师</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">记住，连在一起的房子一定有一堵墙是共用的！在纸上画一画房子，你就知道能省下好几根木头呢！</p>
                             </div>
                         </div>
                     </div>
@@ -672,21 +760,24 @@ export const grade1Content = {
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Calculator className="w-6 h-6 text-indigo-600" />
-                            典型例题
+                            带着故事来挑战
                         </h2>
                         <div className="space-y-5">
                             <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
-                                <p className="font-bold text-slate-800 dark:text-white mb-2">例1：拼5个相连正方形需要几根火柴棒？</p>
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战1：我们要搭 5 个紧挨着的正方形小房子，到底需要买几根木头呢？</p>
                                 <div className="pl-4 border-l-4 border-purple-400 text-sm text-slate-600 dark:text-slate-400 space-y-1">
-                                    <p>第1个：4根；第2个开始每个加3根</p>
-                                    <p>4 + 4×3 = 4 + 12 = <strong className="text-purple-600">16根</strong></p>
+                                    <p>🤔 我们来推算一下：第 1 个房子需要买 4 根木头。</p>
+                                    <p>剩下的 4 个房子，每一个都能向邻居“借用”一面墙！所以它们每个只需要买 3 根新木头。</p>
+                                    <p>就是 4 根 + 3 根 + 3 根 + 3 根 + 3 根</p>
+                                    <p className="text-purple-600 font-bold mt-1">完美解答：4 + 12 = 16 根啦！省下了好多木头！</p>
                                 </div>
                             </div>
                             <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
-                                <p className="font-bold text-slate-800 dark:text-white mb-2">例2：移动1根，把"5"变成另一个数字</p>
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战2：魔法棒移动术，把 "5" 变成别的东西</p>
                                 <div className="pl-4 border-l-4 border-blue-400 text-sm text-slate-600 dark:text-slate-400">
-                                    <p>（用火柴棒摆出数字5，共5根）</p>
-                                    <p>移动最上面的横棒到中间下方 → 变成 <strong className="text-blue-600">6</strong></p>
+                                    <p>（桌上用 5 根火柴棒摆出了数字 5）</p>
+                                    <p>如果我把数字 5 最上面那一根长长的帽子🎩拿下来，放到它肚子下面的缺口处...</p>
+                                    <p className="text-blue-600 font-bold mt-1">哇！它大变身，变成数字 6 啦！</p>
                                 </div>
                             </div>
                         </div>
@@ -721,17 +812,17 @@ export const grade1Content = {
         },
         info: {
             title: "图形剪拼",
-            description: "把大图形剪成小图形，把小图形拼成大图形！动手动脑，发现图形变变变的秘密！",
+            description: "图形也会七十二变！咔嚓咔嚓剪一刀，再拼一拼，大大的方块居然能变成尖尖的三角形！✂️",
             tags: [
                 { text: "思维进阶", color: "purple" },
                 { text: "30分钟", icon: Clock, color: "slate" }
             ]
         },
-        aiContext: "学生学习图形剪拼。核心概念：①一个正方形/长方形可以沿对角线剪成两个三角形；②两个相同三角形可以拼成长方形、正方形或大三角形；③面积不变（剪拼不改变总面积）。引导学生动手实验。",
-        aiChatTitle: "🤖 图形变变变",
-        aiChatIntro: "图形可以像积木一样拼来拼去！让我们来玩图形变变变！",
+        aiContext: "学生学习图形剪拼。必须使用苏格拉底式提问。用折纸、剪纸的游戏情境。提问：如果把一个方方正正的吐司面包斜着切一刀，会变成两块什么形状？不管怎么切，吐司变小了吗？",
+        aiChatTitle: "✂️ 剪纸小裁缝",
+        aiChatIntro: "给我一把剪刀，我就能把这块大布料变成别的形状！你要不要来试一试？",
         aiMessages: [
-            { role: 'ai', content: '把一张正方形纸沿对角线剪开，你得到了什么形状？这两个新图形有什么特点？' }
+            { role: 'ai', content: '拿出一张正方形的手工纸，如果我们从一个角笔直地剪到对面的那个角，变魔术啦！它变成了两个什么形状呢？' }
         ],
         tabs: {
             concept: (
@@ -739,40 +830,57 @@ export const grade1Content = {
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Lightbulb className="w-6 h-6 text-purple-600" />
-                            图形剪拼规律
+                            咔嚓咔嚓 魔法剪刀 ✂️
                         </h2>
                         <div className="space-y-5">
                             <div className="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-xl">
-                                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-3">剪：大变小</h3>
+                                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-3">大变小（一刀剪开大吐司）</h3>
                                 <div className="grid md:grid-cols-2 gap-3 text-sm">
-                                    <div className="bg-white dark:bg-slate-700 p-3 rounded-lg">
-                                        <p className="font-bold text-slate-700 dark:text-slate-300">正方形 → 沿对角线</p>
-                                        <p className="text-slate-600 dark:text-slate-400">= 2个完全相同的直角三角形</p>
+                                    <div className="bg-white dark:bg-slate-700 p-3 rounded-lg border-l-4 border-indigo-400">
+                                        <p className="font-bold text-slate-700 dark:text-slate-300 mb-1">🍞 方方正正的吐司面包</p>
+                                        <p className="text-slate-600 dark:text-slate-400">只要斜着切一刀（对角线），哇！就变成了 <strong>2块一模一样大</strong>的『直角三角形』三明治！</p>
                                     </div>
-                                    <div className="bg-white dark:bg-slate-700 p-3 rounded-lg">
-                                        <p className="font-bold text-slate-700 dark:text-slate-300">长方形 → 沿对角线</p>
-                                        <p className="text-slate-600 dark:text-slate-400">= 2个完全相同的直角三角形</p>
+                                    <div className="bg-white dark:bg-slate-700 p-3 rounded-lg border-l-4 border-green-400">
+                                        <p className="font-bold text-slate-700 dark:text-slate-300 mb-1">📏 长长的信封</p>
+                                        <p className="text-slate-600 dark:text-slate-400">也从角上斜着剪一刀，同样会变成 <strong>2块一模一样大</strong>的『直角三角形』！</p>
                                     </div>
                                 </div>
                             </div>
                             <div className="bg-green-50 dark:bg-green-900/20 p-5 rounded-xl">
-                                <h3 className="font-bold text-green-800 dark:text-green-300 mb-3">拼：小变大</h3>
+                                <h3 className="font-bold text-green-800 dark:text-green-300 mb-3">小变大（搭搭积木变身）</h3>
                                 <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
-                                    <p>2个相同三角形可以拼成：</p>
+                                    <p>如果我给你 2 块一模一样的三角形积木，你能用它们拼出什么好玩的形状呢？</p>
                                     <div className="grid grid-cols-3 gap-2 ml-4">
-                                        {[['▬', '长方形', '斜边合拼'], ['■', '正方形', '（等腰）'], ['▲', '大三角形', '短边合拼']].map(([icon, name, note]) => (
-                                            <div key={name} className="text-center bg-white dark:bg-slate-700 p-2 rounded">
-                                                <span className="text-xl">{icon}</span>
-                                                <p className="text-xs font-bold">{name}</p>
-                                                <p className="text-xs text-slate-400">{note}</p>
+                                        {[['▬', '长方形', '头对尾相连'], ['■', '大正方形', '背靠背（如果它们的一边一样长）'], ['▲', '大大的三角形', '底和底并列']].map(([icon, name, note]) => (
+                                            <div key={name} className="flex flex-col items-center text-center bg-white dark:bg-slate-700 p-3 rounded-lg">
+                                                <span className="text-2xl mb-1">{icon}</span>
+                                                <p className="text-xs font-bold text-indigo-700 dark:text-indigo-400">{name}</p>
+                                                <p className="text-[10px] text-slate-500 mt-1">{note}</p>
                                             </div>
                                         ))}
                                     </div>
                                 </div>
                             </div>
                             <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-xl border-l-4 border-orange-500">
-                                <p className="font-bold text-orange-800 dark:text-orange-300 mb-1">💡 面积守恒</p>
-                                <p className="text-sm text-slate-600 dark:text-slate-400">不管怎么剪拼，总面积不变！（前提：同样的纸）</p>
+                                <p className="font-bold text-orange-800 dark:text-orange-300 mb-1">💡 永远不变的秘密 (面积守恒)</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">不管你怎么剪、怎么各种奇怪地拼，只要你没有把碎纸屑丢进垃圾桶，这块面团（原图形）的大小是一丁点都没少的！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 拼图大扫雷</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 瞎拼一气</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">把长长的边和短短的边硬要凑在一起拼，结果缝隙中间留着大大的洞口。</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 找相同的边来牵手</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">拼图的时候要知道，只有“一样长”的边相碰，才能严丝合缝地拼成一个新的完美图形哦！</p>
                             </div>
                         </div>
                     </div>
@@ -783,20 +891,20 @@ export const grade1Content = {
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Calculator className="w-6 h-6 text-indigo-600" />
-                            典型例题
+                            带着故事来挑战
                         </h2>
                         <div className="space-y-5">
                             <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
-                                <p className="font-bold text-slate-800 dark:text-white mb-2">例1：七巧板</p>
-                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">七巧板是由一个正方形剪成7个图形：5个三角形（大中小各几个）、1个正方形、1个平行四边形。可以拼成各种图案。</p>
-                                <p className="text-indigo-600 text-sm font-bold">关键：7块合在一起面积 = 原正方形面积</p>
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战1：七巧板大家族</p>
+                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">七巧板是一个大正方形剪出来的 7 块碎片组成家族哦（里面有 5个各种大小的三角形，1 个正方形哥哥，和 1 个平行四边形妹妹）！</p>
+                                <p className="text-indigo-600 text-sm font-bold">小秘密：虽然它们乱七八糟的，只要它们团圆聚在一起，还是跟原来的大正方形一样重（一样大）的！</p>
                             </div>
                             <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
-                                <p className="font-bold text-slate-800 dark:text-white mb-2">例2：数图形中的三角形个数</p>
-                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">一个大正方形沿两条对角线剪开，共产生几个三角形？</p>
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战2：切信封的蛋糕</p>
+                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">如果在正方形生日蛋糕上划一个大大“叉(X)”的形状，它就被切开成几块形状像什么的点心呢？</p>
                                 <div className="pl-4 border-l-4 border-purple-400 text-sm text-slate-600 dark:text-slate-400">
-                                    <p>两条对角线把正方形分成4个三角形。</p>
-                                    <p className="text-purple-600 font-bold">答：4个三角形</p>
+                                    <p>蛋糕里的那个X，其实就是两道对角线。</p>
+                                    <p className="text-purple-600 font-bold">完美解答：它会被切成整整齐齐的 4 块完全一样的三角形点心呀！</p>
                                 </div>
                             </div>
                         </div>
@@ -831,17 +939,17 @@ export const grade1Content = {
         },
         info: {
             title: "简单枚举（填数游戏）",
-            description: "试了这个试那个，一样一样找答案——这就是枚举法！学会有序思考，不漏答案不重复！",
+            description: "变成闯关大侦探！按顺序找线索，不急不躁，把所有的可能性都抓出来，一个都不漏！🕵️‍♂️",
             tags: [
                 { text: "思维进阶", color: "purple" },
                 { text: "25分钟", icon: Clock, color: "slate" }
             ]
         },
-        aiContext: "学生学习简单枚举法。核心思想：有序地列出所有可能，逐一检验。适用场景：填数游戏（□+□=8）、找规律（按顺序记录）、简单组合（有几种选法）。强调有序性防止遗漏和重复。",
-        aiChatTitle: "🤖 枚举小侦探",
-        aiChatIntro: "枚举法就是把所有可能都试一遍——但要有顺序！让我带你试试！",
+        aiContext: "学生学习简单枚举法。必须使用苏格拉底式提问。用『小侦探找线索』的情境。问：如果咱们像无头苍蝇一样乱找，是不是很容易漏掉？如果咱们排好队按顺序找呢？利用故事引出有序思考的重要性。",
+        aiChatTitle: "🕵️‍♂️ 闯关小侦探",
+        aiChatIntro: "哈喽！大侦探！咱们要找出所有的秘密宝藏，可不能乱翻，得排好队一个个来搜索！",
         aiMessages: [
-            { role: 'ai', content: '□ + □ = 8，两个框里填不同的数，有几种填法？先从1开始，一个一个找！' }
+            { role: 'ai', content: '如果有两个神秘的宝盒，里面装的宝石加起来必须刚好是 8 颗（且不能一样多）。咱们如果从第一个盒子只装 1 颗宝石开始试，能顺藤摸瓜找出几种装法呢？' }
         ],
         tabs: {
             concept: (
@@ -849,24 +957,42 @@ export const grade1Content = {
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Target className="w-6 h-6 text-purple-600" />
-                            枚举法：有序找答案
+                            侦探的排队大搜索 🔎
                         </h2>
                         <div className="space-y-5">
                             <div className="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-xl border-l-4 border-purple-500">
-                                <h3 className="font-bold text-purple-800 dark:text-purple-300 mb-2">什么是枚举法？</h3>
-                                <p className="text-sm text-slate-700 dark:text-slate-300">按照一定顺序，把所有可能的情况都列出来，再找出符合条件的答案。</p>
-                                <p className="text-sm text-purple-700 dark:text-purple-400 mt-2 font-bold">关键：有顺序！既不漏，也不重。</p>
+                                <h3 className="font-bold text-purple-800 dark:text-purple-300 mb-2">什么是排队大搜索？（其实叫枚举法）</h3>
+                                <p className="text-sm text-slate-700 dark:text-slate-300">就是把所有的嫌疑人（可能性）按照一定的顺序，排好队伍一个一个地揪出来！</p>
+                                <p className="text-sm text-purple-700 dark:text-purple-400 mt-2 font-bold">最高密码指令：要有顺序！不能漏掉，也不许重复排队哦。</p>
                             </div>
                             <div className="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-xl">
-                                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-3">例：□ + □ = 8（填1-7不同数）</h3>
+                                <h3 className="font-bold text-blue-800 dark:text-blue-300 mb-3">例：开宝箱密码 □ + □ = 8（填1到7，不能一样）</h3>
+                                <p className="text-sm text-slate-700 dark:text-slate-300 mb-2">我们从第一个框框最小的数字试起：</p>
                                 <div className="grid grid-cols-3 gap-2 text-sm font-mono">
                                     {[[1, 7], [2, 6], [3, 5], [4, 4], [5, 3], [6, 2], [7, 1]].map(([a, b], i) => (
-                                        <div key={i} className={`p-2 rounded-lg text-center ${a === b ? 'bg-red-100 dark:bg-red-900/30 text-red-600' : 'bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-400'}`}>
-                                            {a} + {b} = 8 {a === b && '(同)'}
+                                        <div key={i} className={`p-2 rounded-lg text-center ${a === b ? 'bg-red-100 dark:bg-red-900/30 text-red-600' : 'bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-600'}`}>
+                                            {a} + {b} = 8，{a === b ? '哎呀重复了' : 'Bingo!'}
                                         </div>
                                     ))}
                                 </div>
-                                <p className="text-blue-700 dark:text-blue-400 text-sm mt-2">去掉相同数字(4+4)，有 6 种。</p>
+                                <p className="text-blue-700 dark:text-blue-400 text-sm mt-3">看！去掉了两个密码数字一样的(4+4)，一共成功试出了 <strong>6 种</strong>密码组合！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 侦探迷糊陷阱</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 像无头苍蝇一样乱找</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">一会试 3+5，一会忽然想到去试 1+7，到最后自己都不知道找没找全，全搞晕了！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 从小到大排好队</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">比如咱们统一从最小的 1 开始试！1试完了找2，2找完了找3……这样就绝对不会漏啦！</p>
                             </div>
                         </div>
                     </div>
@@ -877,27 +1003,27 @@ export const grade1Content = {
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Calculator className="w-6 h-6 text-indigo-600" />
-                            典型例题
+                            带着故事来挑战
                         </h2>
                         <div className="space-y-5">
                             <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
-                                <p className="font-bold text-slate-800 dark:text-white mb-2">例1：用1、2、3组成两位数，共能组成几个不同的两位数？</p>
-                                <div className="pl-4 border-l-4 border-purple-400 text-sm text-slate-600 dark:text-slate-400">
-                                    <p>十位=1：12, 13（2个）</p>
-                                    <p>十位=2：21, 23（2个）</p>
-                                    <p>十位=3：31, 32（2个）</p>
-                                    <p className="text-purple-600 font-bold">共 6 个两位数</p>
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战1：用数字密码片 1、2、3 去开门，能组成多少个不同的两位数密码？</p>
+                                <div className="pl-4 border-l-4 border-purple-400 text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                                    <p>咱们也是从第一位数字开始排队！</p>
+                                    <p>如果第一位是 1：有 12, 13（找到 2 个）</p>
+                                    <p>如果第一位是 2：有 21, 23（又找到 2 个）</p>
+                                    <p>如果第一位是 3：有 31, 32（最后 2 个）</p>
+                                    <p className="text-purple-600 font-bold">完美解答：共找到 6 个密码组合！</p>
                                 </div>
                             </div>
                             <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
-                                <p className="font-bold text-slate-800 dark:text-white mb-2">例2：花有红、黄、蓝3色，蝴蝶和蜜蜂各停一朵，有几种停法？</p>
-                                <div className="pl-4 border-l-4 border-blue-400 text-sm text-slate-600 dark:text-slate-400">
-                                    <div className="space-y-1">
-                                        <p>蝴蝶→红：蜜蜂→黄或蓝（2种）</p>
-                                        <p>蝴蝶→黄：蜜蜂→红或蓝（2种）</p>
-                                        <p>蝴蝶→蓝：蜜蜂→红或黄（2种）</p>
-                                    </div>
-                                    <p className="text-blue-600 font-bold mt-1">共 6 种</p>
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战2：花园里有红色、黄色、蓝色 3 朵小花，小蝴蝶和小蜜蜂要各选一朵落下来休息，有多少种不同的选法？</p>
+                                <div className="pl-4 border-l-4 border-blue-400 text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                                    <p>还是用排队法！先让小蝴蝶挑：</p>
+                                    <p>🌸 小蝴蝶选红花：小蜜蜂只能选黄色或蓝色（2种）</p>
+                                    <p>🌼 小蝴蝶选黄花：小蜜蜂只能选红色或蓝色（2种）</p>
+                                    <p>🌺 小蝴蝶选蓝花：小蜜蜂只能选红色或黄色（2种）</p>
+                                    <p className="text-blue-600 font-bold mt-1">完美解答：一共有 6 种不同的风景哦！</p>
                                 </div>
                             </div>
                         </div>
