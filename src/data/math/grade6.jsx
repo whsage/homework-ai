@@ -1,6 +1,13 @@
 import { Icons, PracticeProblem, React } from './common';
 import CircleLab from './content/grade6/CircleLab';
 import FractionLab from '../../components/subjects/math/elementary/FractionLab';
+import RatioProportionLab from '../../components/subjects/math/elementary/RatioProportionLab';
+import PieChartLab from '../../components/subjects/math/elementary/PieChartLab';
+import NegativeNumberLab from '../../components/subjects/math/elementary/NegativeNumberLab';
+import WorkProblemLab from '../../components/subjects/math/elementary/WorkProblemLab';
+import ConcentrationLab from '../../components/subjects/math/elementary/ConcentrationLab';
+import ComplexDistanceLab from '../../components/subjects/math/elementary/ComplexDistanceLab';
+import GeometryAdvLab from '../../components/subjects/math/elementary/GeometryAdvLab';
 import { MousePointer2 } from 'lucide-react';
 const { Lightbulb, Target, Clock, Star, Brain, Calculator } = Icons;
 
@@ -41,15 +48,15 @@ export const grade6Content = {
             properties: (
                 <div className="space-y-6">
                     <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
-                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 易错点警示</h3>
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 分数四则的“翻车现场”</h3>
                         <div className="grid md:grid-cols-2 gap-4">
                             <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
-                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 错误做法</p>
-                                <p className="text-sm text-slate-600 dark:text-slate-400">1/2 + 1/3 = 2/5 （分子加分子，分母加分母，大错特错！）</p>
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 粗暴相加</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">1/2 + 1/3 = 2/5。分子加分子，分母加分母？想象一下，半个西瓜加三分之一个西瓜，拼出来变成五分之二个更小的西瓜了？完全讲不通嘛！</p>
                             </div>
                             <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
-                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 正确做法</p>
-                                <p className="text-sm text-slate-600 dark:text-slate-400">通分！3/6 + 2/6 = 5/6 （分母不变，分子相加）</p>
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 统一尺寸再合并</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">加减法必须要**通分**！就像不同国家的人做生意要用统一货币。把它们都切成 1/6 的大小：3/6 + 2/6 = 5/6。而乘除法呢？记住“除以一个数，等于乘以它的倒数”，遇到除号，果断翻转！</p>
                             </div>
                         </div>
                     </div>
@@ -115,6 +122,23 @@ export const grade6Content = {
                             </div>
                             <div className="bg-yellow-50 dark:bg-yellow-900/20 p-3 rounded-xl text-center">
                                 <p className="text-sm font-bold text-yellow-700 dark:text-yellow-300">π ≈ 3.14（计算时用3.14）</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 绕着圆圈走出的迷宫</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 半径直径分不清</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">算面积直接用直径的平方去乘 π，算周长又用半径去乘 π。张冠李戴，出来的结果差了四倍！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 认准“元神”是半径</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">做圆的题，第一眼先看给你的是**半径(r)**还是**直径(d)**！拿到直径先除以2求出半径，这是最稳妥的起手式。面积公式 S=πr² 里面有个平方，意味着它长得很快；周长公式 C=2πr 只是简单地乘2。别让公式套错了主角！</p>
                             </div>
                         </div>
                     </div>
@@ -197,6 +221,23 @@ export const grade6Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 比例里的“跷跷板”陷阱</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 位置对应错乱</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">比如模型比例是 1:10，实际高度 50m，排方程写成 10:1 = x:50。谁在左边谁在右边，全凭感觉，最后出来的楼房比指甲盖还小！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 注意项的前后顺序</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">比例的灵魂叫做**对应**！如果左边是“模型:实际”，右边也绝对、必须是“模型(x):实际(50)”，所以正确的方程是 1:10 = x:50。解比例方程时，默念十字交叉口诀：**外项之积等于内项之积**，跷跷板就永远平衡！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
@@ -216,6 +257,17 @@ export const grade6Content = {
                 <div className="space-y-6">
                     <PracticeProblem id={620} type="choice" question="化简比 45:60 = ?" options={[{ label: 'A', value: '3:4' }, { label: 'B', value: '9:12' }, { label: 'C', value: '4:3' }, { label: 'D', value: '15:20' }]} answer="A" explanation="GCD(45,60)=15；45÷15:60÷15=3:4。" />
                     <PracticeProblem id={621} type="choice" question="解比例：3:x = 9:15，x = ?" options={[{ label: 'A', value: '3' }, { label: 'B', value: '4' }, { label: 'C', value: '5' }, { label: 'D', value: '6' }]} answer="C" explanation="9x=3×15=45；x=5。" />
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：黄金比例果汁
+                        </h2>
+                        <RatioProportionLab />
+                    </div>
                 </div>
             )
         }
@@ -254,6 +306,23 @@ export const grade6Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 披萨分法的常见错觉</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 直接比绝对数量</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">看到六(1)班饼图里喜欢足球的有 40%，且六(2)班饼图里喜欢足球的才 30%，就断定六(1)班喜欢足球的人数一定更多？那就大错特错啦！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 牢记“相对”与“绝对”</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">扇形图展示的永远是**相对比例（百分比）**，而不是绝对数量！如果六(1)班只有10个人，40%也就是4个人；六(2)班如果有100个人，30%就是30个人！在不知道两个班“总人数（大饼到底有多大）”的前提下，跨图比较具体人数就是典型的“盲人摸象”。记住，看饼图要在同一个大饼里比！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
@@ -272,6 +341,17 @@ export const grade6Content = {
                 <div className="space-y-6">
                     <PracticeProblem id={630} type="choice" question="扇形图中某数据占40%，对应圆心角是多少？" options={[{ label: 'A', value: '40°' }, { label: 'B', value: '80°' }, { label: 'C', value: '144°' }, { label: 'D', value: '120°' }]} answer="C" explanation="40%×360°=144°。" />
                     <PracticeProblem id={631} type="choice" question="某扇形圆心角为90°，代表的数据占总量的？" options={[{ label: 'A', value: '25%' }, { label: 'B', value: '30%' }, { label: 'C', value: '40%' }, { label: 'D', value: '45%' }]} answer="A" explanation="90°÷360°=25%。" />
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：数据披萨饼图
+                        </h2>
+                        <PieChartLab />
+                    </div>
                 </div>
             )
         }
@@ -311,6 +391,23 @@ export const grade6Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 0度以下的方向感倒错</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 绝对值大的就大</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">一看 -10 和 -2，觉得 10 这个数字比 2 看着霸气，就直接判定 -10 &gt; -2？那是在正数世界的惯性思维！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 画出心中的数轴</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">在负数世界，大小法则完全“镜像翻转”了！想象温度计：零下10度一定比零下2度更冷，所以在数轴上，-10是在-2的左边。**在数轴上，右边的数永远大于左边**！判断负数大小，最简单的方法就是想想谁负的债更多？欠 10 块钱显然比欠 2 块钱更穷（更小）。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
@@ -330,6 +427,17 @@ export const grade6Content = {
                 <div className="space-y-6">
                     <PracticeProblem id={640} type="choice" question="下面哪个不等式正确？" options={[{ label: 'A', value: '-5 > -3' }, { label: 'B', value: '-1 < 0' }, { label: 'C', value: '-10 > -2' }, { label: 'D', value: '3 < -5' }]} answer="B" explanation="-1在0左边，-1<0正确。-5<-3，-10<-2，3>-5。" />
                     <PracticeProblem id={641} type="choice" question="绝对值最大的数是？" options={[{ label: 'A', value: '-8' }, { label: 'B', value: '6' }, { label: 'C', value: '-5' }, { label: 'D', value: '7' }]} answer="A" explanation="|-8|=8最大（注意题目问绝对值最大，不是数最大）。" />
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：负数探险
+                        </h2>
+                        <NegativeNumberLab />
+                    </div>
                 </div>
             )
         }
@@ -371,6 +479,23 @@ export const grade6Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 工程合作的计算幻觉</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 直接加减时间</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">甲需要 10 天，乙需要 15 天。算合作时间怎么算？直接 10+15=25 天？两个人一起干活反而更慢了，那叫添乱！或者是 (10+15)÷2=12.5天？都不对！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 永远只把效率相加</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">在工程问题里，绝对不能直接加减时间，唯一能加减的只有**效率**！你必须始终坚守：效率 = 1 ÷ 天数。把他们每个人一天能干的活儿（1/10 和 1/15）挑出来相加，算出合作一天的“大招威力”（1/6），最后再用工程总量“1”去除以大招威力，才是正确的通关密码！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
@@ -389,6 +514,17 @@ export const grade6Content = {
             practice: (
                 <div className="space-y-6">
                     <PracticeProblem id={650} type="choice" question="甲12天完成，乙8天完成，合作几天完成？" options={[{ label: 'A', value: '4天' }, { label: 'B', value: '4.8天' }, { label: 'C', value: '5天' }, { label: 'D', value: '6天' }]} answer="B" explanation="1/12+1/8=2/24+3/24=5/24；1÷(5/24)=24/5=4.8天。" />
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：工程合作模拟
+                        </h2>
+                        <WorkProblemLab />
+                    </div>
                 </div>
             )
         }
@@ -428,6 +564,23 @@ export const grade6Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 调配药水的致命失误</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 浓度直接相加减</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">把20%的盐水和30%的盐水混在一起，浓度变成50%了？那两杯50%的掺在一块儿岂不是成了100%纯盐？！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 溶质和溶液分别相加</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">千万记得：无论加水、蒸发水还是加盐、混合，**溶质和溶液是实打实的质量，可以随时加减**；但浓度是一个“比例”，绝对不能直接加减！混合求浓度，必须老老实实地算出“混合后的总溶质”除以“混合后的总溶液”。这就像算平均分，不能把两个班的平均分直接相加！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
@@ -446,6 +599,17 @@ export const grade6Content = {
             practice: (
                 <div className="space-y-6">
                     <PracticeProblem id={660} type="choice" question="50g25%的盐水蒸发20g水后，浓度变多少？" options={[{ label: 'A', value: '37.5%' }, { label: 'B', value: '40%' }, { label: 'C', value: '41.7%' }, { label: 'D', value: '50%' }]} answer="C" explanation="溶质：50×25%=12.5g；蒸发后溶液=50-20=30g；浓度=12.5/30≈41.7%。" />
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：浓度配置
+                        </h2>
+                        <ConcentrationLab />
+                    </div>
                 </div>
             )
         }
@@ -481,6 +645,23 @@ export const grade6Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 折返跑里的晕头转向</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 把路程当位置</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">算出甲走了 180 米（全程 100 米），就回答“甲在距离起点 180 米处”。跑道长度只有 100，他跑到外面去了？！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 折纸法还原定点位置</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">算出总路程后，你要像叠纸条一样把它对应到跑道上！走过几个完整跑道，就在哪个终点掉头。剩下的“余数”才是决定他在跑道什么位置的关键。记住：偶数个全程回到原点，奇数个全程走到对岸。除法求余之后，画个箭头标一标，答案自然水落石出！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
@@ -498,6 +679,17 @@ export const grade6Content = {
             practice: (
                 <div className="space-y-6">
                     <PracticeProblem id={670} type="choice" question="甲乙速度比2:3，全程200m。第一次相遇时甲走了多少m？" options={[{ label: 'A', value: '60m' }, { label: 'B', value: '80m' }, { label: 'C', value: '100m' }, { label: 'D', value: '120m' }]} answer="B" explanation="第1次合走200m，甲走=200×2/5=80m。" />
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：多次相遇模拟
+                        </h2>
+                        <ComplexDistanceLab />
+                    </div>
                 </div>
             )
         }
@@ -533,6 +725,23 @@ export const grade6Content = {
                                     <p>2¹=2，2²=4，2³=8余1，2⁴余2…每3次循环</p>
                                     <p>10÷3=3余1，所以2¹⁰余数=2¹余数=2</p>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 余数迷宫的死胡同</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 余数大于除数</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">两数相加，余数 4 加余数 5 得到 9，于是直接得出“除以 7 余 9”。余数怎么能比除数还大呢？这说明分赃根本没分完！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 给余数继续“瘦身”</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">利用了“和的余数等于余数的和”或“积的余数”之后，如果你得到的临时余数**≧除数**，千万不要停下来！必须继续对除数求余（比如 9÷7 余 2），直到它乖乖地变回比除数小的数为止。同余运算的核心精髓就是：随时除以除数“甩掉赘肉”！</p>
                             </div>
                         </div>
                     </div>
@@ -592,6 +801,23 @@ export const grade6Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 阴影面积的视觉欺骗</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 硬算不规则图形</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">盯着一块像月牙又像叶子的不规则阴影，试图去翻找一本存在于幻想中的《月牙面积公式大全》。根本没有那个公式好吗！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 容斥原理与割补法</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">所有不规则的阴影，都是规则图形拼凑出来的“迷彩服”！遇到怪异形状，马上启动两个大招：一是用一个大规则图形**减去**空白的规则图形（挖洞法）；二是把奇怪的图形从中间**切开**，甚至移到旁边的空缺处拼成一个长方形（割补法）。多画辅助线，寻找隐藏的正方形和圆！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
@@ -610,6 +836,17 @@ export const grade6Content = {
             practice: (
                 <div className="space-y-6">
                     <PracticeProblem id={690} type="choice" question="边长10cm正方形内有内切圆，阴影（正方形-圆）面积约是？（π≈3.14）" options={[{ label: 'A', value: '21.5cm²' }, { label: 'B', value: '78.5cm²' }, { label: 'C', value: '100cm²' }, { label: 'D', value: '25cm²' }]} answer="A" explanation="正方形100cm²；圆r=5，面积=3.14×25=78.5cm²；阴影=100-78.5=21.5cm²。" />
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：组合图形面积
+                        </h2>
+                        <GeometryAdvLab />
+                    </div>
                 </div>
             )
         }

@@ -1,6 +1,10 @@
-import { Icons, PracticeProblem, React, generateDefaultContent } from './common';
+import { Icons, PracticeProblem, React } from './common';
 import AdditionLab from '../../components/subjects/math/elementary/AdditionLab';
 import ShapeLab from '../../components/subjects/math/elementary/ShapeLab';
+import MatchstickLab from '../../components/subjects/math/elementary/MatchstickLab';
+import ClockLab from '../../components/subjects/math/elementary/ClockLab';
+import NumberGrid100 from '../../components/subjects/math/elementary/NumberGrid100';
+import ShapePartitionLab from '../../components/subjects/math/elementary/ShapePartitionLab';
 
 const {
     Lightbulb, Target, Clock, Star, Brain, Calculator
@@ -235,6 +239,9 @@ export const grade1Content = {
                         </div>
                     </div>
                 </div>
+            ),
+            interactive: (
+                <NumberGrid100 />
             ),
             examples: (
                 <div className="space-y-6">
@@ -517,6 +524,9 @@ export const grade1Content = {
                     </div>
                 </div>
             ),
+            interactive: (
+                <ClockLab />
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -755,6 +765,9 @@ export const grade1Content = {
                     </div>
                 </div>
             ),
+            interactive: (
+                <MatchstickLab />
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -885,6 +898,9 @@ export const grade1Content = {
                         </div>
                     </div>
                 </div>
+            ),
+            interactive: (
+                <ShapePartitionLab />
             ),
             examples: (
                 <div className="space-y-6">

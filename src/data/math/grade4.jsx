@@ -5,7 +5,13 @@ import VerticalDivisionVisualizer from '../../components/subjects/math/elementar
 import DecimalGridVisualizer from '../../components/subjects/math/elementary/DecimalGridVisualizer';
 import OperationOrderVisualizer from '../../components/subjects/math/elementary/OperationOrderVisualizer';
 import BarChartVisualizer from '../../components/subjects/math/elementary/BarChartVisualizer';
-import { Icons, PracticeProblem, React, generateDefaultContent } from './common';
+import PlaceValueLab from '../../components/subjects/math/elementary/PlaceValueLab';
+import TapeDiagramLab from '../../components/subjects/math/elementary/TapeDiagramLab';
+import OperationsLawsLab from '../../components/subjects/math/elementary/OperationsLawsLab';
+import OperatorMachineLab from '../../components/subjects/math/elementary/OperatorMachineLab';
+import MagicSquareLab from '../../components/subjects/math/elementary/MagicSquareLab';
+import LogicTableLab from '../../components/subjects/math/elementary/LogicTableLab';
+import { Icons, PracticeProblem, React } from './common';
 
 const {
     Lightbulb, Target, TrendingUp, Clock, Star, Brain, CheckCircle, Sparkles, ChevronRight, Calculator, Award, AlertCircle
@@ -39,6 +45,17 @@ export const grade4Content = {
             { role: 'ai', content: <>太聪明了！这就是“亿级”、“万级”和“个级”。读起来就像：十四亿，一千一百七十八万。是不是一下就清晰了？🌟</>, type: 'success' },
         ],
         tabs: {
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：数位板与分级读数
+                        </h2>
+                        <PlaceValueLab />
+                    </div>
+                </div>
+            ),
             concept: (
                 <div className="space-y-8">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -362,53 +379,18 @@ export const grade4Content = {
             ),
             properties: (
                 <div className="space-y-6">
-                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
-                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
-                            <Ruler className="w-6 h-6 text-indigo-600" />
-                            量角的方法
-                        </h2>
-                        <div className="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-300">
-                            <ul className="space-y-4">
-                                <li className="flex items-start gap-3">
-                                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-indigo-100 dark:bg-indigo-900 rounded-full text-indigo-600 dark:text-indigo-400 font-bold">1</span>
-                                    <div>
-                                        <strong>点对点</strong>
-                                        <p className="text-sm mt-1 text-slate-500">量角器的中心点对准角的顶点。</p>
-                                    </div>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-indigo-100 dark:bg-indigo-900 rounded-full text-indigo-600 dark:text-indigo-400 font-bold">2</span>
-                                    <div>
-                                        <strong>线对边</strong>
-                                        <p className="text-sm mt-1 text-slate-500">量角器的0刻度线对准角的一条边。</p>
-                                    </div>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-indigo-100 dark:bg-indigo-900 rounded-full text-indigo-600 dark:text-indigo-400 font-bold">3</span>
-                                    <div>
-                                        <strong>读刻度</strong>
-                                        <p className="text-sm mt-1 text-slate-500">看角的另一条边指向的刻度。（注意：如果0刻度线在内圈，就读内圈刻度；在外圈，就读外圈刻度）</p>
-                                    </div>
-                                </li>
-                            </ul>
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 量角器的内涵与外延</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 读错圈的乌龙</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">明明是个尖尖的锐角（比如30°），一不小心读成了外圈的 150°，变成钝角啦！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 顺藤摸瓜找零点</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">大白话秘诀：看角的一边指着哪边的“0”！如果指着内圈的“0”，就乖乖读内圈的数字；如果指着外圈的“0”，就读外圈。顺藤摸瓜，准没错！</p>
+                            </div>
                         </div>
-                    </div>
-
-                    <div className="bg-red-50 dark:bg-red-900/10 p-6 rounded-xl border-l-4 border-red-500">
-                        <h3 className="font-bold text-red-800 dark:text-red-300 mb-3 flex items-center gap-2">
-                            <AlertCircle className="w-5 h-5" />
-                            易错点警示
-                        </h3>
-                        <ul className="space-y-2 text-slate-700 dark:text-slate-300 text-sm">
-                            <li className="flex gap-2">
-                                <span className="text-red-500 font-bold">×</span>
-                                <span>错误：读错刻度，把外圈刻度读成内圈刻度。</span>
-                            </li>
-                            <li className="flex gap-2">
-                                <span className="text-green-500 font-bold">√</span>
-                                <span>纠正：<strong>0刻度线在哪一圈，就读哪一圈的刻度。</strong>如果不确定，先估计一下角是锐角还是钝角。</span>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             ),
@@ -576,34 +558,16 @@ export const grade4Content = {
             ),
             properties: (
                 <div className="space-y-6">
-                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
-                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
-                            <AlertCircle className="w-6 h-6 text-red-600" />
-                            常见错误分析
-                        </h2>
-                        <div className="space-y-4">
-                            <div className="flex items-start gap-3 p-4 bg-red-50 dark:bg-red-900/10 rounded-lg border-l-4 border-red-500">
-                                <div className="text-red-500 font-bold text-xl">×</div>
-                                <div>
-                                    <h3 className="font-bold text-slate-800 dark:text-white">试商后不调商</h3>
-                                    <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">
-                                        例如：计算 84 ÷ 23，把 23 看作 20，试商 4。23 × 4 = 92 &gt; 84。
-                                        <br />
-                                        <strong>纠正：</strong>积比被除数大，说明商大了，要调小（改商 3）。
-                                    </p>
-                                </div>
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 除法大师的翻车现场</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 死拽着错误不放</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">试商 4，发现减出来的余数比除数还大！或者发现乘出来的积比被除数大根本减不掉，就在那里发懵。</p>
                             </div>
-
-                            <div className="flex items-start gap-3 p-4 bg-red-50 dark:bg-red-900/10 rounded-lg border-l-4 border-red-500">
-                                <div className="text-red-500 font-bold text-xl">×</div>
-                                <div>
-                                    <h3 className="font-bold text-slate-800 dark:text-white">忘记写商 0</h3>
-                                    <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">
-                                        例如：计算 720 ÷ 24。先用 72 ÷ 24 = 3。个位 0 落下来，0 除以 24 不够除。
-                                        <br />
-                                        <strong>纠正：</strong>不够除时，必须在个位商 0 占位。
-                                    </p>
-                                </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 勇敢地调转方向</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">大声念出来：试商只是“试”！余数比除数大？说明分得太少，商变大一点！积比被除数大减不掉？说明分得太多啦，赶紧把商调小一点！</p>
                             </div>
                         </div>
                     </div>
@@ -1279,21 +1243,16 @@ export const grade4Content = {
             ),
             properties: (
                 <div className="space-y-6">
-                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
-                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
-                            <AlertCircle className="w-6 h-6 text-red-600" />
-                            易错点
-                        </h2>
-                        <div className="space-y-4">
-                            <div className="bg-red-50 dark:bg-red-900/10 p-4 rounded-xl">
-                                <h3 className="font-bold text-slate-800 dark:text-white mb-1">误区：平均数=实际数</h3>
-                                <p className="text-sm text-slate-600 dark:text-slate-400">
-                                    小明身高 140cm，他去游泳。池塘平均水深 130cm。
-                                    <br />
-                                    <span className="text-red-500 font-bold">错误想法：</span> 平均水深才 130，比小明矮，所以小明肯定淹不到。
-                                    <br />
-                                    <span className="text-green-600 font-bold">正解：</span> 平均水深 130，说明有的地方可能只有 50cm，但有的深水区可能 200cm！<strong>千万不能只看平均数下水！</strong>
-                                </p>
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 数据世界的幻影</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 假象：平均数就是真实的某个数</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">平均水深 1.2 米的河，小明身高 1.4 米去游泳很安全？错！平均水深 1.2 米，意味着有些地方可能只有 0.5 米，但有些地方可能深达 2 米！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 真相：它只代表一个“水平”</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">平均数是一个“虚拟”的数，它代表了大家“平摊”后都在哪个标准线上。所以在碰到有关平均数的问题时，记住它只是个参考线，不能代表每个人或每个地方的真实情况哦！</p>
                             </div>
                         </div>
                     </div>
@@ -1374,6 +1333,17 @@ export const grade4Content = {
             { role: 'ai', content: <>太棒了！找到了小的，大的只要再加回那个 8 就行了（14 + 8 = 22）。这就是**“和差术”**！是不是像破解密码一样有趣？🌟</>, type: 'success' }
         ],
         tabs: {
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：和差倍解密线段图
+                        </h2>
+                        <TapeDiagramLab />
+                    </div>
+                </div>
+            ),
             concept: (
                 <div className="space-y-8">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -1405,6 +1375,23 @@ export const grade4Content = {
                                     <p>小数 = 差 ÷ (倍数 - 1)</p>
                                     <p>大数 = 小数 × 倍数</p>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 线段图里的隐形坑</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 凭感觉瞎猜</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">“甲比乙多8，和是20，那甲就是20减8等于12，乙是8！” —— 哎呀，你验算一下，12+8=20没错，但是12-8=4，甲并没有比乙多8呀！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 不画图不解题</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">这类题的唯一解药就是**画线段图**！把文字变成长短不一的线条，多出来的那一截一标上去，你会发现：只要把多出来的部分“砍掉”，两根线段就一样长了！这时候再除以2，就找到了短的那根！</p>
                             </div>
                         </div>
                     </div>
@@ -1501,6 +1488,17 @@ export const grade4Content = {
             { role: 'ai', content: <>嘿嘿，寻找 25 的好伙伴 4！把 44 拆成 4 × 11。25 × 4 = 100，再乘 11 就是 1100。这就是**“拆数魔法”**！🌟</>, type: 'success' }
         ],
         tabs: {
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：运算定律魔法盒
+                        </h2>
+                        <OperationsLawsLab />
+                    </div>
+                </div>
+            ),
             concept: (
                 <div className="space-y-8">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -1622,6 +1620,17 @@ export const grade4Content = {
             { role: 'ai', content: 'Bingo！完全正确！你已经掌握了外星数学的精髓：**“对号入座”**。不管符号长多奇怪，只要看清它的说明书，就能轻松搞定！🌟' }
         ],
         tabs: {
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：神奇规则加工厂
+                        </h2>
+                        <OperatorMachineLab />
+                    </div>
+                </div>
+            ),
             concept: (
                 <div className="space-y-8">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -1651,6 +1660,23 @@ export const grade4Content = {
                                         </div>
                                     </div>
                                 ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 符号工厂的说明书灾难</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 认错位置</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">比如定义 a★b = a×2 - b。求 3★5 时，看都不看就把 5 当成了 a，结果算出了 5×2-3=7。大错特错！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 按部就班对号入座</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">符号左边的是 a，右边的是 b。3 在前面，所以 3 就是 a；5 在后面，5 就是 b！代入：3×2 - 5 = 1！如果遇到复杂的式子，要先把括号里的“加工”完，再进行下一步操作！</p>
                             </div>
                         </div>
                     </div>
@@ -1738,6 +1764,17 @@ export const grade4Content = {
             { role: 'ai', content: '机智！5 就像是轴心，支撑着整个方阵。有了它，其他的数字就能通过“对对碰”找到自己的位置。我们去互动区试试，能不能布出你的阵法？🌟' }
         ],
         tabs: {
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：九宫格幻方挑战
+                        </h2>
+                        <MagicSquareLab />
+                    </div>
+                </div>
+            ),
             concept: (
                 <div className="space-y-8">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -1776,6 +1813,23 @@ export const grade4Content = {
                                     <li>🎯 <strong>确定格</strong>：已知两格，第三格 = 公共和 - 已知两格之和</li>
                                     <li>🎯 <strong>奇数格</strong>：角格填偶数，边中格填奇数（1-9标准幻方）</li>
                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 幻方的迷阵</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 拿到直接死算</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">不求公共和，不找中心数，直接在那一边填一边擦，最后发现死活填不对，心态崩了。</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 擒贼先擒王</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">幻方是有生命的！先求出最重要的“心脏”——**中心格**，再算出每条直线的“灵魂”——**公共和**。有了这两个定海神针，再去填其他的格子，就像玩拼图一样轻松！</p>
                             </div>
                         </div>
                     </div>
@@ -1871,6 +1925,17 @@ export const grade4Content = {
             { role: 'ai', content: '如果乙在说谎，那他说的“丙在说谎”就是假的，说明丙没说谎。哎？这跟丙自己说的“我没说谎”对上了！这就说明我们的假设成功了！🌟' }
         ],
         tabs: {
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：大侦探逻辑表
+                        </h2>
+                        <LogicTableLab />
+                    </div>
+                </div>
+            ),
             concept: (
                 <div className="space-y-8">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -1908,6 +1973,23 @@ export const grade4Content = {
                                     当多个人的陈述中有真有假时，逐一假设每人说真话，
                                     看哪种情况能与所有已知条件自洽。
                                 </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 推理路上的烟雾弹</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 只看一半</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">“哦！假设施法的是A，那就对了！”然而后面的条件根本没看。导致推理出了一堆自相矛盾的东西。</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 顺藤摸瓜，自圆其说</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">无论是列表还是假设，最重要的就是找出**突破口**！那部分肯定是真的，或者那几句话里面有**矛盾**的地方，就是我们的切入点。最后别忘了把得出的结论带回题目里，看看大家的话能不能完美闭环哦！</p>
                             </div>
                         </div>
                     </div>

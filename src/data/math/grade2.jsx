@@ -1,5 +1,10 @@
 import { Icons, PracticeProblem, React } from './common';
 import MultiplicationLab from '../../components/subjects/math/elementary/MultiplicationLab';
+import MeasurementLab from '../../components/subjects/math/elementary/MeasurementLab';
+import AngleFinder from '../../components/subjects/math/elementary/AngleFinder';
+import EmojiStats from '../../components/subjects/math/elementary/EmojiStats';
+import CyclePredictor from '../../components/subjects/math/elementary/CyclePredictor';
+import SumDiffScale from '../../components/subjects/math/elementary/SumDiffScale';
 const { Lightbulb, Target, Clock, Star, Brain, Calculator } = Icons;
 
 export const grade2Content = {
@@ -189,6 +194,9 @@ export const grade2Content = {
                         </div>
                     </div>
                 </div>
+            ),
+            interactive: (
+                <MeasurementLab />
             ),
             examples: (
                 <div className="space-y-6">
@@ -400,6 +408,9 @@ export const grade2Content = {
                     </div>
                 </div>
             ),
+            interactive: (
+                <AngleFinder />
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -493,6 +504,9 @@ export const grade2Content = {
                     </div>
                 </div>
             ),
+            interactive: (
+                <EmojiStats />
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -576,6 +590,9 @@ export const grade2Content = {
                         </div>
                     </div>
                 </div>
+            ),
+            interactive: (
+                <CyclePredictor />
             ),
             examples: (
                 <div className="space-y-6">
@@ -667,6 +684,9 @@ export const grade2Content = {
                         </div>
                     </div>
                 </div>
+            ),
+            interactive: (
+                <SumDiffScale />
             ),
             examples: (
                 <div className="space-y-6">

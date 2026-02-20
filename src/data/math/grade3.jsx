@@ -1,5 +1,14 @@
 import { Icons, PracticeProblem, React } from './common';
 import FractionLab from '../../components/subjects/math/elementary/FractionLab';
+import PerimeterAreaLab from '../../components/subjects/math/elementary/PerimeterAreaLab';
+import TreePlantingLab from '../../components/subjects/math/elementary/TreePlantingLab';
+import ChickenRabbitLab from '../../components/subjects/math/elementary/ChickenRabbitLab';
+import MultiDigitMultiplicationLab from '../../components/subjects/math/elementary/MultiDigitMultiplicationLab';
+import VerticalDivisionVisualizer from '../../components/subjects/math/elementary/VerticalDivisionVisualizer';
+import MassUnitLab from '../../components/subjects/math/elementary/MassUnitLab';
+import ProfitLossLab from '../../components/subjects/math/elementary/ProfitLossLab';
+import UnitProblemLab from '../../components/subjects/math/elementary/UnitProblemLab';
+import AgeProblemLab from '../../components/subjects/math/elementary/AgeProblemLab';
 const { Lightbulb, Target, Clock, Star, Brain, Calculator } = Icons;
 
 export const grade3Content = {
@@ -46,6 +55,23 @@ export const grade3Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 收银员算账雷区</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 忘记自己在哪层楼</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">算十位的时候，直接跟个位对齐写！结果明明是算 230，你偏写个 23 放在个位下面！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 给十位留出位置</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">大声念出来：十位上乘出来的数都是几十！所以，最右边的位置（个位）要空着呀，或者放个隐藏的 “0” 占位置！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -68,6 +94,12 @@ export const grade3Content = {
                 <div className="space-y-6">
                     <PracticeProblem id={300} type="choice" question="45 × 23 = ？" options={[{ label: 'A', value: '935' }, { label: 'B', value: '1035' }, { label: 'C', value: '1030' }, { label: 'D', value: '945' }]} answer="B" explanation="45×3=135，45×20=900，135+900=1035。" />
                     <PracticeProblem id={301} type="choice" question="648 ÷ 8 = ？" options={[{ label: 'A', value: '71' }, { label: 'B', value: '81' }, { label: 'C', value: '91' }, { label: 'D', value: '61' }]} answer="B" explanation="6÷8不够，64÷8=8，再看8÷8=1，所以648÷8=81。" />
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-12">
+                    <MultiDigitMultiplicationLab />
+                    <VerticalDivisionVisualizer />
                 </div>
             )
         }
@@ -207,6 +239,26 @@ export const grade3Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 测量陷阱大全</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 只量了半圈</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">算出 长方形周长 = 长 + 宽！喂，蚂蚁只走了对面那两条边，剩下的两条边飞过去吗？</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 周长必须封闭！</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">"周"代表周围一整圈哦！走完一条长和一条宽，只走了一半。必须用括号括起来 (长+宽) 再乘 2 呀！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            interactive: (
+                <PerimeterAreaLab />
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -282,6 +334,23 @@ export const grade3Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 砝码大乌龙</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 关公大战秦琼（乱比较）</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">觉得 500 克 比 2 千克重，因为 500 这个数字比 2 大多了！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 必须换成同样的单位</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">比大小之前，先换算！把 2 千克 变成 2000 克。你看，2000 克 当然比 500 克大得多呀！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -305,6 +374,9 @@ export const grade3Content = {
                     <PracticeProblem id={330} type="choice" question="4kg 500g = ___g" options={[{ label: 'A', value: '450g' }, { label: 'B', value: '4500g' }, { label: 'C', value: '45000g' }, { label: 'D', value: '405g' }]} answer="B" explanation="4kg=4000g，4000+500=4500g。" />
                     <PracticeProblem id={331} type="choice" question="一袋糖果重600g，买5袋共多少kg多少g？" options={[{ label: 'A', value: '3kg' }, { label: 'B', value: '2kg500g' }, { label: 'C', value: '3000g' }, { label: 'D', value: '3kg和A相同' }]} answer="A" explanation="600×5=3000g=3kg。" />
                 </div>
+            ),
+            interactive: (
+                <MassUnitLab />
             )
         }
     },
@@ -341,6 +413,26 @@ export const grade3Content = {
                         </div>
                     </div>
                 </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 建造师的粗心陷阱</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 距离除以间隔 = 树的棵数</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">比如 120米长，每隔8米种一棵。直接 120 ÷ 8 = 15棵！完蛋，有一头忘记种树啦！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 分清情况再加减</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">除出来的 15 是『有几个缝隙』！如果是直直的马路两头都种，你要加 1（像手指头比缝隙多1个）。如果是围城圈圈，才是不加不减呢！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            interactive: (
+                <TreePlantingLab />
             ),
             examples: (
                 <div className="space-y-6">
@@ -409,6 +501,26 @@ export const grade3Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 算错腿的乌龙事件</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 算出来的全当成鸡</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">费好大劲最后算出那“多出来的腿 ÷ 2 = 7”。哎呀！7 只鸡！—— 小心啦，弄反了！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 想想是谁在捣鬼？</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">因为我们一开始【假设全是鸡】，那【多出来的腿】必定是偷偷藏起两只脚的兔子给的！所以算出来的这个 7，它当然是【兔子】呀！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            interactive: (
+                <ChickenRabbitLab />
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -471,6 +583,23 @@ export const grade3Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 算差额的迷魂阵</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 多5和少4，差额是1？</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">看到多 5 个，又看到少 4 个，直接用 5 减去 4，算出总差额是 1 个！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 一多一少要相加</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">就像温度计！原先是 多出来 5 颗（+5度），后来变成了 少 4 颗（-4度），这一上一下，足足差了 5 + 4 = 9 颗糖哦！记住：一盈一亏，要把数字加起来！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -492,6 +621,9 @@ export const grade3Content = {
                 <div className="space-y-6">
                     <PracticeProblem id={360} type="choice" question="分本子，每人7本少4本，每人8本多2本，有几人？" options={[{ label: 'A', value: '4人' }, { label: 'B', value: '5人' }, { label: 'C', value: '6人' }, { label: 'D', value: '7人' }]} answer="C" explanation="人数=(4+2)÷(8-7)=6÷1=6人。" />
                 </div>
+            ),
+            interactive: (
+                <ProfitLossLab />
             )
         }
     },
@@ -535,6 +667,23 @@ export const grade3Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 特工迷失方向</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 忘了除法是谁除以谁</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">5 辆卡车运 75 吨。你想算 1辆 运多少，脑子一迷糊，列个 5 ÷ 75？或者不知道该除以时间还是除以车数了。</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 盯着你想求的那个『1』</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">大声问自己想要什么？我想知道【1 辆卡车】运多少！既然要把 5辆 变成 1辆，那就把总重量 75吨 平均分成 5 份！所以是 总重 ÷ 5！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -557,6 +706,9 @@ export const grade3Content = {
                 <div className="space-y-6">
                     <PracticeProblem id={370} type="choice" question="3台机器4小时生产1200个零件，6台机器8小时能生产几个？" options={[{ label: 'A', value: '2400个' }, { label: 'B', value: '4800个' }, { label: 'C', value: '3200个' }, { label: 'D', value: '3600个' }]} answer="B" explanation="每台每小时：1200÷3÷4=100个；6台8小时：100×6×8=4800个。" />
                 </div>
+            ),
+            interactive: (
+                <UnitProblemLab />
             )
         }
     },
@@ -595,6 +747,23 @@ export const grade3Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 时间穿梭的漏洞</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 倍数永远不变</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">今年妈妈 30 岁，我 10 岁，妈妈是我的 3 倍。所以明年妈妈 31 岁，我 11 岁，妈妈也是我的 3 倍咯？</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 倍数天天变，只有年龄差不变</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">傻瓜！31 ÷ 11 根本不是 3 呀！在年龄问题里，倍数是随时会变的，能让你稳稳抓住的，只有那永远不变的『年龄差』！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -618,6 +787,9 @@ export const grade3Content = {
                 <div className="space-y-6">
                     <PracticeProblem id={380} type="choice" question="爷爷60岁，孙子10岁，几年前爷爷是孙子的11倍？" options={[{ label: 'A', value: '4年前' }, { label: 'B', value: '5年前' }, { label: 'C', value: '6年前' }, { label: 'D', value: '7年前' }]} answer="B" explanation="X年前：(60-X)=11(10-X) → 60-X=110-11X → 10X=50 → X=5。5年前：爷55，孙5，55=11×5✓" />
                 </div>
+            ),
+            interactive: (
+                <AgeProblemLab />
             )
         }
     },

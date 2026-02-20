@@ -1,5 +1,12 @@
 import { Icons, PracticeProblem, React } from './common';
 import SimpleEquationsLab from './content/grade5/SimpleEquationsLab';
+import DecimalOpsLab from '../../components/subjects/math/elementary/DecimalOpsLab';
+import PolygonAreaLab from '../../components/subjects/math/elementary/PolygonAreaLab';
+import FactorsMultiplesLab from '../../components/subjects/math/elementary/FactorsMultiplesLab';
+import DistanceProblemLab from '../../components/subjects/math/elementary/DistanceProblemLab';
+import NumberTheoryLab from '../../components/subjects/math/elementary/NumberTheoryLab';
+import GeometryModelsLab from '../../components/subjects/math/elementary/GeometryModelsLab';
+import CombinatoricsLab from '../../components/subjects/math/elementary/CombinatoricsLab';
 import { MousePointer2 } from 'lucide-react';
 const { Lightbulb, Target, Clock, Star, Brain, Calculator } = Icons;
 
@@ -40,6 +47,23 @@ export const grade5Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 小数点漂流记里的险滩</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 乘法里点对齐</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">很多人列竖式时，强迫症发作，非要把乘数的小数点对齐。结果算得一团糟！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 乘法尾对齐，除法点对齐</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">记住口诀：**乘法对齐尾巴，除法对齐点**！乘法列竖式只要末尾对齐当整数算就行；除法竖式，商的小数点一定要和被除数移动后的小数点对齐！并且如果末尾有0，不要急着划掉，等确认好小数位数之后再去0化简！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
@@ -59,6 +83,20 @@ export const grade5Content = {
                 <div className="space-y-6">
                     <PracticeProblem id={500} type="choice" question="0.25 × 0.4 = ?" options={[{ label: 'A', value: '0.01' }, { label: 'B', value: '0.10' }, { label: 'C', value: '1.0' }, { label: 'D', value: '0.001' }]} answer="B" explanation="25×4=100，共3位小数→0.100=0.10。" />
                     <PracticeProblem id={501} type="choice" question="7.2 ÷ 0.08 = ?" options={[{ label: 'A', value: '9' }, { label: 'B', value: '90' }, { label: 'C', value: '900' }, { label: 'D', value: '0.9' }]} answer="B" explanation="7.2÷0.08=720÷8=90。" />
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：小数点滑滑梯
+                        </h2>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                            掌握小数点移动规律，直观感受乘除法对数字大小的影响。
+                        </p>
+                        <DecimalOpsLab />
+                    </div>
                 </div>
             )
         }
@@ -88,6 +126,23 @@ export const grade5Content = {
                                 <p>两边-5：3x = 15</p>
                                 <p>两边÷3：x = <strong className="text-green-600">5</strong></p>
                                 <p>验证：3×5+5=20 ✓</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 天平保卫战的常见失误</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 单边行动</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">解方程 3x - 5 = 10，直接写 3x = 10 - 5 = 5。天平的一边加了东西，另一边却减了？天平翻车啦！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 同生共死原则</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">解方程的核心就是**天平原理**！等号两边必须同甘共苦。左边加5，右边也必须加5；左边除以3，右边也必须除以3。另外，永远记得解出来的 x 是为了原等式服务的，代进去算一遍，看等号左右是否相等，就能100%确认自己对不对！</p>
                             </div>
                         </div>
                     </div>
@@ -154,6 +209,23 @@ export const grade5Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 面积公式的陷阱</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 忘记除以2</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">算三角形和梯形的时候，底乘高算完就觉得大功告成了？那是平行四边形的面积！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 找准“原配”底和高</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">三角形和梯形都是用“两个一样的图形拼成一个平四”推导出来的，所以一定要**除以2**！而且最关键的，底和高必须是**互相垂直**的“一对儿”，别随便拿一条斜边去乘高哦！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
@@ -173,6 +245,20 @@ export const grade5Content = {
                 <div className="space-y-6">
                     <PracticeProblem id={520} type="choice" question="梯形上底3m，下底7m，高4m，面积是？" options={[{ label: 'A', value: '16m²' }, { label: 'B', value: '20m²' }, { label: 'C', value: '24m²' }, { label: 'D', value: '14m²' }]} answer="B" explanation="S=(3+7)×4÷2=20m²。" />
                     <PracticeProblem id={521} type="choice" question="三角形底12cm，高8cm，面积是？" options={[{ label: 'A', value: '96cm²' }, { label: 'B', value: '48cm²' }, { label: 'C', value: '40cm²' }, { label: 'D', value: '24cm²' }]} answer="B" explanation="S=12×8÷2=48cm²。" />
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：面积变形魔方
+                        </h2>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                            通过裁剪和拼合，直观推导平行四边形和三角形的面积公式。
+                        </p>
+                        <PolygonAreaLab />
+                    </div>
                 </div>
             )
         }
@@ -218,6 +304,23 @@ export const grade5Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 找因数倍数的漏网之鱼</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 随心所欲找因数</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">找36的因数，写了1, 2, 3, 4, 36... 找着找着就乱了，最后总会丢掉几条“漏网之鱼”。</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 一对一对找，首尾呼应</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">找因数一定要**一对一对地找**！从最小的1开始：1和36，2和18，3和12... 像一个彩虹桥一样从两边向中间靠拢，直到两个数字碰到一起（比如6和6）。只有这样才绝对不会漏掉任何一个！另外，别忘了1既不是质数也不是合数哦！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
@@ -235,8 +338,22 @@ export const grade5Content = {
             ),
             practice: (
                 <div className="space-y-6">
-                    <PracticeProblem id={530} type="choice" question="下面哪个数是质数？" options={[{ label: 'A', value: '1' }, { label: 'B', value: '21' }, { label: 'C', value: '37' }, { label: 'D', value: '51' }]} answer="C" explanation="37只有1和37两个因数，是质数。" />
+                    <PracticeProblem id={530} type="choice" question="下面哪个数是质数？" options={[{ label: 'A', value: '1' }, { label: 'B', value: '21' }, { label: 'C', value: '37' }, { label: 'D', value: '51' }]} answer="C" explanation="37只有1 and 37两个因数，是质数。" />
                     <PracticeProblem id={531} type="choice" question="GCD(16, 24) = ?" options={[{ label: 'A', value: '4' }, { label: 'B', value: '6' }, { label: 'C', value: '8' }, { label: 'D', value: '12' }]} answer="C" explanation="16=2⁴；24=2³×3；GCD=2³=8。" />
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：因数倍数搜索器
+                        </h2>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                            观察两个数的因数与倍数，通过韦恩图直观理解最大公因数与最小公倍数。
+                        </p>
+                        <FactorsMultiplesLab />
+                    </div>
                 </div>
             )
         }
@@ -273,6 +390,23 @@ export const grade5Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 行程问题里的晕头转向</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 速度和差乱用</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">看到两个速度就加起来，或者随便减一个。相向而行时用减法，追及的时候用加法，结果完全南辕北辙！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 画图是唯一解药</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">所有的行程问题，一定要**画线段图**把运动轨迹标出来！如果他们面对面走，距离缩短得快，用“速度和”；如果同向顺着追，只有多出来的速度在弥补距离，用“速度差”。先判明大方向，再套用关系，行程问题就是纸老虎！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
@@ -292,6 +426,20 @@ export const grade5Content = {
                 <div className="space-y-6">
                     <PracticeProblem id={540} type="choice" question="甲乙相向，各速60和40km/h，距离200km，几小时相遇？" options={[{ label: 'A', value: '2h' }, { label: 'B', value: '1.5h' }, { label: 'C', value: '2.5h' }, { label: 'D', value: '3h' }]} answer="A" explanation="200÷(60+40)=200÷100=2h。" />
                     <PracticeProblem id={541} type="choice" question="甲先出发，速4m/s；乙后出发速6m/s，乙出发时甲已走100m，几秒追上？" options={[{ label: 'A', value: '40s' }, { label: 'B', value: '50s' }, { label: 'C', value: '60s' }, { label: 'D', value: '25s' }]} answer="B" explanation="100÷(6-4)=50秒。" />
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：赛车行程模拟
+                        </h2>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                            模拟相遇与追及场景，通过动态赛车直观感受速度和与速度差的威力。
+                        </p>
+                        <DistanceProblemLab />
+                    </div>
                 </div>
             )
         }
@@ -324,6 +472,23 @@ export const grade5Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 整除判断的障眼法</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 看尾数定天下</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">判断能不能被3整除，看最后一位是3、6、9就行了？大错特错！13最后一位是3，它能被3整除吗？</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 按家族分门别类</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">数字整除有“两大家族”：**尾数家族**（2和5，只看最后一位）和**数字和家族**（3和9，必须把所有的数字加起来）。判别的时候一定要分清它是哪个家族的，千万不能一套规则用到老！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
@@ -339,6 +504,20 @@ export const grade5Content = {
                 <div className="space-y-6">
                     <PracticeProblem id={550} type="choice" question="下面哪个数同时是2和3的倍数？" options={[{ label: 'A', value: '14' }, { label: 'B', value: '18' }, { label: 'C', value: '21' }, { label: 'D', value: '25' }]} answer="B" explanation="18末位8（2的倍数），1+8=9（3的倍数）。" />
                     <PracticeProblem id={551} type="choice" question="奇数+奇数等于？" options={[{ label: 'A', value: '奇数' }, { label: 'B', value: '偶数' }, { label: 'C', value: '不确定' }, { label: 'D', value: '质数' }]} answer="B" explanation="奇+奇=偶，例3+5=8。" />
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：整除密码机
+                        </h2>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                            输入任意数字，查看它是否能被2、3、5、9整除，并了解背后的判断逻辑。
+                        </p>
+                        <NumberTheoryLab />
+                    </div>
                 </div>
             )
         }
@@ -378,6 +557,23 @@ export const grade5Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 等积变形的盲区</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 随便乱移顶点</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">觉得“等积变形就是把顶点移一下就行”，没找准平行线就随便拉长拉短，变形出来面积早就想变就变了！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 找准“平行的轨道”</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">进行等积变形，最重要的就是找到**平行的轨道**！一条路是底边，另一条平行的路必须经过你要拖动的那个顶点。只有在这条“平行的轨道”上滑动，三角形的胖瘦随意变，面积却能雷打不动！仔细观察长方形、平行四边形的对边，那里都藏着现成的轨道哦！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
@@ -392,6 +588,20 @@ export const grade5Content = {
             practice: (
                 <div className="space-y-6">
                     <PracticeProblem id={560} type="choice" question="平行线间两个三角形底边都是5cm，面积比较？" options={[{ label: 'A', value: '左大' }, { label: 'B', value: '右大' }, { label: 'C', value: '相等' }, { label: 'D', value: '无法比较' }]} answer="C" explanation="平行线间等底三角形高相同，面积相等。" />
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：顶点平移魔术
+                        </h2>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                            拖动三角形顶点在平行线上滑动，亲眼见证“等底等高”带来的面积不变。
+                        </p>
+                        <GeometryModelsLab />
+                    </div>
                 </div>
             )
         }
@@ -428,6 +638,23 @@ export const grade5Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 数着数着就乱了</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 乘加不分</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">该分类的时候用乘法（3条大河+2条小河=6条路？），该分步的时候用加法（3件上衣，搭配2条裤子，一共5种穿法？），最后算出来的数完全不对。</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 分类用加，分步用乘</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">口诀记好：**“分类用加法，分步用乘法”**！如果是“要么选A，要么选B”（比如要么吃饭要么吃面），用加法；如果是“先选A，再选B”（比如先选衣服，再选裤子），说明这两样都要选才能完成整套动作，那就必须用乘法！组合计数就像闯关，看清楚是单选题还是多选题！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6">
@@ -443,6 +670,20 @@ export const grade5Content = {
                 <div className="space-y-6">
                     <PracticeProblem id={570} type="choice" question="A到B有3条路，B到C有4条路，A经B到C共几条？" options={[{ label: 'A', value: '7条' }, { label: 'B', value: '12条' }, { label: 'C', value: '10条' }, { label: 'D', value: '16条' }]} answer="B" explanation="分步用乘法：3×4=12条。" />
                     <PracticeProblem id={571} type="choice" question="用0,1,2,3（不重复）能组成多少个三位数？" options={[{ label: 'A', value: '18' }, { label: 'B', value: '24' }, { label: 'C', value: '16' }, { label: 'D', value: '9' }]} answer="A" explanation="百位不能0，有3选；十位从4个剩3个中选；个位剩2个：3×3×2=18。" />
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：穿搭设计师
+                        </h2>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                            通过搭配不同数量的上衣和裤子，理解乘法原理背后的树状图推导。
+                        </p>
+                        <CombinatoricsLab />
+                    </div>
                 </div>
             )
         }
