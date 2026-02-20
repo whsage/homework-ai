@@ -2,5 +2,5 @@
 /sitemap.xml  /sitemap.xml  200
 /robots.txt   /robots.txt   200
 
-# SPA 路由回退到 index.html
+# SPA 路由回退到 index.html（排除已有文件）
 /*  /index.html  200

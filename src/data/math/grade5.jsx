@@ -1,4 +1,6 @@
 import { Icons, PracticeProblem, React } from './common';
+import SimpleEquationsLab from './content/grade5/SimpleEquationsLab';
+import { MousePointer2 } from 'lucide-react';
 const { Lightbulb, Target, Clock, Star, Brain, Calculator } = Icons;
 
 export const grade5Content = {
@@ -94,6 +96,20 @@ export const grade5Content = {
                 <div className="space-y-6">
                     <PracticeProblem id={510} type="choice" question="解方程 4x - 8 = 20，x = ?" options={[{ label: 'A', value: '5' }, { label: 'B', value: '6' }, { label: 'C', value: '7' }, { label: 'D', value: '8' }]} answer="C" explanation="4x=28；x=7。" />
                     <PracticeProblem id={511} type="choice" question="5x + 3 = 3x + 11，x = ?" options={[{ label: 'A', value: '3' }, { label: 'B', value: '4' }, { label: 'C', value: '5' }, { label: 'D', value: '7' }]} answer="B" explanation="2x=8；x=4。" />
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：简易方程
+                        </h2>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                            用天平模型理解等式性质，再进入随机闯关模式大量练习！
+                        </p>
+                        <SimpleEquationsLab />
+                    </div>
                 </div>
             )
         }

@@ -1,4 +1,6 @@
 import { Icons, PracticeProblem, React, generateDefaultContent } from './common';
+import AdditionLab from '../../components/subjects/math/elementary/AdditionLab';
+import ShapeLab from '../../components/subjects/math/elementary/ShapeLab';
 
 const {
     Lightbulb, Target, Clock, Star, Brain, Calculator
@@ -70,6 +72,26 @@ export const grade1Content = {
                         </div>
                     </div>
                 </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 易错点警示</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 错误做法</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">8 + 6 = 15 （靠数手指，容易数错）</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 正确做法</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">8 + 2凑10，剩下4，10+4=14</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            interactive: (
+                <AdditionLab />
             ),
             examples: (
                 <div className="space-y-6">
@@ -299,6 +321,26 @@ export const grade1Content = {
                         </div>
                     </div>
                 </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 易错图案</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2">❌ 不是长方形</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">虽然有四个角，但角不是直直的（平行四边形）。</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2">✅ 是正方形</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">就算斜着放，只要四根边一样长，角是直直的角，它依然是正方形（像钻石一样）！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            interactive: (
+                <ShapeLab />
             ),
             examples: (
                 <div className="space-y-6">

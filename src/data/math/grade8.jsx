@@ -1,3 +1,4 @@
+// Force rebuild
 import { Icons, PracticeProblem, Link, React, generateDefaultContent } from './common';
 import TrianglePropertiesDiagram from '../../components/subjects/math/diagrams/TrianglePropertiesDiagram';
 import ParallelogramDiagram from '../../components/subjects/math/diagrams/ParallelogramDiagram';
@@ -6,6 +7,7 @@ import { MousePointer2 } from 'lucide-react';
 const {
     Lightbulb, Target, TrendingUp, Clock, Star, Brain, CheckCircle, Sparkles, ChevronRight, Calculator, Award
 } = Icons;
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 export const grade8Content = {
     // ==================== 1. 三角形 ====================
@@ -95,6 +97,19 @@ export const grade8Content = {
                                 </div>
                             </div>
                         </div>
+
+                        {/* 🔗 知识体系构建 */}
+                        <div className="mt-8 bg-slate-50 dark:bg-slate-700/50 rounded-xl p-6 border-l-4 border-indigo-500">
+                            <h3 className="font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                                🔗 知识体系构建
+                            </h3>
+                            <div className="text-slate-600 dark:text-slate-400 text-sm">
+                                <p className="mb-2">小学时，我们学习了怎么度量线段长短和角度大小。</p>
+                                <p className="mb-2">到了初中，<strong>全等三角形</strong>成了比较线段和角度的最强工具！</p>
+                                <p className="font-bold text-indigo-700 dark:text-indigo-400 mt-3">全等三角形的地位</p>
+                                <p className="mt-1">证明线段相等、角相等 ➔ 找全等三角形。<br />全等也是后续学习<strong>相似三角形</strong>、<strong>四边形证明</strong>的基石。</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             ),
@@ -178,6 +193,23 @@ export const grade8Content = {
                                 <div className="bg-white dark:bg-slate-700 p-3 rounded text-xs">
                                     <strong>反例</strong>: 给定两边和一个非夹角,第三边可能有两个位置(长边或短边),
                                     导致两个不全等的三角形都满足条件。
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* 🔍 多角度分析 */}
+                        <div className="mt-8 bg-amber-50 dark:bg-amber-900/20 rounded-xl p-6 border border-amber-200 dark:border-amber-800">
+                            <h3 className="font-bold text-amber-800 dark:text-amber-400 mb-4 flex items-center gap-2">
+                                🔍 多角度分析：判定的本质
+                            </h3>
+                            <div className="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <strong className="text-slate-800 dark:text-white text-sm">尺规作图角度：</strong>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">SSS、SAS、ASA、AAS 代表了能<strong className="text-indigo-600">唯一画出</strong>这个三角形的条件。画图的唯一性决定了三角形形状的唯一性（全等）。</p>
+                                </div>
+                                <div>
+                                    <strong className="text-slate-800 dark:text-white text-sm">自由度角度：</strong>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">一个三角形有3条边和3个角（共6个元素）。如果知道了其中 3 个独立条件（至少一条边），就能把剩下的 3 个元素完全锁死。</p>
                                 </div>
                             </div>
                         </div>
@@ -266,6 +298,426 @@ export const grade8Content = {
                         ]}
                         answer="C"
                         explanation="根据三角形三边关系:5-3<第三边<5+3,即2<第三边<8,只有4符合。"
+                    />
+                </div>
+            )
+        }
+    },
+
+    // ==================== [NEW] 轴对称 ====================
+    'mid-8-1-axial-symmetry': {
+        meta: {
+            title: "轴对称 - 折叠与重合 | AI7Miao数学",
+            description: "探索轴对称图形与成轴对称的区别与联系，掌握垂直平分线的性质。通过剪纸和镜面反射理解对称美。",
+            keywords: "轴对称,对称轴,垂直平分线,镜面反射,等腰三角形"
+        },
+        info: {
+            title: "轴对称",
+            description: "照镜子时，镜子里的你和真实的你就是轴对称的。这种对称美在自然界和建筑中无处不在。",
+            tags: [
+                { text: "几何", color: "indigo" },
+                { text: "30分钟", icon: Clock, color: "slate" },
+                { text: "美学", icon: Star, color: "pink" }
+            ]
+        },
+        aiContext: "学生正在学习轴对称。请引导学生区分'轴对称图形'(一个图形)和'成轴对称'(两个图形的关系)。通过折纸活动引入。",
+        aiChatTitle: "AI互动学习:折叠的艺术",
+        aiChatIntro: "拿一张纸，对折，剪一个图案，展开。你会得到什么？让我们探索对称的奥秘。",
+        aiMessages: [
+            { role: 'ai', content: '你玩过剪纸吗？把纸对折，剪出来的图案展开后有什么特点？' },
+            { role: 'user', content: '左右两边是一样的！' },
+            { role: 'ai', content: <>没错！如果你沿着折痕把纸折回去，两边会<strong className="text-indigo-600">完全重合</strong>。这样的图形就叫<strong>轴对称图形</strong>。这条折痕叫什么？</> },
+            { role: 'user', content: '对称轴！' },
+            { role: 'ai', content: <>太聪明了！那如果我有两个圆，关于中间一条直线对称，这时候叫什么呢？</> },
+            { role: 'user', content: '也是轴对称图形？' },
+            { role: 'ai', content: <>有点区别哦！一个是"一个图形"的性质，一个是"两个图形"的位置关系。这叫<strong className="text-purple-600">成轴对称</strong>。但它们的本质都是"对折重合"。</>, type: 'success' },
+            { role: 'user', content: '那对称轴有什么性质？' },
+            { role: 'ai', content: <>连接任意一对对应点，看看连线和对称轴是什么关系？(垂直？平分？)</>, type: 'success' }
+        ],
+        tabs: {
+            concept: (
+                <div className="space-y-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Lightbulb className="w-6 h-6 text-indigo-600" />
+                            什么是轴对称？
+                        </h2>
+
+                        <div className="space-y-6">
+                            <div className="grid md:grid-cols-2 gap-6">
+                                <div className="bg-indigo-50 dark:bg-indigo-900/20 p-6 rounded-xl border border-indigo-100 dark:border-indigo-800">
+                                    <h3 className="font-bold text-indigo-700 dark:text-indigo-400 mb-4 text-lg">轴对称图形</h3>
+                                    <p className="text-sm text-slate-700 dark:text-slate-300 mb-3">
+                                        如果<strong>一个图形</strong>沿一条直线折叠，直线两旁的部分能够完全重合，这个图形就叫做轴对称图形。
+                                    </p>
+                                    <div className="bg-white dark:bg-slate-700 p-3 rounded text-xs">
+                                        <strong>例子:</strong> 圆、正方形、蝴蝶、脸谱
+                                    </div>
+                                </div>
+
+                                <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-xl border border-purple-100 dark:border-purple-800">
+                                    <h3 className="font-bold text-purple-700 dark:text-purple-400 mb-4 text-lg">成轴对称</h3>
+                                    <p className="text-sm text-slate-700 dark:text-slate-300 mb-3">
+                                        如果<strong>两个图形</strong>沿一条直线折叠，它们能够完全重合，那么说这两个图形成轴对称。
+                                    </p>
+                                    <div className="bg-white dark:bg-slate-700 p-3 rounded text-xs">
+                                        <strong>例子:</strong> 双手、镜子里的像
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="bg-green-50 dark:bg-green-900/20 rounded-xl p-6 border border-green-200 dark:border-green-800">
+                                <div className="flex items-start gap-3">
+                                    <Brain className="w-6 h-6 text-green-600 dark:text-green-400 flex-shrink-0 mt-1" />
+                                    <div>
+                                        <div className="font-semibold text-green-700 dark:text-green-400 mb-2">
+                                            💡 核心联系
+                                        </div>
+                                        <div className="text-slate-600 dark:text-slate-400 text-sm">
+                                            把成轴对称的两个图形看作一个整体，它就是一个轴对称图形；
+                                            把轴对称图形沿对称轴分成两半，这两半就是成轴对称的。
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Target className="w-6 h-6 text-indigo-600" />
+                            轴对称的性质
+                        </h2>
+
+                        <div className="space-y-6">
+                            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-800">
+                                <h3 className="font-bold text-blue-700 dark:text-blue-400 mb-4 text-lg">垂直平分线性质</h3>
+                                <ul className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-blue-600">1.</span>
+                                        <div>对称轴<strong>垂直平分</strong>连接两个对应点的线段。</div>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-blue-600">2.</span>
+                                        <div>对应线段相等，对应角相等。</div>
+                                    </li>
+                                </ul>
+                                <div className="mt-4 bg-white dark:bg-slate-700 p-4 rounded-lg">
+                                    <p className="text-sm font-bold text-indigo-600 dark:text-indigo-400 mb-2">线段垂直平分线判定</p>
+                                    <p className="text-xs text-slate-600 dark:text-slate-400">
+                                        到线段两个端点距离相等的点，在这条线段的垂直平分线上。
+                                        <br />(PA=PB ⟺ P在线段AB的垂直平分线上)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            examples: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700">
+                        <h4 className="font-bold mb-4 text-lg flex items-center gap-2">
+                            <Calculator className="w-5 h-5 text-indigo-600" />
+                            例1: 识别轴对称图形
+                        </h4>
+                        <div className="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                            <p><strong>问题:</strong> 下列字母中，是轴对称图形的是？</p>
+                            <p className="font-mono text-lg tracking-widest my-2">F  G  M  Q</p>
+                            <p className="mt-3"><strong>解:</strong></p>
+                            <p>F: 上下左右都不对称 ✗</p>
+                            <p>G: 不对称 ✗</p>
+                            <p>M: 左右对称 ✓ (对称轴是中间竖线)</p>
+                            <p>Q: 不对称 ✗</p>
+                            <p className="text-green-600 dark:text-green-400 font-bold">答: M</p>
+                        </div>
+                    </div>
+
+                    <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700">
+                        <h4 className="font-bold mb-4 text-lg flex items-center gap-2">
+                            <Calculator className="w-5 h-5 text-indigo-600" />
+                            例2: 最短路径问题 (将军饮马)
+                        </h4>
+                        <div className="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                            <p><strong>问题:</strong> 直线l同侧有A,B两点。在直线l上找一点P，使PA+PB最短。</p>
+                            <p className="mt-3"><strong>解:</strong></p>
+                            <p>1. 作点A关于直线l的对称点A'。</p>
+                            <p>2. 连接A'B，交直线l于点P。</p>
+                            <p>3. 根据对称性, PA=PA'。</p>
+                            <p>4. 此时PA+PB = PA'+PB = A'B。根据两点之间线段最短，此时距离最小。</p>
+                            <p className="text-green-600 dark:text-green-400 font-bold">关键: 利用对称化折线为直线。</p>
+                        </div>
+                    </div>
+                </div>
+            ),
+            practice: (
+                <div className="space-y-6">
+                    <PracticeProblem id={801} type="choice"
+                        question="等腰三角形的对称轴有？"
+                        options={[
+                            { label: 'A', value: '1条' },
+                            { label: 'B', value: '3条' },
+                            { label: 'C', value: '1条或3条' },
+                            { label: 'D', value: '无数条' }
+                        ]}
+                        answer="C"
+                        explanation="普通等腰三角形只有1条(底边中垂线)；等边三角形有3条。所以选C。"
+                    />
+                    <PracticeProblem id={802} type="choice"
+                        question="下列图形中，不是轴对称图形的是？"
+                        options={[
+                            { label: 'A', value: '角' },
+                            { label: 'B', value: '等腰梯形' },
+                            { label: 'C', value: '平行四边形' },
+                            { label: 'D', value: '圆' }
+                        ]}
+                        answer="C"
+                        explanation="平行四边形是中心对称图形，但一般不是轴对称图形(除非是菱形或矩形)。A、B、D都是轴对称图形。"
+                    />
+                    <PracticeProblem id={803} type="choice"
+                        question="点A(2,3)关于y轴对称的点的坐标是？"
+                        options={[
+                            { label: 'A', value: '(-2, 3)' },
+                            { label: 'B', value: '(2, -3)' },
+                            { label: 'C', value: '(-2, -3)' },
+                            { label: 'D', value: '(3, 2)' }
+                        ]}
+                        answer="A"
+                        explanation="关于y轴对称，纵坐标不变，横坐标变号。所以是(-2, 3)。"
+                    />
+                </div>
+            )
+        }
+    },
+
+    // ==================== [NEW] 实数（平方根） ====================
+    'mid-8-1-roots': {
+        meta: {
+            title: "实数 - 平方根与立方根 | AI7Miao数学",
+            description: "认识平方根、算术平方根和立方根。探索无理数(如√2, π)，完善实数系统。通过拼图游戏发现无理数。",
+            keywords: "平方根,算术平方根,立方根,无理数,实数,根号2"
+        },
+        info: {
+            title: "实数",
+            description: "面积为2的正方形，边长是多少？它不是整数，也不是分数。欢迎来到无理数的世界！",
+            tags: [
+                { text: "代数", color: "blue" },
+                { text: "35分钟", icon: Clock, color: "slate" },
+                { text: "基础", icon: Star, color: "green" }
+            ]
+        },
+        aiContext: "学生初次接触无理数。请用'寻找面积为2的正方形边长'作为引入，让学生意识到有理数不够用了。",
+        aiChatTitle: "AI导师：寻找神秘的数",
+        aiChatIntro: "有的数写不完(无限不循环)，比如π，比如√2。它们藏在哪里？让我们去数轴上抓它们。",
+        aiMessages: [
+            { role: 'ai', content: '如果一个正方形面积是4，边长是多少？' },
+            { role: 'user', content: '是2！因为2×2=4。' },
+            { role: 'ai', content: <>那如果面积是2呢？边长是多少？你可以猜一猜。</> },
+            { role: 'user', content: '1.5？' },
+            { role: 'ai', content: <>1.5×1.5 = 2.25，比2大了。再小一点？</> },
+            { role: 'user', content: '1.4？' },
+            { role: 'ai', content: <>1.4×1.4 = 1.96，比2小了！其实这个数是个<strong className="text-indigo-600">无限不循环小数</strong>(1.414...)，我们用符号 <strong className="text-indigo-600">√2</strong> 来表示。这就是<strong className="text-purple-600">无理数</strong>。</>, type: 'success' },
+            { role: 'user', content: '什么是平方根？' },
+            { role: 'ai', content: <>如果一个数的平方等于a，这个数就叫a的平方根。比如±2都是4的平方根，而2是4的<strong className="text-green-600">算术平方根</strong>。</>, type: 'success' }
+        ],
+        tabs: {
+            concept: (
+                <div className="space-y-8">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Lightbulb className="w-6 h-6 text-indigo-600" />
+                            实数的分类
+                        </h2>
+
+                        <div className="space-y-6">
+                            <div className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 rounded-xl p-6">
+                                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4">有理数 vs 无理数</h3>
+                                <div className="grid md:grid-cols-2 gap-4">
+                                    <div className="bg-white dark:bg-slate-700 p-4 rounded-lg">
+                                        <h4 className="font-bold text-blue-600 dark:text-blue-400 mb-2">有理数</h4>
+                                        <p className="text-sm text-slate-600 dark:text-slate-400">
+                                            整数和分数。
+                                            <br />(可以写成 p/q 形式，q≠0)
+                                            <br />包括有限小数和无限循环小数。
+                                        </p>
+                                    </div>
+                                    <div className="bg-white dark:bg-slate-700 p-4 rounded-lg">
+                                        <h4 className="font-bold text-purple-600 dark:text-purple-400 mb-2">无理数</h4>
+                                        <p className="text-sm text-slate-600 dark:text-slate-400">
+                                            <strong>无限不循环小数</strong>。
+                                            <br />常见的有: π, √2, √3, 0.1010010001...
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="bg-white dark:bg-slate-700 rounded-xl p-6 border border-slate-200 dark:border-slate-600 shadow-sm">
+                                <h3 className="font-bold text-slate-800 dark:text-white mb-4">平方根与立方根</h3>
+                                <table className="w-full text-sm text-left">
+                                    <thead>
+                                        <tr className="border-b dark:border-slate-600">
+                                            <th className="py-2">名称</th>
+                                            <th className="py-2">定义 (若xⁿ=a)</th>
+                                            <th className="py-2">符号</th>
+                                            <th className="py-2">性质</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="text-slate-600 dark:text-slate-400">
+                                        <tr className="border-b dark:border-slate-600">
+                                            <td className="py-3 font-bold text-indigo-600">算术平方根</td>
+                                            <td>x²=a (x≥0)</td>
+                                            <td>√a</td>
+                                            <td>只有非负数才有 (a≥0)</td>
+                                        </tr>
+                                        <tr className="border-b dark:border-slate-600">
+                                            <td className="py-3 font-bold text-blue-600">平方根</td>
+                                            <td>x²=a</td>
+                                            <td>±√a</td>
+                                            <td>正数有两个(互为相反数)，0有一个(0)</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="py-3 font-bold text-green-600">立方根</td>
+                                            <td>x³=a</td>
+                                            <td>∛a</td>
+                                            <td>任何数都有唯一的立方根</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        {/* 🔗 知识体系构建 */}
+                        <div className="mt-8 bg-slate-50 dark:bg-slate-700/50 rounded-xl p-6 border-l-4 border-indigo-500">
+                            <h3 className="font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                                🔗 知识体系构建
+                            </h3>
+                            <div className="text-slate-600 dark:text-slate-400 text-sm">
+                                <p className="mb-2">我们以前学的<strong>有理数</strong>（整数和分数）能表示有限小数和无限循环小数。</p>
+                                <p className="mb-2">今天我们发现了<strong>无理数</strong>（无限不循环小数），填补了数轴上的最后一些"空隙"。</p>
+                                <p className="font-bold text-indigo-700 dark:text-indigo-400 mt-3">有理数 + 无理数 = 实数(Real Numbers)</p>
+                                <p className="mt-1">至此，数轴上的每一个点都有一个对应的实数，每一个实数在数轴上都有唯一的一个点。这叫<strong className="text-red-600">一一对应</strong>。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
+                            <Target className="w-6 h-6 text-indigo-600" />
+                            重要性质与运算
+                        </h2>
+                        <div className="space-y-4">
+                            <div className="p-4 bg-orange-50 dark:bg-orange-900/20 rounded-xl border border-orange-100 dark:border-orange-800">
+                                <h3 className="font-bold text-orange-700 dark:text-orange-400 mb-2">双重非负性</h3>
+                                <p className="text-sm text-slate-700 dark:text-slate-300">
+                                    对于 √a:
+                                </p>
+                                <ul className="list-disc list-inside mt-2 text-sm text-slate-600 dark:text-slate-400">
+                                    <li>被开方数非负: <strong>a ≥ 0</strong></li>
+                                    <li>算术平方根非负: <strong>√a ≥ 0</strong></li>
+                                </ul>
+                            </div>
+                            <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-100 dark:border-blue-800">
+                                <h3 className="font-bold text-blue-700 dark:text-blue-400 mb-2">重要公式</h3>
+                                <ul className="list-disc list-inside mt-2 text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                                    <li>(√a)² = a  (a ≥ 0)</li>
+                                    <li>√(a²) = |a| (很重要! 比如 √(-2)² = 2)</li>
+                                    <li>(∛a)³ = a</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        {/* 🔍 多角度分析 */}
+                        <div className="mt-8 bg-amber-50 dark:bg-amber-900/20 rounded-xl p-6 border border-amber-200 dark:border-amber-800">
+                            <h3 className="font-bold text-amber-800 dark:text-amber-400 mb-4 flex items-center gap-2">
+                                🔍 多角度分析：平方与开平方
+                            </h3>
+                            <div className="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <strong className="text-slate-800 dark:text-white text-sm">互逆运算角度：</strong>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">就像加法和减法、乘法和除法，<strong className="text-indigo-600">平方和开平方</strong>也是一对互逆运算。已知正方形边长求面积是平方；已知面积求边长是开平方。</p>
+                                </div>
+                                <div>
+                                    <strong className="text-slate-800 dark:text-white text-sm">几何构造角度：</strong>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">古希腊人发现 √2，是因为他们画了一个直角边为 1 的等腰直角三角形。根据勾股定理，斜边长为 √2。无理数是客观存在的几何长度！</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            examples: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700">
+                        <h4 className="font-bold mb-4 text-lg flex items-center gap-2">
+                            <Calculator className="w-5 h-5 text-indigo-600" />
+                            例1: 求平方根
+                        </h4>
+                        <div className="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                            <p><strong>问题:</strong> 求 16 的平方根和算术平方根。</p>
+                            <p className="mt-3"><strong>解:</strong></p>
+                            <p>∵ (±4)² = 16</p>
+                            <p>∴ 16 的平方根是 ±4</p>
+                            <p>16 的<strong>算术平方根</strong>是 4 (即 √16 = 4)</p>
+                            <p className="text-orange-600 dark:text-orange-400 text-xs">注意: "√16" 表示 16 的算术平方根，所以 √16 = 4，不是 ±4。</p>
+                        </div>
+                    </div>
+
+                    <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700">
+                        <h4 className="font-bold mb-4 text-lg flex items-center gap-2">
+                            <Calculator className="w-5 h-5 text-indigo-600" />
+                            例2: 化简与估算
+                        </h4>
+                        <div className="text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                            <p><strong>问题:</strong> 计算 √(−3)² + ∛−27。</p>
+                            <p className="mt-3"><strong>解:</strong></p>
+                            <p>1. √(−3)² = √9 = 3 (或者用 |−3| = 3)</p>
+                            <p>2. ∛−27 = −3 (因为 (−3)³ = −27)</p>
+                            <p>3. 原式 = 3 + (−3) = 0</p>
+                            <p className="text-green-600 dark:text-green-400 font-bold">答: 0</p>
+                        </div>
+                    </div>
+                </div>
+            ),
+            practice: (
+                <div className="space-y-6">
+                    <PracticeProblem id={806} type="choice"
+                        question="√16 的值是？"
+                        options={[
+                            { label: 'A', value: '4' },
+                            { label: 'B', value: '-4' },
+                            { label: 'C', value: '±4' },
+                            { label: 'D', value: '8' }
+                        ]}
+                        answer="A"
+                        explanation="根号(√)表示算术平方根，结果必须是非负数。所以 √16 = 4。"
+                    />
+                    <PracticeProblem id={807} type="choice"
+                        question="下列说法正确的是？"
+                        options={[
+                            { label: 'A', value: '-4没有立方根' },
+                            { label: 'B', value: '1的平方根是1' },
+                            { label: 'C', value: '√(−5)² = -5' },
+                            { label: 'D', value: '√2 是无理数' }
+                        ]}
+                        answer="D"
+                        explanation="A: 负数有立方根；B: 1的平方根是±1；C: √(−5)² = 5。故D正确。"
+                    />
+                    <PracticeProblem id={808} type="choice"
+                        question="估算 √10 的值在？"
+                        options={[
+                            { label: 'A', value: '1和2之间' },
+                            { label: 'B', value: '2和3之间' },
+                            { label: 'C', value: '3和4之间' },
+                            { label: 'D', value: '4和5之间' }
+                        ]}
+                        answer="C"
+                        explanation="因为 3²=9，4²=16，而 9 < 10 < 16，所以 3 < √10 < 4。"
                     />
                 </div>
             )
@@ -1522,7 +1974,7 @@ export const grade8Content = {
     },
 
     // ==================== 7. 一次函数 ====================
-    'mid-8-2-linear-functions': {
+    'mid-8-1-linear-functions': {
         meta: {
             title: "一次函数 - 图像与 k, b 的关系 | AI7Miao数学",
             description: "掌握一次函数y=kx+b的图像与性质,理解k和b对直线位置的影响,解决实际应用题。通过直线舞蹈理解斜率和截距。",
@@ -1591,6 +2043,28 @@ export const grade8Content = {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            interactive: (
+                <div className="h-[400px] flex items-center justify-center bg-slate-100 dark:bg-slate-800 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-700">
+                    <div className="text-center">
+                        <div className="h-[300px] w-full">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <LineChart data={[
+                                    { x: -5, y: -9 },
+                                    { x: 0, y: 1 },
+                                    { x: 5, y: 11 }
+                                ]} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="x" type="number" domain={['auto', 'auto']} />
+                                    <YAxis />
+                                    <Tooltip />
+                                    <Line type="monotone" dataKey="y" stroke="#8884d8" name="y = 2x + 1" />
+                                </LineChart>
+                            </ResponsiveContainer>
+                            <p className="text-center text-sm text-slate-500 mt-2">示例函数: y = 2x + 1</p>
                         </div>
                     </div>
                 </div>
@@ -2130,6 +2604,29 @@ export const grade8Content = {
                     </div>
                 </div>
             ),
+            interactive: (
+                <div className="h-[400px] flex items-center justify-center bg-slate-100 dark:bg-slate-800 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-700">
+                    <div className="text-center">
+                        <div className="h-[300px] w-full">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <LineChart data={[
+                                    { x: 1, y: 6 },
+                                    { x: 2, y: 3 },
+                                    { x: 3, y: 2 },
+                                    { x: 6, y: 1 }
+                                ]} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis dataKey="x" type="number" domain={[0, 8]} />
+                                    <YAxis domain={[0, 8]} />
+                                    <Tooltip />
+                                    <Line type="monotone" dataKey="y" stroke="#82ca9d" name="y = 6/x" />
+                                </LineChart>
+                            </ResponsiveContainer>
+                            <p className="text-center text-sm text-slate-500 mt-2">示例函数: y = 6/x (x {'>'} 0)</p>
+                        </div>
+                    </div>
+                </div>
+            ),
             properties: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -2419,16 +2916,22 @@ export const grade8Content = {
 // 自动填充检查
 const grade8Topics = [
     { id: 'mid-8-1-triangles', name: '三角形' },
+    { id: 'mid-8-1-congruence', name: '全等三角形判定' },
+    { id: 'mid-8-1-axial-symmetry', name: '轴对称' },
+    { id: 'mid-8-1-roots', name: '实数（平方根/立方根）' },
     { id: 'mid-8-1-factorization', name: '因式分解' },
     { id: 'mid-8-1-fractions', name: '分式' },
     { id: 'mid-8-1-binary-equations', name: '二元一次方程组' },
     { id: 'mid-8-2-quadrilaterals', name: '四边形' },
+    { id: 'mid-8-2-geometry-proofs', name: '几何证明技巧' },
     { id: 'mid-8-2-parallelograms', name: '平行四边形' },
     { id: 'mid-8-2-pythagorean', name: '勾股定理' },
     { id: 'mid-8-2-functions', name: '函数' },
-    { id: 'mid-8-2-linear-functions', name: '一次函数' },
+    { id: 'mid-8-1-linear-functions', name: '一次函数' },
     { id: 'mid-8-2-inverse-proportional', name: '反比例函数' },
-    { id: 'mid-8-2-data-analysis', name: '数据的分析' }
+    { id: 'mid-8-2-data-analysis', name: '数据的分析' },
+    { id: 'mid-8-2-factorization-adv', name: '因式分解进阶' },
+    { id: 'mid-8-2-fractions-adv', name: '分式方程应用' }
 ];
 grade8Topics.forEach(t => {
     if (!grade8Content[t.id]) {

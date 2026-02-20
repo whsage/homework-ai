@@ -92,6 +92,19 @@ export const grade9Content = {
                                 </div>
                             </div>
                         </div>
+
+                        {/* 🔗 知识体系构建 */}
+                        <div className="mt-8 bg-slate-50 dark:bg-slate-700/50 rounded-xl p-6 border-l-4 border-indigo-500">
+                            <h3 className="font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                                🔗 知识体系构建
+                            </h3>
+                            <div className="text-slate-600 dark:text-slate-400 text-sm">
+                                <p className="mb-2">我们从七年级的<strong>一元一次方程</strong> (ax+b=0)，升级到了现在的<strong>一元二次方程</strong> (ax²+bx+c=0)。</p>
+                                <p className="mb-2">未知数的最高次数从 1 变成了 2！解的个数也从 1个 (或无解) 变成了 最多2个。</p>
+                                <p className="font-bold text-indigo-700 dark:text-indigo-400 mt-3">方程与函数的桥梁</p>
+                                <p className="mt-1">一元二次方程 <code className="mx-1">ax²+bx+c=0</code> 的根，其实就是二次函数 <code className="mx-1">y=ax²+bx+c</code> 图象与 x 轴交点的横坐标！二者是完全相通的。</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             ),
@@ -144,6 +157,23 @@ export const grade9Content = {
                                     <li>• 能因式分解 → <strong>因式分解法</strong> (如 x² - 5x + 6 = 0)</li>
                                     <li>• 其他情况 → <strong>求根公式</strong> (万能方法)</li>
                                 </ul>
+                            </div>
+                        </div>
+
+                        {/* 🔍 多角度分析 */}
+                        <div className="mt-8 bg-amber-50 dark:bg-amber-900/20 rounded-xl p-6 border border-amber-200 dark:border-amber-800">
+                            <h3 className="font-bold text-amber-800 dark:text-amber-400 mb-4 flex items-center gap-2">
+                                🔍 多角度分析：解法的演进
+                            </h3>
+                            <div className="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <strong className="text-slate-800 dark:text-white text-sm">配方法的智慧：</strong>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">配方法的核心思想是<strong>降次</strong>。不论左边多么复杂，只要强行凑成一个完全平方式 <code className="mx-1">(x+m)² = n</code>，就可以直接开方变成一元一次方程来解。这是一种极高的代数技巧。</p>
+                                </div>
+                                <div>
+                                    <strong className="text-slate-800 dark:text-white text-sm">公式法的本质：</strong>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">公式法不是凭空掉下来的，它就是别人帮你<strong>把配方法的繁琐过程用字母 a,b,c 走了一遍</strong>得出的结果。会配方法，就能自己推导出求根公式！</p>
+                                </div>
                             </div>
                         </div>
                     </div>

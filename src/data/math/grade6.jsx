@@ -1,4 +1,7 @@
 import { Icons, PracticeProblem, React } from './common';
+import CircleLab from './content/grade6/CircleLab';
+import FractionLab from '../../components/subjects/math/elementary/FractionLab';
+import { MousePointer2 } from 'lucide-react';
 const { Lightbulb, Target, Clock, Star, Brain, Calculator } = Icons;
 
 export const grade6Content = {
@@ -29,6 +32,26 @@ export const grade6Content = {
                         </div>
                     </div>
                 </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 易错点警示</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 错误做法</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">1/2 + 1/3 = 2/5 （分子加分子，分母加分母，大错特错！）</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 正确做法</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">通分！3/6 + 2/6 = 5/6 （分母不变，分子相加）</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            interactive: (
+                <FractionLab />
             ),
             examples: (
                 <div className="space-y-6">
@@ -106,6 +129,20 @@ export const grade6Content = {
                 <div className="space-y-6">
                     <PracticeProblem id={610} type="choice" question="圆的半径为3cm，面积是？（π≈3.14）" options={[{ label: 'A', value: '18.84cm²' }, { label: 'B', value: '9.42cm²' }, { label: 'C', value: '28.26cm²' }, { label: 'D', value: '12.56cm²' }]} answer="C" explanation="S=3.14×3²=3.14×9=28.26cm²。" />
                     <PracticeProblem id={611} type="choice" question="圆的直径为10m，周长是？（π≈3.14）" options={[{ label: 'A', value: '31.4m' }, { label: 'B', value: '62.8m' }, { label: 'C', value: '15.7m' }, { label: 'D', value: '78.5m' }]} answer="A" explanation="C=πd=3.14×10=31.4m。" />
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：圆的面积与周长
+                        </h2>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                            拖动滑块改变半径，实时看到周长和面积的变化；再挑战计算练习模式！
+                        </p>
+                        <CircleLab />
+                    </div>
                 </div>
             )
         }

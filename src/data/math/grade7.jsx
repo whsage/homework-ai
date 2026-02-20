@@ -1,6 +1,8 @@
 import { Icons, PracticeProblem, Link, React, generateDefaultContent } from './common';
 import MathDiagram from '../../components/subjects/math/MathDiagram';
 import ShortestPathDiagram from '../../components/subjects/math/diagrams/ShortestPathDiagram';
+import LinearEquationLab from './content/grade7/LinearEquationLab';
+import AlgebraicOpsLab from './content/grade7/AlgebraicOpsLab';
 import { MousePointer2 } from 'lucide-react';
 
 const {
@@ -136,6 +138,19 @@ export const grade7Content = {
                                 </p>
                             </div>
                         </div>
+
+                        {/* 🔗 知识体系构建 */}
+                        <div className="mt-8 bg-slate-50 dark:bg-slate-700/50 rounded-xl p-6 border-l-4 border-indigo-500">
+                            <h3 className="font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                                🔗 知识体系构建
+                            </h3>
+                            <div className="text-slate-600 dark:text-slate-400 text-sm">
+                                <p className="mb-2">我们以前学的数字（1, 2, 3... 和 0）加上今天学的负数（-1, -2, -3...）构成了<strong>整数</strong>。</p>
+                                <p className="mb-2">而以前学的分数和负分数构成了<strong>分数</strong>。</p>
+                                <p className="font-bold text-indigo-700 dark:text-indigo-400">整数 + 分数 = 有理数网络！</p>
+                                <p className="mt-2 text-xs text-slate-500">这就像我们的数字家族接纳了新成员，家族变得更庞大了，能解决的问题也更多了。</p>
+                            </div>
+                        </div>
                     </div>
 
                     {/* 核心概念 */}
@@ -186,6 +201,23 @@ export const grade7Content = {
                                     <code className="text-sm">|-5| = 5</code><br />
                                     <code className="text-sm">|3| = 3</code><br />
                                     <span className="text-xs text-slate-500">绝对值总是非负数</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* 🔍 多角度分析 */}
+                        <div className="mt-8 bg-amber-50 dark:bg-amber-900/20 rounded-xl p-6 border border-amber-200 dark:border-amber-800">
+                            <h3 className="font-bold text-amber-800 dark:text-amber-400 mb-4 flex items-center gap-2">
+                                🔍 多角度分析：相反数与绝对值
+                            </h3>
+                            <div className="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <strong className="text-slate-800 dark:text-white text-sm">代数角度 (公式)：</strong>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">数 a 的相反数是 -a。|a| 的值取决于 a 的正负号（若 a&gt;0 则 |a|=a，若 a&lt;0 则 |a|=-a）。</p>
+                                </div>
+                                <div>
+                                    <strong className="text-slate-800 dark:text-white text-sm">几何角度 (数轴)：</strong>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">互为相反数的两点在原点两侧且关于原点对称。绝对值就是这两点走到原点需要走的步数（距离）。</p>
                                 </div>
                             </div>
                         </div>
@@ -581,6 +613,20 @@ export const grade7Content = {
                         explanation="(2a - a) + (3b + 2b) = a + 5b。注意a和b不是同类项，不能合并成ab。"
                     />
                 </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：整式的加减
+                        </h2>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                            通过「同类项辨别」和「化简闯关」两个模式，掌握合并同类项的技巧！
+                        </p>
+                        <AlgebraicOpsLab />
+                    </div>
+                </div>
             )
         }
     },
@@ -656,6 +702,19 @@ export const grade7Content = {
                                 </div>
                             </div>
                         </div>
+
+                        {/* 🔗 知识体系构建 */}
+                        <div className="mt-8 bg-slate-50 dark:bg-slate-700/50 rounded-xl p-6 border-l-4 border-indigo-500">
+                            <h3 className="font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                                🔗 知识体系构建
+                            </h3>
+                            <div className="text-slate-600 dark:text-slate-400 text-sm">
+                                <p className="mb-2">小学时，我们做过 <code className="bg-slate-200 dark:bg-slate-600 px-1 rounded">2 + □ = 5</code> 的填空题，这其实就是方程的雏形！</p>
+                                <p className="mb-2">现在，我们用字母 <code className="bg-slate-200 dark:bg-slate-600 px-1 rounded">x</code> 代替了框框，写成了 <code className="bg-slate-200 dark:bg-slate-600 px-1 rounded">2 + x = 5</code>。</p>
+                                <p className="font-bold text-indigo-700 dark:text-indigo-400 mt-3">算术思维 → 代数思维</p>
+                                <p className="mt-1">以前是：已知所有的数进行计算。<br />现在是：把未知数当作已经知道的数，和已知的数一起列等式。这极大拓宽了解决问题的能力！</p>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -689,6 +748,23 @@ export const grade7Content = {
                                     <code className="block mb-2">如果 a = b,那么 a × c = b × c</code>
                                     <code className="block mb-2">如果 a = b,那么 a ÷ c = b ÷ c  (c≠0)</code>
                                     <p className="text-xs text-slate-500 mt-3">天平类比:两边物品同时翻倍(或减半),仍然平衡</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* 🔍 多角度分析 */}
+                        <div className="mt-8 bg-amber-50 dark:bg-amber-900/20 rounded-xl p-6 border border-amber-200 dark:border-amber-800">
+                            <h3 className="font-bold text-amber-800 dark:text-amber-400 mb-4 flex items-center gap-2">
+                                🔍 多角度分析：解方程的本质
+                            </h3>
+                            <div className="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <strong className="text-slate-800 dark:text-white text-sm">运算的逆过程：</strong>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">方程 <code className="mx-1">2x + 3 = 7</code> 的形成过程是：把 x 乘 2 再加 3。解方程就是逆向操作：先减 3，再除以 2，一层层剥洋葱找出 x。</p>
+                                </div>
+                                <div>
+                                    <strong className="text-slate-800 dark:text-white text-sm">几何视角 (初二会学)：</strong>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">解 <code className="mx-1">2x + 3 = 7</code> 等价于求一条直线 (y = 2x + 3) 和另一条水平直线 (y = 7) 的交点横坐标。</p>
                                 </div>
                             </div>
                         </div>
@@ -855,6 +931,20 @@ export const grade7Content = {
                         answer="B"
                         explanation="两边同除以-2: x = 6 ÷ (-2) = -3。"
                     />
+                </div>
+            ),
+            interactive: (
+                <div className="space-y-6">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2 flex items-center gap-3">
+                            <MousePointer2 className="w-6 h-6 text-indigo-600" />
+                            互动实验室：一元一次方程
+                        </h2>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                            通过天平可视化，逐步推导方程的解题过程；或进入闯关模式大量练习！
+                        </p>
+                        <LinearEquationLab />
+                    </div>
                 </div>
             )
         }

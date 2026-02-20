@@ -13,7 +13,8 @@ import {
     Brain,
     Sparkles,
     ChevronRight,
-    AlertCircle
+    AlertCircle,
+    MousePointer2
 } from 'lucide-react';
 import PracticeProblem from '../../components/subjects/practice/PracticeProblem';
 import { Link } from 'react-router-dom';
@@ -33,7 +34,8 @@ export const Icons = {
     Brain,
     Sparkles,
     ChevronRight,
-    AlertCircle
+    AlertCircle,
+    MousePointer2
 };
 
 export { PracticeProblem, Link, React };

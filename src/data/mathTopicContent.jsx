@@ -118,49 +118,8 @@ export const mathTopicContent = {
         }
     },
 
-    // Grade 10 - Interactive Overrides
-    'high-10-1-sets': {
-        meta: {
-            title: "集合与逻辑 - 高一数学 | AI7Miao数学",
-            description: "通过互动韦恩图(Venn Diagram)理解集合的并集、交集、补集运算。",
-            keywords: "集合,韦恩图,并集,交集,补集,Venn图,逻辑"
-        },
-        info: {
-            title: "集合与逻辑",
-            description: "数学的通用语言。用韦恩图可视化的方式，轻松搞定抽象的集合运算！",
-            tags: [
-                { text: "代数", color: "blue" },
-                { text: "40分钟", color: "slate" },
-                { text: "互动实验", color: "purple" }
-            ]
-        },
-        aiContext: "你现在是高一数学老师，正在讲解集合与逻辑。请引导学生通过韦恩图理解集合运算（并、交、补）。解释集合在逻辑推理中的作用。",
-        aiChatTitle: "🤖 集合逻辑智能辅导",
-        aiChatIntro: "你好！我是你的AI数学助教。集合是现代数学的基础，韦恩图是理解它的最好工具。关于并集、交集或者补集，有什么不懂的都可以问我！",
-        aiMessages: [
-            { role: 'assistant', content: '你好！欢迎来到集合的世界。你知道怎么用图画来表示“既喜欢篮球又喜欢足球的人”吗？试着在韦恩图里操作一下！' }
-        ],
-        tabs: {
-            interactive: <SetsAndLogic />,
-            concept: (
-                <div className="space-y-4 text-slate-700 dark:text-slate-300">
-                    <p><strong>集合的概念：</strong></p>
-                    <p>一般地，我们把研究对象统称为元素，把一些元素组成的总体叫做集合。</p>
-                    <p><strong>集合的表示方法：</strong></p>
-                    <ul className="list-disc list-inside pl-4">
-                        <li>列举法：{`{1, 2, 3}`}</li>
-                        <li>描述法：{`{x | x > 0}`}</li>
-                        <li>图示法：韦恩图 (Venn Diagram)</li>
-                    </ul>
-                </div>
-            ),
-            practice: (
-                <div className="text-center py-8 text-slate-500">
-                    🚧 练习题库建设中...
-                </div>
-            )
-        }
-    },
+
+
 
 
 };

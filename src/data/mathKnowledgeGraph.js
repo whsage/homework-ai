@@ -509,7 +509,7 @@ export const mathKnowledgeGraph = {
                         bloomLevel: 'understand'
                     },
                     {
-                        id: 'mid-8-2-linear-functions',
+                        id: 'mid-8-1-linear-functions',
                         name: '一次函数',
                         skills: ['一次函数图象', '性质', '应用'],
                         prerequisites: ['mid-8-2-functions'],
@@ -544,7 +544,7 @@ export const mathKnowledgeGraph = {
                         id: 'mid-9-1-quadratic-functions',
                         name: '二次函数',
                         skills: ['二次函数概念', '图象性质', '解析式', '应用'],
-                        prerequisites: ['mid-8-2-linear-functions', 'mid-9-1-quadratic-equations'],
+                        prerequisites: ['mid-8-1-linear-functions', 'mid-9-1-quadratic-equations'],
                         difficulty: 0.9,
                         bloomLevel: 'apply'
                     },
@@ -578,7 +578,7 @@ export const mathKnowledgeGraph = {
                         id: 'mid-9-2-inverse-proportional',
                         name: '反比例函数',
                         skills: ['反比例函数概念', '图象性质', '应用'],
-                        prerequisites: ['mid-8-2-linear-functions'],
+                        prerequisites: ['mid-8-1-linear-functions'],
                         difficulty: 0.8,
                         bloomLevel: 'apply'
                     },

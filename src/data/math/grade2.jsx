@@ -1,4 +1,5 @@
 import { Icons, PracticeProblem, React } from './common';
+import MultiplicationLab from '../../components/subjects/math/elementary/MultiplicationLab';
 const { Lightbulb, Target, Clock, Star, Brain, Calculator } = Icons;
 
 export const grade2Content = {
@@ -51,6 +52,26 @@ export const grade2Content = {
                         </div>
                     </div>
                 </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 易错点警示</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2">❌ 错误做法</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">3 × 4 算成 3 + 4 = 7（把乘号看成加号）</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2">✅ 正确做法</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">3 × 4 是 3 个 4 相加 = 12（口诀：三四十二）</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            interactive: (
+                <MultiplicationLab />
             ),
             examples: (
                 <div className="space-y-6">
