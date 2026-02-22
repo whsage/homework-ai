@@ -787,6 +787,9 @@ export const sendMessageToTutor = async (userMessage, history = [], imageFile = 
             if (parsedResponse.subject) {
                 updateData.subject = parsedResponse.subject;
             }
+            if (parsedResponse.tags && parsedResponse.tags.length > 0) {
+                updateData.tags = parsedResponse.tags;
+            }
 
             if (Object.keys(updateData).length > 0) {
                 const { error: updateError } = await supabase
