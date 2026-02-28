@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, MessageCircle, ChevronRight, Home, ChevronLeft } from 'lucide-react';
 import { getAdjacentTopics } from '../../../data/mathCurriculum';
 import { getChineseAdjacentTopics } from '../../../data/chineseCurriculum';
+import { getEnglishAdjacentTopics } from '../../../data/englishCurriculum';
 
 const TopicLayout = ({
     meta,           // { title, description, keywords }
@@ -16,9 +17,13 @@ const TopicLayout = ({
     const { topicId } = useParams();
     const location = useLocation();
     const isChinese = location.pathname.includes('/subjects/chinese');
-    const subjectLabel = isChinese ? '语文' : '数学';
-    const subjectPath = isChinese ? '/subjects/chinese' : '/subjects/math';
-    const { prev, next } = topicId ? (isChinese ? getChineseAdjacentTopics(topicId) : getAdjacentTopics(topicId)) : { prev: null, next: null };
+    const isEnglish = location.pathname.includes('/subjects/english');
+    const subjectLabel = isEnglish ? '英语' : (isChinese ? '语文' : '数学');
+    const subjectPath = isEnglish ? '/subjects/english' : (isChinese ? '/subjects/chinese' : '/subjects/math');
+    const { prev, next } = topicId ? (
+        isEnglish ? getEnglishAdjacentTopics(topicId) :
+            (isChinese ? getChineseAdjacentTopics(topicId) : getAdjacentTopics(topicId))
+    ) : { prev: null, next: null };
 
 
     // Breadcrumb logic
@@ -37,13 +42,16 @@ const TopicLayout = ({
             if (num) {
                 // 2. Stage (Primary/Middle)
                 if (num <= 6) {
-                    if (!isChinese) breadcrumbs.push({ label: '小学', link: '/subjects/math?gradeType=elementary' });
+                    if (!isChinese && !isEnglish) breadcrumbs.push({ label: '小学', link: '/subjects/math?gradeType=elementary' });
                     // 3. Grade
-                    breadcrumbs.push({ label: text, link: isChinese ? `/subjects/chinese?gradeLevel=${num}` : `/subjects/math?gradeType=elementary&gradeLevel=${num}` });
+                    breadcrumbs.push({ label: text, link: isEnglish ? `/subjects/english?gradeLevel=${num}` : (isChinese ? `/subjects/chinese?gradeLevel=${num}` : `/subjects/math?gradeType=elementary&gradeLevel=${num}`) });
                 } else if (num >= 7 && num <= 9) {
-                    breadcrumbs.push({ label: '初中', link: '/subjects/math?gradeType=middle' });
+                    if (!isChinese && !isEnglish) breadcrumbs.push({ label: '初中', link: '/subjects/math?gradeType=middle' });
                     // Middle school modules
-                    breadcrumbs.push({ label: text, link: `/subjects/math?gradeType=middle` });
+                    breadcrumbs.push({ label: text, link: isEnglish ? '/subjects/english?gradeType=middle' : (isChinese ? '/subjects/chinese?gradeType=middle' : '/subjects/math?gradeType=middle') });
+                } else if (num >= 10 && num <= 12) {
+                    if (!isChinese && !isEnglish) breadcrumbs.push({ label: '高中', link: '/subjects/math?gradeType=high' });
+                    breadcrumbs.push({ label: text, link: isEnglish ? '/subjects/english?gradeType=high' : (isChinese ? '/subjects/chinese?gradeType=high' : '/subjects/math?gradeType=high') });
                 }
             } else {
                 // Fallback if no specific grade number found but "Grade" tag exists

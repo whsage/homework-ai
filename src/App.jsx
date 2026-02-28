@@ -17,6 +17,8 @@ import QuadraticFunctions from './pages/subjects/math/QuadraticFunctions';
 import MathTopicPage from './pages/subjects/math/MathTopicPage';
 import ChineseLearning from './pages/subjects/ChineseLearning';
 import ChineseTopicPage from './pages/subjects/chinese/ChineseTopicPage';
+import EnglishLearning from './pages/subjects/english/EnglishLearning';
+import EnglishTopicPage from './pages/subjects/english/EnglishTopicPage';
 
 
 import { ThemeProvider } from './context/ThemeContext';
@@ -41,6 +43,8 @@ function App() {
               <Route path="subjects/math/:topicId" element={<MathTopicPage />} />
               <Route path="subjects/chinese" element={<ChineseLearning />} />
               <Route path="subjects/chinese/:topicId" element={<ChineseTopicPage />} />
+              <Route path="subjects/english" element={<EnglishLearning />} />
+              <Route path="subjects/english/:topicId" element={<EnglishTopicPage />} />
               <Route path="new" element={<NewSession />} />
               <Route path="homework/:id" element={<HomeworkDetailPage />} />
               <Route path="history" element={<History />} />
