@@ -148,23 +148,30 @@ const Subjects = () => {
                         </div>
 
                         {/* English */}
-                        <div className="relative flex flex-col bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 opacity-75">
+                        <Link to="/subjects/english" className="relative flex flex-col bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-300 dark:border-slate-600 shadow-sm hover:shadow-md hover:border-yellow-500 dark:hover:border-yellow-500 transition-all group hover:-translate-y-1">
                             <div className="flex items-start justify-between mb-4">
-                                <div className="p-3 bg-yellow-100 dark:bg-yellow-900/30 rounded-xl">
+                                <div className="p-3 bg-yellow-100 dark:bg-yellow-900/30 rounded-xl group-hover:scale-110 transition-transform">
                                     <Languages className="w-8 h-8 text-yellow-600 dark:text-yellow-400" />
                                 </div>
-                                <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-500 text-xs font-bold rounded-full">
-                                    即将推出
+                                <span className="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold rounded-full">
+                                    已上线
                                 </span>
                             </div>
 
-                            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-yellow-600 transition-colors">
                                 英语 (English)
                             </h3>
                             <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-1">
-                                词汇、语法、阅读与写作的全方位提升。
+                                词汇、语法、阅读与写作的全方位系统提升。
                             </p>
-                        </div>
+
+                            <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 pt-4 border-t border-slate-100 dark:border-slate-700">
+                                <span>K-12 全学段</span>
+                                <span className="flex items-center text-yellow-600 font-semibold group-hover:translate-x-1 transition-transform">
+                                    进入学科 →
+                                </span>
+                            </div>
+                        </Link>
 
                         {/* Chinese */}
                         <Link to="/subjects/chinese" className="relative flex flex-col bg-white dark:bg-slate-800 rounded-2xl p-6 border-2 border-red-200 dark:border-red-800 hover:shadow-xl transition-all group hover:scale-[1.02]">
