@@ -340,33 +340,36 @@ const MathLearning = () => {
                     </div>
                 </section>
 
-                {/* Grade Tabs */}
+                {/* Stage Selector Tabs */}
+                <section className="py-6 px-6 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border-b border-slate-200 dark:border-slate-700 sticky top-0 z-20">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="flex justify-center gap-4">
+                            {grades.map((grade) => {
+                                const info = gradeContent[grade.id];
+                                return (
+                                    <button
+                                        key={grade.id}
+                                        onClick={() => setActiveGrade(grade.id)}
+                                        className={`flex items-center gap-3 px-8 py-4 rounded-xl font-semibold transition-all ${activeGrade === grade.id
+                                            ? 'bg-gradient-to-r from-indigo-500 to-blue-500 text-white shadow-lg scale-105'
+                                            : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:shadow-md border border-slate-200 dark:border-slate-600'
+                                            }`}
+                                    >
+                                        <span className="text-2xl">{grade.icon}</span>
+                                        <div className="text-left">
+                                            <div className="text-lg">{grade.label}数学</div>
+                                            <div className="text-xs opacity-80">{info.age}</div>
+                                        </div>
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Grade Selector & Content */}
                 <section className="py-12 px-6">
                     <div className="max-w-7xl mx-auto">
-                        <div className="text-center mb-8">
-                            <h2 className="text-3xl font-bold text-slate-800 dark:text-white mb-4">
-                                选择您的阶段
-                            </h2>
-                            <p className="text-slate-600 dark:text-slate-400">
-                                不同阶段，不同知识体系
-                            </p>
-                        </div>
-
-                        <div className="flex flex-wrap justify-center gap-4 mb-12">
-                            {grades.map((grade) => (
-                                <button
-                                    key={grade.id}
-                                    onClick={() => setActiveGrade(grade.id)}
-                                    className={`px-6 py-3 rounded-xl font-semibold transition-all ${activeGrade === grade.id
-                                        ? 'bg-gradient-to-r from-indigo-600 to-blue-600 text-white shadow-lg scale-105'
-                                        : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:shadow-md'
-                                        }`}
-                                >
-                                    <span className="mr-2">{grade.icon}</span>
-                                    {grade.label}
-                                </button>
-                            ))}
-                        </div>
 
                         {/* Tutoring Features & Cases (Integrated from MathTutoring) */}
                         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 mb-12 border border-slate-100 dark:border-slate-700">
@@ -441,7 +444,7 @@ const MathLearning = () => {
                         {currentGrade.grades && (
                             <div className="mb-12 space-y-6">
                                 {/* Grade Selector */}
-                                <div className="bg-gradient-to-r from-pink-50 to-rose-50 dark:from-pink-900/20 dark:to-rose-900/20 rounded-2xl p-6 border border-pink-100 dark:border-pink-800/30">
+                                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-2xl p-6 border border-blue-100 dark:border-blue-800/30">
                                     <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-4 text-center">
                                         选择年级
                                     </h3>
@@ -454,7 +457,7 @@ const MathLearning = () => {
                                                     key={grade.id}
                                                     onClick={() => setCurrentSubGrade(gradeNum)}
                                                     className={`px-6 py-3 rounded-xl font-semibold transition-all ${currentSubGrade === gradeNum
-                                                        ? 'bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-lg scale-105'
+                                                        ? 'bg-gradient-to-r from-indigo-500 to-blue-500 text-white shadow-lg scale-105'
                                                         : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:shadow-md'
                                                         }`}
                                                 >
