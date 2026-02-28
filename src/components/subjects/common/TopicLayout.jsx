@@ -2,6 +2,7 @@ import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, MessageCircle, ChevronRight, Home, ChevronLeft } from 'lucide-react';
 import { getAdjacentTopics } from '../../../data/mathCurriculum';
+import { getChineseAdjacentTopics } from '../../../data/chineseCurriculum';
 
 const TopicLayout = ({
     meta,           // { title, description, keywords }
@@ -13,15 +14,20 @@ const TopicLayout = ({
     children        // main content
 }) => {
     const { topicId } = useParams();
-    const { prev, next } = topicId ? getAdjacentTopics(topicId) : { prev: null, next: null };
+    const location = useLocation();
+    const isChinese = location.pathname.includes('/subjects/chinese');
+    const subjectLabel = isChinese ? '语文' : '数学';
+    const subjectPath = isChinese ? '/subjects/chinese' : '/subjects/math';
+    const { prev, next } = topicId ? (isChinese ? getChineseAdjacentTopics(topicId) : getAdjacentTopics(topicId)) : { prev: null, next: null };
+
 
     // Breadcrumb logic
     const getBreadcrumbs = () => {
         const gradeTag = info.tags.find(t => t.text.includes('年级'));
         const breadcrumbs = [];
 
-        // 1. Math Home
-        breadcrumbs.push({ label: '数学', link: '/subjects/math' });
+        // 1. Subject Home
+        breadcrumbs.push({ label: subjectLabel, link: subjectPath });
 
         if (gradeTag) {
             const text = gradeTag.text;
@@ -31,9 +37,9 @@ const TopicLayout = ({
             if (num) {
                 // 2. Stage (Primary/Middle)
                 if (num <= 6) {
-                    breadcrumbs.push({ label: '小学', link: '/subjects/math?gradeType=elementary' });
+                    if (!isChinese) breadcrumbs.push({ label: '小学', link: '/subjects/math?gradeType=elementary' });
                     // 3. Grade
-                    breadcrumbs.push({ label: text, link: `/subjects/math?gradeType=elementary&gradeLevel=${num}` });
+                    breadcrumbs.push({ label: text, link: isChinese ? `/subjects/chinese?gradeLevel=${num}` : `/subjects/math?gradeType=elementary&gradeLevel=${num}` });
                 } else if (num >= 7 && num <= 9) {
                     breadcrumbs.push({ label: '初中', link: '/subjects/math?gradeType=middle' });
                     // Middle school modules
@@ -41,7 +47,7 @@ const TopicLayout = ({
                 }
             } else {
                 // Fallback if no specific grade number found but "Grade" tag exists
-                breadcrumbs.push({ label: text, link: '/subjects/math' });
+                breadcrumbs.push({ label: text, link: subjectPath });
             }
         }
         return breadcrumbs;
@@ -221,7 +227,7 @@ const TopicLayout = ({
                             {meta.keywords.split(',').join(' | ')}
                         </p>
                         <p>
-                            AI7Miao - 专业的数学知识点学习平台，基于教育理论，提供深度的知识点讲解和AI互动学习
+                            AI7Miao - 专业的知识点学习平台，基于教育理论，提供深度的知识点讲解和AI互动学习
                         </p>
                     </div>
                 </div>

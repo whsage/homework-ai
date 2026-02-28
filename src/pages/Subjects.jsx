@@ -167,13 +167,13 @@ const Subjects = () => {
                         </div>
 
                         {/* Chinese */}
-                        <div className="relative flex flex-col bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 opacity-75">
+                        <Link to="/subjects/chinese" className="relative flex flex-col bg-white dark:bg-slate-800 rounded-2xl p-6 border-2 border-red-200 dark:border-red-800 hover:shadow-xl transition-all group hover:scale-[1.02]">
                             <div className="flex items-start justify-between mb-4">
                                 <div className="p-3 bg-red-100 dark:bg-red-900/30 rounded-xl">
                                     <BookOpen className="w-8 h-8 text-red-600 dark:text-red-400" />
                                 </div>
-                                <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-500 text-xs font-bold rounded-full">
-                                    即将推出
+                                <span className="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold rounded-full">
+                                    已上线
                                 </span>
                             </div>
 
@@ -181,9 +181,9 @@ const Subjects = () => {
                                 语文 (Chinese)
                             </h3>
                             <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-1">
-                                古诗文赏析、现代文阅读与写作指导。
+                                小学语文知识体系：拼音识字、阅读理解、古诗词、写作技巧。
                             </p>
-                        </div>
+                        </Link>
                     </div>
                 </section>
 
