@@ -14,6 +14,7 @@ import TopicLayout from '../../../components/subjects/common/TopicLayout';
 import AIChatSession from '../../../components/subjects/common/AIChatSession';
 import SmartChat from '../../../components/learning/SmartChat';
 import { englishTopicContent } from '../../../data/englishTopicContent';
+import RewardDashboard from '../../../components/rewards/RewardDashboard';
 
 const EnglishTopicPage = () => {
     const { topicId } = useParams();
@@ -99,6 +100,11 @@ const EnglishTopicPage = () => {
                     />
                 </div>
             )}
+
+            {/* 顶部奖励与成就看板 */}
+            <div className="mb-6">
+                <RewardDashboard />
+            </div>
 
             {/* 标签页内容渲染 */}
             <div className="mt-8">
