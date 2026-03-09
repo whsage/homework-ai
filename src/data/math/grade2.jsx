@@ -5,6 +5,9 @@ import AngleFinder from '../../components/subjects/math/elementary/AngleFinder';
 import EmojiStats from '../../components/subjects/math/elementary/EmojiStats';
 import CyclePredictor from '../../components/subjects/math/elementary/CyclePredictor';
 import SumDiffScale from '../../components/subjects/math/elementary/SumDiffScale';
+import Object3DViewerLab from '../../components/subjects/math/elementary/Object3DViewerLab';
+import LogicReasoningLab from '../../components/subjects/math/elementary/LogicReasoningLab';
+import HandshakeCounterLab from '../../components/subjects/math/elementary/HandshakeCounterLab';
 const { Lightbulb, Target, Clock, Star, Brain, Calculator } = Icons;
 
 export const grade2Content = {
@@ -301,6 +304,26 @@ export const grade2Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 摄影师容易犯的错</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 只看一面就下结论</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">正面看到长方形，就说它是长方体？不一定哦！圆柱正面看也是长方形呢！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 多拍几张照片</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">要从正面、侧面、上面都看看！多角度观察才能猜出它到底是什么形状。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            interactive: (
+                <Object3DViewerLab />
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -504,6 +527,23 @@ export const grade2Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 情报员常犯的错</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 「正」字少画多画笔画</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">有的小侦探画着画着，「正」字只画了4笔或者画了6笔！记住，一个完整的「正」字刚好是 5 笔！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 边问边画，画完数数</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">每问到一个人就画一笔，画完最后检查一下：数正字数量 × 5 + 零散笔画 = 总人数！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             interactive: (
                 <EmojiStats />
             ),
@@ -586,6 +626,23 @@ export const grade2Content = {
                                     <p>② 把 20 个人编队：20 ÷ 3 = 6 队 ... 还多出 2 个！</p>
                                     <p>③ 多出的第 2 个，对应小分队里的第 2 个，所以是 <strong className="text-green-600 text-lg">○</strong>！</p>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 预言家最容易翻车的地方</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 余数是0时搞混了</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">比如第6个，周期是3。6÷3=2余0。有人说是第0个（不存在！），其实余数为0说明刚好分完，它是小分队的最后一个！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 余数0 = 最后一个</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">记住：余数为0的时候，就是小分队的末尾成员！可以用画图验证一下。</p>
                             </div>
                         </div>
                     </div>
@@ -685,6 +742,23 @@ export const grade2Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 分糖果大坑</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 大数小数搞反了</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">求出来的结果，哥哥居然比弟弟少？「小数 = (和-差) ÷ 2」算出来的是小的那个数，千万别搞反了！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 先算小数再加差</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">公式算出的是小数！大数 = 小数 + 差。最后验算：大数 + 小数 = 和，大数 - 小数 = 差。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
             interactive: (
                 <SumDiffScale />
             ),
@@ -774,6 +848,26 @@ export const grade2Content = {
                     </div>
                 </div>
             ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 侦探推理陷阱</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 假设完忘了检验</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">假设小猪说真话后，没有去检查其他人的话会不会互相矛盾！假设法一定要把所有人的话都过一遍！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 顺着假设推到底</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">假设一个条件后，用它去验证所有其他条件。只要有一个打架的，就说明假设是错的，换下一个人试！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            interactive: (
+                <LogicReasoningLab />
+            ),
             examples: (
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 md:p-8">
@@ -857,6 +951,26 @@ export const grade2Content = {
                         </div>
                     </div>
                 </div>
+            ),
+            properties: (
+                <div className="space-y-6">
+                    <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-xl p-6">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-300 mb-4 text-lg">⚠️ 数数常见大坑</h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-red-200 dark:border-red-900/50">
+                                <p className="text-red-500 font-bold mb-2 flex items-center gap-2">❌ 重复计数</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">小狗和小猫握过一次手了，回头又数了一次「小猫和小狗」，其实是同一次！重复啦！</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border-2 border-green-200 dark:border-green-900/50">
+                                <p className="text-green-500 font-bold mb-2 flex items-center gap-2">✅ 按顺序，握完就退场</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">1号先和剩下的所有人握手，握完退场。2号再和剩下的握，也退场。这样保证不重不漏！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ),
+            interactive: (
+                <HandshakeCounterLab />
             ),
             examples: (
                 <div className="space-y-6">
