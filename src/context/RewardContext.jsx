@@ -42,8 +42,18 @@ const DEFAULT_STATE = {
 const STORAGE_KEY = 'learning_rewards';
 const LEGACY_STORAGE_KEY = 'math_rewards';
 
-// 科目前缀映射
-const SUBJECT_MAP = {
+// 从 topicId 识别科目
+// 数学: g1-l1-addition-20, g4-l2-xxx, mid-7-1-xxx, mid-8-1-xxx, math1-l1-xxx
+// 英语: en1-l1-alphabet, en1-l2-xxx
+// 语文: cn1-l1-pinyin-initials, cn1-l2-xxx
+const detectSubject = (topicId) => {
+    if (/^(g\d|mid-\d|math)/.test(topicId)) return 'math';
+    if (/^en/.test(topicId)) return 'en';
+    if (/^cn/.test(topicId)) return 'cn';
+    return 'other';
+};
+
+const SUBJECT_INFO = {
     en: { name: '英语', emoji: '🔤', color: 'amber' },
     math: { name: '数学', emoji: '🔢', color: 'blue' },
     cn: { name: '语文', emoji: '📖', color: 'red' },
@@ -187,12 +197,12 @@ export const RewardProvider = ({ children }) => {
         return state.topicProgress[topicId] || { correct: 0, total: 0, stars: 0 };
     }, [state.topicProgress]);
 
-    // 按科目前缀统计
-    const getSubjectStats = useCallback((prefix) => {
+    // 按科目统计（使用 detectSubject 智能识别）
+    const getSubjectStats = useCallback((subject) => {
         const topics = state.topicProgress;
         let correct = 0, total = 0, stars = 0, topicCount = 0;
         Object.entries(topics).forEach(([id, data]) => {
-            if (id.startsWith(prefix)) {
+            if (detectSubject(id) === subject) {
                 correct += data.correct || 0;
                 total += data.total || 0;
                 stars += data.stars || 0;
@@ -204,10 +214,10 @@ export const RewardProvider = ({ children }) => {
     }, [state.topicProgress]);
 
     const getAllSubjectStats = useCallback(() => {
-        return Object.entries(SUBJECT_MAP).map(([prefix, meta]) => ({
-            prefix,
+        return Object.entries(SUBJECT_INFO).map(([key, meta]) => ({
+            prefix: key,
             ...meta,
-            ...getSubjectStats(prefix),
+            ...getSubjectStats(key),
         }));
     }, [getSubjectStats]);
 
