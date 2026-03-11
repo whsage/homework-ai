@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../supabase';
-import { Calendar, Clock, BookOpen, TrendingUp, Award, Flame, BarChart3, PieChart, Hash } from 'lucide-react';
+import { Calendar, Clock, BookOpen, TrendingUp, Award, Flame, BarChart3, PieChart, Hash, Star, Target, Trophy } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '../context/LanguageContext';
+import { useRewards } from '../context/RewardContext';
 
 const Statistics = () => {
     const { t } = useLanguage();
+    const { state: rewardState, achievements: rewardAchievements, getAllSubjectStats } = useRewards();
     const [loading, setLoading] = useState(true);
     const [stats, setStats] = useState({
         totalSessions: 0,
@@ -241,6 +243,107 @@ const Statistics = () => {
                             <div className="text-sm font-medium opacity-90">{t('statistics.streak')}</div>
                         </div>
                     </div>
+
+                    {/* ========== 练习闯关专区 ========== */}
+                    {rewardState.totalStars > 0 && (() => {
+                        const subjectStats = getAllSubjectStats();
+                        const maxTotal = Math.max(...subjectStats.map(s => s.total), 1);
+                        const rewardAccuracy = (rewardState.correctCount + rewardState.wrongCount) > 0
+                            ? Math.round((rewardState.correctCount / (rewardState.correctCount + rewardState.wrongCount)) * 100) : 0;
+                        const subjectColorMap = { blue: 'bg-blue-500', red: 'bg-red-500', amber: 'bg-amber-500' };
+                        const subjectBgMap = { blue: 'bg-blue-50 dark:bg-blue-900/10', red: 'bg-red-50 dark:bg-red-900/10', amber: 'bg-amber-50 dark:bg-amber-900/10' };
+                        const subjectTextMap = { blue: 'text-blue-700 dark:text-blue-300', red: 'text-red-700 dark:text-red-300', amber: 'text-amber-700 dark:text-amber-300' };
+
+                        return (
+                            <div className="mb-8 space-y-6">
+                                <h2 className="text-xl font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                                    <Star className="text-yellow-500" size={24} />
+                                    练习闯关成就
+                                </h2>
+
+                                {/* 闯关核心数据 */}
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                    <div className="bg-yellow-50 dark:bg-yellow-900/10 p-4 rounded-xl text-center border border-yellow-200/50 dark:border-yellow-800/30">
+                                        <Star className="w-7 h-7 text-yellow-500 mx-auto mb-1.5 fill-yellow-400" />
+                                        <p className="text-3xl font-bold text-yellow-700 dark:text-yellow-300">{rewardState.totalStars}</p>
+                                        <p className="text-xs text-yellow-600/70 mt-1">星星总数</p>
+                                    </div>
+                                    <div className="bg-green-50 dark:bg-green-900/10 p-4 rounded-xl text-center border border-green-200/50 dark:border-green-800/30">
+                                        <Target className="w-7 h-7 text-green-500 mx-auto mb-1.5" />
+                                        <p className="text-3xl font-bold text-green-700 dark:text-green-300">{rewardAccuracy}%</p>
+                                        <p className="text-xs text-green-600/70 mt-1">正确率</p>
+                                    </div>
+                                    <div className="bg-orange-50 dark:bg-orange-900/10 p-4 rounded-xl text-center border border-orange-200/50 dark:border-orange-800/30">
+                                        <Flame className="w-7 h-7 text-orange-500 mx-auto mb-1.5" />
+                                        <p className="text-3xl font-bold text-orange-700 dark:text-orange-300">{rewardState.bestStreak}</p>
+                                        <p className="text-xs text-orange-600/70 mt-1">最高连胜</p>
+                                    </div>
+                                    <div className="bg-indigo-50 dark:bg-indigo-900/10 p-4 rounded-xl text-center border border-indigo-200/50 dark:border-indigo-800/30">
+                                        <BarChart3 className="w-7 h-7 text-indigo-500 mx-auto mb-1.5" />
+                                        <p className="text-3xl font-bold text-indigo-700 dark:text-indigo-300">{rewardState.correctCount + rewardState.wrongCount}</p>
+                                        <p className="text-xs text-indigo-600/70 mt-1">总答题数</p>
+                                    </div>
+                                </div>
+
+                                {/* 跨科目对比 */}
+                                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6">
+                                    <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                                        <PieChart className="w-5 h-5 text-purple-500" />
+                                        各科练习对比
+                                    </h3>
+                                    <div className="space-y-4">
+                                        {subjectStats.map(subject => (
+                                            <div key={subject.prefix} className="space-y-1.5">
+                                                <div className="flex items-center justify-between text-sm">
+                                                    <span className="font-medium text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
+                                                        <span>{subject.emoji}</span> {subject.name}
+                                                    </span>
+                                                    <span className="text-slate-500 dark:text-slate-400 text-xs">
+                                                        {subject.total > 0 ? `${subject.correct}/${subject.total} 题 · 正确率 ${subject.accuracy}%` : '暂无数据'}
+                                                    </span>
+                                                </div>
+                                                <div className="h-3 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                                                    <div
+                                                        className={`h-full ${subjectColorMap[subject.color] || 'bg-gray-500'} rounded-full transition-all duration-500`}
+                                                        style={{ width: `${subject.total > 0 ? (subject.total / maxTotal) * 100 : 0}%` }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* 成就徽章墙 */}
+                                <div className="bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-2xl shadow-lg p-6 border-2 border-yellow-200 dark:border-yellow-700">
+                                    <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                                        <Trophy className="w-5 h-5 text-yellow-600" />
+                                        成就徽章 ({rewardState.unlockedAchievements.length}/{rewardAchievements.length})
+                                    </h3>
+                                    <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                                        {rewardAchievements.map(a => {
+                                            const unlocked = rewardState.unlockedAchievements.includes(a.id);
+                                            return (
+                                                <div
+                                                    key={a.id}
+                                                    className={`p-3 rounded-xl text-center transition-all ${unlocked
+                                                        ? 'bg-white dark:bg-slate-700 border border-purple-200 dark:border-purple-800 shadow-sm'
+                                                        : 'bg-white/50 dark:bg-slate-700/30 border border-slate-200 dark:border-slate-700 opacity-40'
+                                                        }`}
+                                                    title={a.desc}
+                                                >
+                                                    <span className={`text-2xl ${unlocked ? '' : 'grayscale'}`}>{a.emoji}</span>
+                                                    <p className={`text-[10px] font-bold mt-1 ${unlocked ? 'text-purple-700 dark:text-purple-300' : 'text-slate-400'}`}>
+                                                        {a.name}
+                                                    </p>
+                                                    <p className="text-[9px] text-slate-400 mt-0.5">{a.desc}</p>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })()}
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         {/* 左侧：学科分布 */}

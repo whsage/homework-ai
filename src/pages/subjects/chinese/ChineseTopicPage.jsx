@@ -14,6 +14,7 @@ import TopicLayout from '../../../components/subjects/common/TopicLayout';
 import AIChatSession from '../../../components/subjects/common/AIChatSession';
 import SmartChat from '../../../components/learning/SmartChat';
 import { chineseTopicContent } from '../../../data/chineseTopicContent';
+import RewardMiniCard from '../../../components/rewards/RewardMiniCard';
 
 const ChineseTopicPage = () => {
     const { topicId } = useParams();
@@ -99,6 +100,9 @@ const ChineseTopicPage = () => {
                     />
                 </div>
             )}
+
+            {/* 精简奖励条 */}
+            <RewardMiniCard />
 
             {/* 标签页内容渲染 */}
             <div className="mt-8">

@@ -15,7 +15,7 @@ import {
 import TopicLayout from '../../../components/subjects/common/TopicLayout';
 import AIChatSession from '../../../components/subjects/common/AIChatSession';
 import SmartChat from '../../../components/learning/SmartChat';
-import RewardDashboard from '../../../components/rewards/RewardDashboard';
+import RewardMiniCard from '../../../components/rewards/RewardMiniCard';
 import { mathTopicContent } from '../../../data/mathTopicContent';
 
 const MathTopicPage = () => {
@@ -110,12 +110,8 @@ const MathTopicPage = () => {
                 </div>
             )}
 
-            {/* 奖励仪表盘 - 练习页面显示 */}
-            {(activeTab === 'practice' || activeTab === 'interactive') && (
-                <div className="mb-6">
-                    <RewardDashboard />
-                </div>
-            )}
+            {/* 迫你奖励条 */}
+            <RewardMiniCard />
 
             {/* 标签页内容渲染 */}
             <div className="mt-8">

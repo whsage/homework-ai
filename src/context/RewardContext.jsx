@@ -9,7 +9,7 @@ import React, { createContext, useContext, useState, useEffect, useCallback } fr
  * - 🔥 连续答对：连续答对加分倍率
  * - 📊 学习进度：按年级/课题追踪
  * 
- * localStorage key: 'math_rewards'
+ * localStorage key: 'learning_rewards'
  */
 
 const ACHIEVEMENTS = [
@@ -39,7 +39,15 @@ const DEFAULT_STATE = {
     recentRewards: [], // for notification queue
 };
 
-const STORAGE_KEY = 'math_rewards';
+const STORAGE_KEY = 'learning_rewards';
+const LEGACY_STORAGE_KEY = 'math_rewards';
+
+// 科目前缀映射
+const SUBJECT_MAP = {
+    en: { name: '英语', emoji: '🔤', color: 'amber' },
+    math: { name: '数学', emoji: '🔢', color: 'blue' },
+    cn: { name: '语文', emoji: '📖', color: 'red' },
+};
 
 const RewardContext = createContext(null);
 
@@ -63,7 +71,15 @@ export const useRewards = () => {
 export const RewardProvider = ({ children }) => {
     const [state, setState] = useState(() => {
         try {
-            const saved = localStorage.getItem(STORAGE_KEY);
+            // Try new key first, then migrate from legacy key
+            let saved = localStorage.getItem(STORAGE_KEY);
+            if (!saved) {
+                saved = localStorage.getItem(LEGACY_STORAGE_KEY);
+                if (saved) {
+                    localStorage.setItem(STORAGE_KEY, saved);
+                    localStorage.removeItem(LEGACY_STORAGE_KEY);
+                }
+            }
             if (saved) {
                 return { ...DEFAULT_STATE, ...JSON.parse(saved) };
             }
@@ -171,6 +187,30 @@ export const RewardProvider = ({ children }) => {
         return state.topicProgress[topicId] || { correct: 0, total: 0, stars: 0 };
     }, [state.topicProgress]);
 
+    // 按科目前缀统计
+    const getSubjectStats = useCallback((prefix) => {
+        const topics = state.topicProgress;
+        let correct = 0, total = 0, stars = 0, topicCount = 0;
+        Object.entries(topics).forEach(([id, data]) => {
+            if (id.startsWith(prefix)) {
+                correct += data.correct || 0;
+                total += data.total || 0;
+                stars += data.stars || 0;
+                topicCount++;
+            }
+        });
+        const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
+        return { correct, total, stars, topicCount, accuracy };
+    }, [state.topicProgress]);
+
+    const getAllSubjectStats = useCallback(() => {
+        return Object.entries(SUBJECT_MAP).map(([prefix, meta]) => ({
+            prefix,
+            ...meta,
+            ...getSubjectStats(prefix),
+        }));
+    }, [getSubjectStats]);
+
     const resetRewards = useCallback(() => {
         setState(DEFAULT_STATE);
         setPendingNotifications([]);
@@ -186,6 +226,8 @@ export const RewardProvider = ({ children }) => {
         pendingNotifications,
         dismissNotification,
         resetRewards,
+        getSubjectStats,
+        getAllSubjectStats,
     };
 
     return (
