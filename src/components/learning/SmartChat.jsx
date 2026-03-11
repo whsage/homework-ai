@@ -96,7 +96,7 @@ const SmartChatContent = ({ topicId, topicName, onClose, initialContext }) => {
             setMessages([
                 {
                     role: 'assistant',
-                    content: `你好!我是你的AI数学导师 😊\n\n今天我们来学习${topicName},你有什么想问的吗?`,
+                    content: `你好!我是你的AI导师 😊\n\n今天我们来学习${topicName},你有什么想问的吗?`,
                     timestamp: new Date().toISOString()
                 }
             ]);
@@ -144,7 +144,7 @@ const SmartChatContent = ({ topicId, topicName, onClose, initialContext }) => {
             setMessages([
                 {
                     role: 'assistant',
-                    content: `你好!我是你的AI数学导师 😊\n\n今天我们来学习${topicName},你有什么想问的吗?`,
+                    content: `你好!我是你的AI导师 😊\n\n今天我们来学习${topicName},你有什么想问的吗?`,
                     timestamp: new Date().toISOString()
                 }
             ]);
@@ -247,7 +247,7 @@ const SmartChatContent = ({ topicId, topicName, onClose, initialContext }) => {
                         <Brain className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                        <h3 className="font-bold text-slate-800 dark:text-white">AI数学导师</h3>
+                        <h3 className="font-bold text-slate-800 dark:text-white">AI导师</h3>
                         <p className="text-sm text-slate-500 dark:text-slate-400">
                             {topicName} · 个性化辅导
                         </p>

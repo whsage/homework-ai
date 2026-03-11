@@ -50,7 +50,7 @@ export const mathTopicContent = {
         aiChatTitle: "🤖 有理数智能辅导",
         aiChatIntro: "你好！我是你的AI数学助教。关于有理数、数轴或者正负数运算，有什么不懂的都可以问我哦！比如你可以问：“为什么-3比-1小？”",
         aiMessages: [
-            { role: 'assistant', content: '你好！我是你的专属AI数学导师。今天我们要学习“有理数”。你知道为什么我们要引入负数吗？试着在数轴上找找 -5 在哪里？' }
+            { role: 'assistant', content: '你好！我是你的AI导师。今天我们要学习“有理数”。你知道为什么我们要引入负数吗？试着在数轴上找找 -5 在哪里？' }
         ],
         tabs: {
             interactive: <RationalNumbers />,

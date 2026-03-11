@@ -23,6 +23,13 @@ const ChineseTopicPage = () => {
     const [aiContext, setAiContext] = useState(null);
     const aiChatRef = useRef(null);
 
+    // 切换知识点时重置页面状态，避免导航后保留旧内容
+    useEffect(() => {
+        setActiveTab('concept');
+        setShowAIChat(false);
+        setAiContext(null);
+    }, [topicId]);
+
     // 监听 showAIChat 变化，自动滚动到 AI 对话区域
     useEffect(() => {
         if (showAIChat && aiChatRef.current) {

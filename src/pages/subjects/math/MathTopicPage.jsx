@@ -25,9 +25,12 @@ const MathTopicPage = () => {
     const [aiContext, setAiContext] = useState(null);
     const aiChatRef = useRef(null);
 
-    // 页面加载时滚动到顶部 - 已由 MainLayout 统一处理
-    // 这里的 window.scrollTo 无效，因为滚动容器是 main 元素
-
+    // 切换知识点时重置页面状态，避免导航后保留旧内容
+    useEffect(() => {
+        setActiveTab('concept');
+        setShowAIChat(false);
+        setAiContext(null);
+    }, [topicId]);
 
     // 监听 showAIChat 变化，自动滚动到 AI 对话区域
     useEffect(() => {
