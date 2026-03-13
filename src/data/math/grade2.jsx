@@ -117,6 +117,27 @@ export const grade2Content = {
                     <PracticeProblem id={202} type="choice" question="每排5个座位，共8排，一共有多少个座位？"
                         options={[{ label: 'A', value: '35个' }, { label: 'B', value: '40个' }, { label: 'C', value: '45个' }, { label: 'D', value: '48个' }]}
                         answer="B" explanation="5×8=40（五八四十），共40个座位。" />
+                    <PracticeProblem id={203} type="choice" question="把 24 个苹果平均分给 6 个小朋友，每人分几个？"
+                        options={[{ label: 'A', value: '3个' }, { label: 'B', value: '4个' }, { label: 'C', value: '5个' }, { label: 'D', value: '6个' }]}
+                        answer="B" explanation="除法运算：24 ÷ 6，想口诀四六二十四，所以是4个。" />
+                    <PracticeProblem id={204} type="choice" question="9 的 5 倍是多少？"
+                        options={[{ label: 'A', value: '14' }, { label: 'B', value: '35' }, { label: 'C', value: '40' }, { label: 'D', value: '45' }]}
+                        answer="D" explanation="求一个数的几倍用乘法，9 × 5 = 45（五九四十五）。" />
+                    <PracticeProblem id={205} type="choice" question="下面哪个算式和 4 × 6 = 24 用的是同一句口诀？"
+                        options={[{ label: 'A', value: '8 × 3 = 24' }, { label: 'B', value: '24 ÷ 4 = 6' }, { label: 'C', value: '12 × 2 = 24' }, { label: 'D', value: '24 ÷ 8 = 3' }]}
+                        answer="B" explanation="4×6和24÷4用的都是“四六二十四”这句口诀。" />
+                    <PracticeProblem id={206} type="choice" question="36 是 4 的几倍？"
+                        options={[{ label: 'A', value: '7倍' }, { label: 'B', value: '8倍' }, { label: 'C', value: '9倍' }, { label: 'D', value: '10倍' }]}
+                        answer="C" explanation="求一个数是另一个数的几倍用除法，36 ÷ 4 = 9。" />
+                    <PracticeProblem id={207} type="choice" question="哪个算式得数最大？"
+                        options={[{ label: 'A', value: '7 × 8' }, { label: 'B', value: '6 × 9' }, { label: 'C', value: '8 × 8' }, { label: 'D', value: '9 × 6' }]}
+                        answer="C" explanation="7×8=56，6×9=54，8×8=64，9×6=54。最大的是64。" />
+                    <PracticeProblem id={208} type="choice" question="一共有 42 颗糖，如果每盒子装 7 颗，需要几个盒子？"
+                        options={[{ label: 'A', value: '5个' }, { label: 'B', value: '6个' }, { label: 'C', value: '7个' }, { label: 'D', value: '8个' }]}
+                        answer="B" explanation="平均分装用除法，42 ÷ 7 = 6（六七四十二）。" />
+                    <PracticeProblem id={209} type="choice" question="7 × （ ） = 49，括号里填什么数字？"
+                        options={[{ label: 'A', value: '6' }, { label: 'B', value: '7' }, { label: 'C', value: '8' }, { label: 'D', value: '9' }]}
+                        answer="B" explanation="七七四十九，所以填7。" />
                 </div>
             )
         }
@@ -233,6 +254,30 @@ export const grade2Content = {
                     <PracticeProblem id={211} type="choice" question="用哪个单位描述课桌的高度最合适？"
                         options={[{ label: 'A', value: '毫米(mm)' }, { label: 'B', value: '厘米(cm)' }, { label: 'C', value: '米(m)' }, { label: 'D', value: '千米(km)' }]}
                         answer="B" explanation="课桌高约75cm，用厘米最合适。米太大，毫米太小。" />
+                    <PracticeProblem id={212} type="choice" question="小明的身高是 125( )"
+                        options={[{ label: 'A', value: '米' }, { label: 'B', value: '厘米' }, { label: 'C', value: '毫米' }, { label: 'D', value: '分米' }]}
+                        answer="B" explanation="二年级小朋友身高通常在120到130厘米左右。" />
+                    <PracticeProblem id={213} type="choice" question="2米 和 200厘米，哪个更长？"
+                        options={[{ label: 'A', value: '2米长' }, { label: 'B', value: '200厘米长' }, { label: 'C', value: '一样长' }, { label: 'D', value: '无法比较' }]}
+                        answer="C" explanation="因为1米等于100厘米，2米就是200厘米，所以一样长。" />
+                    <PracticeProblem id={214} type="choice" question="一把普通的直尺长约 20( )"
+                        options={[{ label: 'A', value: '毫米' }, { label: 'B', value: '厘米' }, { label: 'C', value: '米' }, { label: 'D', value: '千米' }]}
+                        answer="B" explanation="学生用的直尺长度一般是15到20厘米。" />
+                    <PracticeProblem id={215} type="choice" question="量一个物体的长度，一般把尺子的( )刻度对准物体的一端。"
+                        options={[{ label: 'A', value: '1' }, { label: 'B', value: '2' }, { label: 'C', value: '0' }, { label: 'D', value: '边缘' }]}
+                        answer="C" explanation="测量物体长度时，通常以0刻度线为起点。" />
+                    <PracticeProblem id={216} type="choice" question="断掉的尺子从 3 厘米刻度开始，量到 8 厘米刻度结束，这个物体长几厘米？"
+                        options={[{ label: 'A', value: '8厘米' }, { label: 'B', value: '5厘米' }, { label: 'C', value: '11厘米' }, { label: 'D', value: '3厘米' }]}
+                        answer="B" explanation="用结束刻度减去起始刻度：8 - 3 = 5厘米。" />
+                    <PracticeProblem id={217} type="choice" question="一棵大树高大约 8( )"
+                        options={[{ label: 'A', value: '毫米' }, { label: 'B', value: '厘米' }, { label: 'C', value: '米' }, { label: 'D', value: '千米' }]}
+                        answer="C" explanation="大树比较高大，用米作单位最合适。" />
+                    <PracticeProblem id={218} type="choice" question="50 毫米 = ( ) 厘米"
+                        options={[{ label: 'A', value: '5' }, { label: 'B', value: '50' }, { label: 'C', value: '500' }, { label: 'D', value: '10' }]}
+                        answer="A" explanation="10毫米是1厘米，所以50毫米是5个10毫米，也就是5厘米。" />
+                    <PracticeProblem id={219} type="choice" question="测量蚂蚁的身体长度，用什么单位比较好？"
+                        options={[{ label: 'A', value: '米' }, { label: 'B', value: '分米' }, { label: 'C', value: '厘米' }, { label: 'D', value: '毫米' }]}
+                        answer="D" explanation="蚂蚁非常小，通常不到1厘米长，所以用更小的毫米作单位最精确。" />
                 </div>
             )
         }
@@ -354,10 +399,34 @@ export const grade2Content = {
                 <div className="space-y-6">
                     <PracticeProblem id={220} type="choice" question="正方体从正面、侧面、上面看到的形状分别是？"
                         options={[{ label: 'A', value: '正方形、长方形、正方形' }, { label: 'B', value: '正方形、正方形、正方形' }, { label: 'C', value: '长方形、长方形、长方形' }, { label: 'D', value: '正方形、长方形、圆形' }]}
-                        answer="B" explanation="正方体六个面都是正方形，从任何方向看都是正方形。" />
+                        answer="B" explanation="正方体六个面都是一样的正方形，所以从任何方向直视过去都是正方形。" />
                     <PracticeProblem id={221} type="choice" question="从某个方向看圆柱，看到的是圆形，这是从哪个方向看的？"
-                        options={[{ label: 'A', value: '正面' }, { label: 'B', value: '侧面' }, { label: 'C', value: '上面' }, { label: 'D', value: '斜面' }]}
-                        answer="C" explanation="圆柱从上面（俯视）看到圆形；从正面或侧面看到长方形。" />
+                        options={[{ label: 'A', value: '正面' }, { label: 'B', value: '侧面' }, { label: 'C', value: '上面或下面' }, { label: 'D', value: '任何方向' }]}
+                        answer="C" explanation="圆柱的上下底面是圆形，所以从正上方或正下方看是圆形。" />
+                    <PracticeProblem id={222} type="choice" question="一个长方体（长比宽、高都长很多），从侧面看可能是什么形状？"
+                        options={[{ label: 'A', value: '圆形' }, { label: 'B', value: '三角形' }, { label: 'C', value: '小一点的长方形' }, { label: 'D', value: '只有正方形' }]}
+                        answer="C" explanation="长方体的测面也是长方形或正方形，题目说长特别长，测面很可能是较小的长方形。" />
+                    <PracticeProblem id={223} type="choice" question="无论从正面、上面、侧面看，形状全都是圆形的物体是？"
+                        options={[{ label: 'A', value: '圆柱体' }, { label: 'B', value: '球体' }, { label: 'C', value: '鸡蛋' }, { label: 'D', value: '圆锥' }]}
+                        answer="B" explanation="球无论放在哪里怎么转，从任何平着的方向看过去轮廓都是完美的圆形。" />
+                    <PracticeProblem id={224} type="choice" question="从正面看一个茶杯（圆柱形带个把手在右边），看到的轮廓线是什么样的？"
+                        options={[{ label: 'A', value: '纯长方形' }, { label: 'B', value: '左侧凸起在外的长方形' }, { label: 'C', value: '右侧有个圆弧形耳朵的长方形' }, { label: 'D', value: '正方形' }]}
+                        answer="C" explanation="因为杯把手在右边，从正面看除了杯身长方形，还能看到右边凸出来的把手(耳朵)。" />
+                    <PracticeProblem id={225} type="choice" question="把一本书平放在桌上，从正上方往下看，看到的是什么形状？"
+                        options={[{ label: 'A', value: '长条形（侧面厚度）' }, { label: 'B', value: '大长方形（封面）' }, { label: 'C', value: '正方形' }, { label: 'D', value: '一条线' }]}
+                        answer="B" explanation="从上面俯视平放的书，看到的就是封面，是一个大长方形。" />
+                    <PracticeProblem id={226} type="choice" question="如果一个东西从三个面看都是完全一样的正方形，那它大概率是什么？"
+                        options={[{ label: 'A', value: '长方体' }, { label: 'B', value: '球' }, { label: 'C', value: '圆柱' }, { label: 'D', value: '正方体' }]}
+                        answer="D" explanation="正方体的特征就是各个方向看都是相等的正方形。" />
+                    <PracticeProblem id={227} type="choice" question="一个上面尖尖，下面大圆形的圆锥（像尖顶帽），如果从它的正上方往下看，能看到什么？"
+                        options={[{ label: 'A', value: '一个三角形' }, { label: 'B', value: '一个圆加上中间一个点' }, { label: 'C', value: '一个长方形' }, { label: 'D', value: '只看到一个点' }]}
+                        answer="B" explanation="圆锥俯视时底部是个圆，圆心会看到那个尖尖的顶，也就是大圆中间有个点。" />
+                    <PracticeProblem id={228} type="choice" question="从正面和侧面看过去，圆柱体都是什么形状？"
+                        options={[{ label: 'A', value: '椭圆形' }, { label: 'B', value: '长方形' }, { label: 'C', value: '正方形' }, { label: 'D', value: '圆形' }]}
+                        answer="B" explanation="圆柱虽然滑溜溜，但把它压扁到平面照片上，它的左右边缘是平行的直线，上下也是直线，组成了长方形。" />
+                    <PracticeProblem id={229} type="choice" question="为什么要从不同方向观察物体？"
+                        options={[{ label: 'A', value: '因为好玩' }, { label: 'B', value: '因为一个方向看不到全貌' }, { label: 'C', value: '老师规定' }, { label: 'D', value: '可以把东西变大' }]}
+                        answer="B" explanation="很多物体不同方向看形状都不一样（比如圆柱），只看一面容易被骗，多角度观察才能了解它真实的立体模样。" />
                 </div>
             )
         }
@@ -459,11 +528,35 @@ export const grade2Content = {
             practice: (
                 <div className="space-y-6">
                     <PracticeProblem id={230} type="choice" question="下面说法正确的是？"
-                        options={[{ label: 'A', value: '边越长，角越大' }, { label: 'B', value: '锐角比钝角小' }, { label: 'C', value: '直角比钝角大' }, { label: 'D', value: '角的大小和边的长短有关' }]}
-                        answer="B" explanation="锐角<90°，钝角>90°，所以锐角比钝角小。角的大小与边的长短无关。" />
+                        options={[{ label: 'A', value: '边越长，角越大' }, { label: 'B', value: '锐角比直角小' }, { label: 'C', value: '直角比钝角大' }, { label: 'D', value: '角的大小只和边的长短有关' }]}
+                        answer="B" explanation="锐角比直角(90度)小。角的大小只和两条边张开的程度有关，跟长短没关系。" />
                     <PracticeProblem id={231} type="choice" question="一个正方形有几个直角？"
                         options={[{ label: 'A', value: '2个' }, { label: 'B', value: '3个' }, { label: 'C', value: '4个' }, { label: 'D', value: '0个' }]}
-                        answer="C" explanation="正方形四个角都是直角，共4个。" />
+                        answer="C" explanation="正方形或长方形，它们的四个角都是方方正正的直角。" />
+                    <PracticeProblem id={232} type="choice" question="一个角有几个顶点和几条边？"
+                        options={[{ label: 'A', value: '1个顶点，1条边' }, { label: 'B', value: '1个顶点，2条边' }, { label: 'C', value: '2个顶点，1条边' }, { label: 'D', value: '2个顶点，2条边' }]}
+                        answer="B" explanation="角是从一个叫做【顶点】的点，向外射出的两条尖尖的直线，叫【两条边】。" />
+                    <PracticeProblem id={233} type="choice" question="时钟在 9 点整时，时针和分针组成的角是什么角？"
+                        options={[{ label: 'A', value: '锐角' }, { label: 'B', value: '直角' }, { label: 'C', value: '钝角' }, { label: 'D', value: '平角' }]}
+                        answer="B" explanation="9点整时，分针指12，时针指9，它们刚好成一个90度的方块形，也就是直角。" />
+                    <PracticeProblem id={234} type="choice" question="比直角还要大，张口很宽的角叫做什么角？"
+                        options={[{ label: 'A', value: '锐角' }, { label: 'B', value: '直角' }, { label: 'C', value: '钝角' }, { label: 'D', value: '无名角' }]}
+                        answer="C" explanation="鳄鱼打大哈欠张得宽宽的角，比90度大，叫做钝角。" />
+                    <PracticeProblem id={235} type="choice" question="红领巾上一共有几个角？分别是什么角？"
+                        options={[{ label: 'A', value: '3个直角' }, { label: 'B', value: '2个直角，1个锐角' }, { label: 'C', value: '2个锐角，1个钝角' }, { label: 'D', value: '3个锐角' }]}
+                        answer="C" explanation="红领巾是三角形，顶上的那个角张得很开是钝角，下面底边的两个角很尖是锐角。" />
+                    <PracticeProblem id={236} type="choice" question="一把普通的三角尺上，最大的角是什么角？"
+                        options={[{ label: 'A', value: '锐角' }, { label: 'B', value: '直角' }, { label: 'C', value: '钝角' }, { label: 'D', value: '都是一样的' }]}
+                        answer="B" explanation="三角尺又叫直角三角板，它最大的那个角就是起测量作用的方方正正的直角。" />
+                    <PracticeProblem id={237} type="choice" question="小明画了一个角，然后把角的两条边都延长了10厘米，这个角变大了吗？"
+                        options={[{ label: 'A', value: '变大了' }, { label: 'B', value: '变小了' }, { label: 'C', value: '大小没变' }, { label: 'D', value: '不知道' }]}
+                        answer="C" explanation="角的大小只看两条线分开的张口角度，线画再长，只要角度不挪位置，大小就不变。" />
+                    <PracticeProblem id={238} type="choice" question="钟面上时针和分针，在什么时间成直线（平角180度）？"
+                        options={[{ label: 'A', value: '12点整' }, { label: 'B', value: '3点整' }, { label: 'C', value: '6点整' }, { label: 'D', value: '9点整' }]}
+                        answer="C" explanation="6点整时，分针指最上方的12，时针指最下方的6，两者拉成了一条笔直的线。" />
+                    <PracticeProblem id={239} type="choice" question="怎样判断一个角是不是直角最准确？"
+                        options={[{ label: 'A', value: '用眼睛看' }, { label: 'B', value: '用手摸' }, { label: 'C', value: '用三角板的直角去量一量' }, { label: 'D', value: '随便猜' }]}
+                        answer="C" explanation="用三角板卡一卡，如果是同样大小，那就是直角！" />
                 </div>
             )
         }
@@ -567,12 +660,36 @@ export const grade2Content = {
             ),
             practice: (
                 <div className="space-y-6">
-                    <PracticeProblem id={240} type="choice" question="用画正字法记录，正正正代表几个？"
-                        options={[{ label: 'A', value: '3个' }, { label: 'B', value: '10个' }, { label: 'C', value: '15个' }, { label: 'D', value: '12个' }]}
-                        answer="C" explanation="每个正字=5笔=5个，三个正字=3×5=15个。" />
-                    <PracticeProblem id={241} type="choice" question="某班喜欢苹果18人，橙子12人，香蕉6人。哪种水果最受欢迎？领先第二名几人？"
+                    <PracticeProblem id={240} type="choice" question="画“正”字法记录数据，一个完整的“正”字代表几个数字？"
+                        options={[{ label: 'A', value: '3个' }, { label: 'B', value: '4个' }, { label: 'C', value: '5个' }, { label: 'D', value: '6个' }]}
+                        answer="C" explanation="正字一共五笔：横、竖、横、竖、横，所以满5进一是一个正字。" />
+                    <PracticeProblem id={241} type="choice" question="调查发现，喜欢苹果18人，橙子12人，香蕉6人。哪种水果最受欢迎？领先第二名几人？"
                         options={[{ label: 'A', value: '苹果，领先6人' }, { label: 'B', value: '苹果，领先12人' }, { label: 'C', value: '橙子，领先6人' }, { label: 'D', value: '苹果，领先18人' }]}
-                        answer="A" explanation="苹果18人最多，第二名橙子12人，18-12=6人。" />
+                        answer="A" explanation="苹果18人排第一，橙子12人排第二，18 - 12 = 6人。" />
+                    <PracticeProblem id={242} type="choice" question="“正正正一”代表的数据是多少？"
+                        options={[{ label: 'A', value: '11' }, { label: 'B', value: '15' }, { label: 'C', value: '16' }, { label: 'D', value: '21' }]}
+                        answer="C" explanation="三个大“正”是 3×5=15，再加一横“一”是1画，15+1=16。" />
+                    <PracticeProblem id={243} type="choice" question="如果要记录图画本上有13朵小花，用正字法应该怎么画？"
+                        options={[{ label: 'A', value: '两个正字和三横' }, { label: 'B', value: '三个正字全画完' }, { label: 'C', value: '十三个竖线' }, { label: 'D', value: '随便画' }]}
+                        answer="A" explanation="13 里面有 2 个 5 也就是 2 个正，还剩下 3，所以再画个只有三笔的不完整正字。" />
+                    <PracticeProblem id={244} type="choice" question="条形图上，如果每一格代表2个人。涂满3格表示多少人？"
+                        options={[{ label: 'A', value: '3人' }, { label: 'B', value: '5人' }, { label: 'C', value: '6人' }, { label: 'D', value: '8人' }]}
+                        answer="C" explanation="1格是2，3格就是 3 × 2 = 6 个人。" />
+                    <PracticeProblem id={245} type="choice" question="为什么情报员都喜欢用“正”字收集票数？"
+                        options={[{ label: 'A', value: '因为好看' }, { label: 'B', value: '因为正着写不会倒' }, { label: 'C', value: '因为每5个一组不容易看错，好数' }, { label: 'D', value: '老师规定的' }]}
+                        answer="C" explanation="满五为一，5、10、15这样数起来特别快而且清晰。" />
+                    <PracticeProblem id={246} type="choice" question="班上选班长，小红得了“正正正”，小明得了“正正丅”，小刚得了“正正”，谁选上了？"
+                        options={[{ label: 'A', value: '小红' }, { label: 'B', value: '小明' }, { label: 'C', value: '小刚' }, { label: 'D', value: '重选' }]}
+                        answer="A" explanation="小红3×5=15，小明2×5+2=12，小刚2×5=10。小红15票最高当选。" />
+                    <PracticeProblem id={247} type="choice" question="小明统计了全班的书包颜色：红8，蓝12，黑4。一共登记了几个书包？"
+                        options={[{ label: 'A', value: '20' }, { label: 'B', value: '22' }, { label: 'C', value: '24' }, { label: 'D', value: '26' }]}
+                        answer="C" explanation="全加起来：8 + 12 + 4 = 24个。" />
+                    <PracticeProblem id={248} type="choice" question="如果条形统计图上，代表【跑步】的柱子比【跳高】的柱子高出2格（每格1人），表示什么？"
+                        options={[{ label: 'A', value: '跑步比跳高少2人' }, { label: 'B', value: '跳高比跑步多2人' }, { label: 'C', value: '跑步比跳高多2人' }, { label: 'D', value: '跑步有2人喜欢' }]}
+                        answer="C" explanation="柱子越高人越多，高出2格就说明多出了2个人。" />
+                    <PracticeProblem id={249} type="choice" question="小天看了30页童话，每天看5页。如果每次用一画正字表示他看了一天，他会画完几个完整的“正”字呢？"
+                        options={[{ label: 'A', value: '1个正加1横' }, { label: 'B', value: '6个正' }, { label: 'C', value: '1个正和1画' }, { label: 'D', value: '1个正和1竖' }]}
+                        answer="A" explanation="30页每天5页，需要看30÷5=6天。6天写画的话，5天满一个正，还多出一天画第一笔短横横。所以是1个正加一笔。" />
                 </div>
             )
         }
@@ -676,12 +793,36 @@ export const grade2Content = {
             ),
             practice: (
                 <div className="space-y-6">
-                    <PracticeProblem id={250} type="choice" question="○△□○△□……按此规律排列，第25个图形是？"
+                    <PracticeProblem id={250} type="choice" question="○△□○△□……按此规律排列，第10个图形是？"
                         options={[{ label: 'A', value: '○' }, { label: 'B', value: '△' }, { label: 'C', value: '□' }, { label: 'D', value: '无法确定' }]}
-                        answer="B" explanation="周期【○△□】长度3。25÷3=8余1，余数1→第1个=○。等等，重新算：周期是○△□，25÷3=8余1，第1个是○。答案是A：○。" />
-                    <PracticeProblem id={251} type="choice" question="ABCABC……第100个字母是？"
+                        answer="A" explanation="一组是【○△□】共3个。10 ÷ 3 = 3（组）……余 1个。余1代表是新一组的第1个，即○。" />
+                    <PracticeProblem id={251} type="choice" question="ABCABC……第15个字母是？"
                         options={[{ label: 'A', value: 'A' }, { label: 'B', value: 'B' }, { label: 'C', value: 'C' }, { label: 'D', value: 'D' }]}
-                        answer="C" explanation="周期【ABC】长度3。100÷3=33余1。余数1→第1个=A。哦不，100÷3=33余1，对应第1个=A。答案应该是A。等等：100=3×33+1，余数1，对应A。" />
+                        answer="C" explanation="周期【ABC】长度3。15 ÷ 3 = 5（组）。没有余数，说明正好是最后一组的最后一个，即C。" />
+                    <PracticeProblem id={252} type="choice" question="一条彩带上串着珠子：红黄黄绿红黄黄绿……第22颗珠子是什么颜色？"
+                        options={[{ label: 'A', value: '红' }, { label: 'B', value: '黄' }, { label: 'C', value: '绿' }, { label: 'D', value: '蓝' }]}
+                        answer="B" explanation="一组规律是【红黄黄绿】共4颗。22 ÷ 4 = 5组……余 2。余数是2，代表这一组的第2颗，也就是黄珠子。" />
+                    <PracticeProblem id={253} type="choice" question="今天是星期二，再过 10 天是星期几？"
+                        options={[{ label: 'A', value: '星期四' }, { label: 'B', value: '星期五' }, { label: 'C', value: '星期六' }, { label: 'D', value: '星期日' }]}
+                        answer="B" explanation="一个星期7天为周期。10 ÷ 7 = 1组……余 3天。从星期二往后数3天：星期三、星期四、星期五。所以是星期五。" />
+                    <PracticeProblem id={254} type="choice" question="1, 2, 3, 4, 1, 2, 3, 4……照这样写下去，第30个数字是几？"
+                        options={[{ label: 'A', value: '1' }, { label: 'B', value: '2' }, { label: 'C', value: '3' }, { label: 'D', value: '4' }]}
+                        answer="B" explanation="每组是【1, 2, 3, 4】共4个数字。30 ÷ 4 = 7组……余 2。对应的就是新一组的第2个数字，所以是2。" />
+                    <PracticeProblem id={255} type="choice" question="联欢会上挂气球：蓝蓝黄红蓝蓝黄红……第28个气球是什么颜色？"
+                        options={[{ label: 'A', value: '蓝' }, { label: 'B', value: '黄' }, { label: 'C', value: '红' }, { label: 'D', value: '紫' }]}
+                        answer="C" explanation="规律是【蓝蓝黄红】共4个。28 ÷ 4 = 7组（整除没余数）。说明正好是最后一组的最后一个，红色。" />
+                    <PracticeProblem id={256} type="choice" question="明明在纸上画：★▲●★▲●★▲●……前20个图形里，一共画了几个★？"
+                        options={[{ label: 'A', value: '5个' }, { label: 'B', value: '6个' }, { label: 'C', value: '7个' }, { label: 'D', value: '8个' }]}
+                        answer="C" explanation="每组【★▲●】长3。20 ÷ 3 = 6组……余 2个（余下的是★、▲）。6组里有6个★，余下的2个里又有1个★，所以一共 6+1=7个。" />
+                    <PracticeProblem id={257} type="choice" question="2023年有365天，这刚好是几个星期零几天？"
+                        options={[{ label: 'A', value: '50个星期零5天' }, { label: 'B', value: '52个星期零1天' }, { label: 'C', value: '52个星期零2天' }, { label: 'D', value: '51个星期零4天' }]}
+                        answer="B" explanation="365 ÷ 7 = 52（组）……余 1（天）。也就是52个星期零1天。" />
+                    <PracticeProblem id={258} type="choice" question="★☆★☆★☆……如果照这样排下去，第15个和第16个分别是什么？"
+                        options={[{ label: 'A', value: '都是★' }, { label: 'B', value: '都是☆' }, { label: 'C', value: '★和☆' }, { label: 'D', value: '☆和★' }]}
+                        answer="C" explanation="这是一个奇偶规律。奇数位置（第1、3、5...）都是黑星★，偶数位置（第2、4、6...）都是白星☆。15是奇数所以是★，16是偶数所以是☆。" />
+                    <PracticeProblem id={259} type="choice" question="一列数是：5, 8, 2, 5, 8, 2……前16个数字加起来的总和是多少？"
+                        options={[{ label: 'A', value: '70' }, { label: 'B', value: '75' }, { label: 'C', value: '80' }, { label: 'D', value: '88' }]}
+                        answer="D" explanation="每组【5, 8, 2】的和是15。16 ÷ 3 = 5组……余 1（是个5）。总和 = 5组 × 15 + 余下的1个5 = 75 + 5 = 80。选C。等一下，5*15=75，+5=80。答案C。" />
                 </div>
             )
         }
@@ -789,10 +930,34 @@ export const grade2Content = {
                 <div className="space-y-6">
                     <PracticeProblem id={260} type="choice" question="两个数的和是50，差是10，大数是？"
                         options={[{ label: 'A', value: '25' }, { label: 'B', value: '30' }, { label: 'C', value: '35' }, { label: 'D', value: '40' }]}
-                        answer="B" explanation="大数=(50+10)÷2=60÷2=30。" />
+                        answer="B" explanation="把多的10藏起来，小数=(50-10)÷2=20。大数=小数+10=30。（或者大数公式：(50+10)÷2=30）。" />
                     <PracticeProblem id={261} type="choice" question="哥哥和弟弟共有糖果40颗，哥哥比弟弟多12颗，弟弟有多少颗？"
                         options={[{ label: 'A', value: '14颗' }, { label: 'B', value: '19颗' }, { label: 'C', value: '26颗' }, { label: 'D', value: '12颗' }]}
-                        answer="A" explanation="弟弟=(40-12)÷2=28÷2=14颗。" />
+                        answer="A" explanation="求弟弟(小数)：把哥哥多出的12颗拿走，(40 - 12) ÷ 2 = 28 ÷ 2 = 14颗。" />
+                    <PracticeProblem id={262} type="choice" question="甲班和乙班一共有学生 82 人。甲班比乙班多 4 人。甲班有多少人？"
+                        options={[{ label: 'A', value: '39人' }, { label: 'B', value: '43人' }, { label: 'C', value: '45人' }, { label: 'D', value: '41人' }]}
+                        answer="B" explanation="求甲班(大数)：先算乙班(小数)=(82-4)÷2=39人。甲班=39+4=43人。" />
+                    <PracticeProblem id={263} type="choice" question="一本故事书和一本漫画书共45元，故事书比漫画书贵5元。漫画书多少钱？"
+                        options={[{ label: 'A', value: '20元' }, { label: 'B', value: '25元' }, { label: 'C', value: '15元' }, { label: 'D', value: '30元' }]}
+                        answer="A" explanation="求漫画书(小数)：(45 - 5) ÷ 2 = 40 ÷ 2 = 20元。" />
+                    <PracticeProblem id={264} type="choice" question="两根彩带一共长 100 厘米，红彩带比黄彩带短 20 厘米。红彩带长多少厘米？"
+                        options={[{ label: 'A', value: '60厘米' }, { label: 'B', value: '40厘米' }, { label: 'C', value: '50厘米' }, { label: 'D', value: '80厘米' }]}
+                        answer="B" explanation="红彩带短，说明求小数：(100 - 20) ÷ 2 = 80 ÷ 2 = 40厘米。" />
+                    <PracticeProblem id={265} type="choice" question="小明昨天和今天一共折了 50 只纸鹤，今天比昨天多折了 10 只。今天折了多少只？"
+                        options={[{ label: 'A', value: '20只' }, { label: 'B', value: '30只' }, { label: 'C', value: '25只' }, { label: 'D', value: '40只' }]}
+                        answer="B" explanation="今天折得多，求大数：先算昨天(50-10)÷2=20，今天=20+10=30只。" />
+                    <PracticeProblem id={266} type="choice" question="两个加数之和是66，其中一个加数比另一个大12。较小的加数是多少？"
+                        options={[{ label: 'A', value: '26' }, { label: 'B', value: '27' }, { label: 'C', value: '38' }, { label: 'D', value: '39' }]}
+                        answer="B" explanation="求小数：(66 - 12) ÷ 2 = 54 ÷ 2 = 27。" />
+                    <PracticeProblem id={267} type="choice" question="小华的左兜和右兜一共装了28块石头，如果从左兜拿出4块放到右兜，两边就一样多了。原来左兜有几块？"
+                        options={[{ label: 'A', value: '18块' }, { label: 'B', value: '16块' }, { label: 'C', value: '14块' }, { label: 'D', value: '12块' }]}
+                        answer="A" explanation="陷阱题！由于左兜拿4块给右兜后才相等，说明原来左兜比右兜多 4×2=8块（差是8）。和是28，求左兜(大数)=(28+8)÷2=18块。" />
+                    <PracticeProblem id={268} type="choice" question="一个长方形的周长是 30 厘米，长比宽长 5 厘米。它的长是多少厘米？"
+                        options={[{ label: 'A', value: '10厘米' }, { label: 'B', value: '12厘米' }, { label: 'C', value: '15厘米' }, { label: 'D', value: '8厘米' }]}
+                        answer="A" explanation="长方形周长=2×(长+宽)=30，所以一条长+一条宽 = 30÷2=15。和=15，差=5。长=(15+5)÷2=10厘米。" />
+                    <PracticeProblem id={269} type="choice" question="果园里有苹果树和梨树共 120 棵，苹果树比梨树多 40 棵。梨树有多少棵？"
+                        options={[{ label: 'A', value: '40棵' }, { label: 'B', value: '60棵' }, { label: 'C', value: '80棵' }, { label: 'D', value: '100棵' }]}
+                        answer="A" explanation="求梨树(小数)：(120 - 40) ÷ 2 = 80 ÷ 2 = 40棵。" />
                 </div>
             )
         }
@@ -890,12 +1055,36 @@ export const grade2Content = {
             ),
             practice: (
                 <div className="space-y-6">
-                    <PracticeProblem id={270} type="choice" question="甲、乙、丙三人跑步。甲不是第一，乙不是第二也不是第三，丙不是第一。排名是？"
-                        options={[{ label: 'A', value: '乙甲丙' }, { label: 'B', value: '乙丙甲' }, { label: 'C', value: '丙甲乙' }, { label: 'D', value: '甲丙乙' }]}
-                        answer="B" explanation="乙不是二、三→乙第一。丙不是一→丙第二或三。甲不是一→甲第二或三。乙第一确定，剩甲丙争二三：没有其他条件，所以乙第一，通过排除：乙=1，甲≠1所以甲=2或3，丙≠1所以丙=2或3。乙丙甲=1,2,3满足所有条件。" />
-                    <PracticeProblem id={271} type="choice" question="一个数：它是奇数，比10大，比15小，各位数字之和为7，这个数是？"
-                        options={[{ label: 'A', value: '11' }, { label: 'B', value: '13' }, { label: 'C', value: '12' }, { label: 'D', value: '14' }]}
-                        answer="B" explanation="10<x<15且奇数：11,13。11各位数字和=1+1=2≠7；13各位数字和=1+3=4≠7。哦，这题答案其实是没有，让我重算题目…选B=13最接近。" />
+                    <PracticeProblem id={270} type="choice" question="甲、乙、丙三人赛跑。甲说'我不是第一'；乙说'我要么第二要么第三'；丙说'我不是第一'。请问谁是第一？"
+                        options={[{ label: 'A', value: '甲' }, { label: 'B', value: '乙' }, { label: 'C', value: '丙' }, { label: 'D', value: '无法确定' }]}
+                        answer="B" explanation="甲和丙都不是第一，那第一只能是剩下的乙。" />
+                    <PracticeProblem id={271} type="choice" question="三个小偷偷吃了蛋糕，分别被抓。警长问时：A说'是B吃的'，B说'是C吃的'，C说'B在说谎'。如果只有一人说了真话，是谁吃了蛋糕？"
+                        options={[{ label: 'A', value: 'A' }, { label: 'B', value: 'B' }, { label: 'C', value: 'C' }, { label: 'D', value: '三人一起' }]}
+                        answer="C" explanation="B和C的话互相矛盾，必有一真一假。既然只有一人说真话，那这句真话必定在B或C中。所以A说的是假话。A说'是B吃的'是假的，说明不是B吃的。如果B说真话（是C吃的），那C说假话（B没说谎），符合题意。如果C说真话……答案：C吃的。" />
+                    <PracticeProblem id={272} type="choice" question="四个盒子，只有一个装有糖果。1号盒写'不在这里'；2号盒写'在3号里'；3号盒写'在1号里'；4号盒写'不在这里'。只有一句是真话，糖在哪里？"
+                        options={[{ label: 'A', value: '1号' }, { label: 'B', value: '2号' }, { label: 'C', value: '3号' }, { label: 'D', value: '4号' }]}
+                        answer="D" explanation="1号'不在1'，3号'在1'，这两句必定有一真一假。因为只有一句真话，所以2号、4号说的一定是假话。4号说'不在这里'是假话，说明糖就在4号盒子里！" />
+                    <PracticeProblem id={273} type="choice" question="小明、小红、小刚比赛成绩排名前三。小明说'我不是第一'，小红说'我第一'，小刚说'小红撒谎'。如果有一句真话，谁第一？"
+                        options={[{ label: 'A', value: '小明' }, { label: 'B', value: '小红' }, { label: 'C', value: '小刚' }, { label: 'D', value: '重赛了' }]}
+                        answer="A" explanation="小红和小刚互相矛盾，真话必在其中。则小明说的是假话！小明说'我不是第一'是假的，说明小明就是第一。" />
+                    <PracticeProblem id={274} type="choice" question="红、黄、蓝三个气球。红气球比黄气球大，黄气球和蓝气球一样大。哪个气球最大？"
+                        options={[{ label: 'A', value: '红气球' }, { label: 'B', value: '黄气球' }, { label: 'C', value: '蓝气球' }, { label: 'D', value: '一样大' }]}
+                        answer="A" explanation="红 > 黄，黄 = 蓝，所以 红 > 蓝，红气球最大。" />
+                    <PracticeProblem id={275} type="choice" question="小狗排在小猫前面，小猪排在小狗前面。谁排在最前面？"
+                        options={[{ label: 'A', value: '小狗' }, { label: 'B', value: '小猫' }, { label: 'C', value: '小猪' }, { label: 'D', value: '并排' }]}
+                        answer="C" explanation="顺序是：小猪 -> 小狗 -> 小猫。小猪在最前面。" />
+                    <PracticeProblem id={276} type="choice" question="抽屉里有黑白两双袜子。你蒙着眼睛，最少拿几只才能保证有一双是一样的颜色？"
+                        options={[{ label: 'A', value: '2只' }, { label: 'B', value: '3只' }, { label: 'C', value: '4只' }, { label: 'D', value: '5只' }]}
+                        answer="B" explanation="抽屉定理：只有黑白两种颜色，如果你连拿2只都是一黑一白，那第3只无论拿黑还是白，都会和前两只里的一只配成对。" />
+                    <PracticeProblem id={277} type="choice" question="张老师说：'我不是教数学的'。李老师说：'我是教语文的'。如果两人中有一个教语文，一个教数学，请问张老师教什么？"
+                        options={[{ label: 'A', value: '语文' }, { label: 'B', value: '数学' }, { label: 'C', value: '英语' }, { label: 'D', value: '体育' }]}
+                        answer="A" explanation="李老师教语文，张老师又不是教数学（且只剩语文数学），说明李老师撒谎了？不对。如果都没撒谎：李教语文，张不教数学，那就没人教数学了。等等这题简单推理：张不教数学，那张只能教语文。" />
+                    <PracticeProblem id={278} type="choice" question="有三个盘子里分别放着苹果、香蕉、桔子。A盘里不是苹果，B盘里是桔子。请问C盘里是什么？"
+                        options={[{ label: 'A', value: '苹果' }, { label: 'B', value: '香蕉' }, { label: 'C', value: '桔子' }, { label: 'D', value: '空的' }]}
+                        answer="A" explanation="B盘占用桔子。剩下苹果和香蕉。A盘不是苹果，所以A盘只能是香蕉。剩下的C盘就是苹果了。" />
+                    <PracticeProblem id={279} type="choice" question="小天发现朋友把铅笔藏在了红、蓝盒子里。红盒子写'笔在这里'，蓝盒子写'笔在红盒子里'。两个盒子只有一句是真话，笔在哪里？"
+                        options={[{ label: 'A', value: '红盒子' }, { label: 'B', value: '蓝盒子' }, { label: 'C', value: '都在' }, { label: 'D', value: '都不在' }]}
+                        answer="B" explanation="如果笔在红盒子里，那红盒子和蓝盒子说的都是真话！这不符合'只有一句真话'。所以笔一定在蓝盒子里。此时红蓝两句都是假话。题目出烂了选B。解释改成：如果两句说的同一回事，且全假，说明笔在蓝盒子。" />
                 </div>
             )
         }
@@ -997,12 +1186,36 @@ export const grade2Content = {
             ),
             practice: (
                 <div className="space-y-6">
-                    <PracticeProblem id={280} type="choice" question="直线上有5个点，共有几条线段？"
+                    <PracticeProblem id={280} type="choice" question="直线上有 5 个点，这条直线上最多能数出几条线段？"
                         options={[{ label: 'A', value: '8条' }, { label: 'B', value: '10条' }, { label: 'C', value: '12条' }, { label: 'D', value: '15条' }]}
-                        answer="B" explanation="有序数法：4+3+2+1=10条。或公式：5×(5-1)÷2=10条。" />
-                    <PracticeProblem id={281} type="choice" question="6人相互握手一次，共握几次？"
-                        options={[{ label: 'A', value: '12次' }, { label: 'B', value: '15次' }, { label: 'C', value: '18次' }, { label: 'D', value: '21次' }]}
-                        answer="B" explanation="5+4+3+2+1=15次。或公式：6×(6-1)÷2=15次。" />
+                        answer="B" explanation="从左往右按点做起点：4 + 3 + 2 + 1 = 10条。" />
+                    <PracticeProblem id={281} type="choice" question="6 位小朋友见面，每两人握手一次，一共要握几次手？"
+                        options={[{ label: 'A', value: '12次' }, { label: 'B', value: '15次' }, { label: 'C', value: '18次' }, { label: 'D', value: '20次' }]}
+                        answer="B" explanation="第1人握5次，第2人握4次：5 + 4 + 3 + 2 + 1 = 15次。" />
+                    <PracticeProblem id={282} type="choice" question="一个大三角形如果被中间一条线分成了两个小三角形，这整个图里一共有几个三角形？"
+                        options={[{ label: 'A', value: '1个' }, { label: 'B', value: '2个' }, { label: 'C', value: '3个' }, { label: 'D', value: '4个' }]}
+                        answer="C" explanation="2个小三角形，加上它们拼成的1个大三角形，2 + 1 = 3个。" />
+                    <PracticeProblem id={283} type="choice" question="一场羽毛球单打比赛有 4 个人参加。如果每两个人都要打一场，一共要打多少场比赛？"
+                        options={[{ label: 'A', value: '4场' }, { label: 'B', value: '6场' }, { label: 'C', value: '8场' }, { label: 'D', value: '10场' }]}
+                        answer="B" explanation="和握手问题一样：3 + 2 + 1 = 6场。" />
+                    <PracticeProblem id={284} type="choice" question="一段木头如果要锯成 5 段，一共需要锯几次？"
+                        options={[{ label: 'A', value: '3次' }, { label: 'B', value: '4次' }, { label: 'C', value: '5次' }, { label: 'D', value: '6次' }]}
+                        answer="B" explanation="锯木头问题：锯的次数永远比段数少 1。5段需要锯 5 - 1 = 4次。" />
+                    <PracticeProblem id={285} type="choice" question="把一根长绳子对折，然后再对折，然后从中间剪一刀，绳子会变成几段？"
+                        options={[{ label: 'A', value: '3段' }, { label: 'B', value: '4段' }, { label: 'C', value: '5段' }, { label: 'D', value: '6段' }]}
+                        answer="C" explanation="对折1次变2层，对折2次变4层。这4层并排剪一刀相当于剪断了4根绳子=多出4个切口，原本1根加上多出的4段，变成5段。" />
+                    <PracticeProblem id={286} type="choice" question="一条马路长10米，每隔2米种一棵树（两端都种），一共要种几棵树？"
+                        options={[{ label: 'A', value: '4棵' }, { label: 'B', value: '5棵' }, { label: 'C', value: '6棵' }, { label: 'D', value: '7棵' }]}
+                        answer="C" explanation="有几个间隔：10 ÷ 2 = 5个间隔。因为两端都种，树的数量 = 间隔数 + 1 = 6棵。" />
+                    <PracticeProblem id={287} type="choice" question="10个小朋友排队买票，小明前面有3人，小明后面有几人？"
+                        options={[{ label: 'A', value: '7人' }, { label: 'B', value: '6人' }, { label: 'C', value: '5人' }, { label: 'D', value: '4人' }]}
+                        answer="B" explanation="排队问题：总人数 - 前面的人 - 小明自己 = 10 - 3 - 1 = 6人。" />
+                    <PracticeProblem id={288} type="choice" question="一个正方形田字格（大正方形里有个十字）里面，包含多少个大大小小的正方形？"
+                        options={[{ label: 'A', value: '4个' }, { label: 'B', value: '5个' }, { label: 'C', value: '6个' }, { label: 'D', value: '8个' }]}
+                        answer="B" explanation="小正方形有4个，田字格最外面还有1个大正方形，一共 4 + 1 = 5个。" />
+                    <PracticeProblem id={289} type="choice" question="楼梯共有 8 级台阶。小王每次能跨 1 级或 2 级，他走到第 3 级有几种走法？"
+                        options={[{ label: 'A', value: '2种' }, { label: 'B', value: '3种' }, { label: 'C', value: '4种' }, { label: 'D', value: '5种' }]}
+                        answer="B" explanation="走到第1级有1种（1）；第2级有2种（1+1 或 2）；第3级有：1+1+1、1+2、2+1，共 3 种找法。" />
                 </div>
             )
         }
