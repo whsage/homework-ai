@@ -1,4 +1,4 @@
-import { Icons, PracticeProblem, Link, React, generateDefaultContent } from './common';
+import { Icons, PracticeProblem, Link, React } from './common';
 import SolidStructureVisualizer from '../../components/subjects/math/high/SolidStructureVisualizer';
 import ConicsVisualizer from '../../components/subjects/math/high/ConicsVisualizer';
 import SequenceVisualizer from '../../components/subjects/math/high/SequenceVisualizer';
@@ -333,7 +333,7 @@ export const grade11Content = {
                             空间直角坐标系
                         </h2>
                         <div className="bg-slate-50 dark:bg-slate-700/50 p-6 rounded-xl">
-                            <p className="mb-4">在空间中选定一点O和一个单位正交基底 <span className="font-mono">{`{i, j, k}`}</span>，建立O-xyz坐标系。</p>
+                            <p className="mb-4">在空间中选定一点O和一个单位正交基底 <span className="font-mono">{"{i, j, k}"}</span>，建立O-xyz坐标系。</p>
                             <p className="font-bold text-indigo-600">任意向量 a = (x, y, z)</p>
                             <p className="text-sm text-slate-500 mt-2">运算规则与平面向量完全类同，只是多了一个z分量。</p>
                         </div>

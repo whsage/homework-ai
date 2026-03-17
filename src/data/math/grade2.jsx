@@ -93,6 +93,8 @@ export const grade2Content = {
                                 { q: '挑战1：如果有 6 辆小巴车，每辆坐 7 个人，一共坐了多少人？（试试口诀魔法 6 × 7）', hint: '念出口诀：六七四十二！', ans: '一共 42 个人！' },
                                 { q: '挑战2：56 颗葡萄平均分给 8 只小鸭子，每只鸭鸭分到几颗？（56 ÷ 8 ）', hint: '想一想倒退的魔法：8 只鸭子 × ? 颗 = 56，也就是八(七)五十六', ans: '每只鸭鸭 7 颗！' },
                                 { q: '挑战3：每个鸡蛋盒里面有9个鸡蛋，妈妈买了6大盒，共买多少鸡蛋？', hint: '6 个一模一样的盒子，念口诀：六九五十四！', ans: '54 个鸡蛋！' },
+                                { q: '挑战4：要把 45 本书平均发给 5 个小组，每个小组能分到几本？', hint: '想口诀：五（？）四十五？没错，是五九四十五！', ans: '每个小组分到 9 本书。' },
+                                { q: '挑战5：果园里有 8 排梨树，每排有 4 棵，一共有多少棵梨树？', hint: '念口诀：四八三十二！', ans: '一共 32 棵梨树！' },
                             ].map((ex, i) => (
                                 <div key={i} className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
                                     <p className="font-bold text-slate-800 dark:text-white mb-2">{ex.q}</p>
@@ -233,6 +235,8 @@ export const grade2Content = {
                                 { q: '挑战1：小长颈鹿身高 2m 50cm，如果只用厘米来读，是多少呢？', hint: '想一想：2个『米』就是 2 个 100cm（200cm），再加上 50cm', a: '200 + 50 = 250 cm ！' },
                                 { q: '挑战2：有一块巨大的布料长 320cm，裁缝想用米和厘米说，该怎么说？', hint: '300个厘米弟弟，可以换成3个米哥哥。所以 320 里面有 3 个百', a: '3 m 又 20 cm ！' },
                                 { q: '挑战3：要形容教室的黑板有多宽，你会用哪个单位比较合适？', hint: '黑板很大！如果用厘米说，得说 400 厘米，数字太长了。', a: '用『米（m）』最合适！大概是 4 米宽。' },
+                                { q: '挑战4：一把尺子长 20 厘米，几把这样的尺子连起来刚好是 1 米？', hint: '1 米 = 100 厘米。几个 20 凑成 100 呢？', a: '5 把尺子！(20+20+20+20+20 = 100)' },
+                                { q: '挑战5：蚂蚁搬家走了 50 毫米，换成厘米是多少？', hint: '1 厘米 = 10 毫米，50 毫米里面有几个 10 哦？', a: '是 5 厘米！' },
                             ].map((ex, i) => (
                                 <div key={i} className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
                                     <p className="font-bold text-slate-800 dark:text-white mb-2">{ex.q}</p>
@@ -389,6 +393,27 @@ export const grade2Content = {
                                     <p>抓住关键线索："小鸟拍到了圆形" → 说明它像根柱子或者球。</p>
                                     <p>"小红拍到长方形" → 球不可能拍出长方形，所以不是球！</p>
                                     <p className="text-green-600 font-bold">完美推理：它是一个 圆柱体 ！（就像一截平放或者站立的水管）</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战3：从正面看一个正方体，看到的是什么形状？</p>
+                                <div className="pl-4 border-l-4 border-blue-400 text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                                    <p>正方体的每个面都是一样的。</p>
+                                    <p className="text-blue-600 font-bold">完美解答：看到的依然是一个 正方形 呀！</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战4：无论从哪个角度看，看到的都是圆形的物体是什么？</p>
+                                <div className="pl-4 border-l-4 border-orange-400 text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                                    <p>只有球体在任何角度的投影都是圆形。</p>
+                                    <p className="text-orange-600 font-bold">完美解答：它是一个 球 (比如乒乓球、地球仪)！</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战5：一个足球门横在面前，你跑到球门的正侧面（也就是立柱旁边）看，球门像什么？</p>
+                                <div className="pl-4 border-l-4 border-red-400 text-sm text-slate-600 dark:text-slate-400 space-y-1">
+                                    <p>侧面看只能看到侧边的立柱和顶梁的端点。</p>
+                                    <p className="text-red-600 font-bold">完美解答：看到的是一个三角形（因为侧面支撑架通常是三角形的）！</p>
                                 </div>
                             </div>
                         </div>
@@ -646,13 +671,44 @@ export const grade2Content = {
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Calculator className="w-6 h-6 text-indigo-600" />情报分析处
                         </h2>
-                        <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
-                            <p className="font-bold text-slate-800 dark:text-white mb-3">小侦探测试：看看上面的那张表格情报，回答基地主管的问题！</p>
-                            <div className="space-y-3 text-sm text-slate-600 dark:text-slate-400 pl-4 border-l-4 border-indigo-400">
-                                <p>问题1（谁是冠军）：基地里最受欢迎的课是什么？ → <strong className="text-indigo-600">数学课！（有15个人选它呢）</strong></p>
-                                <p>问题2（谁掉队了）：哪个课选的人最少？ → <strong className="text-red-500">体育课（只有5个人）</strong></p>
-                                <p>问题3（差多少）：选数学的比选英语的多几个人？ → <strong>15 - 8 = 7 人</strong></p>
-                                <p>问题4（总人数）：这个班的情报员一共调查了多少人？ → <strong>把所有人数加起来：12 + 15 + 8 + 5 = 40 人</strong></p>
+                        <div className="space-y-4">
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-3">挑战1：分析表格情报（看看上面的表格）</p>
+                                <div className="space-y-3 text-sm text-slate-600 dark:text-slate-400 pl-4 border-l-4 border-indigo-400">
+                                    <p>问题：最受欢迎的课是什么？ → <strong className="text-indigo-600">数学课！（15人）</strong></p>
+                                    <p>问题：选数学的比语文的多几人？ → <strong>15 - 12 = 3 人</strong></p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-3">挑战2：密码翻译官</p>
+                                <p className="text-sm text-slate-700 mb-2">情报员在本子上写了：“正 正 正 丅”，请问这代表多少张选票？</p>
+                                <div className="pl-4 border-l-4 border-green-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p>“正”是 5，三个正就是 15。再加上“丅”是 2 笔。</p>
+                                    <p className="text-green-600 font-bold">答：代表 17 张选票！</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-3">挑战3：水果店大调查</p>
+                                <p className="text-sm text-slate-700 mb-2">梨子卖了 8 箱，苹果卖了 12 箱，香蕉卖了 5 箱。如果要画正字，苹果要画几个？</p>
+                                <div className="pl-4 border-l-4 border-blue-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p>12 里面有 2 个 5 还要多出 2。</p>
+                                    <p className="text-blue-600 font-bold">答：2 个完整的“正”字和 2 笔。</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-3">挑战4：书包颜色统计</p>
+                                <p className="text-sm text-slate-700 mb-2">红色书包 6 个，蓝色书包 9 个。哪个颜色多？多几个？</p>
+                                <div className="pl-4 border-l-4 border-orange-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p>9 比 6 大。</p>
+                                    <p className="text-orange-600 font-bold">答：蓝色书包多，多 3 个。</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-3">挑战5：班委选举</p>
+                                <p className="text-sm text-slate-700 mb-2">小明 10 票，小红 15 票，小刚 8 票。谁得票最多？</p>
+                                <div className="pl-4 border-l-4 border-red-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p className="text-red-600 font-bold">答：小红得票最多。</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -684,9 +740,9 @@ export const grade2Content = {
                     <PracticeProblem id={247} type="choice" question="小明统计了全班的书包颜色：红8，蓝12，黑4。一共登记了几个书包？"
                         options={[{ label: 'A', value: '20' }, { label: 'B', value: '22' }, { label: 'C', value: '24' }, { label: 'D', value: '26' }]}
                         answer="C" explanation="全加起来：8 + 12 + 4 = 24个。" />
-                    <PracticeProblem id={248} type="choice" question="如果条形统计图上，代表【跑步】的柱子比【跳高】的柱子高出2格（每格1人），表示什么？"
-                        options={[{ label: 'A', value: '跑步比跳高少2人' }, { label: 'B', value: '跳高比跑步多2人' }, { label: 'C', value: '跑步比跳高多2人' }, { label: 'D', value: '跑步有2人喜欢' }]}
-                        answer="C" explanation="柱子越高人越多，高出2格就说明多出了2个人。" />
+                    <PracticeProblem id={248} type="choice" question="如果条形统计图上，如果每一格代表2个人。涂满3格表示多少人？"
+                        options={[{ label: 'A', value: '3人' }, { label: 'B', value: '5人' }, { label: 'C', value: '6人' }, { label: 'D', value: '8人' }]}
+                        answer="C" explanation="1格是2，3格就是 3 × 2 = 6 个人。" />
                     <PracticeProblem id={249} type="choice" question="小天看了30页童话，每天看5页。如果每次用一画正字表示他看了一天，他会画完几个完整的“正”字呢？"
                         options={[{ label: 'A', value: '1个正加1横' }, { label: 'B', value: '6个正' }, { label: 'C', value: '1个正和1画' }, { label: 'D', value: '1个正和1竖' }]}
                         answer="A" explanation="30页每天5页，需要看30÷5=6天。6天写画的话，5天满一个正，还多出一天画第一笔短横横。所以是1个正加一笔。" />
@@ -778,6 +834,9 @@ export const grade2Content = {
                             {[
                                 { q: '密码锁的数字是 12345 12345 12345…… 第30个数字是几呢？', s: '小分队是【12345】，有5个人。用除法算队伍：30 ÷ 5 = 6 队。哎呀，没有余数！说明它正好是第6队的最后一个小朋友！', ans: '是最后一个数字 5！' },
                                 { q: '小红在花坛边摆花：红白红白红白…… 她一共摆了50朵花，里面有几朵红花呀？', s: '小分队是【红白】，有2个人。50 ÷ 2 = 25 队，刚刚好分完。每一队里都有1朵红花，一共 25 个小分队，所以红花有 25 个！', ans: '25 朵！' },
+                                { q: '有一串珠子按 白黑黑 白黑黑 排列，第16颗珠子是什么颜色？', s: '小分队是【白黑黑】，有3个人。用除法：16 ÷ 3 = 5 队 ... 余 1 颗。多出来的第 1 颗就是小分队的第一个！', ans: '是白色的珠子！' },
+                                { q: '今天是星期二，再过 15 天是星期几？', s: '一星期是【7天】为一个小分队。用除法：15 ÷ 7 = 2 周 ... 余 1 天。过了从星期二往后数 1 天。', ans: '是星期三！' },
+                                { q: '广场上按 1面红旗、2面黄旗、1面蓝旗 循环插旗子。第25面旗子是什么颜色？', s: '小分队是【红黄黄蓝】，有4面旗子。用除法：25 ÷ 4 = 6 队 ... 余 1 面。余 1 就是小队第一面。', ans: '是红旗！' },
                             ].map((ex, i) => (
                                 <div key={i} className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
                                     <p className="font-bold text-slate-800 dark:text-white mb-3 text-lg">🔮 试炼 {i + 1}：{ex.q}</p>
@@ -913,6 +972,9 @@ export const grade2Content = {
                             {[
                                 { q: '两只小熊一共抓了 36 条鱼。大熊比小熊多抓了 8 条。小熊抓了几条？大熊呢？', s: '先算小熊：把大熊多的 8 条藏起来。\n(36 - 8) ÷ 2 = 28 ÷ 2 = 14 条（小熊）\n再算大熊：因为大熊多 8 条。\n14 + 8 = 22 条（大熊）', ans: '大熊 22 条，小熊 14 条' },
                                 { q: '小明和小红共有 32 本课外书，小明比小红多 6 本，各有几本？', s: '先算小红：把小明多的 6 本藏起来。\n(32 - 6) ÷ 2 = 26 ÷ 2 = 13 本（小红）\n再算小明：13 + 6 = 19 本（小明）', ans: '小明 19 本，小红 13 本' },
+                                { q: '果园里有苹果树和梨树共 40 棵，苹果树比梨树多 10 棵。梨树有多少棵？', s: '先算梨树(小数)：把多的 10 棵藏起来。\n(40 - 10) ÷ 2 = 30 ÷ 2 = 15 棵（梨树）\n苹果树就是 15 + 10 = 25 棵。', ans: '梨树有 15 棵' },
+                                { q: '甲、乙两班共有 86 人，甲班比乙班少 4 人。甲班有多少人？', s: '甲班是小数哦！把乙班多的 4 人藏起来。\n(86 - 4) ÷ 2 = 82 ÷ 2 = 41 人（甲班）。', ans: '甲班有 41 人' },
+                                { q: '一套衣服共 120 元，上衣比裤子贵 20 元。裤子多少元？', s: '先算裤子(小数)：把上衣贵的 20 元拔掉。\n(120 - 20) ÷ 2 = 100 ÷ 2 = 50 元（裤子）。\n上衣就是 50 + 20 = 70 元。', ans: '裤子 50 元' },
                             ].map((ex, i) => (
                                 <div key={i} className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
                                     <p className="font-bold text-slate-800 dark:text-white mb-3 text-lg">⛺ 挑战 {i + 1}：{ex.q}</p>
@@ -1039,17 +1101,41 @@ export const grade2Content = {
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                             <Calculator className="w-6 h-6 text-indigo-600" />侦探实战记录
                         </h2>
-                        <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
-                            <p className="font-bold text-slate-800 dark:text-white mb-2">案件：猫狗兔排队迷局</p>
-                            <p className="text-sm text-slate-700 dark:text-slate-300 mb-3">小排队玩过山车，线索如下：猫在狗的前面，兔在猫的后面，狗在兔的前面。请问从前到后是怎么排的？</p>
-                            <div className="pl-4 border-l-4 border-indigo-400 text-sm text-slate-600 dark:text-slate-400 space-y-2">
-                                <p><strong>推理过程：</strong></p>
-                                <p>线索1：猫在狗前 → 位置是：猫 ... 狗</p>
-                                <p>线索2：因为"猫在狗前"，而且"兔在猫后面"，所以现在可能是：猫、狗、兔；或者是 猫、兔、狗。</p>
-                                <p>线索3：加上最后依据"狗在兔的前面"，这就把"猫、兔、狗"排除了！</p>
-                                <p className="text-indigo-600 font-bold bg-indigo-50 dark:bg-indigo-900/30 inline-block px-3 py-1 rounded">最终顺序：猫 → 狗 → 兔</p>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战1：猫狗兔排列谜局</p>
+                                <p className="text-sm text-slate-700 dark:text-slate-300 mb-3">猫在狗的前面，兔在猫的后面，狗在兔的前面。请问顺序？</p>
+                                <div className="pl-4 border-l-4 border-indigo-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p className="text-indigo-600 font-bold">最终顺序：猫 → 狗 → 兔</p>
+                                </div>
                             </div>
-                        </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战2：谁在说谎？</p>
+                                <p className="text-sm text-slate-700 dark:text-slate-300 mb-3">甲说：乙在说谎。乙说：丙在说谎。丙说：我没说谎。谁说了真话？</p>
+                                <div className="pl-4 border-l-4 border-green-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p className="text-green-600 font-bold">最终答案：乙和丙的话是一回事，如果乙真则丙真（冲突），所以乙丙都假，甲真！</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战3：我是谁？</p>
+                                <p className="text-sm text-slate-700 dark:text-slate-300 mb-3">我不是 18，我比 15 大，我是个双数。我是几？</p>
+                                <div className="pl-4 border-l-4 border-blue-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p className="text-blue-600 font-bold">最终答案：16！</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战4：三个球的颜色</p>
+                                <p className="text-sm text-slate-700 dark:text-slate-300 mb-3">红球不是最轻的，黄球比红球重，绿球最轻。按从重到轻排。 </p>
+                                <div className="pl-4 border-l-4 border-orange-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p className="text-orange-600 font-bold">最终答案：黄球 → 红球 → 绿球</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战5：住在几楼？</p>
+                                <p className="text-sm text-slate-700 dark:text-slate-300 mb-3">小明住在小红楼上，小刚住在小红楼下。谁住在最上面？</p>
+                                <div className="pl-4 border-l-4 border-red-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p className="text-red-600 font-bold">最终答案：小明！</p>
+                                </div>
+                            </div>
                     </div>
                 </div>
             ),
@@ -1172,12 +1258,35 @@ export const grade2Content = {
                                 <p className="font-bold text-slate-800 dark:text-white mb-3 text-lg">🤝 任务1：动物大会握手礼</p>
                                 <p className="text-sm text-slate-700 mb-3">有 5 只小猴子参加聚会，每两只小猴子都要互相握一次手。请问他们一共握了几次手？</p>
                                 <div className="pl-4 border-l-4 border-purple-400 text-sm text-slate-600 dark:text-slate-400 font-mono space-y-2">
-                                    <p>让猴子们排好队：</p>
-                                    <p>🐒 1号猴：和底下的4只猴子握手（<span className="text-purple-600">4次</span>），握完可以吃香蕉了。</p>
-                                    <p>🐒 2号猴：1号已经去吃香蕉了，所以2号只需和底下的3只猴子握（<span className="text-purple-600">3次</span>）。</p>
-                                    <p>🐒 3号猴：和剩下的2只握（<span className="text-purple-600">2次</span>）。</p>
-                                    <p>🐒 4号猴：只剩5号了，握（<span className="text-purple-600">1次</span>）。</p>
                                     <p className="text-indigo-600 font-bold bg-indigo-50 dark:bg-indigo-900/30 inline-block px-3 py-1 rounded">秘密公式：一共 4 + 3 + 2 + 1 = 10 次</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-3 text-lg">🤝 任务2：数数线段</p>
+                                <p className="text-sm text-slate-700 mb-3">直线上有 4 个点，一共能数出多少条线段？</p>
+                                <div className="pl-4 border-l-4 border-green-400 text-sm text-slate-600 dark:text-slate-400 font-mono space-y-2">
+                                    <p className="text-green-600 font-bold bg-green-50 dark:bg-green-900/30 inline-block px-3 py-1 rounded">秘密公式：3 + 2 + 1 = 6 条</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-3 text-lg">🤝 任务3：数三角形</p>
+                                <p className="text-sm text-slate-700 mb-3">一个大三角形里面画了一条竖线，分成了两个小三角形，图里一共几个三角形？</p>
+                                <div className="pl-4 border-l-4 border-blue-400 text-sm text-slate-600 dark:text-slate-400 font-mono space-y-2">
+                                    <p className="text-blue-600 font-bold bg-blue-50 dark:bg-blue-900/30 inline-block px-3 py-1 rounded">秘密公式：2 + 1 = 3 个</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-3 text-lg">🤝 任务4：锯木头</p>
+                                <p className="text-sm text-slate-700 mb-3">一根木头要锯成 4 段，需要锯几次？</p>
+                                <div className="pl-4 border-l-4 border-orange-400 text-sm text-slate-600 dark:text-slate-400 font-mono space-y-2">
+                                    <p className="text-orange-600 font-bold bg-orange-50 dark:bg-orange-900/30 inline-block px-3 py-1 rounded">秘密公式：4 - 1 = 3 次</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-3 text-lg">🤝 任务5：植树规律</p>
+                                <p className="text-sm text-slate-700 mb-3">马路长 6 米，每隔 2 米种一棵（两端都种），种几棵？</p>
+                                <div className="pl-4 border-l-4 border-red-400 text-sm text-slate-600 dark:text-slate-400 font-mono space-y-2">
+                                    <p className="text-red-600 font-bold bg-red-50 dark:bg-red-900/30 inline-block px-3 py-1 rounded">秘密公式：6 ÷ 2 + 1 = 4 棵</p>
                                 </div>
                             </div>
                         </div>

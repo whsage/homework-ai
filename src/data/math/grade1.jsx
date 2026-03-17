@@ -116,6 +116,8 @@ export const grade1Content = {
                                 { q: '停车场里有 9 辆🚗，又开来了 5 辆。现在有几辆汽车呢？', step1: '📦 想一想：9 辆车加上 1 辆车就凑成满排 10 辆啦！', step2: '把开来的 5 辆车分成 1 辆和 4 辆。', ans: '最前面的 10 辆，加上剩下的 4 辆，一共 14 辆！(9 + 5 = 14)' },
                                 { q: '小猫钓了 7 条🐟，又钓了 8 条，一共几条鱼？', step1: '📦 想一想：7 条鱼再加 3 条就是一满桶 10 条！', step2: '把 8 条鱼分出 3 条放进桶里。', ans: '满桶 10 条，加上外面的 5 条，一共 15 条鱼！(7 + 8 = 15)' },
                                 { q: '你有 13 个包子🥟，如果给小狗 6 个，还剩多少个呢？', step1: '🧐 想象 13个包子 = 一大蒸笼(10个) + 盘子上的 3 个。', step2: '我们从蒸笼里拿出 6 个包子给小狗，蒸笼里还剩 4 个。', ans: '蒸笼剩里的 4 个，加盘子上的 3 个，还剩 7 个啦！(13 - 6 = 7)' },
+                                { q: '果园里有 8 棵苹果树和 4 棵梨树，一共有几棵树？', step1: '📦 凑十法：8 棵苹果树再加 2 棵就凑成 10 棵“整数排”！', step2: '把 4 棵梨树分成 2 棵和 2 棵。', ans: '10 棵加上剩下的 2 棵，一共有 12 棵树！(8 + 4 = 12)' },
+                                { q: '小红买了 15 支铅笔，用掉了 7 支，还剩几支？', step1: '🧐 破十法：先把 15 分成 10 和 5。', step2: '从 10 支里拿掉 7 支还剩 3 支，再加上原来的 5 支。', ans: '3 + 5 = 8，还剩下 8 支铅笔！(15 - 7 = 8)' },
                             ].map((ex, i) => (
                                 <div key={i} className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
                                     <p className="font-bold text-slate-800 dark:text-white mb-2 text-lg">挑战 {i + 1}：{ex.q}</p>
@@ -155,6 +157,42 @@ export const grade1Content = {
                         options={[{ label: 'A', value: '13颗' }, { label: 'B', value: '14颗' }, { label: 'C', value: '15颗' }, { label: 'D', value: '16颗' }]}
                         answer="C"
                         explanation="8 + 7 = 15（凑十法：8+2=10，10+5=15）"
+                    />
+                    <PracticeProblem id={104} type="choice"
+                        question="12 - 4 = ？"
+                        options={[{ label: 'A', value: '8' }, { label: 'B', value: '9' }, { label: 'C', value: '7' }, { label: 'D', value: '6' }]}
+                        answer="A"
+                        explanation="把12分成10和2，10 - 4 = 6，6 + 2 = 8。"
+                    />
+                    <PracticeProblem id={105} type="choice"
+                        question="小红有 14 朵花，送给小明 5 朵，还剩多少朵？"
+                        options={[{ label: 'A', value: '7' }, { label: 'B', value: '8' }, { label: 'C', value: '9' }, { label: 'D', value: '10' }]}
+                        answer="C"
+                        explanation="14 - 5 = 9（先用10 - 5 = 5，再5 + 4 = 9）。"
+                    />
+                    <PracticeProblem id={106} type="choice"
+                        question="7 + 5 + 3 = ？"
+                        options={[{ label: 'A', value: '13' }, { label: 'B', value: '14' }, { label: 'C', value: '15' }, { label: 'D', value: '16' }]}
+                        answer="C"
+                        explanation="先找好朋友：7 + 3 = 10，然后再加 5 就是 15 啦！"
+                    />
+                    <PracticeProblem id={107} type="choice"
+                        question="下面哪个算式的结果是 11？"
+                        options={[{ label: 'A', value: '5 + 7' }, { label: 'B', value: '15 - 4' }, { label: 'C', value: '8 + 4' }, { label: 'D', value: '18 - 8' }]}
+                        answer="B"
+                        explanation="5+7=12，15-4=11，8+4=12，18-8=10。所以选B。"
+                    />
+                    <PracticeProblem id={108} type="choice"
+                        question="树上有 11 只小鸟，飞走了 2 只，又飞来了 4 只，现在树上有几只小鸟？"
+                        options={[{ label: 'A', value: '12' }, { label: 'B', value: '13' }, { label: 'C', value: '14' }, { label: 'D', value: '15' }]}
+                        answer="B"
+                        explanation="11 - 2 = 9，9 + 4 = 13。"
+                    />
+                    <PracticeProblem id={109} type="choice"
+                        question="8 和 ( ) 加起来是 13？"
+                        options={[{ label: 'A', value: '4' }, { label: 'B', value: '5' }, { label: 'C', value: '6' }, { label: 'D', value: '7' }]}
+                        answer="B"
+                        explanation="8 加上几等于 13，用减法验证：13 - 8 = 5。"
                     />
                 </div>
             )
@@ -292,6 +330,48 @@ export const grade1Content = {
                         answer="B"
                         explanation="56的前一个数是56-1=55，后一个数是56+1=57。"
                     />
+                    <PracticeProblem id={113} type="choice"
+                        question="73 这个数里的 '7' 表示什么？"
+                        options={[{ label: 'A', value: '7个一' }, { label: 'B', value: '7个十' }, { label: 'C', value: '73个一' }, { label: 'D', value: '3个一' }]}
+                        answer="B"
+                        explanation="'7'在十位上，表示7捆木棍，也就是7个十。"
+                    />
+                    <PracticeProblem id={114} type="choice"
+                        question="最小的两位数是？"
+                        options={[{ label: 'A', value: '10' }, { label: 'B', value: '11' }, { label: 'C', value: '99' }, { label: 'D', value: '1' }]}
+                        answer="A"
+                        explanation="1到9是一位数，从10开始是两位数，所以最小的两位数是10。"
+                    />
+                    <PracticeProblem id={115} type="choice"
+                        question="最大的一位数是几？"
+                        options={[{ label: 'A', value: '1' }, { label: 'B', value: '0' }, { label: 'C', value: '8' }, { label: 'D', value: '9' }]}
+                        answer="D"
+                        explanation="最大的单个数字是9，过了9就是两位数10啦。"
+                    />
+                    <PracticeProblem id={116} type="choice"
+                        question="与 80 相邻的两个数是？"
+                        options={[{ label: 'A', value: '78和79' }, { label: 'B', value: '81和82' }, { label: 'C', value: '79和81' }, { label: 'D', value: '80和81' }]}
+                        answer="C"
+                        explanation="相邻的两个数就是它前面的一个数和后面的一个数，80-1=79，80+1=81。"
+                    />
+                    <PracticeProblem id={117} type="choice"
+                        question="数一数：20、30、40、()、60，括号里填什么？"
+                        options={[{ label: 'A', value: '45' }, { label: 'B', value: '50' }, { label: 'C', value: '55' }, { label: 'D', value: '65' }]}
+                        answer="B"
+                        explanation="每次增加一捆（10根），40后面再加10就是50。"
+                    />
+                    <PracticeProblem id={118} type="choice"
+                        question="比较大小：45 ( ) 54"
+                        options={[{ label: 'A', value: '大于 >' }, { label: 'B', value: '小于 <' }, { label: 'C', value: '等于 =' }, { label: 'D', value: '无法比较' }]}
+                        answer="B"
+                        explanation="先比较十位，45的十位是4，54的十位是5，4个十比5个十小，所以 45 < 54。"
+                    />
+                    <PracticeProblem id={119} type="choice"
+                        question="个位上是 2，十位上是 7，这个数是？"
+                        options={[{ label: 'A', value: '27' }, { label: 'B', value: '72' }, { label: 'C', value: '70' }, { label: 'D', value: '20' }]}
+                        answer="B"
+                        explanation="十位是7说明有7捆，个位是2说明有2根单的，合起来就是 72。"
+                    />
                 </div>
             )
         }
@@ -405,6 +485,27 @@ export const grade1Content = {
                                     ))}
                                 </div>
                             </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战3：正方形的四个角</p>
+                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">🤔 用尺子量一量，正方形的四个角是什么样的？</p>
+                                <div className="pl-4 border-l-4 border-orange-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p>📏 它们都是“直直的角”（直角），就像桌子的角或者书本的角一样！</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战4：圆形的特点</p>
+                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">🤔 圆形有几条直直的边？</p>
+                                <div className="pl-4 border-l-4 border-blue-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p>⚽ 圆形一条直直的边也没有，它是圆溜溜的曲线组成的！</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战5：拼图游戏</p>
+                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">🤔 两个完全一样的长方形，可以拼成什么？</p>
+                                <div className="pl-4 border-l-4 border-purple-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p>🧩 它们可以拼成一个更大的长方形，或者如果边长刚好，还能拼成一个正方形！</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -412,16 +513,64 @@ export const grade1Content = {
             practice: (
                 <div className="space-y-6">
                     <PracticeProblem id={120} type="choice"
-                        question="正方形有几条边？"
-                        options={[{ label: 'A', value: '2条' }, { label: 'B', value: '3条' }, { label: 'C', value: '4条' }, { label: 'D', value: '5条' }]}
-                        answer="C"
-                        explanation="正方形有4条边，且4条边的长度完全相等。"
+                        question="正方体有几个面？它们是什么形状？"
+                        options={[{ label: 'A', value: '4个面，都是正方形' }, { label: 'B', value: '6个面，都是正方形' }, { label: 'C', value: '6个面，都是长方形' }, { label: 'D', value: '8个面，都是正方形' }]}
+                        answer="B"
+                        explanation="正方体就像骰子，上下前后左右共有6个面，而且每个面都是一模一样的正方形。"
                     />
                     <PracticeProblem id={121} type="choice"
-                        question="下列哪个说法正确？"
-                        options={[{ label: 'A', value: '长方形是正方形' }, { label: 'B', value: '圆形有4个角' }, { label: 'C', value: '三角形有3条边' }, { label: 'D', value: '正方形没有直角' }]}
+                        question="把一张长方形的纸对折一次，不可能得到什么形状？"
+                        options={[{ label: 'A', value: '小长方形' }, { label: 'B', value: '正方形' }, { label: 'C', value: '三角形' }, { label: 'D', value: '圆形' }]}
+                        answer="D"
+                        explanation="长方形不管怎么折，都是由直线段组成的，不可能折出弧线，所以折不出圆形。"
+                    />
+                    <PracticeProblem id={122} type="choice"
+                        question="下面哪个物品的面是正方形的？"
+                        options={[{ label: 'A', value: '1元硬币' }, { label: 'B', value: '数学书封面' }, { label: 'C', value: '魔方的面' }, { label: 'D', value: '教室的门' }]}
                         answer="C"
-                        explanation="三角形有3条边和3个角。长方形不一定是正方形；圆没有角；正方形有4个直角。"
+                        explanation="魔方的每一个面都是四条边一样长的正方形。"
+                    />
+                    <PracticeProblem id={123} type="choice"
+                        question="两个完全一样的正方形可以拼成一个什么图形？"
+                        options={[{ label: 'A', value: '更大的正方形' }, { label: 'B', value: '长方形' }, { label: 'C', value: '三角形' }, { label: 'D', value: '圆形' }]}
+                        answer="B"
+                        explanation="把两个正方形并排放在一起，就会变成一个长长的长方形。"
+                    />
+                    <PracticeProblem id={124} type="choice"
+                        question="圆形有几个角？"
+                        options={[{ label: 'A', value: '0个' }, { label: 'B', value: '1个' }, { label: 'C', value: '3个' }, { label: 'D', value: '4个' }]}
+                        answer="A"
+                        explanation="圆形是圆溜溜的，没有直直的边，也没有角（0个）。"
+                    />
+                    <PracticeProblem id={125} type="choice"
+                        question="长方形的四条边有什么特点？"
+                        options={[{ label: 'A', value: '一样长' }, { label: 'B', value: '都不一样长' }, { label: 'C', value: '对着的边一样长' }, { label: 'D', value: '只有两条边一样长' }]}
+                        answer="C"
+                        explanation="长方形的上下两条边一样长，左右两条边也一样长（对边相等）。"
+                    />
+                    <PracticeProblem id={126} type="choice"
+                        question="将一个正方形沿中间剪开，不可能得到的是？"
+                        options={[{ label: 'A', value: '两个长方形' }, { label: 'B', value: '两个三角形' }, { label: 'C', value: '两个圆形' }, { label: 'D', value: '都可能' }]}
+                        answer="C"
+                        explanation="无论怎么沿着直线剪正方形，都剪不出带有圆弧的圆形。"
+                    />
+                    <PracticeProblem id={127} type="choice"
+                        question="用( )根同样长的小棒可以摆成一个正方形？"
+                        options={[{ label: 'A', value: '3' }, { label: 'B', value: '4' }, { label: 'C', value: '5' }, { label: 'D', value: '6' }]}
+                        answer="B"
+                        explanation="正方形有四条一样长的边，所以需要4根同样长的小棒。"
+                    />
+                    <PracticeProblem id={128} type="choice"
+                        question="足球的面可以看作是什么形状？"
+                        options={[{ label: 'A', value: '圆形' }, { label: 'B', value: '正方形' }, { label: 'C', value: '三角形' }, { label: 'D', value: '长方形' }]}
+                        answer="A"
+                        explanation="虽然足球是一个球体（立体的），但在纸上画它或者看它的轮廓，是一个圆形。"
+                    />
+                    <PracticeProblem id={129} type="choice"
+                        question="黑板的面是什么形状？"
+                        options={[{ label: 'A', value: '圆形' }, { label: 'B', value: '三角形' }, { label: 'C', value: '长方形' }, { label: 'D', value: '正方形' }]}
+                        answer="C"
+                        explanation="黑板是长长的，对边一样长，是长方形。"
                     />
                 </div>
             )
@@ -542,7 +691,7 @@ export const grade1Content = {
                                 <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">如果在看电影，你的座位在小明的<strong>左边</strong>。那对小明来说，你在他的哪边呢？</p>
                                 <div className="pl-4 border-l-4 border-blue-400 text-sm text-slate-600 dark:text-slate-400">
                                     <p>🤔 当"导游"变成小明，方向就反过来啦！</p>
-                                    <p>你在小明的<strong className="text-indigo-600">左边</strong>。</p>
+                                    <p className="text-indigo-600 font-bold">答：你在小明的右边。</p>
                                 </div>
                             </div>
                             <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
@@ -554,6 +703,30 @@ export const grade1Content = {
                                     <p className="text-green-600 font-bold">答：是 7点半！动画片马上开始！</p>
                                 </div>
                             </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战3：排队上车</p>
+                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">小红前面有 3 个人，后面有 2 个人，这一排一共有几个人？</p>
+                                <div className="pl-4 border-l-4 border-orange-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p>🚶 前面 3 个 + 后面 2 个 + 小红自己 1 个。</p>
+                                    <p className="text-orange-600 font-bold">答：一共 6 个人。</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战4：时钟整点</p>
+                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">分针指着 12，时针指着 9，现在是几时？</p>
+                                <div className="pl-4 border-l-4 border-red-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p>⏰ 分针指 12 是整点，时针指 9 就是 9 时。</p>
+                                    <p className="text-red-600 font-bold">答：是 9 时整。</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战5：上下楼梯</p>
+                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">我们在学校走廊右侧通行。当你上楼时，你应该靠哪边走？</p>
+                                <div className="pl-4 border-l-4 border-blue-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p>🚶 无论上楼还是下楼，都要靠自己的右边走哦！</p>
+                                    <p className="text-blue-600 font-bold">答：靠右侧通行。</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -561,16 +734,64 @@ export const grade1Content = {
             practice: (
                 <div className="space-y-6">
                     <PracticeProblem id={130} type="choice"
-                        question="时钟分针指向12，时针指向8，现在是（ ）"
-                        options={[{ label: 'A', value: '7时整' }, { label: 'B', value: '8时整' }, { label: 'C', value: '8时半' }, { label: 'D', value: '12时整' }]}
+                        question="小明面向太阳升起的方向，他的左手边是什么方向？"
+                        options={[{ label: 'A', value: '西' }, { label: 'B', value: '北' }, { label: 'C', value: '南' }, { label: 'D', value: '东' }]}
                         answer="B"
-                        explanation="分针指向12表示整时，时针指向8表示8时，所以是8时整。"
+                        explanation="太阳从东方升起，面向东时，左手边是北，右手边是南，背后是西。"
                     />
                     <PracticeProblem id={131} type="choice"
-                        question="小猫在小狗的上面，小狗在小猫的（ ）"
-                        options={[{ label: 'A', value: '上面' }, { label: 'B', value: '下面' }, { label: 'C', value: '左面' }, { label: 'D', value: '右面' }]}
+                        question="钟面上，分针指向12，时针指向8，现在是几时？"
+                        options={[{ label: 'A', value: '12时8分' }, { label: 'B', value: '8时整' }, { label: 'C', value: '8时半' }, { label: 'D', value: '4时整' }]}
                         answer="B"
-                        explanation="位置关系是互逆的：小猫在小狗上面，则小狗在小猫下面。"
+                        explanation="整点时，分针总是指向12。时针指着几，就是几时。时针指8，所以是8时整。"
+                    />
+                    <PracticeProblem id={132} type="choice"
+                        question="我们升国旗时举的是哪只手？"
+                        options={[{ label: 'A', value: '左手' }, { label: 'B', value: '右手' }, { label: 'C', value: '都可以' }, { label: 'D', value: '双手' }]}
+                        answer="B"
+                        explanation="少先队员敬礼升国旗时，通常规定举右手。"
+                    />
+                    <PracticeProblem id={133} type="choice"
+                        question="分针指向 6，时针在 8 和 9 之间，是几时？"
+                        options={[{ label: 'A', value: '8时' }, { label: 'B', value: '9时' }, { label: 'C', value: '8时半' }, { label: 'D', value: '9时半' }]}
+                        answer="C"
+                        explanation="分针指6代表半点，时针走过8（在8和9中间），说明是8时多一半，就是8时半。"
+                    />
+                    <PracticeProblem id={134} type="choice"
+                        question="从左往右数，小红排第 3，从右往左数，小红也排第 2，这一排有几个人？"
+                        options={[{ label: 'A', value: '4' }, { label: 'B', value: '5' }, { label: 'C', value: '6' }, { label: 'D', value: '3' }]}
+                        answer="A"
+                        explanation="左边有2个人，小红自己1个人，右边有1个人（因为她倒数第2）。加上她自己就是 3 + 2 - 1 = 4个人。"
+                    />
+                    <PracticeProblem id={135} type="choice"
+                        question="钟面上，时针走得()，分针走得()。填空正确的是？"
+                        options={[{ label: 'A', value: '快，慢' }, { label: 'B', value: '慢，慢' }, { label: 'C', value: '慢，快' }, { label: 'D', value: '快，快' }]}
+                        answer="C"
+                        explanation="时针走得很慢（一小时走一格大肚子），分针走得快（一小时走整整一圈跑道）。"
+                    />
+                    <PracticeProblem id={136} type="choice"
+                        question="桌子上面放着书，书的()面是桌子？"
+                        options={[{ label: 'A', value: '上' }, { label: 'B', value: '下' }, { label: 'C', value: '左' }, { label: 'D', value: '右' }]}
+                        answer="B"
+                        explanation="书在桌子上面，反过来，桌子就在书的下面。"
+                    />
+                    <PracticeProblem id={137} type="choice"
+                        question="时针指向 10，分针指向 12，是几时？"
+                        options={[{ label: 'A', value: '10时整' }, { label: 'B', value: '12时整' }, { label: 'C', value: '10时半' }, { label: 'D', value: '12时半' }]}
+                        answer="A"
+                        explanation="分针指12是整点，时针指10，所以是10时整。"
+                    />
+                    <PracticeProblem id={138} type="choice"
+                        question="晚上 9 时睡觉，钟面上的分针应该指向哪里？"
+                        options={[{ label: 'A', value: '9' }, { label: 'B', value: '6' }, { label: 'C', value: '12' }, { label: 'D', value: '3' }]}
+                        answer="C"
+                        explanation="9时是整点，整点时分针永远指着12。"
+                    />
+                    <PracticeProblem id={139} type="choice"
+                        question="星期一的前一天是？"
+                        options={[{ label: 'A', value: '星期天' }, { label: 'B', value: '星期二' }, { label: 'C', value: '星期三' }, { label: 'D', value: '星期四' }]}
+                        answer="A"
+                        explanation="周末放完假星期一才上学，所以星期一的前面是休息的星期天（周日）。"
                     />
                 </div>
             )
@@ -666,6 +887,9 @@ export const grade1Content = {
                             {[
                                 { q: '1+2+3+4+5+6+7+8+9 = ?', hint: '🧐 找找好朋友：1和9，2和8，3和7，4和6。哇！有4对好朋友就是40！', ans: '最孤单的 5 加上去，就是 45 啦！' },
                                 { q: '18 - 9 + 2 = ?', hint: '🤝 先让 18 找好朋友 2 牵手，变成大整数 20！再减 9！', ans: '20 - 9 = 11！太简单啦！' },
+                                { q: '7 + 5 + 3 = ?', hint: '🧐 找朋友：7 和 3 是好朋友，凑成 10！', ans: '10 + 5 = 15！算得真快！' },
+                                { q: '14 + 8 + 6 = ?', hint: '🤝 找朋友：14 和 6 凑成 20！', ans: '20 + 8 = 28！巧算真神奇！' },
+                                { q: '20 - 7 - 3 = ?', hint: '🧐 连续减去两个数，等于减去它们的和：7 + 3 = 10。', ans: '20 - 10 = 10！学会这一招更厉害了！' },
                             ].map((ex, i) => (
                                 <div key={i} className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
                                     <p className="font-bold text-slate-800 dark:text-white mb-2">挑战{i + 1}：{ex.q}</p>
@@ -685,13 +909,61 @@ export const grade1Content = {
                         question="用巧算方法：4 + 9 + 6 = ？"
                         options={[{ label: 'A', value: '18' }, { label: 'B', value: '19' }, { label: 'C', value: '20' }, { label: 'D', value: '21' }]}
                         answer="B"
-                        explanation="先凑整：4+6=10，10+9=19。"
+                        explanation="先凑整：4和6是好朋友，4+6=10，10+9=19。"
                     />
                     <PracticeProblem id={141} type="choice"
                         question="17 - 8 + 3 最简便的算法是？"
                         options={[{ label: 'A', value: '先算17-8=9，再9+3=12' }, { label: 'B', value: '先算17+3=20，再20-8=12' }, { label: 'C', value: '先算8-3=5，再17-5=12' }, { label: 'D', value: '以上都不对' }]}
                         answer="B"
                         explanation="先做17+3=20（凑整），再减8，比逐步计算更快。"
+                    />
+                    <PracticeProblem id={142} type="choice"
+                        question="计算 8 + （ ） = 10，括号里填什么？"
+                        options={[{ label: 'A', value: '1' }, { label: 'B', value: '2' }, { label: 'C', value: '3' }, { label: 'D', value: '4' }]}
+                        answer="B"
+                        explanation="8的数字好朋友是2，8+2=10。"
+                    />
+                    <PracticeProblem id={143} type="choice"
+                        question="巧算 2 + 5 + 8 = ？，先算哪两个数字最好？"
+                        options={[{ label: 'A', value: '2和5' }, { label: 'B', value: '5和8' }, { label: 'C', value: '2和8' }, { label: 'D', value: '随便算' }]}
+                        answer="C"
+                        explanation="2和8是好朋友，凑成10，再加5就是15，特别简单。"
+                    />
+                    <PracticeProblem id={144} type="choice"
+                        question="5 + 6 + 5 = ？"
+                        options={[{ label: 'A', value: '16' }, { label: 'B', value: '15' }, { label: 'C', value: '17' }, { label: 'D', value: '14' }]}
+                        answer="A"
+                        explanation="5和5凑成10，再加6就是16。"
+                    />
+                    <PracticeProblem id={145} type="choice"
+                        question="小明有14块糖，吃了6块，朋友又给了他6块，他现在有多少块？"
+                        options={[{ label: 'A', value: '8' }, { label: 'B', value: '14' }, { label: 'C', value: '20' }, { label: 'D', value: '12' }]}
+                        answer="B"
+                        explanation="14 - 6 + 6，吃了6块又拿到6块，就等于没少也没多，还是14块。"
+                    />
+                    <PracticeProblem id={146} type="choice"
+                        question="计算 1 + 2 + 3 + 7 + 8 + 9 = ？"
+                        options={[{ label: 'A', value: '20' }, { label: 'B', value: '30' }, { label: 'C', value: '40' }, { label: 'D', value: '50' }]}
+                        answer="B"
+                        explanation="找朋友：1和9凑10，2和8凑10，3和7凑10。三个10相加就是30。"
+                    />
+                    <PracticeProblem id={147} type="choice"
+                        question="如果 7 + 4 = 11，那么 11 - 4 = ？"
+                        options={[{ label: 'A', value: '6' }, { label: 'B', value: '7' }, { label: 'C', value: '8' }, { label: 'D', value: '9' }]}
+                        answer="B"
+                        explanation="加法和减法是好朋友，7和4组成11，11拿走4就剩下7。"
+                    />
+                    <PracticeProblem id={148} type="choice"
+                        question="哪个算式算起来最快？"
+                        options={[{ label: 'A', value: '7+5+3' }, { label: 'B', value: '6+8+1' }, { label: 'C', value: '4+9+2' }, { label: 'D', value: '5+7+6' }]}
+                        answer="A"
+                        explanation="A里面有7和3这对好朋友可以凑成10。其他都没有能正好凑成10的。"
+                    />
+                    <PracticeProblem id={149} type="choice"
+                        question="计算 15 - ( ) = 8，括号里填几？"
+                        options={[{ label: 'A', value: '5' }, { label: 'B', value: '6' }, { label: 'C', value: '7' }, { label: 'D', value: '8' }]}
+                        answer="C"
+                        explanation="想加法：8加上几等于15呢？8+7=15，或者15-8=7。"
                     />
                 </div>
             )
@@ -798,6 +1070,28 @@ export const grade1Content = {
                                     <p className="text-blue-600 font-bold mt-1">哇！它大变身，变成数字 6 啦！</p>
                                 </div>
                             </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战3：拼 2 个独立的三角形</p>
+                                <div className="pl-4 border-l-4 border-green-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p>📐 1 个三角形要 3 根，独立的 2 个就要 3 + 3 = 6 根。</p>
+                                    <p className="text-green-600 font-bold">答：一共需要 6 根火柴。</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战4：移动 1 根火柴，使等式成立：1 + 1 = 3</p>
+                                <div className="pl-4 border-l-4 border-orange-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p>🪄 把 "+" 的那一横拿走，放到第一个 "1" 上面变成 "T"？不对不对。</p>
+                                    <p>🪄 把 "+" 变成 "-"，把多出的一根放到后面 "3" 上变成 "2"？也不对。</p>
+                                    <p className="text-orange-600 font-bold">答：把结果 3 上的 1 根移动到前面，变成 1 + 2 = 3。</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战5：拼 1 个长方形</p>
+                                <div className="pl-4 border-l-4 border-red-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p>🏠 用 2 根长棒做上下边，2 根短棒做左右边。</p>
+                                    <p className="text-red-600 font-bold">答：一共需要 6 根火柴（长的 4 根拼成 2 条长边，短的 2 根）。</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -805,16 +1099,64 @@ export const grade1Content = {
             practice: (
                 <div className="space-y-6">
                     <PracticeProblem id={150} type="choice"
-                        question="用火柴棒拼相连的三角形，拼1个用3根，拼4个共用几根？"
-                        options={[{ label: 'A', value: '9根' }, { label: 'B', value: '10根' }, { label: 'C', value: '11根' }, { label: 'D', value: '12根' }]}
+                        question="拼 1 个独立的三角形需要 3 根火柴，拼 2 个独立的三角形需要几根？"
+                        options={[{ label: 'A', value: '4根' }, { label: 'B', value: '5根' }, { label: 'C', value: '6根' }, { label: 'D', value: '7根' }]}
                         answer="C"
-                        explanation="第1个3根，后每个加2根（共用一条边）：3 + 3×2 = 3+6=9。等等，三角形共边增加2根：3+(4-1)×2=3+6=9。不对，正确是11根：拼1个3根，从第2个开始每个加2根（因为少一条共边），所以4个=3+3×2=9根？让我重算：每个三角形有3条边，相邻三角形共1条边，所以n个三角形：3n-(n-1)=2n+1根。4个=2×4+1=9根。"
+                        explanation="独立的意思是不连在一起，每次都要3根，3+3=6根。"
                     />
                     <PracticeProblem id={151} type="choice"
+                        question="用火柴棒拼连在一起的三角形（底边都在一条直线上），拼1个用3根，拼2个连在一起的共用几根？"
+                        options={[{ label: 'A', value: '4根' }, { label: 'B', value: '5根' }, { label: 'C', value: '6根' }, { label: 'D', value: '7根' }]}
+                        answer="B"
+                        explanation="第一个用3根，第二个借用一面墙，只要2根。3+2=5根。"
+                    />
+                    <PracticeProblem id={152} type="choice"
+                        question="如果拼3个连在一起的正方形，需要几根火柴棒？"
+                        options={[{ label: 'A', value: '12根' }, { label: 'B', value: '11根' }, { label: 'C', value: '10根' }, { label: 'D', value: '9根' }]}
+                        answer="C"
+                        explanation="第一个正方形要4根，后面每个只要新加3根。4+3+3=10根。"
+                    />
+                    <PracticeProblem id={153} type="choice"
                         question="用同样大小的火柴棒，正方形比三角形多用几根？"
                         options={[{ label: 'A', value: '0根' }, { label: 'B', value: '1根' }, { label: 'C', value: '2根' }, { label: 'D', value: '3根' }]}
                         answer="B"
-                        explanation="正方形用4根，三角形用3根，4-3=1根。"
+                        explanation="一个正方形用4根，三角形用3根，4-3=1根。"
+                    />
+                    <PracticeProblem id={154} type="choice"
+                        question="用火柴摆出了数字'8'，如果拿走中间那一横，它会变成哪个数字？"
+                        options={[{ label: 'A', value: '0' }, { label: 'B', value: '6' }, { label: 'C', value: '9' }, { label: 'D', value: '3' }]}
+                        answer="A"
+                        explanation="数字的8由上下两个方框组成，拿走中间横就变成一个大方框，看起来像0。"
+                    />
+                    <PracticeProblem id={155} type="choice"
+                        question="拼一个正方形需要4根火柴棒，拿走( )根它就会变成只有3条边的图形。"
+                        options={[{ label: 'A', value: '1' }, { label: 'B', value: '2' }, { label: 'C', value: '3' }, { label: 'D', value: '4' }]}
+                        answer="A"
+                        explanation="正方形有4条边，4减去1等于3，所以拿走1根。"
+                    />
+                    <PracticeProblem id={156} type="choice"
+                        question="如果用火柴摆一个“十”字，需要几根火柴棒？（一横一竖等长）"
+                        options={[{ label: 'A', value: '2根' }, { label: 'B', value: '3根' }, { label: 'C', value: '4根' }, { label: 'D', value: '无法确定' }]}
+                        answer="A"
+                        explanation="一横一竖交叉，最少需要2根火柴棒。"
+                    />
+                    <PracticeProblem id={157} type="choice"
+                        question="用火柴摆数字“1”要2根火柴，摆数字“7”要3根。那么摆数字“17”要几根？"
+                        options={[{ label: 'A', value: '3根' }, { label: 'B', value: '4根' }, { label: 'C', value: '5根' }, { label: 'D', value: '6根' }]}
+                        answer="C"
+                        explanation="直接相加，2+3=5根。"
+                    />
+                    <PracticeProblem id={158} type="choice"
+                        question="拼5个连在一起的三角形需要几根火柴？（底同线）"
+                        options={[{ label: 'A', value: '10根' }, { label: 'B', value: '11根' }, { label: 'C', value: '13根' }, { label: 'D', value: '15根' }]}
+                        answer="B"
+                        explanation="第1个3根，后面4个每个2根。3 + 2+2+2+2 = 11根。"
+                    />
+                    <PracticeProblem id={159} type="choice"
+                        question="摆两个不相连的正方形，和摆三个连在一起的三角形，哪个用的火柴多？"
+                        options={[{ label: 'A', value: '两个正方形' }, { label: 'B', value: '三个连着三角形' }, { label: 'C', value: '一样多' }, { label: 'D', value: '没法比' }]}
+                        answer="A"
+                        explanation="两个不相连的正方形：4+4=8根。三个连着三角形：3+2+2=7根。所以正方形用的更多。"
                     />
                 </div>
             )
@@ -928,6 +1270,27 @@ export const grade1Content = {
                                     <p className="text-purple-600 font-bold">完美解答：它会被切成整整齐齐的 4 块完全一样的三角形点心呀！</p>
                                 </div>
                             </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战3：拼出大正方形</p>
+                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">🤔 4 个一样的小正方形，可以拼成一个大正方形吗？</p>
+                                <div className="pl-4 border-l-4 border-green-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p>🧩 是的！摆成“田”字形就可以啦！</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战4：长方形对半剪</p>
+                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">🤔 一个长方形对半剪开，一定能得到两个正方形吗？</p>
+                                <div className="pl-4 border-l-4 border-orange-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p>✂️ 不一定哦，如果长方形不够长，剪开后还是两个更小的长方形。</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战5：三角形拼图</p>
+                                <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">🤔 两个完全一样的直角三角形，斜边靠在一起，会拼成什么？</p>
+                                <div className="pl-4 border-l-4 border-blue-400 text-sm text-slate-600 dark:text-slate-400">
+                                    <p>🧩 会拼成一个长方形或者正方形！</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -936,15 +1299,63 @@ export const grade1Content = {
                 <div className="space-y-6">
                     <PracticeProblem id={160} type="choice"
                         question="2个完全相同的三角形，不能拼成什么图形？"
-                        options={[{ label: 'A', value: '长方形' }, { label: 'B', value: '三角形' }, { label: 'C', value: '圆形' }, { label: 'D', value: '平行四边形' }]}
+                        options={[{ label: 'A', value: '长方形' }, { label: 'B', value: '大三角形' }, { label: 'C', value: '圆形' }, { label: 'D', value: '平行四边形' }]}
                         answer="C"
                         explanation="两个三角形可以拼成长方形、大三角形或平行四边形，但不能拼成圆形（圆没有角和直边）。"
                     />
                     <PracticeProblem id={161} type="choice"
                         question="把一张长方形纸片沿对角线剪开，得到的两个图形是？"
-                        options={[{ label: 'A', value: '两个长方形' }, { label: 'B', value: '两个直角三角形' }, { label: 'C', value: '两个正方形' }, { label: 'D', value: '一个三角形和一个正方形' }]}
+                        options={[{ label: 'A', value: '两个大长方形' }, { label: 'B', value: '两个直角三角形' }, { label: 'C', value: '两个小正方形' }, { label: 'D', value: '一个三角形和一个正方形' }]}
                         answer="B"
                         explanation="长方形沿对角线剪开，得到两个完全相同的直角三角形。"
+                    />
+                    <PracticeProblem id={162} type="choice"
+                        question="四块一模一样的小正方形，可以拼成一个什么大图形？"
+                        options={[{ label: 'A', value: '一个大正方形' }, { label: 'B', value: '一个大圆形' }, { label: 'C', value: '一个三角形' }, { label: 'D', value: '半圆' }]}
+                        answer="A"
+                        explanation="田字就是这四个小正方组成的大正方形状。"
+                    />
+                    <PracticeProblem id={163} type="choice"
+                        question="七巧板里一共有多少块图形？"
+                        options={[{ label: 'A', value: '5块' }, { label: 'B', value: '6块' }, { label: 'C', value: '7块' }, { label: 'D', value: '8块' }]}
+                        answer="C"
+                        explanation="七巧板的名字里就有'七'，一共有7块。"
+                    />
+                    <PracticeProblem id={164} type="choice"
+                        question="七巧板里面包含哪几种图形？"
+                        options={[{ label: 'A', value: '全都是三角形' }, { label: 'B', value: '三角形、正方形、平行四边形' }, { label: 'C', value: '长方形、圆形' }, { label: 'D', value: '正方形和圆' }]}
+                        answer="B"
+                        explanation="七巧板由5块三角形，1块正方形，1块平行四边形组成。"
+                    />
+                    <PracticeProblem id={165} type="choice"
+                        question="把一个长方形纸片从中间对折再剪开，可以得到？"
+                        options={[{ label: 'A', value: '两个更小的长方形 或 两个正方形' }, { label: 'B', value: '两个三角形' }, { label: 'C', value: '两个圆形' }, { label: 'D', value: '两个不同的图形' }]}
+                        answer="A"
+                        explanation="水平对折剪开是小长方形，有时候长边比较长刚好是对半如果是特定的长方形还能是正方形。"
+                    />
+                    <PracticeProblem id={166} type="choice"
+                        question="两块相同的直角三角形，怎么拼能得到最大的周长外的三角形？"
+                        options={[{ label: 'A', value: '短边靠一起' }, { label: 'B', value: '长边靠一起' }, { label: 'C', value: '斜边靠一起' }, { label: 'D', value: '随便怎么拼' }]}
+                        answer="A"
+                        explanation="把直角短边拼接，可以拼出一个大个等腰三角形。"
+                    />
+                    <PracticeProblem id={167} type="choice"
+                        question="一个大正方形剪去一个角，剩下几个角？"
+                        options={[{ label: 'A', value: '3个' }, { label: 'B', value: '4个' }, { label: 'C', value: '5个' }, { label: 'D', value: '不一定' }]}
+                        answer="D"
+                        explanation="只切掉角尖就变5个角，沿着对角线切才是3个角，所以不一定。"
+                    />
+                    <PracticeProblem id={168} type="choice"
+                        question="不管面团捏成圆形还是长形，它的( )是不变的？"
+                        options={[{ label: 'A', value: '外面的皮长度' }, { label: 'B', value: '大小和重量' }, { label: 'C', value: '宽度' }, { label: 'D', value: '高矮' }]}
+                        answer="B"
+                        explanation="面团不管怎么捏形状，都没有被吃掉，所以总大小(包含的物质)是不变的。"
+                    />
+                    <PracticeProblem id={169} type="choice"
+                        question="下面哪个图形不能用普通的剪直线的剪刀一次剪出来？"
+                        options={[{ label: 'A', value: '正方形' }, { label: 'B', value: '三角形' }, { label: 'C', value: '长方形' }, { label: 'D', value: '圆形' }]}
+                        answer="D"
+                        explanation="圆形需要剪弧线，不能用剪直线的刀法一刀剪出。"
                     />
                 </div>
             )
@@ -1050,6 +1461,28 @@ export const grade1Content = {
                                     <p className="text-blue-600 font-bold mt-1">完美解答：一共有 6 种不同的风景哦！</p>
                                 </div>
                             </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战3：□ + □ = 5，填入不同数字</p>
+                                <div className="pl-4 border-l-4 border-green-400 text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                                    <p>排好队：1 + 4, 4 + 1, 2 + 3, 3 + 2。</p>
+                                    <p className="text-green-600 font-bold">答：一共有 4 种组合方式。</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战4：有 3 个小朋友握手，每两人握一次，共握几次？</p>
+                                <div className="pl-4 border-l-4 border-orange-400 text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                                    <p>🤝 A 和 B，A 和 C，B 和 C。</p>
+                                    <p className="text-orange-600 font-bold">答：一共握 3 次手。</p>
+                                </div>
+                            </div>
+                            <div className="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl">
+                                <p className="font-bold text-slate-800 dark:text-white mb-2">挑战5：用 0, 1, 2 组成不重复的两位数</p>
+                                <div className="pl-4 border-l-4 border-red-400 text-sm text-slate-600 dark:text-slate-400 space-y-2">
+                                    <p>🤔 注意：0 不能放在最高位（十位）！</p>
+                                    <p>十位是 1：10, 12；十位是 2：20, 21。</p>
+                                    <p className="text-red-600 font-bold">答：一共能组成 4 个两位数。</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1060,13 +1493,61 @@ export const grade1Content = {
                         question="用数字1、3、5组成两位数，最大的两位数是？"
                         options={[{ label: 'A', value: '13' }, { label: 'B', value: '51' }, { label: 'C', value: '53' }, { label: 'D', value: '55' }]}
                         answer="C"
-                        explanation="三个不同数字组成两位数（不重复）：十位要尽量大→5，个位要尽量大→3，所以最大是53。（55重复了）"
+                        explanation="三个不同数字组成两位数（不重复）：十位要尽量大→5，个位要尽量大（不能用5了）→3，所以最大是53。"
                     />
                     <PracticeProblem id={171} type="choice"
                         question="□ + □ = 6，两个方框填不同的1-5的数字，有几种不同填法？"
                         options={[{ label: 'A', value: '2种' }, { label: 'B', value: '4种' }, { label: 'C', value: '5种' }, { label: 'D', value: '6种' }]}
                         answer="B"
-                        explanation="列举：1+5=6, 5+1=6, 2+4=6, 4+2=6（3+3重复了不算）共4种。"
+                        explanation="列举：1+5=6, 5+1=6, 2+4=6, 4+2=6（3+3因为题目说数字不同所以不算）共4种填法。"
+                    />
+                    <PracticeProblem id={172} type="choice"
+                        question="用 1、2、3 可以组成多少个不重复的三位数？"
+                        options={[{ label: 'A', value: '3个' }, { label: 'B', value: '4个' }, { label: 'C', value: '5个' }, { label: 'D', value: '6个' }]}
+                        answer="D"
+                        explanation="按顺序找：123, 132, 213, 231, 312, 321，一共6个。"
+                    />
+                    <PracticeProblem id={173} type="choice"
+                        question="有红、黄、蓝3件上衣，黑、白2件裤子，随便搭一套，有几种穿法？"
+                        options={[{ label: 'A', value: '5种' }, { label: 'B', value: '6种' }, { label: 'C', value: '7种' }, { label: 'D', value: '8种' }]}
+                        answer="B"
+                        explanation="红上衣能配两裤子，黄上衣配两裤子，蓝上衣配两裤子。一共3×2=6种。"
+                    />
+                    <PracticeProblem id={174} type="choice"
+                        question="数字密码锁是两位数。第一位只能是1或2，第二位只能是3或4，共有多少个密码？"
+                        options={[{ label: 'A', value: '2个' }, { label: 'B', value: '3个' }, { label: 'C', value: '4个' }, { label: 'D', value: '5个' }]}
+                        answer="C"
+                        explanation="排一排：13, 14, 23, 24。一共4个密码。"
+                    />
+                    <PracticeProblem id={175} type="choice"
+                        question="从 1 数到 10，一共数了多少个数字？"
+                        options={[{ label: 'A', value: '8个' }, { label: 'B', value: '9个' }, { label: 'C', value: '10个' }, { label: 'D', value: '11个' }]}
+                        answer="C"
+                        explanation="一根手指代表一个数字，刚好数完十根手指，是10个。"
+                    />
+                    <PracticeProblem id={176} type="choice"
+                        question="箱子里有 1、2、3 号球。每次摸一个放回去，摸两次加起来结果最大是几？"
+                        options={[{ label: 'A', value: '4' }, { label: 'B', value: '5' }, { label: 'C', value: '6' }, { label: 'D', value: '7' }]}
+                        answer="C"
+                        explanation="想让加起来最大，就都要摸到最大的球。两次都是3，加起来就是6。"
+                    />
+                    <PracticeProblem id={177} type="choice"
+                        question="一排同学，小明左边有1人，右边有2人，一共有几个人在排队？"
+                        options={[{ label: 'A', value: '3个' }, { label: 'B', value: '4个' }, { label: 'C', value: '5个' }, { label: 'D', value: '6个' }]}
+                        answer="B"
+                        explanation="左边 1个 + 右边 2个 + 小明自己 1个 = 4个人。"
+                    />
+                    <PracticeProblem id={178} type="choice"
+                        question="□ - □ = 1，如果方框里只能填2、3、4，不能填别的，有多少种不同的填法？"
+                        options={[{ label: 'A', value: '1种' }, { label: 'B', value: '2种' }, { label: 'C', value: '3种' }, { label: 'D', value: '4种' }]}
+                        answer="B"
+                        explanation="找一找：3 - 2 = 1， 4 - 3 = 1。就这2种哦。"
+                    />
+                    <PracticeProblem id={179} type="choice"
+                        question="要找全所有的线索密码，最好的办法是？"
+                        options={[{ label: 'A', value: '想到哪个就写哪个' }, { label: 'B', value: '按从小到大排好队来找' }, { label: 'C', value: '随心情瞎找' }, { label: 'D', value: '偷看别人的' }]}
+                        answer="B"
+                        explanation="按顺序找（枚举法）能保证不遗漏、不重复！"
                     />
                 </div>
             )
