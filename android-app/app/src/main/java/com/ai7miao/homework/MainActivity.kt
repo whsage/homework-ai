@@ -99,8 +99,8 @@ class MainActivity : AppCompatActivity() {
             domStorageEnabled = true
             allowFileAccess = true
             allowContentAccess = true
-            // 设置缓存模式：不使用缓存，强制从网络加载，确保总能获取最新代码（包含 tags 修复）
-            cacheMode = WebSettings.LOAD_NO_CACHE
+            // 使用默认缓存模式，加速二次打开速度
+            cacheMode = WebSettings.LOAD_DEFAULT
         }
         
         webView.webChromeClient = object : WebChromeClient() {
