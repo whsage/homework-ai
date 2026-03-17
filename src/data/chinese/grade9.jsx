@@ -5,7 +5,7 @@ import { PracticeProblem } from './common';
 export const grade9Content = {
     // ==================== L1-1. 中考阅读专题 ====================
     'cn9-l1-reading-exam': {
-        meta: { title: "中考阅读专题 - 初三语文 | AI7Miao语文", description: "系统训练中考阅读理解各类题型。", keywords: "中考阅读,记叙文,说明文,议论文,初三语文" },
+        meta: { title: "中考阅读专题 - 初三语文 | AI奇妙语文", description: "系统训练中考阅读理解各类题型。", keywords: "中考阅读,记叙文,说明文,议论文,初三语文" },
         info: { title: "中考阅读专题", description: "三大文体一网打尽！中考阅读理解不丢分！📋", tags: [{ text: "基础达标", color: "blue" }, { text: "45分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "初三学生中考阅读专项训练。系统复习记叙文（人物分析、主旨概括、语句赏析）、说明文（方法辨析、语言准确性）、议论文（论点论据论证）的常见题型和答题模板。",
         aiChatTitle: "📋 中考阅读特训", aiChatIntro: "掌握三大文体的答题套路，阅读理解拿高分！",
@@ -20,7 +20,7 @@ export const grade9Content = {
 
     // ==================== L1-2. 文言文综合训练 ====================
     'cn9-l1-classical-comprehensive': {
-        meta: { title: "文言文综合训练 - 初三语文 | AI7Miao语文", description: "系统复习文言文，备战中考。", keywords: "文言文,中考复习,虚词实词,初三语文" },
+        meta: { title: "文言文综合训练 - 初三语文 | AI奇妙语文", description: "系统复习文言文，备战中考。", keywords: "文言文,中考复习,虚词实词,初三语文" },
         info: { title: "文言文综合训练", description: "中考文言文全面突破！实词虚词句式翻译一网打尽！📜", tags: [{ text: "基础达标", color: "blue" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "初三学生系统复习文言文。涵盖：120个常考实词、18个虚词、四大特殊句式、词类活用、古今异义、通假字、翻译技巧和内容理解。",
         aiChatTitle: "📜 文言文通关", aiChatIntro: "系统复习中考文言文考点，做到心中有数！",
@@ -35,7 +35,7 @@ export const grade9Content = {
 
     // ==================== L1-3. 古诗鉴赏综合 ====================
     'cn9-l1-poetry-comprehensive': {
-        meta: { title: "古诗鉴赏综合 - 初三语文 | AI7Miao语文", description: "系统复习古诗词鉴赏方法。", keywords: "古诗鉴赏,中考诗词,意象意境,初三语文" },
+        meta: { title: "古诗鉴赏综合 - 初三语文 | AI奇妙语文", description: "系统复习古诗词鉴赏方法。", keywords: "古诗鉴赏,中考诗词,意象意境,初三语文" },
         info: { title: "古诗鉴赏综合", description: "诗词鉴赏全攻略！从意象到手法，从情感到主旨！🎋", tags: [{ text: "基础达标", color: "blue" }, { text: "35分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "综合复习古诗词鉴赏方法和常考题型。掌握诗歌分类（山水田园、边塞征战、咏史怀古、送别思乡、咏物抒怀），常见表现手法（借景抒情、托物言志、用典、虚实结合），答题规范。",
         aiChatTitle: "🎋 诗词鉴赏大师", aiChatIntro: "中考诗词鉴赏有方法！掌握套路，读诗不再难！",
@@ -50,7 +50,7 @@ export const grade9Content = {
 
     // ==================== L1-4. 中考作文突破 ====================
     'cn9-l1-exam-writing': {
-        meta: { title: "中考作文突破 - 初三语文 | AI7Miao语文", description: "掌握中考作文高分技巧。", keywords: "中考作文,审题立意,作文结构,初三语文" },
+        meta: { title: "中考作文突破 - 初三语文 | AI奇妙语文", description: "掌握中考作文高分技巧。", keywords: "中考作文,审题立意,作文结构,初三语文" },
         info: { title: "中考作文突破", description: "中考作文冲刺满分！审题+立意+结构+语言=高分！🏆", tags: [{ text: "基础达标", color: "blue" }, { text: "45分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "初三学生中考作文专题。涵盖审题方法、立意技巧、开头结尾升级、素材积累与运用、考场时间分配。帮助学生写出有深度、有文采的考场作文。",
         aiChatTitle: "🏆 作文满分教练", aiChatIntro: "掌握中考作文的秘诀，让阅卷老师眼前一亮！",
@@ -65,7 +65,7 @@ export const grade9Content = {
 
     // ==================== L2-1. 名著阅读综合 ====================
     'cn9-l2-classics-comprehensive': {
-        meta: { title: "名著阅读综合 - 初三语文 | AI7Miao语文", description: "系统复习初中必读名著。", keywords: "名著阅读,中考名著,水浒传,初三语文" },
+        meta: { title: "名著阅读综合 - 初三语文 | AI奇妙语文", description: "系统复习初中必读名著。", keywords: "名著阅读,中考名著,水浒传,初三语文" },
         info: { title: "名著阅读综合", description: "初中必读名著大回顾！人物、情节、主题全掌握！📚", tags: [{ text: "素养进阶", color: "purple" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "系统复习初中必读名著：《水浒传》《简·爱》《儒林外史》《艾青诗选》等。训练名著知识识记、人物形象分析、情节概括、主题探究等中考常见题型。",
         aiChatTitle: "📚 名著通关赛", aiChatIntro: "初中必读的12部名著，你都记住了吗？来一起复习！",
@@ -80,7 +80,7 @@ export const grade9Content = {
 
     // ==================== L2-2. 语言运用综合 ====================
     'cn9-l2-language-use': {
-        meta: { title: "语言运用综合 - 初三语文 | AI7Miao语文", description: "综合训练语言运用能力。", keywords: "语言运用,病句,仿句,口语交际,初三语文" },
+        meta: { title: "语言运用综合 - 初三语文 | AI奇妙语文", description: "综合训练语言运用能力。", keywords: "语言运用,病句,仿句,口语交际,初三语文" },
         info: { title: "语言运用综合", description: "语言文字运用大集合！病句、仿句、口语交际全搞定！🗣️", tags: [{ text: "素养进阶", color: "purple" }, { text: "35分钟", icon: Clock, color: "slate" }] },
         aiContext: "综合训练中考语言运用题型：病句辨析与修改、仿写句子、口语交际（劝说/转述/采访）、图文转换、对联、综合性学习活动。",
         aiChatTitle: "🗣️ 语言运用达人", aiChatIntro: "语言运用题千变万化，但万变不离其宗！掌握方法就不怕！",
@@ -95,7 +95,7 @@ export const grade9Content = {
 
     // ==================== L2-3. 中考语文冲刺 ====================
     'cn9-l2-exam-sprint': {
-        meta: { title: "中考语文冲刺 - 初三语文 | AI7Miao语文", description: "中考语文最后冲刺，查缺补漏。", keywords: "中考冲刺,语文复习,考试技巧,初三语文" },
+        meta: { title: "中考语文冲刺 - 初三语文 | AI奇妙语文", description: "中考语文最后冲刺，查缺补漏。", keywords: "中考冲刺,语文复习,考试技巧,初三语文" },
         info: { title: "中考语文冲刺", description: "最后冲刺！查缺补漏，稳拿高分！🚀", tags: [{ text: "素养进阶", color: "purple" }, { text: "45分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "中考前最后冲刺阶段。帮助学生制定复习计划，梳理易错点和高频考点，传授考场答题技巧和时间管理策略。",
         aiChatTitle: "🚀 冲刺加速器", aiChatIntro: "最后阶段，稳住心态，查缺补漏，你已经准备好了！",

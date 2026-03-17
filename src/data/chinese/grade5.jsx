@@ -5,7 +5,7 @@ export const grade5Content = {
 
     // ==================== L1-1. 文言文入门 ====================
     'cn5-l1-classical-intro': {
-        meta: { title: "文言文入门 - 五年级语文 | AI7Miao语文", description: "学习文言文的基本阅读方法和常见实词虚词。", keywords: '文言文,实词,虚词,五年级语文' },
+        meta: { title: "文言文入门 - 五年级语文 | AI奇妙语文", description: "学习文言文的基本阅读方法和常见实词虚词。", keywords: '文言文,实词,虚词,五年级语文' },
         info: { title: "文言文入门", description: "穿越到古代去'聊天'！文言文就是古人说话的方式！🏯", tags: [{ text: '基础达标', color: 'blue' }, { text: '35分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生初学文言文。用'古人聊天'的情境引入。重点教常见实词（如'之'='的/它'，'曰'='说'）和翻译方法：保留地名人名，替换古今不同的词，补充省略的成分。",
         aiChatTitle: "🏯 古文时光机", aiChatIntro: "坐上时光机，学习古人怎么'说话'和'写字'！",
@@ -73,7 +73,7 @@ export const grade5Content = {
 
     // ==================== L1-2. 古诗词赏析 ====================
     'cn5-l1-poetry-appreciation': {
-        meta: { title: "古诗词赏析 - 五年级语文 | AI7Miao语文", description: "学习赏析古诗词的意象、手法和情感。", keywords: '古诗词赏析,意象,手法,五年级语文' },
+        meta: { title: "古诗词赏析 - 五年级语文 | AI奇妙语文", description: "学习赏析古诗词的意象、手法和情感。", keywords: '古诗词赏析,意象,手法,五年级语文' },
         info: { title: "古诗词赏析", description: "不只是背诵！学会品味诗词的意境之美！🎋", tags: [{ text: '基础达标', color: 'blue' }, { text: '30分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生学习诗词赏析方法。重点教意象分析（月亮=思乡，梅花=高洁，柳=离别），以及如何分析表现手法和情感。",
         aiChatTitle: "🎋 诗词鉴赏师", aiChatIntro: "学会品诗词，你会发现每一个字都有深意！",
@@ -101,7 +101,7 @@ export const grade5Content = {
 
     // ==================== L1-3. 阅读理解进阶 ====================
     'cn5-l1-reading-adv': {
-        meta: { title: "阅读理解进阶 - 五年级语文 | AI7Miao语文", description: "学习深层理解、推断和评价的阅读能力。", keywords: '阅读理解,深层理解,推断,五年级语文' },
+        meta: { title: "阅读理解进阶 - 五年级语文 | AI奇妙语文", description: "学习深层理解、推断和评价的阅读能力。", keywords: '阅读理解,深层理解,推断,五年级语文' },
         info: { title: "阅读理解进阶", description: "不只看懂表面意思！学会读出文章'字里行间'的深意！🔬", tags: [{ text: '基础达标', color: 'blue' }, { text: '35分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生进阶学习阅读理解。从提取信息升级到深层理解：理解言外之意、体会作者感情、分析写作手法的效果。",
         aiChatTitle: "🔬 深度阅读家", aiChatIntro: "文章像冰山，表面只是一小部分！来探索深层的意思吧！",
@@ -129,7 +129,7 @@ export const grade5Content = {
 
     // ==================== L1-4. 说明文阅读 ====================
     'cn5-l1-expository': {
-        meta: { title: "说明文阅读 - 五年级语文 | AI7Miao语文", description: "学习说明文的阅读方法和常见说明方法。", keywords: '说明文,说明方法,五年级语文' },
+        meta: { title: "说明文阅读 - 五年级语文 | AI奇妙语文", description: "学习说明文的阅读方法和常见说明方法。", keywords: '说明文,说明方法,五年级语文' },
         info: { title: "说明文阅读", description: "说明文不讲故事，它'解释事物'！像一本百科全书！📚", tags: [{ text: '基础达标', color: 'blue' }, { text: '30分钟', icon: Clock, color: 'slate' }] },
         aiContext: "学生学习说明文。重点认识常见说明方法：列数字、举例子、作比较、打比方、下定义。以及说明文语言的准确性。",
         aiChatTitle: "📚 百科小博士", aiChatIntro: "说明文就是用来解释事物或道理的文章！来当百科博士吧！",
@@ -157,7 +157,7 @@ export const grade5Content = {
 
     // ==================== L2-1. 习作技巧 ====================
     'cn5-l2-writing-techniques': {
-        meta: { title: "习作技巧 - 五年级语文 | AI7Miao语文", description: "学习作文开头结尾的方法和过渡衔接技巧。", keywords: '习作技巧,开头,结尾,过渡,五年级语文' },
+        meta: { title: "习作技巧 - 五年级语文 | AI奇妙语文", description: "学习作文开头结尾的方法和过渡衔接技巧。", keywords: '习作技巧,开头,结尾,过渡,五年级语文' },
         info: { title: "习作技巧（开头结尾）", description: "好开头是成功的一半！好结尾是画龙点睛！🐉", tags: [{ text: '素养进阶', color: 'purple' }, { text: '35分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生学习习作技巧。开头方法：开门见山、设置悬念、环境描写。结尾方法：总结点题、首尾呼应、抒情感悟。强调详略得当和过渡衔接。",
         aiChatTitle: "🐉 写作升级站", aiChatIntro: "学会这些技巧，你的作文立刻'升几个档次'！",
@@ -185,7 +185,7 @@ export const grade5Content = {
 
     // ==================== L2-2. 口语交际 ====================
     'cn5-l2-oral-communication': {
-        meta: { title: "口语交际 - 五年级语文 | AI7Miao语文", description: "学习口头表达和交流沟通的技巧。", keywords: '口语交际,表达,沟通,五年级语文' },
+        meta: { title: "口语交际 - 五年级语文 | AI奇妙语文", description: "学习口头表达和交流沟通的技巧。", keywords: '口语交际,表达,沟通,五年级语文' },
         info: { title: "口语交际", description: "会写还要会说！学会清楚表达、有效沟通！🎤", tags: [{ text: '素养进阶', color: 'purple' }, { text: '25分钟', icon: Clock, color: 'slate' }] },
         aiContext: "学生学习口语交际。教会学生表达观点（先说结论再说理由）、倾听他人（边听边思考）、即兴表达和说服技巧。",
         aiChatTitle: "🎤 表达小达人", aiChatIntro: "说话也是一门艺术！来学习如何清楚又有说服力地表达自己！",
@@ -213,7 +213,7 @@ export const grade5Content = {
 
     // ==================== L2-3. 好词好句积累 ====================
     'cn5-l2-word-accumulation': {
-        meta: { title: "好词好句积累 - 五年级语文 | AI7Miao语文", description: "积累优美词句，丰富写作素材。", keywords: '好词好句,积累,写作素材,五年级语文' },
+        meta: { title: "好词好句积累 - 五年级语文 | AI奇妙语文", description: "积累优美词句，丰富写作素材。", keywords: '好词好句,积累,写作素材,五年级语文' },
         info: { title: "好词好句积累", description: "积累就像存钱！平时存够了，写作文时就能随手'取钱'用！💰", tags: [{ text: '素养进阶', color: 'purple' }, { text: '25分钟', icon: Clock, color: 'slate' }] },
         aiContext: "学生学习积累好词好句。教分类积累法：按主题（写人、写景、写事）分类收集好词好句。引导学生建立自己的素材本。",
         aiChatTitle: "💰 词句银行", aiChatIntro: "往你的'词句银行'里存好词好句，写作文时就有存款可以取啦！",

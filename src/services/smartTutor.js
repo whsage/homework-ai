@@ -292,7 +292,7 @@ ${formattedHistory || '(首次对话)'}
 
     /**
      * 调用知识点辅导AI (专用服务)
-     * 使用与作业辅导相同的API Key,但使用专门的知识点讲解prompt
+     * 使用与学习辅导相同的API Key,但使用专门的知识点讲解prompt
      */
     static async callKnowledgeTutorAI(userMessage, conversationHistory, context, diagnosis, topicId) {
         try {

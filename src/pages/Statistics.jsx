@@ -177,8 +177,8 @@ const Statistics = () => {
     return (
         <>
             <Helmet>
-                <title>学习统计 - 数据分析与成就 | AI7Miao</title>
-                <meta name="description" content="查看详细的学习统计数据，包括作业完成情况、学科分布、知识点掌握和学习成就。AI7Miao帮您追踪学习进步。" />
+                <title>学习统计 - 数据分析与成就 | AI奇妙</title>
+                <meta name="description" content="查看详细的学习统计数据，包括作业完成情况、学科分布、知识点掌握和学习成就。AI奇妙帮您追踪学习进步。" />
                 <meta name="keywords" content="学习统计,数据分析,学习成就,作业统计,进度追踪" />
             </Helmet>
 

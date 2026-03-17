@@ -123,7 +123,7 @@ createRoot(document.getElementById('root')).render(
 ```
 访问：https://ai7miao.com/math-tutoring
 预期：看到完整的数学辅导页面，包括：
-  - 标题："数学作业辅导"
+  - 标题："数学学习辅导"
   - 年级选择 Tab（小学、初中、高中、大学）
   - 教学特点、辅导内容、真实案例
   - 科学依据区域
@@ -135,8 +135,8 @@ createRoot(document.getElementById('root')).render(
 1. 访问：https://ai7miao.com
 2. 登录（如果需要）
 3. 滚动到页面底部
-4. 找到"专业的AI作业辅导服务"区域
-5. 点击蓝色的"数学作业辅导 →"按钮
+4. 找到"专业的AI学习辅导服务"区域
+5. 点击蓝色的"数学学习辅导 →"按钮
 6. 预期：跳转到数学辅导页面
 ```
 
@@ -145,9 +145,9 @@ createRoot(document.getElementById('root')).render(
 1. 访问：https://ai7miao.com/math-tutoring
 2. 右键 → 查看页面源代码
 3. 检查 <head> 中是否有：
-   <title>数学作业辅导 - AI智能数学辅导平台 | AI7Miao</title>
-   <meta name="description" content="专业的数学作业辅导服务...">
-   <meta name="keywords" content="数学作业辅导,数学辅导...">
+   <title>数学学习辅导 - AI智能数学辅导平台 | AI奇妙</title>
+   <meta name="description" content="专业的数学学习辅导服务...">
+   <meta name="keywords" content="数学学习辅导,数学辅导...">
 ```
 
 ---
@@ -190,7 +190,7 @@ createRoot(document.getElementById('root')).render(
 ### **react-helmet-async 的作用：**
 ```jsx
 <Helmet>
-  <title>数学作业辅导 - AI智能数学辅导平台 | AI7Miao</title>
+  <title>数学学习辅导 - AI智能数学辅导平台 | AI奇妙</title>
   <meta name="description" content="..." />
   <meta name="keywords" content="..." />
 </Helmet>
@@ -214,8 +214,8 @@ HelmetProvider 提供这个 Context
 ## 📝 **Git 提交记录**
 
 ```bash
-Commit 1: feat: 添加数学作业辅导专题页面，包含分年级教学方法、教育理论支撑和真实案例
-Commit 2: feat: 在Dashboard添加数学作业辅导页面链接，用户可从主页直接访问
+Commit 1: feat: 添加数学学习辅导专题页面，包含分年级教学方法、教育理论支撑和真实案例
+Commit 2: feat: 在Dashboard添加数学学习辅导页面链接，用户可从主页直接访问
 Commit 3: fix: 将数学辅导页面移到公开路由，无需登录即可访问
 Commit 4: fix: 添加react-helmet-async依赖和HelmetProvider，修复数学辅导页面无法访问的问题
 ```

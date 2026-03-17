@@ -137,7 +137,7 @@ BEGIN
     VALUES (
         p_user_id,
         'system',
-        '👋 欢迎来到 AI作业辅导！',
+        '👋 欢迎来到 AI学习辅导！',
         '开始你的智能学习之旅吧！上传第一个作业题目，让 AI 导师引导你思考。',
         'BookOpen',
         'text-blue-500 bg-blue-50',

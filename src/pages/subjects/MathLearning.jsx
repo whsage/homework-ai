@@ -278,8 +278,8 @@ const MathLearning = () => {
     return (
         <>
             <Helmet>
-                <title>数学学习中心 - 知识点与作业辅导 | AI7Miao</title>
-                <meta name="description" content="全方位的数学学习平台，提供从小学到大学的系统化知识点学习和专业的AI作业辅导。代数、几何、微积分全覆盖，苏格拉底式教学引导。" />
+                <title>数学学习中心 - 知识点与学习辅导 | AI奇妙</title>
+                <meta name="description" content="全方位的数学学习平台，提供从小学到大学的系统化知识点学习和专业的AI学习辅导。代数、几何、微积分全覆盖，苏格拉底式教学引导。" />
                 <meta name="keywords" content="数学学习,数学辅导,数学作业,数学知识点,代数,几何,微积分,在线辅导,AI教学" />
             </Helmet>
 
@@ -297,7 +297,7 @@ const MathLearning = () => {
                                 数学学习中心
                             </h1>
                             <p className="text-xl text-slate-600 dark:text-slate-300 mb-4 max-w-3xl mx-auto">
-                                系统化知识点学习 + AI智能作业辅导
+                                系统化知识点学习 + AI智能学习辅导
                             </p>
                             <p className="text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto mb-8">
                                 AI互动学习 · 概念讲解 · 典型例题 · 练习巩固
@@ -856,11 +856,11 @@ const MathLearning = () => {
                         <div className="space-y-4">
                             <details className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-md cursor-pointer group">
                                 <summary className="font-semibold text-slate-800 dark:text-white flex items-center justify-between">
-                                    数学作业辅导支持哪些年级？
+                                    数学学习辅导支持哪些年级？
                                     <ChevronRight className="w-5 h-5 text-slate-400 group-open:rotate-90 transition-transform" />
                                 </summary>
                                 <p className="mt-3 text-slate-600 dark:text-slate-400">
-                                    我们支持小学、初中、高中、大学所有年级的数学作业辅导。每个年级都有专门的教学方法，确保最佳学习效果。
+                                    我们支持小学、初中、高中、大学所有年级的数学学习辅导。每个年级都有专门的教学方法，确保最佳学习效果。
                                 </p>
                             </details>
 
@@ -918,7 +918,7 @@ const MathLearning = () => {
                                 数学概念讲解 | 数学例题 | 数学练习
                             </p>
                             <p>
-                                AI7Miao - 专业的数学知识点学习平台，基于教育理论，提供系统化的数学学习服务
+                                AI奇妙 - 专业的数学知识点学习平台，基于教育理论，提供系统化的数学学习服务
                             </p>
                         </div>
                     </div>

@@ -79,7 +79,7 @@ git status
 git add .
 
 # 提交到本地仓库
-git commit -m "Initial commit - 智能作业辅导系统"
+git commit -m "Initial commit - 智能学习辅导系统"
 
 # 查看提交历史
 git log --oneline
@@ -100,7 +100,7 @@ git log --oneline
 1. 登录后，点击右上角的 "+" → "New repository"
 2. 填写仓库信息：
    - **Repository name**: `homework-ai`（或你喜欢的名字）
-   - **Description**: `智能作业辅导系统 - AI Homework Tutor`
+   - **Description**: `智能学习辅导系统 - AI Homework Tutor`
    - **Public/Private**: 选择 Public（公开）
    - **不要勾选** "Add a README file"
    - **不要勾选** "Add .gitignore"

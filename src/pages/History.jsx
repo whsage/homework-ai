@@ -260,8 +260,8 @@ const History = () => {
     return (
         <>
             <Helmet>
-                <title>我的作业 - 作业历史记录 | AI7Miao</title>
-                <meta name="description" content="管理和查看您的所有作业记录，支持按学科和知识点筛选。AI7Miao提供便捷的作业管理和导出功能。" />
+                <title>我的作业 - 作业历史记录 | AI奇妙</title>
+                <meta name="description" content="管理和查看您的所有作业记录，支持按学科和知识点筛选。AI奇妙提供便捷的作业管理和导出功能。" />
                 <meta name="keywords" content="作业历史,作业管理,作业记录,学科筛选,知识点" />
             </Helmet>
 

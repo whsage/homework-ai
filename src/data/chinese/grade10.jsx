@@ -4,7 +4,7 @@ import { PracticeProblem } from './common';
 // ==================== 高一语文 ====================
 export const grade10Content = {
     'cn10-l1-modern-literature': {
-        meta: { title: "现代文学作品鉴赏 - 高一语文 | AI7Miao语文", description: "鉴赏现代文学经典作品。", keywords: "现代文学,小说,散文,高一语文" },
+        meta: { title: "现代文学作品鉴赏 - 高一语文 | AI奇妙语文", description: "鉴赏现代文学经典作品。", keywords: "现代文学,小说,散文,高一语文" },
         info: { title: "现代文学作品鉴赏", description: "走进现代文学殿堂，品味经典之美！📚", tags: [{ text: "基础达标", color: "blue" }, { text: "45分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "高一学生学习现代文学鉴赏。涵盖小说（人物/情节/环境/主题）、散文（形散神聚/语言美感）、诗歌（意象/节奏/情感）三大文体的鉴赏方法。",
         aiChatTitle: "📚 文学鉴赏家", aiChatIntro: "现代文学是时代的镜子！来学习如何品味文学之美！",
@@ -18,7 +18,7 @@ export const grade10Content = {
     },
 
     'cn10-l1-pre-qin-prose': {
-        meta: { title: "先秦散文 - 高一语文 | AI7Miao语文", description: "学习先秦经典散文和文言文。", keywords: "先秦散文,论语,孟子,庄子,高一语文" },
+        meta: { title: "先秦散文 - 高一语文 | AI奇妙语文", description: "学习先秦经典散文和文言文。", keywords: "先秦散文,论语,孟子,庄子,高一语文" },
         info: { title: "先秦散文（文言文经典）", description: "回到思想的源头！诸子百家的智慧之光！🏛️", tags: [{ text: "基础达标", color: "blue" }, { text: "45分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "学习先秦散文经典。涵盖《论语》（儒家仁义）、《孟子》（民本思想、论辩艺术）、《庄子》（寓言哲学、想象力）、《荀子》（劝学）等。理解其思想内涵和语言特色。",
         aiChatTitle: "🏛️ 先秦智慧堂", aiChatIntro: "两千多年前的智慧，至今仍然闪闪发光！来领悟先秦诸子的思想！",
@@ -32,7 +32,7 @@ export const grade10Content = {
     },
 
     'cn10-l1-tang-poetry': {
-        meta: { title: "唐诗鉴赏 - 高一语文 | AI7Miao语文", description: "系统学习唐诗鉴赏方法。", keywords: "唐诗,李白,杜甫,诗歌鉴赏,高一语文" },
+        meta: { title: "唐诗鉴赏 - 高一语文 | AI奇妙语文", description: "系统学习唐诗鉴赏方法。", keywords: "唐诗,李白,杜甫,诗歌鉴赏,高一语文" },
         info: { title: "唐诗鉴赏", description: "唐诗是中国诗歌的巅峰！品味大唐的诗意人生！🌙", tags: [{ text: "基础达标", color: "blue" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "系统学习唐诗。了解唐诗发展脉络（初唐-盛唐-中唐-晚唐），重点诗人风格（李白浪漫、杜甫写实、王维山水、白居易通俗），鉴赏方法。",
         aiChatTitle: "🌙 唐诗品鉴", aiChatIntro: "李白的豪放、杜甫的深沉、王维的禅意——唐诗是中国文学的皇冠！",
@@ -46,7 +46,7 @@ export const grade10Content = {
     },
 
     'cn10-l1-argumentative-writing': {
-        meta: { title: "议论文写作 - 高一语文 | AI7Miao语文", description: "提升议论文写作水平。", keywords: "议论文写作,论证方法,高一语文" },
+        meta: { title: "议论文写作 - 高一语文 | AI奇妙语文", description: "提升议论文写作水平。", keywords: "议论文写作,论证方法,高一语文" },
         info: { title: "议论文写作", description: "写出有深度的议论文！逻辑严密、论证有力！💡", tags: [{ text: "基础达标", color: "blue" }, { text: "45分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "高一学生提升议论文写作。学习多种论证方法的综合运用，辩证思维（一分为二看问题），以及如何写出有深度的议论文。",
         aiChatTitle: "💡 思辨写作营", aiChatIntro: "好的议论文不只有观点，还要有深度和温度！",
@@ -60,7 +60,7 @@ export const grade10Content = {
     },
 
     'cn10-l2-language-application': {
-        meta: { title: "语言文字运用 - 高一语文 | AI7Miao语文", description: "提升语言文字综合运用能力。", keywords: "语言运用,成语,病句,语段压缩,高一语文" },
+        meta: { title: "语言文字运用 - 高一语文 | AI奇妙语文", description: "提升语言文字综合运用能力。", keywords: "语言运用,成语,病句,语段压缩,高一语文" },
         info: { title: "语言文字运用", description: "语言是思维的载体！精准、得体、生动地使用语言！🎯", tags: [{ text: "素养进阶", color: "purple" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "高一学生提升语言运用能力。涵盖：成语辨析、病句修改、语段压缩、句式变换、修辞运用、语言得体性。",
         aiChatTitle: "🎯 语言精修师", aiChatIntro: "每一个字都要用得精准！来提升你的语言运用能力！",
@@ -74,7 +74,7 @@ export const grade10Content = {
     },
 
     'cn10-l2-whole-book': {
-        meta: { title: "整本书阅读 - 高一语文 | AI7Miao语文", description: "高中整本书阅读方法指导。", keywords: "整本书阅读,乡土中国,红楼梦,高一语文" },
+        meta: { title: "整本书阅读 - 高一语文 | AI奇妙语文", description: "高中整本书阅读方法指导。", keywords: "整本书阅读,乡土中国,红楼梦,高一语文" },
         info: { title: "整本书阅读（高中）", description: "深度阅读一本书，培养高阶思维能力！📖", tags: [{ text: "素养进阶", color: "purple" }, { text: "45分钟", icon: Clock, color: "slate" }] },
         aiContext: "指导高一学生进行整本书阅读。推荐书目：《乡土中国》（费孝通）和《红楼梦》（曹雪芹）。教授深度阅读方法：批注法、思维导图、主题研究。",
         aiChatTitle: "📖 深度阅读营", aiChatIntro: "一本好书值得花一个学期来细细品读！来学习深度阅读的方法！",
@@ -88,7 +88,7 @@ export const grade10Content = {
     },
 
     'cn10-l2-news-commentary': {
-        meta: { title: "新闻评论与时评 - 高一语文 | AI7Miao语文", description: "学习新闻评论和时事评论的写作。", keywords: "新闻评论,时评,媒体素养,高一语文" },
+        meta: { title: "新闻评论与时评 - 高一语文 | AI奇妙语文", description: "学习新闻评论和时事评论的写作。", keywords: "新闻评论,时评,媒体素养,高一语文" },
         info: { title: "新闻评论与时评", description: "关注社会热点，用理性的声音发表观点！📰", tags: [{ text: "素养进阶", color: "purple" }, { text: "35分钟", icon: Clock, color: "slate" }] },
         aiContext: "学生学习新闻评论和时事评论写作。掌握时评的结构（引-议-联-结），培养媒体素养和批判性思维。",
         aiChatTitle: "📰 时评写手", aiChatIntro: "对社会热点有自己的思考和判断，用文字表达你的观点！",

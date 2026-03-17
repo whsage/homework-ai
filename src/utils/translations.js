@@ -1,7 +1,7 @@
 export const translations = {
     zh: {
         // App Name
-        appName: "AI作业辅导",
+        appName: "AI奇妙-学习辅导平台",
 
         // Navigation
         nav: {
@@ -225,16 +225,16 @@ export const translations = {
         // FAQ
         faq: {
             title: "常见问题解答",
-            subtitle: "关于AI作业助手的一切你想知道的",
+            subtitle: "关于AI奇妙的一切你想知道的",
             stillHaveQuestions: "还有其他问题？",
-            helpText: "我们随时准备帮助你。开始使用AI作业助手，体验智能学习的乐趣！",
+            helpText: "我们随时准备帮助你。开始使用AI奇妙，体验智能学习的乐趣！",
             startUsing: "开始使用",
-            q1: "AI作业助手是如何工作的？",
-            a1: "AI作业助手采用先进的人工智能技术和苏格拉底式教学法，通过提问引导你思考，而不是直接给出答案。你可以输入问题或上传图片，AI会分析题目并通过一系列引导性问题帮助你理解解题思路。",
-            q2: "使用AI作业助手需要付费吗？",
-            a2: "目前AI作业助手完全免费使用。你只需要注册一个账号，就可以享受所有功能，包括全学科辅导、图片识别、学习统计等。我们致力于让每个学生都能获得优质的学习辅导。",
-            q3: "支持哪些学科的作业辅导？",
-            a3: "系统支持数学、语文、英语、物理、化学、生物、历史、地理、政治等全学科的作业辅导。无论是理科还是文科，从小学到高中，我们都能提供专业的学习指导。",
+            q1: "AI奇妙是如何工作的？",
+            a1: "AI奇妙采用先进的人工智能技术和苏格拉底式教学法，通过提问引导你思考，而不是直接给出答案。你可以输入问题或上传图片，AI会分析题目并通过一系列引导性问题帮助你理解解题思路。",
+            q2: "使用AI奇妙需要付费吗？",
+            a2: "目前AI奇妙完全免费使用。你只需要注册一个账号，就可以享受所有功能，包括全学科辅导、图片识别、学习统计等。我们致力于让每个学生都能获得优质的学习辅导。",
+            q3: "支持哪些学科的学习辅导？",
+            a3: "系统支持数学、语文、英语、物理、化学、生物、历史、地理、政治等全学科的学习辅导。无论是理科还是文科，从小学到高中，我们都能提供专业的学习指导。",
             q4: "AI会直接给我答案吗？",
             a4: "不会。我们采用苏格拉底式教学法，通过提问引导你思考，帮助你自己找到答案。这种方法能够培养你的独立思考能力和解决问题的能力，让你真正理解知识，而不是简单地记住答案。",
             q5: "解答的准确性如何？",
@@ -264,7 +264,7 @@ export const translations = {
                 statsDesc: "记录学习进度，可视化展示学习成果，激励持续学习"
             },
             howTo: {
-                title: "如何使用AI作业助手",
+                title: "如何使用AI奇妙",
                 step1Title: "创建会话",
                 step1Desc: "点击\"开始新作业\"，输入作业标题",
                 step2Title: "提问互动",
@@ -381,7 +381,7 @@ export const translations = {
     },
     en: {
         // App Name
-        appName: "HomeworkAI",
+        appName: "AI奇妙-学习辅导平台",
 
         // Navigation
         nav: {
@@ -605,14 +605,14 @@ export const translations = {
         // FAQ
         faq: {
             title: "Frequently Asked Questions",
-            subtitle: "Everything you want to know about HomeworkAI",
+            subtitle: "Everything you want to know about AI奇妙",
             stillHaveQuestions: "Still have questions?",
-            helpText: "We are always ready to help. Start using HomeworkAI and experience the joy of smart learning!",
+            helpText: "We are always ready to help. Start using AI奇妙 and experience the joy of smart learning!",
             startUsing: "Start Using",
-            q1: "How does HomeworkAI work?",
-            a1: "HomeworkAI uses advanced AI and the Socratic method to guide your thinking by asking questions instead of giving direct answers. You can input questions or upload images, and the AI will analyze the problem and guide you through understanding the solution.",
-            q2: "Is HomeworkAI free to use?",
-            a2: "Currently, HomeworkAI is completely free. You only need to register an account to enjoy all features, including full-subject tutoring, image recognition, and learning statistics.",
+            q1: "How does AI奇妙 work?",
+            a1: "AI奇妙 uses advanced AI and the Socratic method to guide your thinking by asking questions instead of giving direct answers. You can input questions or upload images, and the AI will analyze the problem and guide you through understanding the solution.",
+            q2: "Is AI奇妙 free to use?",
+            a2: "Currently, AI奇妙 is completely free. You only need to register an account to enjoy all features, including full-subject tutoring, image recognition, and learning statistics.",
             q3: "Which subjects are supported?",
             a3: "The system supports Math, Chinese, English, Physics, Chemistry, Biology, History, Geography, Politics, and more. From primary school to high school, we provide professional learning guidance.",
             q4: "Will the AI give me answers directly?",

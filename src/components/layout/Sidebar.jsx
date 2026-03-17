@@ -160,7 +160,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                     {/* App Download Link */}
                     <a
                         href="/download/app-release.apk"
-                        download="HomeworkAI-Android.apk"
+                        download="AI奇妙-Android.apk"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-2xl shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 hover:-translate-y-0.5 transition-all group relative overflow-hidden"

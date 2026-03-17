@@ -7,7 +7,7 @@ import SentenceTrain from '../../components/subjects/english/elementary/Sentence
 // ==================== 二年级英语 ====================
 export const grade2Content = {
     'en2-l1-phonics-adv': {
-        meta: { title: "自然拼读进阶 - 二年级英语 | AI7Miao英语", description: "学习长元音和常见辅音组合发音规则。", keywords: "自然拼读,phonics,长元音,辅音组合,二年级英语" },
+        meta: { title: "自然拼读进阶 - 二年级英语 | AI奇妙英语", description: "学习长元音和常见辅音组合发音规则。", keywords: "自然拼读,phonics,长元音,辅音组合,二年级英语" },
         info: { title: "自然拼读进阶", description: "掌握魔法e(Magic e)和常见字母组合的发音！🪄", tags: [{ text: "基础达标", color: "blue" }, { text: "25分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "二年级自然拼读进阶。重点教授含有Magic 'e'结构的长元音(a-e, i-e, o-e, u-e)和常见辅音字母组合(sh, ch, th, wh)。通过对比短元音和长元音单词(hat vs hare, bit vs bite)加深理解。",
         aiChatTitle: "🪄 拼读魔法师", aiChatIntro: "认识神奇的魔法字母 e，它能让前面的元音念自己的名字！试着把 mat 变成 mate！",
@@ -22,7 +22,7 @@ export const grade2Content = {
     },
 
     'en2-l1-family-animals': {
-        meta: { title: "家庭与动物 - 二年级英语 | AI7Miao英语", description: "学习家庭成员和常见动物词汇。", keywords: "family,animals,家庭成员,动物,二年级英语" },
+        meta: { title: "家庭与动物 - 二年级英语 | AI奇妙英语", description: "学习家庭成员和常见动物词汇。", keywords: "family,animals,家庭成员,动物,二年级英语" },
         info: { title: "家庭与动物", description: "This is my family! 介绍家人，认识可爱的动物们！👨‍👩‍👧‍👦 🐶", tags: [{ text: "基础达标", color: "blue" }, { text: "25分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "学习家庭成员词汇(father, mother, brother, sister, grandfather, grandmother)和常见动物词汇(cat, dog, bird, fish, elephant, monkey, tiger, lion)。结合句型 TThis is my... / I have a... 练习表达。",
         aiChatTitle: "👨‍👩‍👧‍👦 动物小向导", aiChatIntro: "把你最喜欢的动物介绍给大家吧！What animal do you like?",
@@ -37,7 +37,7 @@ export const grade2Content = {
     },
 
     'en2-l1-simple-sentences': {
-        meta: { title: "简单句式 - 二年级英语 | AI7Miao英语", description: "掌握 I am / I like 等简单句型表达。", keywords: "简单句式,sentence,I am,I like,二年级英语" },
+        meta: { title: "简单句式 - 二年级英语 | AI奇妙英语", description: "掌握 I am / I like 等简单句型表达。", keywords: "简单句式,sentence,I am,I like,二年级英语" },
         info: { title: "简单句式(I am/I like)", description: "I am a student. I like apples! 学会说完整的句子！💬", tags: [{ text: "基础达标", color: "blue" }, { text: "25分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "学习基础主谓宾句型(Subject-Verb-Object)。重点掌握 \"I am...\"(我是/我很...), \"You are...\", \"I like...\"(我喜欢...), \"I have...\"(我有...) 的肯定句和否定句(I don't like...)。用于描述自我特征和喜好。",
         aiChatTitle: "💬 句子小达人", aiChatIntro: "你会向别人介绍自己喜欢什么吗？说: I like...",
@@ -52,7 +52,7 @@ export const grade2Content = {
     },
 
     'en2-l1-time-date': {
-        meta: { title: "时间与星期 - 二年级英语 | AI7Miao英语", description: "学习时间表达和一周七天的英文名称。", keywords: "时间,time,星期,days,二年级英语" },
+        meta: { title: "时间与星期 - 二年级英语 | AI奇妙英语", description: "学习时间表达和一周七天的英文名称。", keywords: "时间,time,星期,days,二年级英语" },
         info: { title: "时间与星期", description: "What time is it? What day is today? 了解时间和日期！⏰", tags: [{ text: "基础达标", color: "blue" }, { text: "20分钟", icon: Clock, color: "slate" }] },
         aiContext: "学习整点时间表达(It's one o'clock, It's seven o'clock)和一周七天的名称(Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday)。练习场景对话如询问时间和今天星期几。",
         aiChatTitle: "⏰ 时间管理员", aiChatIntro: "看看表，现在几点了？What time is it?",
@@ -67,7 +67,7 @@ export const grade2Content = {
     },
 
     'en2-l2-dialogues': {
-        meta: { title: "简单日常对话 - 二年级英语 | AI7Miao英语", description: "练习基础的英语情景对话。", keywords: "对话,dialogues,口语交际,二年级英语" },
+        meta: { title: "简单日常对话 - 二年级英语 | AI奇妙英语", description: "练习基础的英语情景对话。", keywords: "对话,dialogues,口语交际,二年级英语" },
         info: { title: "简单日常对话", description: "开口说英语！学会在不同场景下的对话！🗣️", tags: [{ text: "能力拓展", color: "purple" }, { text: "25分钟", icon: Clock, color: "slate" }] },
         aiContext: "练习基础情境对话：借东西(Can I have a / borrow a ...? Here you are. Thank you. You're welcome.)，道歉与原谅(I'm sorry. That's OK/All right.)，购物询问价格(How much is it?)等。",
         aiChatTitle: "🗣️ 口语交流站", aiChatIntro: "遇到同学借橡皮，你该怎么回答他呢？来模拟对话练习吧！",
@@ -82,7 +82,7 @@ export const grade2Content = {
     },
 
     'en2-l2-picture-words': {
-        meta: { title: "看图识词 - 二年级英语 | AI7Miao英语", description: "通过图片学习日常生活主题词汇。", keywords: "看图识词,词汇,vocabulary,图片记忆,二年级英语" },
+        meta: { title: "看图识词 - 二年级英语 | AI奇妙英语", description: "通过图片学习日常生活主题词汇。", keywords: "看图识词,词汇,vocabulary,图片记忆,二年级英语" },
         info: { title: "看图识词", description: "看图片，猜单词！建立图片与英语的直觉联系！🖼️", tags: [{ text: "能力拓展", color: "purple" }, { text: "20分钟", icon: Clock, color: "slate" }] },
         aiContext: "主题分类看图识词：食物(apple, banana, milk, bread, egg)、身体部位(head, eye, ear, nose, mouth，hand)、衣服(shirt, coat, skirt, shoes)等。",
         aiChatTitle: "🖼️ 看图猜词挑战", aiChatIntro: "我来描述一个东西，你猜出它的英文名字！What is it?",
@@ -97,7 +97,7 @@ export const grade2Content = {
     },
 
     'en2-l2-stories': {
-        meta: { title: "英文小故事 - 二年级英语 | AI7Miao英语", description: "阅读简单的英文绘本故事。", keywords: "英文小故事,stories,绘本,二年级英语" },
+        meta: { title: "英文小故事 - 二年级英语 | AI奇妙英语", description: "阅读简单的英文绘本故事。", keywords: "英文小故事,stories,绘本,二年级英语" },
         info: { title: "英文小故事", description: "阅读有趣的英文小故事，培养语感！📚", tags: [{ text: "能力拓展", color: "purple" }, { text: "25分钟", icon: Clock, color: "slate" }] },
         aiContext: "阅读极短的英文经典故事（如《猜猜我有多爱你》片段简化版、《好饿的毛毛虫》片段等）。培养孩子对英文阅读的兴趣，利用图文结合猜测短句大意。",
         aiChatTitle: "📚 故事分享会", aiChatIntro: "It's story time! 让我们一起来读一个关于毛毛虫的故事！",

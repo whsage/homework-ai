@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
-  <!-- 主页 - AI作业辅导平台 -->
+  <!-- 主页 - AI学习辅导平台 -->
   <url>
     <loc>https://ai7miao.com/</loc>
     <lastmod>2026-01-27</lastmod>
@@ -10,7 +10,7 @@
     <priority>1.0</priority>
   </url>
   
-  <!-- FAQ 常见问题 - AI作业辅导使用指南 -->
+  <!-- FAQ 常见问题 - AI学习辅导使用指南 -->
   <url>
     <loc>https://ai7miao.com/faq</loc>
     <lastmod>2026-01-28</lastmod>
@@ -18,7 +18,7 @@
     <priority>0.9</priority>
   </url>
   
-  <!-- 数学作业辅导 - 数学辅导专题页面 -->
+  <!-- 数学学习辅导 - 数学辅导专题页面 -->
   <url>
     <loc>https://ai7miao.com/math-tutoring</loc>
     <lastmod>2026-01-28</lastmod>

@@ -126,8 +126,8 @@ const Dashboard = () => {
     return (
         <>
             <Helmet>
-                <title>学习仪表板 - AI智能作业辅导 | AI7Miao</title>
-                <meta name="description" content="查看您的学习统计、最近作业和学习进度。AI7Miao智能作业辅导平台为您提供个性化的学习数据分析和进度追踪。" />
+                <title>学习仪表板 - AI智能学习辅导 | AI奇妙</title>
+                <meta name="description" content="查看您的学习统计、最近作业和学习进度。AI奇妙智能学习辅导平台为您提供个性化的学习数据分析和进度追踪。" />
                 <meta name="keywords" content="学习仪表板,作业统计,学习进度,AI辅导,学习数据" />
             </Helmet>
 
@@ -321,15 +321,15 @@ const Dashboard = () => {
                     <div className="max-w-7xl mx-auto px-6">
                         <div className="text-center">
                             <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">
-                                专业的AI作业辅导服务
+                                专业的AI学习辅导服务
                             </h3>
                             <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 leading-relaxed max-w-4xl mx-auto">
-                                AI7Miao提供全面的<strong className="text-indigo-600 dark:text-indigo-400">作业辅导</strong>服务，
-                                包括<strong className="text-indigo-600 dark:text-indigo-400">数学作业辅导</strong>、
-                                <strong className="text-indigo-600 dark:text-indigo-400">物理作业辅导</strong>、
-                                <strong className="text-indigo-600 dark:text-indigo-400">化学作业辅导</strong>、
-                                <strong className="text-indigo-600 dark:text-indigo-400">英语作业辅导</strong>、
-                                <strong className="text-indigo-600 dark:text-indigo-400">语文作业辅导</strong>等。
+                                AI奇妙提供全面的<strong className="text-indigo-600 dark:text-indigo-400">学习辅导</strong>服务，
+                                包括<strong className="text-indigo-600 dark:text-indigo-400">数学学习辅导</strong>、
+                                <strong className="text-indigo-600 dark:text-indigo-400">物理学习辅导</strong>、
+                                <strong className="text-indigo-600 dark:text-indigo-400">化学学习辅导</strong>、
+                                <strong className="text-indigo-600 dark:text-indigo-400">英语学习辅导</strong>、
+                                <strong className="text-indigo-600 dark:text-indigo-400">语文学习辅导</strong>等。
                                 我们的<strong className="text-indigo-600 dark:text-indigo-400">AI智能辅导</strong>系统采用苏格拉底式教学方法，
                                 为学生提供24小时<strong className="text-indigo-600 dark:text-indigo-400">在线作业帮助</strong>。
                                 无论是<strong className="text-indigo-600 dark:text-indigo-400">作业答疑</strong>还是
@@ -338,31 +338,31 @@ const Dashboard = () => {
                             </p>
                             <div className="flex flex-wrap justify-center gap-2 text-xs text-slate-500 dark:text-slate-400">
                                 <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
-                                    作业辅导
+                                    学习辅导
                                 </span>
                                 <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
-                                    AI作业辅导
+                                    AI学习辅导
                                 </span>
                                 <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
-                                    在线作业辅导
+                                    在线学习辅导
                                 </span>
                                 <Link
                                     to="/subjects/math"
                                     className="px-3 py-1 bg-gradient-to-r from-indigo-500 to-blue-500 text-white rounded-full border border-indigo-600 hover:from-indigo-600 hover:to-blue-600 hover:shadow-lg transition-all cursor-pointer"
                                 >
-                                    数学作业辅导 →
+                                    数学学习辅导 →
                                 </Link>
                                 <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
-                                    物理作业辅导
+                                    物理学习辅导
                                 </span>
                                 <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
-                                    化学作业辅导
+                                    化学学习辅导
                                 </span>
                                 <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
-                                    英语作业辅导
+                                    英语学习辅导
                                 </span>
                                 <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
-                                    语文作业辅导
+                                    语文学习辅导
                                 </span>
                                 <span className="px-3 py-1 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
                                     作业帮助
@@ -384,7 +384,7 @@ const Dashboard = () => {
                                 </span>
                             </div>
                             <p className="text-xs text-slate-400 dark:text-slate-500 mt-4">
-                                AI7Miao - 专业的AI智能作业辅导平台，让学习更高效
+                                AI奇妙 - 专业的AI智能学习辅导平台，让学习更高效
                             </p>
                         </div>
                     </div>

@@ -57,9 +57,9 @@ const FAQ = () => {
     return (
         <>
             <Helmet>
-                <title>常见问题 - AI作业辅导FAQ | AI7Miao</title>
-                <meta name="description" content="AI7Miao作业辅导平台常见问题解答，了解如何使用AI智能辅导、苏格拉底式教学方法和学习数据统计功能。" />
-                <meta name="keywords" content="常见问题,FAQ,作业辅导,AI辅导,使用帮助" />
+                <title>常见问题 - AI学习辅导FAQ | AI奇妙</title>
+                <meta name="description" content="AI奇妙学习辅导平台常见问题解答，了解如何使用AI智能辅导、苏格拉底式教学方法和学习数据统计功能。" />
+                <meta name="keywords" content="常见问题,FAQ,学习辅导,AI辅导,使用帮助" />
             </Helmet>
 
             <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 transition-colors duration-200">

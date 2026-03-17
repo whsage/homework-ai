@@ -33,7 +33,7 @@ export const mathTopicContent = {
     // Grade 7 - Interactive Overrides
     'mid-7-1-rational-numbers': {
         meta: {
-            title: "有理数 - 初一数学 | AI7Miao数学",
+            title: "有理数 - 初一数学 | AI奇妙数学",
             description: "通过互动数轴实验，直观理解有理数的概念、正负数及其加减法运算规则。",
             keywords: "有理数,正负数,数轴,绝对值,有理数加减"
         },
@@ -77,7 +77,7 @@ export const mathTopicContent = {
     // Grade 8 - Interactive Overrides
     'mid-8-1-triangles': {
         meta: {
-            title: "三角形基础 - 初二数学 | AI7Miao数学",
+            title: "三角形基础 - 初二数学 | AI奇妙数学",
             description: "通过互动实验探索三角形内角和定理，直观理解三角形的稳定性和分类。",
             keywords: "三角形,内角和,几何,锐角三角形,直角三角形,钝角三角形"
         },

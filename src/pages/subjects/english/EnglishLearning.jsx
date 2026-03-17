@@ -101,7 +101,7 @@ const EnglishLearning = () => {
     return (
         <>
             <Helmet>
-                <title>英语学习中心 - 小学初中高中英语知识点学习 | AI7Miao</title>
+                <title>英语学习中心 - 小学初中高中英语知识点学习 | AI奇妙</title>
                 <meta name="description" content="英语系统化学习平台，涵盖小学初中高中，自然拼读、词汇语法、阅读理解、写作技巧。AI苏格拉底式教学引导。" />
                 <meta name="keywords" content="英语学习,小学英语,初中英语,高中英语,自然拼读,词汇,阅读理解,语法,写作,AI教学" />
             </Helmet>

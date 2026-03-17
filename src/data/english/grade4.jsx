@@ -7,7 +7,7 @@ import WordMatchGame from '../../components/subjects/english/elementary/WordMatc
 // ==================== 四年级英语 ====================
 export const grade4Content = {
     'en4-l1-present-continuous': {
-        meta: { title: "现在进行时 - 四年级英语 | AI7Miao英语", description: "掌握现在进行时的结构和用法（be动词+doing）。", keywords: "现在进行时,present continuous,动词ing,四年级英语" },
+        meta: { title: "现在进行时 - 四年级英语 | AI奇妙英语", description: "掌握现在进行时的结构和用法（be动词+doing）。", keywords: "现在进行时,present continuous,动词ing,四年级英语" },
         info: { title: "现在进行时", description: "What are you doing? I am reading! 描述此刻正在发生的事情。🏃‍♂️", tags: [{ text: "基础达标", color: "blue" }, { text: "30分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "讲解现在进行时结构：主语 + be动词 (am/is/are) + 动词ing形式。教授动词加ing的三条规则：一般直接加、去e加ing、双写尾字母加ing。常用时间状语：now, look, listen。",
         aiChatTitle: "👀 我们正在做什么", aiChatIntro: "现在，立刻，马上！用英语描述我们正在做的事情！",
@@ -22,7 +22,7 @@ export const grade4Content = {
     },
 
     'en4-l1-modal-can': {
-        meta: { title: "情态动词can用法 - 四年级英语 | AI7Miao英语", description: "学习情态动词can表示能力和请求的用法。", keywords: "can,情态动词,能力,请求,四年级英语" },
+        meta: { title: "情态动词can用法 - 四年级英语 | AI奇妙英语", description: "学习情态动词can表示能力和请求的用法。", keywords: "can,情态动词,能力,请求,四年级英语" },
         info: { title: "情态动词 can", description: "I can fly! I can't swim. 你能做什么？💪", tags: [{ text: "基础达标", color: "blue" }, { text: "25分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "教授情态动词can的用法：1. 表示能力(I can sing, I can't fly)。 2. 表示请求或许可(Can I help you? Can you pass me the book?)。强调can后必须接动词原形。不管主语是谁，can都不变。",
         aiChatTitle: "💪 能力大比拼", aiChatIntro: "展示你的超能力！你能做什么？What can you do?",
@@ -37,7 +37,7 @@ export const grade4Content = {
     },
 
     'en4-l1-there-be': {
-        meta: { title: "There be句型 - 四年级英语 | AI7Miao英语", description: "掌握表示某处有某物的 There is/are 句型。", keywords: "There be,There is,There are,某处有,四年级英语" },
+        meta: { title: "There be句型 - 四年级英语 | AI奇妙英语", description: "掌握表示某处有某物的 There is/are 句型。", keywords: "There be,There is,There are,某处有,四年级英语" },
         info: { title: "There be 句型", description: "There is an apple on the desk. 桌子上有什么？🪑", tags: [{ text: "基础达标", color: "blue" }, { text: "25分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "讲解There be句型的核心含义：表示\"某处有某人/某物\"，以区分have/has(表示某人拥有)。教授There is + 单数/不可数，There are + 复数。讲解就近原则(There is a book and two pens)。",
         aiChatTitle: "🏡 寻宝小侦探", aiChatIntro: "环顾你的房间，里面都有些什么宝物？There is a bed... 还有呢？",
@@ -52,7 +52,7 @@ export const grade4Content = {
     },
 
     'en4-l2-culture': {
-        meta: { title: "中西文化对比 - 四年级英语 | AI7Miao英语", description: "了解英语国家的文化习俗与中国的差异。", keywords: "英语文化,中西差异,节日,culture,四年级英语" },
+        meta: { title: "中西文化对比 - 四年级英语 | AI奇妙英语", description: "了解英语国家的文化习俗与中国的差异。", keywords: "英语文化,中西差异,节日,culture,四年级英语" },
         info: { title: "中西文化对比", description: "万圣节 vs 中秋节，吃面条 vs 吃披萨，探索大不同！🌍", tags: [{ text: "能力拓展", color: "purple" }, { text: "20分钟", icon: Clock, color: "slate" }] },
         aiContext: "通过介绍节日文化(Christmas, Halloween vs 春节, 中秋)、饮食习惯(刀叉 vs 筷子)和见面礼仪(拥抱/握手 vs 鞠躬/点头)，培养学生的跨文化意识。扩充相关主题词汇。",
         aiChatTitle: "🌍 环游地球", aiChatIntro: "想知道美国小朋友们万圣节(Halloween)都会做什么吗？",

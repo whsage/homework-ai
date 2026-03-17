@@ -38,7 +38,7 @@ export const Icons = {
 // 辅助函数：生成默认内容 (用于尚未填充的知识点)
 export const generateDefaultContent = (id, title, grade, Link) => ({
     meta: {
-        title: `${title} - 初中数学知识点详解 | AI7Miao数学学习`,
+        title: `${title} - 初中数学知识点详解 | AI奇妙数学学习`,
         description: `详细讲解${title}的概念、性质和应用。提供${grade}数学AI互动学习。`,
         keywords: `${title},数学知识点,${grade}数学`
     },

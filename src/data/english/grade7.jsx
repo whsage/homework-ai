@@ -8,7 +8,7 @@ import SentenceUpgrader from '../../components/subjects/english/middle/SentenceU
 // ==================== 七年级英语 ====================
 export const grade7Content = {
     'en7-l1-present-perfect': {
-        meta: { title: "现在完成时 - 七年级英语 | AI7Miao英语", description: "掌握现在完成时的结构(have/has + 过去分词)及用法。", keywords: "现在完成时,present perfect,have/has done,七年级英语" },
+        meta: { title: "现在完成时 - 七年级英语 | AI奇妙英语", description: "掌握现在完成时的结构(have/has + 过去分词)及用法。", keywords: "现在完成时,present perfect,have/has done,七年级英语" },
         info: { title: "现在完成时", description: "I have finished my homework! 过去的动作对现在造成了影响！🎯", tags: [{ text: "基础达标", color: "blue" }, { text: "35分钟", icon: Clock, color: "slate" }, { text: "核心语法", icon: Star, color: "orange" }] },
         aiContext: "教授现在完成时的核心概念：1. 过去发生的动作对现在造成的影响或结果(I have lost my key -> 现在我进不了门)。2. 从过去持续到现在的状态(I have lived here for 10 years)。结构：have/has + done(过去分词)。标志词：already, yet, just, ever, never, for+时间段, since+时间点。",
         aiChatTitle: "🎯 时间的桥梁", aiChatIntro: "你'已经'做完作业了吗？你'曾经'去过北京吗？",
@@ -23,7 +23,7 @@ export const grade7Content = {
     },
 
     'en7-l1-object-clause': {
-        meta: { title: "宾语从句入门 - 七年级英语 | AI7Miao英语", description: "学习宾语从句的引导词、语序和时态。", keywords: "宾语从句,引导词,陈述语序,从句时态,七年级英语" },
+        meta: { title: "宾语从句入门 - 七年级英语 | AI奇妙英语", description: "学习宾语从句的引导词、语序和时态。", keywords: "宾语从句,引导词,陈述语序,从句时态,七年级英语" },
         info: { title: "宾语从句入门", description: "I know THAT you are smart. 句子作宾语！🧩", tags: [{ text: "基础达标", color: "blue" }, { text: "30分钟", icon: Clock, color: "slate" }, { text: "难点突破", icon: Star, color: "orange" }] },
         aiContext: "讲解宾语从句的三大重点：1. 引导词 (that, if/whether, 特殊疑问词)。2. 语序：从句必须用**陈述语序**(主语+谓语)。3. 时态一致：主将从现、主过从过(主句过去时，从句必须变为相应的过去时态)、客观真理永远一般现在时。",
         aiChatTitle: "🧩 句子的俄罗斯套娃", aiChatIntro: "句子可以像套娃一样，把一个小句子塞进大句子里面当宾语！",
@@ -38,7 +38,7 @@ export const grade7Content = {
     },
 
     'en7-l1-reading-skills': {
-        meta: { title: "阅读理解技巧 - 七年级英语 | AI7Miao英语", description: "掌握初中英语阅读的核心题型和解题技巧：主旨大意题、细节理解题等。", keywords: "阅读技巧,主旨题,细节题,初中英语" },
+        meta: { title: "阅读理解技巧 - 七年级英语 | AI奇妙英语", description: "掌握初中英语阅读的核心题型和解题技巧：主旨大意题、细节理解题等。", keywords: "阅读技巧,主旨题,细节题,初中英语" },
         info: { title: "阅读理解技巧", description: "长难文章化繁为简，掌握主旨与细节双核心！📖", tags: [{ text: "基础达标", color: "blue" }, { text: "30分钟", icon: Clock, color: "slate" }] },
         aiContext: "系统梳理初中阅读四大题型：1. 主旨大意题(Main Idea)：首尾段/句找主题句(Topic sentence)。 2. 细节理解题(Details)：带词回原文寻读(Scanning)并同义替换。3. 词义猜测题(Guessing)：利用上下文逻辑词(but, because, and)推测。4. 推理判断题(Inference)：根据原文暗示推导(不能选原文直接说出来的字面意思)。",
         aiChatTitle: "📖 文本解构师", aiChatIntro: "看到复杂的阅读题，就像看到迷宫？我们一起找地图！",
@@ -53,7 +53,7 @@ export const grade7Content = {
     },
 
     'en7-l2-cloze': {
-        meta: { title: "完形填空技巧 - 七年级英语 | AI7Miao英语", description: "掌握完形填空的核心解题策略：上下文语境与词汇复现。", keywords: "完形填空,cloze,上下文语境,词汇复现,七年级英语" },
+        meta: { title: "完形填空技巧 - 七年级英语 | AI奇妙英语", description: "掌握完形填空的核心解题策略：上下文语境与词汇复现。", keywords: "完形填空,cloze,上下文语境,词汇复现,七年级英语" },
         info: { title: "完形填空满分策略", description: "不要孤立地看一个句子！答案往往藏在上下文里。🧩", tags: [{ text: "能力拓展", color: "purple" }, { text: "30分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "讲解完形填空三大解题法宝：1. 首句暗示法(第一句话通常不设空，交代背景)。2. 上下文语境(Context：根据前后文逻辑选词，不能只看当前句)。3. 原词/同义词复现(往往选项的答案在文章其他地方出现过)。强调固定搭配的重要性。",
         aiChatTitle: "🧩 填空小达人", aiChatIntro: "一篇残缺的文章，就像满是谜团的拼图，我们要根据线索把它拼完整！",
@@ -71,7 +71,7 @@ export const grade7Content = {
 // ==================== 八年级英语 ====================
 export const grade8Content = {
     'en8-l1-passive': {
-        meta: { title: "被动语态 - 八年级英语 | AI7Miao英语", description: "学习被动语态的结构(be + done)及不同时态的被动语态。", keywords: "被动语态,passive voice,be done,八年级英语" },
+        meta: { title: "被动语态 - 八年级英语 | AI奇妙英语", description: "学习被动语态的结构(be + done)及不同时态的被动语态。", keywords: "被动语态,passive voice,be done,八年级英语" },
         info: { title: "被动语态", description: "The window was broken! 是谁动的手？重点讲解动作的承受者。🪟", tags: [{ text: "基础达标", color: "blue" }, { text: "35分钟", icon: Clock, color: "slate" }, { text: "核心语法", icon: Star, color: "orange" }] },
         aiContext: "教授被动语态的概念：当主语是动作的承受者时使用(杯子被打破了，而不是杯子打破了)。通用结构：be + 过去分词(done)。重点掌握三种时态的被动语态：一般现在时被动(am/is/are + done)，一般过去时被动(was/were + done)，一般将来时被动(will be + done)。强调只有及物动词(vt)才有被动语态。",
         aiChatTitle: "🪟 被动出击", aiChatIntro: "苹果被吃了！窗户被打破了！我们来当动作的'承受者'。",
@@ -86,7 +86,7 @@ export const grade8Content = {
     },
 
     'en8-l1-adverbial-clause': {
-        meta: { title: "状语从句 - 八年级英语 | AI7Miao英语", description: "学习时间、条件、原因、结果状语从句及重点句型。", keywords: "状语从句,条件状语从句,时间状语从句,主将从现,八年级英语" },
+        meta: { title: "状语从句 - 八年级英语 | AI奇妙英语", description: "学习时间、条件、原因、结果状语从句及重点句型。", keywords: "状语从句,条件状语从句,时间状语从句,主将从现,八年级英语" },
         info: { title: "状语从句精讲", description: "Because, If, When... 使用连词让句子变得更丰富！🧩", tags: [{ text: "基础达标", color: "blue" }, { text: "30分钟", icon: Clock, color: "slate" }, { text: "难点突破", icon: Star, color: "orange" }] },
         aiContext: "重点讲解三大状语从句及其引导词：1. 时间状语(when, while, untill, as soon as)。 2. 条件状语(if, unless)。3. 原因/结果状语(because, so...that)。【核心考点】主将从现规则：在时间/条件状语从句中，如果主句是一般将来时，从句要用一般现在时表将来。",
         aiChatTitle: "🧩 逻辑拼接师", aiChatIntro: "如果明天不下雨，我们就去野餐。英语的'条件'怎么表达？",
@@ -101,7 +101,7 @@ export const grade8Content = {
     },
 
     'en8-l2-reading-adv': {
-        meta: { title: "阅读理解进阶 - 八年级英语 | AI7Miao英语", description: "突破长难句阅读，掌握长篇阅读及七选五答题技巧。", keywords: "长难句分析,阅读进阶,长篇阅读,八年级英语" },
+        meta: { title: "阅读理解进阶 - 八年级英语 | AI奇妙英语", description: "突破长难句阅读，掌握长篇阅读及七选五答题技巧。", keywords: "长难句分析,阅读进阶,长篇阅读,八年级英语" },
         info: { title: "阅读理解进阶", description: "遇到又长又复杂的句子怎么拆解？揪出主干！✂️", tags: [{ text: "能力拓展", color: "purple" }, { text: "35分钟", icon: Clock, color: "slate" }, { text: "挑战", icon: Star, color: "orange" }] },
         aiContext: "长难句拆分两步法：1. 找连词(who, which, that, if, because)，将复合句切片。2. 找谓语动词，剥离修饰成分(介词短语，从句)，提取句子主干(主谓宾)。讲解阅读中的结构题型(例如这句插在哪里最合适)。",
         aiChatTitle: "✂️ 庖丁解牛", aiChatIntro: "句子太长读不懂？拿出你的剪刀，把它切成小块！",
@@ -119,7 +119,7 @@ export const grade8Content = {
 // ==================== 九年级英语 ====================
 export const grade9Content = {
     'en9-l1-grammar-review': {
-        meta: { title: "中考语法综合 - 九年级英语 | AI7Miao英语", description: "系统复习初中阶段八大时态、被动语态及三大从句，形成知识网络。", keywords: "中考英语,语法复习,八大时态,三大从句,九年级英语" },
+        meta: { title: "中考语法综合 - 九年级英语 | AI奇妙英语", description: "系统复习初中阶段八大时态、被动语态及三大从句，形成知识网络。", keywords: "中考英语,语法复习,八大时态,三大从句,九年级英语" },
         info: { title: "中考语法金字塔", description: "时态、语态、从句，三大护法集结！构建语法终极网络！🏰", tags: [{ text: "基础达标", color: "blue" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "中考必修", icon: Star, color: "rose" }] },
         aiContext: "绘制中考英语语法思维导图。1. 八大核心时态：一般现在、一般过去、一般将来、现在进行、过去进行、现在完成、过去完成。 2. 动词非谓语：to do vs doing 的常见辨析。 3. 三大从句复习与易错点辨析(宾语从句、状语从句、定语从句)。",
         aiChatTitle: "🏰 语法决战紫禁之巅", aiChatIntro: "马上要中考了，语法全忘光了？别怕，我们来复盘武功秘籍！",
@@ -134,7 +134,7 @@ export const grade9Content = {
     },
 
     'en9-l1-writing-exam': {
-        meta: { title: "中考写作突破 - 九年级英语 | AI7Miao英语", description: "中考英语作文满分结构的建立，高级词汇转换与连接词的使用。", keywords: "中考英语作文,写作模板,高级词汇,连词,九年级英语" },
+        meta: { title: "中考写作突破 - 九年级英语 | AI奇妙英语", description: "中考英语作文满分结构的建立，高级词汇转换与连接词的使用。", keywords: "中考英语作文,写作模板,高级词汇,连词,九年级英语" },
         info: { title: "作文夺分大礼包", description: "拒绝流水账！学会运用连接词和高级句型让作文闪闪发光！✨", tags: [{ text: "基础达标", color: "blue" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "提升", icon: Star, color: "orange" }] },
         aiContext: "中考作文提分三步法：1. 审题立意(定人称、定时态)。 2. 遣词造句(使用高级词汇替换初级词汇，如 use -> make use of; good -> fantastic/helpful)。3. 谋篇布局，使用黄金连词(First, What's more, However, All in all)让逻辑清晰。讲解常见应用文模板(邮件、倡议书)。",
         aiChatTitle: "✨ 点石成金", aiChatIntro: "作文总是那几个简单的词？连不成一篇好文章？",

@@ -4,7 +4,7 @@ import { PracticeProblem } from './common';
 // ==================== 高二语文 ====================
 export const grade11Content = {
     'cn11-l1-novel-drama': {
-        meta: { title: "小说与戏剧鉴赏 - 高二语文 | AI7Miao语文", description: "深入鉴赏小说和戏剧作品。", keywords: "小说鉴赏,戏剧,文学评论,高二语文" },
+        meta: { title: "小说与戏剧鉴赏 - 高二语文 | AI奇妙语文", description: "深入鉴赏小说和戏剧作品。", keywords: "小说鉴赏,戏剧,文学评论,高二语文" },
         info: { title: "小说与戏剧鉴赏", description: "在虚构的世界里看见真实！小说与戏剧的艺术魅力！🎭", tags: [{ text: "基础达标", color: "blue" }, { text: "45分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "深入学习小说和戏剧鉴赏。小说：叙事视角（全知/有限）、叙事节奏、人物塑造方法、主题多义性。戏剧：戏剧冲突、舞台说明、台词赏析、悲剧/喜剧。",
         aiChatTitle: "🎭 文学评论家", aiChatIntro: "小说和戏剧是人类体验的浓缩！来学习如何深入品味它们！",
@@ -18,7 +18,7 @@ export const grade11Content = {
     },
 
     'cn11-l1-ancient-prose': {
-        meta: { title: "古代散文经典 - 高二语文 | AI7Miao语文", description: "学习唐宋八大家等古代散文经典。", keywords: "古代散文,唐宋八大家,韩愈,柳宗元,高二语文" },
+        meta: { title: "古代散文经典 - 高二语文 | AI奇妙语文", description: "学习唐宋八大家等古代散文经典。", keywords: "古代散文,唐宋八大家,韩愈,柳宗元,高二语文" },
         info: { title: "古代散文经典", description: "唐宋八大家的散文艺术！古文的巅峰之作！📜", tags: [{ text: "基础达标", color: "blue" }, { text: "45分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "学习唐宋散文经典。唐宋八大家（韩愈、柳宗元、欧阳修、苏洵、苏轼、苏辙、王安石、曾巩）的代表作品和文学思想。古文运动的背景和意义。",
         aiChatTitle: "📜 古文鉴赏师", aiChatIntro: "韩愈、柳宗元、苏轼的散文，千年不朽！来领略古文之美！",
@@ -32,7 +32,7 @@ export const grade11Content = {
     },
 
     'cn11-l1-song-ci': {
-        meta: { title: "宋词鉴赏 - 高二语文 | AI7Miao语文", description: "系统学习宋词鉴赏方法。", keywords: "宋词,苏轼,李清照,辛弃疾,高二语文" },
+        meta: { title: "宋词鉴赏 - 高二语文 | AI奇妙语文", description: "系统学习宋词鉴赏方法。", keywords: "宋词,苏轼,李清照,辛弃疾,高二语文" },
         info: { title: "宋词鉴赏", description: "词中有画，画中有情！领略宋词的婉约与豪放！🎵", tags: [{ text: "基础达标", color: "blue" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "系统学习宋词。了解豪放派（苏轼、辛弃疾）和婉约派（李清照、柳永）的风格特点，重点词作的鉴赏分析。",
         aiChatTitle: "🎵 宋词品读家", aiChatIntro: "大江东去，浪淘尽，千古风流人物。来品味宋词的千年韵味！",
@@ -46,7 +46,7 @@ export const grade11Content = {
     },
 
     'cn11-l1-literary-criticism': {
-        meta: { title: "文学评论写作 - 高二语文 | AI7Miao语文", description: "学习文学评论的基本写法。", keywords: "文学评论,文学鉴赏,评论写作,高二语文" },
+        meta: { title: "文学评论写作 - 高二语文 | AI奇妙语文", description: "学习文学评论的基本写法。", keywords: "文学评论,文学鉴赏,评论写作,高二语文" },
         info: { title: "文学评论写作", description: "用理性的眼光审视文学！从读者到评论者的蜕变！📝", tags: [{ text: "基础达标", color: "blue" }, { text: "45分钟", icon: Clock, color: "slate" }] },
         aiContext: "学习文学评论写作。掌握评论角度（主题、人物、语言、结构、艺术手法），评论的基本结构（引述-评析-总结），以及评论语言的客观性和学术性。",
         aiChatTitle: "📝 文学评论导师", aiChatIntro: "文学评论不是简单的读后感，而是有理论支撑的分析！",
@@ -60,7 +60,7 @@ export const grade11Content = {
     },
 
     'cn11-l2-logic-argumentation': {
-        meta: { title: "逻辑思维与论证 - 高二语文 | AI7Miao语文", description: "培养逻辑思维和论证能力。", keywords: "逻辑思维,论证,批判性思维,高二语文" },
+        meta: { title: "逻辑思维与论证 - 高二语文 | AI奇妙语文", description: "培养逻辑思维和论证能力。", keywords: "逻辑思维,论证,批判性思维,高二语文" },
         info: { title: "逻辑思维与论证", description: "让你的思维像钻石一样清晰！逻辑是思维的翅膀！🧠", tags: [{ text: "素养进阶", color: "purple" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "培养逻辑思维能力。学习常见逻辑谬误（以偏概全、循环论证、诉诸权威、滑坡谬误等），掌握论证的基本形式（演绎推理、归纳推理、类比推理）。",
         aiChatTitle: "🧠 逻辑思维课", aiChatIntro: "学会识别逻辑谬误，让你的论证无懈可击！",
@@ -74,7 +74,7 @@ export const grade11Content = {
     },
 
     'cn11-l2-cross-media': {
-        meta: { title: "跨媒体阅读与交流 - 高二语文 | AI7Miao语文", description: "学习跨媒体信息处理能力。", keywords: "跨媒体,信息素养,批判性阅读,高二语文" },
+        meta: { title: "跨媒体阅读与交流 - 高二语文 | AI奇妙语文", description: "学习跨媒体信息处理能力。", keywords: "跨媒体,信息素养,批判性阅读,高二语文" },
         info: { title: "跨媒体阅读与交流", description: "在信息时代做聪明的读者！多渠道获取和评判信息！📱", tags: [{ text: "素养进阶", color: "purple" }, { text: "35分钟", icon: Clock, color: "slate" }] },
         aiContext: "培养跨媒体阅读能力。学习从不同媒体（文字、图片、视频、数据）获取和整合信息，辨别信息真伪，培养批判性媒体素养。",
         aiChatTitle: "📱 信息素养课", aiChatIntro: "信息爆炸时代，如何辨别真假？做一个有判断力的信息消费者！",
@@ -88,7 +88,7 @@ export const grade11Content = {
     },
 
     'cn11-l2-speech-debate': {
-        meta: { title: "演讲与辩论 - 高二语文 | AI7Miao语文", description: "培养演讲和辩论能力。", keywords: "演讲,辩论,口头表达,高二语文" },
+        meta: { title: "演讲与辩论 - 高二语文 | AI奇妙语文", description: "培养演讲和辩论能力。", keywords: "演讲,辩论,口头表达,高二语文" },
         info: { title: "演讲与辩论", description: "用声音传递力量！在辩论中磨砺思维！🎤", tags: [{ text: "素养进阶", color: "purple" }, { text: "40分钟", icon: Clock, color: "slate" }] },
         aiContext: "培养口头表达能力。学习演讲的结构（开头吸引-主体论证-结尾升华），辩论的技巧（立论-攻辩-反驳-总结），以及口头表达的技巧。",
         aiChatTitle: "🎤 演讲辩论营", aiChatIntro: "好的演讲让人热血沸腾，好的辩论让人茅塞顿开！",

@@ -5,7 +5,7 @@ import { PracticeProblem } from './common';
 export const grade7Content = {
     // ==================== L1-1. 文言文基础阅读 ====================
     'cn7-l1-classical-basic': {
-        meta: { title: "文言文基础阅读 - 初一语文 | AI7Miao语文", description: "学习文言文的基本阅读方法，掌握常见实词虚词和翻译技巧。", keywords: "文言文,实词,虚词,初一语文" },
+        meta: { title: "文言文基础阅读 - 初一语文 | AI奇妙语文", description: "学习文言文的基本阅读方法，掌握常见实词虚词和翻译技巧。", keywords: "文言文,实词,虚词,初一语文" },
         info: { title: "文言文基础阅读", description: "进入文言世界，掌握翻译密码！古文不再是天书！📜", tags: [{ text: "基础达标", color: "blue" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "初一学生系统学习文言文。重点：常见实词（之、而、以、于、其）的多种用法，文言句式（判断句、省略句、倒装句），翻译方法（留、删、补、换、调、变）。引导学生对比古今异义词。",
         aiChatTitle: "📜 文言文翻译官", aiChatIntro: "掌握文言文翻译六字诀，古文再也不是天书！",
@@ -24,7 +24,7 @@ export const grade7Content = {
 
     // ==================== L1-2. 记叙文深入阅读 ====================
     'cn7-l1-narrative-deep': {
-        meta: { title: "记叙文深入阅读 - 初一语文 | AI7Miao语文", description: "深入学习记叙文的阅读分析方法。", keywords: "记叙文,阅读理解,写作手法,初一语文" },
+        meta: { title: "记叙文深入阅读 - 初一语文 | AI奇妙语文", description: "深入学习记叙文的阅读分析方法。", keywords: "记叙文,阅读理解,写作手法,初一语文" },
         info: { title: "记叙文深入阅读", description: "读懂文章的骨架和灵魂！从人物到情节全面分析！📖", tags: [{ text: "基础达标", color: "blue" }, { text: "35分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "学生深入学习记叙文阅读。掌握记叙文六要素，人物描写方法（外貌、语言、动作、心理、神态），表达方式（记叙、描写、抒情、议论、说明），以及常见写作手法（首尾呼应、设置悬念、欲扬先抑等）。",
         aiChatTitle: "📖 记叙文侦探", aiChatIntro: "学会从文字中发现作者的秘密！每篇文章都藏着精心设计的线索！",
@@ -43,7 +43,7 @@ export const grade7Content = {
 
     // ==================== L1-3. 散文赏析 ====================
     'cn7-l1-prose': {
-        meta: { title: "散文赏析 - 初一语文 | AI7Miao语文", description: "学习散文的特点和赏析方法。", keywords: "散文,赏析,形散神聚,初一语文" },
+        meta: { title: "散文赏析 - 初一语文 | AI奇妙语文", description: "学习散文的特点和赏析方法。", keywords: "散文,赏析,形散神聚,初一语文" },
         info: { title: "散文赏析", description: "感受文字之美，领悟散文的形散神聚！🌸", tags: [{ text: "基础达标", color: "blue" }, { text: "35分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "学生学习散文赏析。理解散文'形散神聚'的特点。掌握散文线索的寻找方法，抒情方式（直接抒情/间接抒情），以及散文语言的品味方法。",
         aiChatTitle: "🌸 散文品读师", aiChatIntro: "散文就像一幅画，看似随意，却处处精心！来学习如何品味散文之美！",
@@ -62,7 +62,7 @@ export const grade7Content = {
 
     // ==================== L1-4. 古诗鉴赏方法 ====================
     'cn7-l1-poetry-method': {
-        meta: { title: "古诗鉴赏方法 - 初一语文 | AI7Miao语文", description: "掌握古诗词鉴赏的基本方法和常见题型。", keywords: "古诗鉴赏,意象,意境,初一语文" },
+        meta: { title: "古诗鉴赏方法 - 初一语文 | AI奇妙语文", description: "掌握古诗词鉴赏的基本方法和常见题型。", keywords: "古诗鉴赏,意象,意境,初一语文" },
         info: { title: "古诗鉴赏方法", description: "学会品诗！从意象到意境，读懂诗人的心声！🎋", tags: [{ text: "基础达标", color: "blue" }, { text: "35分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "学生系统学习古诗鉴赏方法。理解意象与意境的概念，掌握常见意象的象征意义（月亮→思乡、柳→离别、松竹梅→高洁品格），学习鉴赏诗歌的角度（内容、情感、手法、语言）。",
         aiChatTitle: "🎋 诗词鉴赏师", aiChatIntro: "每首古诗都是一幅画、一段情。学会鉴赏，你就能读懂诗人千年前的心声！",
@@ -81,7 +81,7 @@ export const grade7Content = {
 
     // ==================== L2-1. 名著导读 ====================
     'cn7-l2-classics-guide': {
-        meta: { title: "名著导读 - 初一语文 | AI7Miao语文", description: "学习名著阅读方法，了解初中必读名著。", keywords: "名著导读,西游记,朝花夕拾,初一语文" },
+        meta: { title: "名著导读 - 初一语文 | AI奇妙语文", description: "学习名著阅读方法，了解初中必读名著。", keywords: "名著导读,西游记,朝花夕拾,初一语文" },
         info: { title: "名著导读", description: "走进经典文学的殿堂！与大师对话！📚", tags: [{ text: "素养进阶", color: "purple" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "引导学生阅读初一必读名著：《朝花夕拾》（鲁迅）和《西游记》（吴承恩）。教授阅读方法：精读与跳读结合、做读书笔记、字划人物形象、分析主题思想。",
         aiChatTitle: "📚 名著领读人", aiChatIntro: "和AI一起读经典！每部名著都有精彩的故事和深刻的道理等你发现！",
@@ -100,7 +100,7 @@ export const grade7Content = {
 
     // ==================== L2-2. 记叙文写作进阶 ====================
     'cn7-l2-narrative-writing': {
-        meta: { title: "记叙文写作进阶 - 初一语文 | AI7Miao语文", description: "提升记叙文写作能力，学习细节描写和结构安排。", keywords: "记叙文写作,细节描写,叙事结构,初一语文" },
+        meta: { title: "记叙文写作进阶 - 初一语文 | AI奇妙语文", description: "提升记叙文写作能力，学习细节描写和结构安排。", keywords: "记叙文写作,细节描写,叙事结构,初一语文" },
         info: { title: "记叙文写作进阶", description: "让你的文章有血有肉！细节决定好文章！✍️", tags: [{ text: "素养进阶", color: "purple" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "学生提升记叙文写作能力。学习细节描写（动作分解、感官描写、环境烘托），文章结构（总分总、倒叙、插叙），以及如何写好开头和结尾。",
         aiChatTitle: "✍️ 写作教练", aiChatIntro: "好文章不是写出来的，是改出来的！来学习让文章更生动的秘诀！",
@@ -119,7 +119,7 @@ export const grade7Content = {
 
     // ==================== L2-3. 语法基础 ====================
     'cn7-l2-grammar-basic': {
-        meta: { title: "语法基础 - 初一语文 | AI7Miao语文", description: "掌握词性和句子成分的基本知识。", keywords: "语法,词性,句子成分,初一语文" },
+        meta: { title: "语法基础 - 初一语文 | AI奇妙语文", description: "掌握词性和句子成分的基本知识。", keywords: "语法,词性,句子成分,初一语文" },
         info: { title: "语法基础（词性与句子成分）", description: "给每个词找到它的身份证！让句子结构一目了然！🏷️", tags: [{ text: "素养进阶", color: "purple" }, { text: "35分钟", icon: Clock, color: "slate" }] },
         aiContext: "学生学习现代汉语语法基础。掌握词性分类（名词、动词、形容词、副词、介词、连词等），理解句子成分（主语、谓语、宾语、定语、状语、补语）。",
         aiChatTitle: "🏷️ 语法小达人", aiChatIntro: "每个词都有自己的角色，每个句子都有自己的结构！来认识它们吧！",

@@ -16,7 +16,7 @@ export default defineConfig({
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
         name: '作业辅导',
-        short_name: 'HomeworkAI',
+        short_name: 'AI奇妙',
         description: 'AI-powered Homework Helper',
         theme_color: '#4f46e5',
         background_color: '#ffffff',

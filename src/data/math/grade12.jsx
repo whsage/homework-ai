@@ -14,7 +14,7 @@ export const grade12Content = {
     // ==================== 1. 导数及其应用 ====================
     'high-12-1-derivatives-calc': {
         meta: {
-            title: "导数及其应用 - 高三数学 | AI7Miao数学",
+            title: "导数及其应用 - 高三数学 | AI奇妙数学",
             description: "微积分的入门。理解导数的几何意义（切线斜率）与物理意义（瞬时速度）。",
             keywords: "导数,切线斜率,瞬时变化率,单调性,极值"
         },

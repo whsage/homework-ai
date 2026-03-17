@@ -7,7 +7,7 @@ import HandwritingLab from '../../components/subjects/english/elementary/Handwri
 // ==================== 一年级英语 ====================
 export const grade1Content = {
     'en1-l1-alphabet': {
-        meta: { title: "26个字母认读 - 一年级英语 | AI7Miao英语", description: "学习26个英文字母的大小写认读。", keywords: "字母,alphabet,ABC,一年级英语" },
+        meta: { title: "26个字母认读 - 一年级英语 | AI奇妙英语", description: "学习26个英文字母的大小写认读。", keywords: "字母,alphabet,ABC,一年级英语" },
         info: { title: "26个字母认读", description: "Hello, ABC! 一起来认识26个英文字母吧！🔤", tags: [{ text: "基础达标", color: "blue" }, { text: "25分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "一年级学生第一次接触英文字母。教学重点：26个字母的大小写认读、字母名称音(letter name)和字母音(letter sound)的区别。用唱字母歌、找字母游戏等趣味方式教学。",
         aiChatTitle: "🔤 ABC字母小达人", aiChatIntro: "和AI一起唱ABC字母歌，认识26个字母朋友！",
@@ -22,7 +22,7 @@ export const grade1Content = {
     },
 
     'en1-l1-phonics-basic': {
-        meta: { title: "自然拼读基础 - 一年级英语 | AI7Miao英语", description: "学习字母发音和基础自然拼读规则。", keywords: "自然拼读,phonics,字母发音,一年级英语" },
+        meta: { title: "自然拼读基础 - 一年级英语 | AI奇妙英语", description: "学习字母发音和基础自然拼读规则。", keywords: "自然拼读,phonics,字母发音,一年级英语" },
         info: { title: "自然拼读基础", description: "每个字母都有自己的声音！学会拼读就能读单词！🗣️", tags: [{ text: "基础达标", color: "blue" }, { text: "25分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "一年级自然拼读入门。重点教授辅音字母的基本发音和短元音(short vowels: a=/æ/, e=/ɛ/, i=/ɪ/, o=/ɒ/, u=/ʌ/)。通过CVC(辅-元-辅)单词练习拼读：cat, dog, pen, big, sun等。",
         aiChatTitle: "🗣️ 拼读小能手", aiChatIntro: "学会字母的声音，你就能自己读出新单词！试试看！",
@@ -37,7 +37,7 @@ export const grade1Content = {
     },
 
     'en1-l1-colors-numbers': {
-        meta: { title: "颜色与数字 - 一年级英语 | AI7Miao英语", description: "学习基础颜色和数字1-20的英文表达。", keywords: "颜色,数字,colors,numbers,一年级英语" },
+        meta: { title: "颜色与数字 - 一年级英语 | AI奇妙英语", description: "学习基础颜色和数字1-20的英文表达。", keywords: "颜色,数字,colors,numbers,一年级英语" },
         info: { title: "颜色与数字", description: "Red, blue, green... 1, 2, 3! 用英语说说身边的颜色和数字！🌈", tags: [{ text: "基础达标", color: "blue" }, { text: "20分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "学习基础颜色词汇(red, blue, green, yellow, black, white, pink, purple, orange, brown)和数字1-20的英文表达。通过看颜色说英文、数物品等方式练习。",
         aiChatTitle: "🌈 颜色数字乐园", aiChatIntro: "你的书包是什么颜色？用英语告诉我吧！What color is your bag?",
@@ -52,7 +52,7 @@ export const grade1Content = {
     },
 
     'en1-l1-greetings': {
-        meta: { title: "问候与自我介绍 - 一年级英语 | AI7Miao英语", description: "学习简单的英语问候和自我介绍。", keywords: "问候,自我介绍,hello,greetings,一年级英语" },
+        meta: { title: "问候与自我介绍 - 一年级英语 | AI奇妙英语", description: "学习简单的英语问候和自我介绍。", keywords: "问候,自我介绍,hello,greetings,一年级英语" },
         info: { title: "问候与自我介绍", description: "Hello! My name is... 学会用英语打招呼和介绍自己！👋", tags: [{ text: "基础达标", color: "blue" }, { text: "20分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "学习基本问候语(Hello/Hi, Good morning/afternoon/evening, Goodbye/Bye)和自我介绍(My name is... / I am... / I'm ___ years old)。通过角色扮演练习日常问候对话。",
         aiChatTitle: "👋 打招呼小明星", aiChatIntro: "Hello! Nice to meet you! 来学习用英语打招呼！",
@@ -67,7 +67,7 @@ export const grade1Content = {
     },
 
     'en1-l2-songs': {
-        meta: { title: "英文儿歌 - 一年级英语 | AI7Miao英语", description: "通过英文儿歌学习英语。", keywords: "英文儿歌,songs,nursery rhymes,一年级英语" },
+        meta: { title: "英文儿歌 - 一年级英语 | AI奇妙英语", description: "通过英文儿歌学习英语。", keywords: "英文儿歌,songs,nursery rhymes,一年级英语" },
         info: { title: "英文儿歌", description: "唱着歌就把英语学了！🎵 Music makes learning fun!", tags: [{ text: "能力拓展", color: "purple" }, { text: "20分钟", icon: Clock, color: "slate" }] },
         aiContext: "通过经典英文儿歌学习英语。推荐歌曲：Twinkle Twinkle Little Star, Old MacDonald Had a Farm, Head Shoulders Knees and Toes, If You're Happy and You Know It。边唱边学词汇。",
         aiChatTitle: "🎵 唱歌学英语", aiChatIntro: "Let's sing! 唱儿歌是学英语最快乐的方式！",
@@ -82,7 +82,7 @@ export const grade1Content = {
     },
 
     'en1-l2-classroom': {
-        meta: { title: "课堂用语 - 一年级英语 | AI7Miao英语", description: "学习英语课堂常用指令和用语。", keywords: "课堂用语,classroom English,一年级英语" },
+        meta: { title: "课堂用语 - 一年级英语 | AI奇妙英语", description: "学习英语课堂常用指令和用语。", keywords: "课堂用语,classroom English,一年级英语" },
         info: { title: "课堂用语", description: "Stand up! Sit down! 学会听懂老师的英语指令！📚", tags: [{ text: "能力拓展", color: "purple" }, { text: "20分钟", icon: Clock, color: "slate" }] },
         aiContext: "学习英语课堂常用指令：Stand up, Sit down, Open/Close your book, Listen, Look, Read after me, Hands up/down, Be quiet, Well done, Good job等。",
         aiChatTitle: "📚 课堂英语通", aiChatIntro: "听懂老师的英语指令，做课堂上的小明星！",
@@ -97,7 +97,7 @@ export const grade1Content = {
     },
 
     'en1-l2-handwriting': {
-        meta: { title: "字母书写规范 - 一年级英语 | AI7Miao英语", description: "学习英文字母的规范书写。", keywords: "字母书写,handwriting,书写规范,一年级英语" },
+        meta: { title: "字母书写规范 - 一年级英语 | AI奇妙英语", description: "学习英文字母的规范书写。", keywords: "字母书写,handwriting,书写规范,一年级英语" },
         info: { title: "字母书写规范", description: "写出漂亮的英文字母！Learn to write neatly! ✍️", tags: [{ text: "能力拓展", color: "purple" }, { text: "25分钟", icon: Clock, color: "slate" }] },
         aiContext: "学习英文字母的规范书写。重点：四线三格的使用规则（大写占上两格、小写占中间一格、有尾巴的字母如g/y/p占下两格），字母的笔画顺序。",
         aiChatTitle: "✍️ 书写小达人", aiChatIntro: "漂亮的英文字母是怎么写出来的？来学习四线三格的秘密！",

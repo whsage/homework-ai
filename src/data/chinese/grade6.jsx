@@ -5,7 +5,7 @@ export const grade6Content = {
 
     // ==================== L1-1. 古诗词鉴赏 ====================
     'cn6-l1-poetry-mastery': {
-        meta: { title: "古诗词鉴赏 - 六年级语文 | AI7Miao语文", description: "综合运用鉴赏方法深入解读古诗词的手法、意境和情感。", keywords: '古诗词鉴赏,表现手法,意境,六年级语文' },
+        meta: { title: "古诗词鉴赏 - 六年级语文 | AI奇妙语文", description: "综合运用鉴赏方法深入解读古诗词的手法、意境和情感。", keywords: '古诗词鉴赏,表现手法,意境,六年级语文' },
         info: { title: "古诗词鉴赏", description: "鉴赏层次升级！从读懂到品味，成为真正的诗词鉴赏家！🏆", tags: [{ text: '基础达标', color: 'blue' }, { text: '35分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生综合学习古诗词鉴赏。要能分析表现手法（借景抒情、托物言志、动静结合、虚实结合），理解意境，体会深层情感，并进行比较鉴赏。",
         aiChatTitle: "🏆 诗词鉴赏家", aiChatIntro: "六年级了，我们要像真正的鉴赏家一样品味诗词的精妙！",
@@ -69,7 +69,7 @@ export const grade6Content = {
 
     // ==================== L1-2. 综合阅读理解 ====================
     'cn6-l1-comprehensive-reading': {
-        meta: { title: "综合阅读理解 - 六年级语文 | AI7Miao语文", description: "综合运用各种阅读方法应对不同文体的阅读题。", keywords: '综合阅读,多文体,阅读理解,六年级语文' },
+        meta: { title: "综合阅读理解 - 六年级语文 | AI奇妙语文", description: "综合运用各种阅读方法应对不同文体的阅读题。", keywords: '综合阅读,多文体,阅读理解,六年级语文' },
         info: { title: "综合阅读理解", description: "记叙文、说明文、古诗文——全面出击，通关阅读大魔王！👑", tags: [{ text: '基础达标', color: 'blue' }, { text: '40分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生综合训练阅读理解。需要能应对各种文体和题型：信息提取、词句理解、概括主旨、分析手法、评价感悟。",
         aiChatTitle: "👑 阅读王者", aiChatIntro: "掌握所有文体的阅读方法，你就是阅读王者！",
@@ -97,7 +97,7 @@ export const grade6Content = {
 
     // ==================== L1-3. 文言文进阶 ====================
     'cn6-l1-classical-adv': {
-        meta: { title: "文言文进阶 - 六年级语文 | AI7Miao语文", description: "深入学习文言文，阅读稍长篇幅的古文。", keywords: '文言文,长篇古文,人物评价,六年级语文' },
+        meta: { title: "文言文进阶 - 六年级语文 | AI奇妙语文", description: "深入学习文言文，阅读稍长篇幅的古文。", keywords: '文言文,长篇古文,人物评价,六年级语文' },
         info: { title: "文言文进阶", description: "挑战更长的古文！读懂古人的大智慧！📜", tags: [{ text: '基础达标', color: 'blue' }, { text: '35分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生进阶学习文言文。挑战更长的篇幅，学会通篇理解文意、分析人物形象、把握文章主旨。",
         aiChatTitle: "📜 古文解读者", aiChatIntro: "更长更难的古文来啦！但方法学会了，再长也不怕！",
@@ -125,7 +125,7 @@ export const grade6Content = {
 
     // ==================== L1-4. 议论文初步 ====================
     'cn6-l1-argumentative': {
-        meta: { title: "议论文初步 - 六年级语文 | AI7Miao语文", description: "初步了解议论文的结构和论证方法。", keywords: '议论文,论点,论据,六年级语文' },
+        meta: { title: "议论文初步 - 六年级语文 | AI奇妙语文", description: "初步了解议论文的结构和论证方法。", keywords: '议论文,论点,论据,六年级语文' },
         info: { title: "议论文初步", description: "学会'讲道理'！有观点、有证据、有逻辑！🎓", tags: [{ text: '基础达标', color: 'blue' }, { text: '30分钟', icon: Clock, color: 'slate' }] },
         aiContext: "学生初步学习议论文。理解三要素（论点、论据、论证），认识常见论证方法（举例论证、道理论证）。",
         aiChatTitle: "🎓 小小辩论家", aiChatIntro: "议论文就是'摆事实，讲道理'！来学习如何有理有据地表达观点！",
@@ -153,7 +153,7 @@ export const grade6Content = {
 
     // ==================== L2-1. 小升初专题 ====================
     'cn6-l2-exam-prep': {
-        meta: { title: "小升初专题 - 六年级语文 | AI7Miao语文", description: "系统梳理小学语文知识点，备战小升初。", keywords: '小升初,语文复习,专题训练,六年级语文' },
+        meta: { title: "小升初专题 - 六年级语文 | AI奇妙语文", description: "系统梳理小学语文知识点，备战小升初。", keywords: '小升初,语文复习,专题训练,六年级语文' },
         info: { title: "小升初专题复习", description: "六年知识大整合！系统复习，信心满满迎接新挑战！🚀", tags: [{ text: '素养进阶', color: 'purple' }, { text: '40分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生进行小升初专题复习。系统梳理六年语文知识：拼音、汉字、词语、句子、阅读、写作、古诗文。查漏补缺，重点突破薄弱环节。",
         aiChatTitle: "🚀 冲刺加油站", aiChatIntro: "六年的积累就在这一刻！来系统复习，查漏补缺！",
@@ -181,7 +181,7 @@ export const grade6Content = {
 
     // ==================== L2-2. 整本书阅读 ====================
     'cn6-l2-whole-book-reading': {
-        meta: { title: "整本书阅读 - 六年级语文 | AI7Miao语文", description: "学习整本书阅读的方法和读书笔记写法。", keywords: '整本书阅读,读书笔记,六年级语文' },
+        meta: { title: "整本书阅读 - 六年级语文 | AI奇妙语文", description: "学习整本书阅读的方法和读书笔记写法。", keywords: '整本书阅读,读书笔记,六年级语文' },
         info: { title: "整本书阅读", description: "读一本书不是从头翻到尾就完了！学会带着思考去阅读！📚", tags: [{ text: '素养进阶', color: 'purple' }, { text: '35分钟', icon: Clock, color: 'slate' }] },
         aiContext: "学生学习整本书阅读方法。教序跋目录浏览法、人物关系图、读书笔记（摘抄+感悟）、读后感写法。",
         aiChatTitle: "📚 阅读导航员", aiChatIntro: "读整本书也有方法！跟我学，读得更深更有收获！",
@@ -209,7 +209,7 @@ export const grade6Content = {
 
     // ==================== L2-3. 考场作文技巧 ====================
     'cn6-l2-writing-mastery': {
-        meta: { title: "考场作文技巧 - 六年级语文 | AI7Miao语文", description: "掌握考场作文的审题、立意、结构和语言技巧。", keywords: '考场作文,审题立意,写作技巧,六年级语文' },
+        meta: { title: "考场作文技巧 - 六年级语文 | AI奇妙语文", description: "掌握考场作文的审题、立意、结构和语言技巧。", keywords: '考场作文,审题立意,写作技巧,六年级语文' },
         info: { title: "考场作文技巧", description: "考试时间有限，学会快速写出高分作文！🏅", tags: [{ text: '素养进阶', color: 'purple' }, { text: '35分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生学习考场作文技巧。审题立意（不偏题）、快速构思（列提纲）、开头结尾升级、临场应变策略。",
         aiChatTitle: "🏅 作文冲刺营", aiChatIntro: "考场上时间有限，掌握了技巧才能写出高分作文！",

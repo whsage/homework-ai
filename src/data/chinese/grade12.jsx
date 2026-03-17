@@ -4,7 +4,7 @@ import { PracticeProblem } from './common';
 // ==================== 高三语文 ====================
 export const grade12Content = {
     'cn12-l1-gaokao-reading': {
-        meta: { title: "高考阅读专题 - 高三语文 | AI7Miao语文", description: "系统训练高考阅读各类题型。", keywords: "高考阅读,论述类文本,实用类文本,文学类文本,高三语文" },
+        meta: { title: "高考阅读专题 - 高三语文 | AI奇妙语文", description: "系统训练高考阅读各类题型。", keywords: "高考阅读,论述类文本,实用类文本,文学类文本,高三语文" },
         info: { title: "高考阅读专题", description: "三大阅读类型全面突破！高考阅读不丢分！📋", tags: [{ text: "基础达标", color: "blue" }, { text: "50分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "高三学生高考阅读专题训练。系统复习论述类文本（逻辑推理、信息筛选）、实用类文本（非连续性文本、图文转换）、文学类文本（小说/散文鉴赏）的高考常见题型和满分答题模板。",
         aiChatTitle: "📋 高考阅读特训", aiChatIntro: "高考阅读三大板块，掌握答题方法就能拿高分！",
@@ -18,7 +18,7 @@ export const grade12Content = {
     },
 
     'cn12-l1-classical-breakthrough': {
-        meta: { title: "文言文综合突破 - 高三语文 | AI7Miao语文", description: "高考文言文综合突破训练。", keywords: "高考文言文,断句,翻译,文化常识,高三语文" },
+        meta: { title: "文言文综合突破 - 高三语文 | AI奇妙语文", description: "高考文言文综合突破训练。", keywords: "高考文言文,断句,翻译,文化常识,高三语文" },
         info: { title: "文言文综合突破", description: "高考文言文全面突破！断句+翻译+内容理解=满分！📜", tags: [{ text: "基础达标", color: "blue" }, { text: "45分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "高考文言文专题突破。涵盖：断句（主语找定、虚词标志）、文化常识（官职、称谓、科举、礼仪）、翻译（得分点落实）、内容概括和分析。",
         aiChatTitle: "📜 文言文突破营", aiChatIntro: "高考文言文19分，掌握方法一分不丢！",
@@ -32,7 +32,7 @@ export const grade12Content = {
     },
 
     'cn12-l1-poetry-mastery': {
-        meta: { title: "古诗鉴赏综合 - 高三语文 | AI7Miao语文", description: "高考古诗鉴赏综合突破。", keywords: "高考诗歌,诗歌鉴赏,表现手法,高三语文" },
+        meta: { title: "古诗鉴赏综合 - 高三语文 | AI奇妙语文", description: "高考古诗鉴赏综合突破。", keywords: "高考诗歌,诗歌鉴赏,表现手法,高三语文" },
         info: { title: "古诗鉴赏综合", description: "高考诗歌鉴赏满分攻略！读诗不怕，答题有方！🎋", tags: [{ text: "基础达标", color: "blue" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "高考古诗鉴赏专题。掌握高考诗歌鉴赏的答题角度（内容理解、手法分析、情感探究、语言赏析）和规范答题模板。",
         aiChatTitle: "🎋 诗歌鉴赏满分课", aiChatIntro: "高考诗歌鉴赏有套路！掌握答题模板，拿满分不是梦！",
@@ -46,7 +46,7 @@ export const grade12Content = {
     },
 
     'cn12-l1-gaokao-writing': {
-        meta: { title: "高考作文突破 - 高三语文 | AI7Miao语文", description: "高考作文高分突破策略。", keywords: "高考作文,审题立意,议论文,高三语文" },
+        meta: { title: "高考作文突破 - 高三语文 | AI奇妙语文", description: "高考作文高分突破策略。", keywords: "高考作文,审题立意,议论文,高三语文" },
         info: { title: "高考作文突破", description: "60分的作文决定成败！审题精准+立意深刻=高分！🏆", tags: [{ text: "基础达标", color: "blue" }, { text: "50分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "高考作文专题突破。涵盖新材料作文的审题方法（抓关键词、析含义、找角度）、立意技巧（由表及里、联系时代）、结构安排、语言提升。",
         aiChatTitle: "🏆 高考作文密训", aiChatIntro: "高考作文60分，掌握方法冲击50+！",
@@ -60,7 +60,7 @@ export const grade12Content = {
     },
 
     'cn12-l2-language-big-q': {
-        meta: { title: "语言运用大题 - 高三语文 | AI7Miao语文", description: "高考语言运用主观题专项训练。", keywords: "语言运用,高考语文,语段压缩,句式变换,高三语文" },
+        meta: { title: "语言运用大题 - 高三语文 | AI奇妙语文", description: "高考语言运用主观题专项训练。", keywords: "语言运用,高考语文,语段压缩,句式变换,高三语文" },
         info: { title: "语言运用大题", description: "语言运用主观题拿满分！精准审题+规范答题！📝", tags: [{ text: "素养进阶", color: "purple" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "高考语言运用主观题专训。涵盖：语段压缩、语句补写、仿用句式、图文转换、修辞分析、语病修改等高考新题型。",
         aiChatTitle: "📝 语用大题特训", aiChatIntro: "高考语用题越来越灵活，掌握核心方法应万变！",
@@ -74,7 +74,7 @@ export const grade12Content = {
     },
 
     'cn12-l2-literary-knowledge': {
-        meta: { title: "文学常识综合 - 高三语文 | AI7Miao语文", description: "系统复习文学文化常识。", keywords: "文学常识,文化常识,高考复习,高三语文" },
+        meta: { title: "文学常识综合 - 高三语文 | AI奇妙语文", description: "系统复习文学文化常识。", keywords: "文学常识,文化常识,高考复习,高三语文" },
         info: { title: "文学常识综合", description: "文学常识大串联！从先秦到现代一网打尽！📖", tags: [{ text: "素养进阶", color: "purple" }, { text: "35分钟", icon: Clock, color: "slate" }] },
         aiContext: "系统复习高考文学文化常识。涵盖中国文学史（先秦-两汉-魏晋-唐宋-元明清-现当代）、文体常识、重要作家作品、文化常识（天文历法、礼仪制度、官职科举等）。",
         aiChatTitle: "📖 文学常识百科", aiChatIntro: "中国文学五千年，来一次全面的知识大串联！",
@@ -88,7 +88,7 @@ export const grade12Content = {
     },
 
     'cn12-l2-final-sprint': {
-        meta: { title: "高考语文冲刺 - 高三语文 | AI7Miao语文", description: "高考语文最后冲刺策略。", keywords: "高考冲刺,考试策略,查缺补漏,高三语文" },
+        meta: { title: "高考语文冲刺 - 高三语文 | AI奇妙语文", description: "高考语文最后冲刺策略。", keywords: "高考冲刺,考试策略,查缺补漏,高三语文" },
         info: { title: "高考语文冲刺", description: "最后冲刺！稳中求进，向满分进发！🚀", tags: [{ text: "素养进阶", color: "purple" }, { text: "50分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "高考前最后冲刺。帮助学生梳理各板块考点和得分策略，制定考场时间分配方案，总结高频失分点和应对策略，调整考前心态。",
         aiChatTitle: "🚀 高考冲刺站", aiChatIntro: "你已经准备得很好了！最后阶段，稳住心态，注意细节！",

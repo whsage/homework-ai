@@ -5,7 +5,7 @@ import { PracticeProblem } from './common';
 export const grade8Content = {
     // ==================== L1-1. 说明文深入阅读 ====================
     'cn8-l1-expository-deep': {
-        meta: { title: "说明文深入阅读 - 初二语文 | AI7Miao语文", description: "深入学习说明文的阅读方法和分析技巧。", keywords: "说明文,说明方法,说明顺序,初二语文" },
+        meta: { title: "说明文深入阅读 - 初二语文 | AI奇妙语文", description: "深入学习说明文的阅读方法和分析技巧。", keywords: "说明文,说明方法,说明顺序,初二语文" },
         info: { title: "说明文深入阅读", description: "说明文是科学的语言！学会准确理解事物的本质！🔬", tags: [{ text: "基础达标", color: "blue" }, { text: "35分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "学生深入学习说明文。掌握说明方法（举例子、列数字、作比较、打比方、下定义、分类别、画图表），说明顺序（时间、空间、逻辑），以及说明文语言的准确性分析。",
         aiChatTitle: "🔬 说明文解码器", aiChatIntro: "说明文追求准确！每一个词都不能随便改！来学习说明文的秘密！",
@@ -20,7 +20,7 @@ export const grade8Content = {
 
     // ==================== L1-2. 议论文阅读 ====================
     'cn8-l1-argumentative-read': {
-        meta: { title: "议论文阅读 - 初二语文 | AI7Miao语文", description: "学习议论文三要素和论证方法。", keywords: "议论文,论点,论据,论证,初二语文" },
+        meta: { title: "议论文阅读 - 初二语文 | AI奇妙语文", description: "学习议论文三要素和论证方法。", keywords: "议论文,论点,论据,论证,初二语文" },
         info: { title: "议论文阅读", description: "用逻辑的力量说服人！论点+论据+论证=有理有据！💪", tags: [{ text: "基础达标", color: "blue" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "学生系统学习议论文。掌握三要素（论点、论据、论证），常见论证方法（举例论证、道理论证、对比论证、比喻论证），议论文的结构（提出问题-分析问题-解决问题）。",
         aiChatTitle: "💪 逻辑推理师", aiChatIntro: "议论文就是讲道理！有论点有论据有论证，让人心服口服！",
@@ -35,7 +35,7 @@ export const grade8Content = {
 
     // ==================== L1-3. 文言文进阶阅读 ====================
     'cn8-l1-classical-adv': {
-        meta: { title: "文言文进阶阅读 - 初二语文 | AI7Miao语文", description: "深入学习文言文特殊句式和词类活用。", keywords: "文言文,词类活用,特殊句式,初二语文" },
+        meta: { title: "文言文进阶阅读 - 初二语文 | AI奇妙语文", description: "深入学习文言文特殊句式和词类活用。", keywords: "文言文,词类活用,特殊句式,初二语文" },
         info: { title: "文言文进阶阅读", description: "攻克文言文难关！词类活用和特殊句式一网打尽！📜", tags: [{ text: "基础达标", color: "blue" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "学生深入学习文言文。掌握词类活用（名词作动词、形容词作动词、使动用法、意动用法），特殊句式（判断句、被动句、倒装句、省略句），以及文言文断句方法。",
         aiChatTitle: "📜 文言文高手", aiChatIntro: "文言文有很多巧妙的用法！名词可以当动词用，形容词也能活用！",
@@ -50,7 +50,7 @@ export const grade8Content = {
 
     // ==================== L1-4. 新闻与通讯 ====================
     'cn8-l1-news-writing': {
-        meta: { title: "新闻与通讯 - 初二语文 | AI7Miao语文", description: "学习新闻体裁的特点和阅读方法。", keywords: "新闻,通讯,消息,初二语文" },
+        meta: { title: "新闻与通讯 - 初二语文 | AI奇妙语文", description: "学习新闻体裁的特点和阅读方法。", keywords: "新闻,通讯,消息,初二语文" },
         info: { title: "新闻与通讯", description: "读懂新闻，了解世界！学习新闻的独特语言！📰", tags: [{ text: "基础达标", color: "blue" }, { text: "30分钟", icon: Clock, color: "slate" }] },
         aiContext: "学生学习新闻体裁。理解新闻结构（标题、导语、主体、背景、结语），新闻六要素（何时、何地、何人、何事、何因、如何），以及新闻与通讯的区别。",
         aiChatTitle: "📰 新闻主编", aiChatIntro: "新闻是最讲究真实和简洁的文体！每个字都要经得起推敲！",
@@ -65,7 +65,7 @@ export const grade8Content = {
 
     // ==================== L2-1. 议论文写作入门 ====================
     'cn8-l2-argumentative-write': {
-        meta: { title: "议论文写作入门 - 初二语文 | AI7Miao语文", description: "学习议论文的基本写作方法。", keywords: "议论文写作,论点,论据,初二语文" },
+        meta: { title: "议论文写作入门 - 初二语文 | AI奇妙语文", description: "学习议论文的基本写作方法。", keywords: "议论文写作,论点,论据,初二语文" },
         info: { title: "议论文写作入门", description: "学会讲道理！论点鲜明、论据充分、论证有力！🎯", tags: [{ text: "素养进阶", color: "purple" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "学生学习议论文写作。掌握如何提出论点、选择论据、组织论证。学习并列式、递进式、对比式等结构。",
         aiChatTitle: "🎯 辩论教练", aiChatIntro: "写议论文就像打辩论！论点是你的立场，论据是你的武器！",
@@ -80,7 +80,7 @@ export const grade8Content = {
 
     // ==================== L2-2. 名著阅读（深入）====================
     'cn8-l2-classics-reading': {
-        meta: { title: "名著阅读 - 初二语文 | AI7Miao语文", description: "深入阅读初二必读名著。", keywords: "名著阅读,红星照耀中国,昆虫记,初二语文" },
+        meta: { title: "名著阅读 - 初二语文 | AI奇妙语文", description: "深入阅读初二必读名著。", keywords: "名著阅读,红星照耀中国,昆虫记,初二语文" },
         info: { title: "名著阅读（深入）", description: "深入经典，与文学大师对话！🏛️", tags: [{ text: "素养进阶", color: "purple" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "学生深入阅读初二必读名著：《红星照耀中国》（埃德加·斯诺）、《昆虫记》（法布尔）、《傅雷家书》。引导学生进行人物分析、主题探究和读书报告撰写。",
         aiChatTitle: "🏛️ 深度读书会", aiChatIntro: "每一部名著都是一个宝库！让我们一起深度挖掘！",
@@ -95,7 +95,7 @@ export const grade8Content = {
 
     // ==================== L2-3. 修辞与语法综合 ====================
     'cn8-l2-rhetoric-grammar': {
-        meta: { title: "修辞与语法综合 - 初二语文 | AI7Miao语文", description: "综合运用修辞手法和语法知识。", keywords: "修辞,语法,复句,初二语文" },
+        meta: { title: "修辞与语法综合 - 初二语文 | AI奇妙语文", description: "综合运用修辞手法和语法知识。", keywords: "修辞,语法,复句,初二语文" },
         info: { title: "修辞与语法综合", description: "修辞让语言生动，语法让表达准确！双剑合璧！⚔️", tags: [{ text: "素养进阶", color: "purple" }, { text: "35分钟", icon: Clock, color: "slate" }] },
         aiContext: "学生综合学习修辞和语法。复习并扩展修辞手法（比喻、拟人、排比、对偶、反问、设问、借代、夸张），学习复句类型（并列、递进、转折、因果、条件、假设）。",
         aiChatTitle: "⚔️ 语言炼金术", aiChatIntro: "修辞是锦上添花，语法是结构基础！两者结合才能写出好文章！",

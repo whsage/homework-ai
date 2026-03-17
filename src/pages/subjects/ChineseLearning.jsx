@@ -101,7 +101,7 @@ const ChineseLearning = () => {
     return (
         <>
             <Helmet>
-                <title>语文学习中心 - 小学初中高中语文知识点学习 | AI7Miao</title>
+                <title>语文学习中心 - 小学初中高中语文知识点学习 | AI奇妙</title>
                 <meta name="description" content="语文系统化学习平台，涵盖小学初中高中，拼音识字、阅读理解、古诗文、写作技巧。AI苏格拉底式教学引导。" />
                 <meta name="keywords" content="语文学习,小学语文,初中语文,高中语文,拼音,识字,阅读理解,古诗词,写作,AI教学" />
             </Helmet>

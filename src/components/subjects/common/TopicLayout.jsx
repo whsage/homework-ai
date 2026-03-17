@@ -235,7 +235,7 @@ const TopicLayout = ({
                             {meta.keywords.split(',').join(' | ')}
                         </p>
                         <p>
-                            AI7Miao - 专业的知识点学习平台，基于教育理论，提供深度的知识点讲解和AI互动学习
+                            AI奇妙 - 专业的知识点学习平台，基于教育理论，提供深度的知识点讲解和AI互动学习
                         </p>
                     </div>
                 </div>

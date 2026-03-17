@@ -6,7 +6,7 @@ export const grade1Content = {
     // ==================== L1-1. 声母韵母 ====================
     'cn1-l1-pinyin-initials': {
         meta: {
-            title: "声母韵母 - 一年级语文 | AI7Miao语文",
+            title: "声母韵母 - 一年级语文 | AI奇妙语文",
             description: "学习23个声母和24个韵母，掌握拼音系统的基础。",
             keywords: "声母,韵母,拼音,一年级语文"
         },
@@ -204,7 +204,7 @@ export const grade1Content = {
     // ==================== L1-2. 声调与拼读 ====================
     'cn1-l1-pinyin-tones': {
         meta: {
-            title: "声调与拼读 - 一年级语文 | AI7Miao语文",
+            title: "声调与拼读 - 一年级语文 | AI奇妙语文",
             description: "学习四个声调和拼读方法，掌握正确的发音技巧。",
             keywords: "声调,四声,拼读,一年级语文"
         },
@@ -363,7 +363,7 @@ export const grade1Content = {
 
     // ==================== L1-3. 基础识字 ====================
     'cn1-l1-basic-chars': {
-        meta: { title: "基础识字 - 一年级语文 | AI7Miao语文", description: "认识独体字和基础汉字，理解汉字的构造方式。", keywords: '识字,独体字,象形字,一年级语文' },
+        meta: { title: "基础识字 - 一年级语文 | AI奇妙语文", description: "认识独体字和基础汉字，理解汉字的构造方式。", keywords: '识字,独体字,象形字,一年级语文' },
         info: { title: "基础识字（独体字）", description: "每个汉字都是一幅小画！来看看古人是怎么把大自然画成文字的！🎨", tags: [{ text: '基础达标', color: 'blue' }, { text: '30分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生学习基础识字（独体字）。用象形字的故事来教学，如：'日'像太阳，'月'像弯弯的月牙，'山'像三座山峰。引导学生发挥想象力。",
         aiChatTitle: "🎨 汉字画家", aiChatIntro: "汉字原来都是画出来的！一起来看看古人画了什么？",
@@ -425,7 +425,7 @@ export const grade1Content = {
 
     // ==================== L1-4. 笔画与笔顺 ====================
     'cn1-l1-stroke-order': {
-        meta: { title: "笔画与笔顺 - 一年级语文 | AI7Miao语文", description: "学习基本笔画和笔顺规则，写出漂亮的汉字。", keywords: '笔画,笔顺,书写规范,一年级语文' },
+        meta: { title: "笔画与笔顺 - 一年级语文 | AI奇妙语文", description: "学习基本笔画和笔顺规则，写出漂亮的汉字。", keywords: '笔画,笔顺,书写规范,一年级语文' },
         info: { title: "笔画与笔顺", description: "写字就像盖房子，先打地基再建楼！按顺序写，字才漂亮！✍️", tags: [{ text: '基础达标', color: 'blue' }, { text: '25分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生学习笔画与笔顺。用盖房子的比喻讲笔顺规则：先横后竖（先铺地板再立墙壁），先撇后捺（先画屋顶左边再画右边），从上到下（从屋顶开始），从左到右（从左边开始）。",
         aiChatTitle: "✍️ 写字小建筑师", aiChatIntro: "写汉字就像盖房子，有顺序才盖得漂亮！来跟我学笔顺吧！",
@@ -489,7 +489,7 @@ export const grade1Content = {
 
     // ==================== L2-1. 看图说话 ====================
     'cn1-l2-picture-talk': {
-        meta: { title: "看图说话 - 一年级语文 | AI7Miao语文", description: "学会观察图片，用完整的句子有序地描述图画内容。", keywords: '看图说话,口头表达,一年级语文' },
+        meta: { title: "看图说话 - 一年级语文 | AI奇妙语文", description: "学会观察图片，用完整的句子有序地描述图画内容。", keywords: '看图说话,口头表达,一年级语文' },
         info: { title: "看图说话", description: "每幅画都在讲故事！学会用眼睛看、用嘴巴说，你就是小故事家！📸", tags: [{ text: '素养进阶', color: 'purple' }, { text: '25分钟', icon: Clock, color: 'slate' }] },
         aiContext: "学生学习看图说话。引导学生用'谁、在哪里、做什么'的句式来描述图片。鼓励想象和扩展。",
         aiChatTitle: "📸 故事小相机", aiChatIntro: "每一张图片都藏着一个故事！让我们一起把它说出来吧！",
@@ -517,7 +517,7 @@ export const grade1Content = {
 
     // ==================== L2-2. 儿歌与童谣 ====================
     'cn1-l2-nursery-rhymes': {
-        meta: { title: "儿歌与童谣 - 一年级语文 | AI7Miao语文", description: "通过朗读儿歌童谣培养语感和节奏感。", keywords: '儿歌,童谣,朗读,语感,一年级语文' },
+        meta: { title: "儿歌与童谣 - 一年级语文 | AI奇妙语文", description: "通过朗读儿歌童谣培养语感和节奏感。", keywords: '儿歌,童谣,朗读,语感,一年级语文' },
         info: { title: "儿歌与童谣", description: "唱着学语文，好听又好记！跟着节奏一起摇摆吧！🎶", tags: [{ text: '素养进阶', color: 'purple' }, { text: '20分钟', icon: Clock, color: 'slate' }] },
         aiContext: "学生学习儿歌与童谣。引导学生发现押韵、节奏。可以让学生尝试仿编简单的儿歌。",
         aiChatTitle: "🎶 儿歌小歌手", aiChatIntro: "来唱儿歌吧！你最喜欢哪首儿歌呢？",
@@ -545,7 +545,7 @@ export const grade1Content = {
 
     // ==================== L2-3. 简单句子 ====================
     'cn1-l2-simple-sentences': {
-        meta: { title: "简单句子 - 一年级语文 | AI7Miao语文", description: "学习造简单完整的句子，掌握基本句式。", keywords: '句子,造句,句式,一年级语文' },
+        meta: { title: "简单句子 - 一年级语文 | AI奇妙语文", description: "学习造简单完整的句子，掌握基本句式。", keywords: '句子,造句,句式,一年级语文' },
         info: { title: "简单句子", description: "把词语串成项链，变出漂亮的句子！📿", tags: [{ text: '素养进阶', color: 'purple' }, { text: '25分钟', icon: Clock, color: 'slate' }] },
         aiContext: "学生学习简单句子的构造。用'谁做什么''什么怎么样'等基本句式引导。鼓励学生把句子说得越来越生动。",
         aiChatTitle: "📿 句子串珠师", aiChatIntro: "词语就像珠子，把它们串起来就是美丽的句子项链！",

@@ -8,7 +8,7 @@ const NewSession = () => {
     return (
         <>
             <Helmet>
-                <title>上传作业 - 开始AI辅导 | AI7Miao</title>
+                <title>上传作业 - 开始AI辅导 | AI奇妙</title>
                 <meta name="description" content="上传您的作业题目，开始AI智能辅导。支持拍照上传，AI自动识别并提供苏格拉底式教学辅导。" />
                 <meta name="keywords" content="上传作业,AI辅导,拍照识别,作业题目,智能辅导" />
             </Helmet>

@@ -525,7 +525,7 @@ export const exportSessionAsPDF = async (session) => {
     // 页脚
     textContent += '\n' + '─'.repeat(60) + '\n';
     textContent += `导出时间：${formatTimestamp(new Date().toISOString())}\n`;
-    textContent += `HomeworkAI - 智能作业辅导系统\n`;
+    textContent += `AI奇妙 - 智能学习辅导系统\n`;
 
     // 下载为 TXT 文件
     const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });

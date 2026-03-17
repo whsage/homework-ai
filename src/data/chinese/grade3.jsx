@@ -5,7 +5,7 @@ export const grade3Content = {
 
     // ==================== L1-1. 阅读理解入门 ====================
     'cn3-l1-reading-intro': {
-        meta: { title: "阅读理解入门 - 三年级语文 | AI7Miao语文", description: "学习阅读理解的基本方法，培养提取信息和理解文意的能力。", keywords: '阅读理解,理解词语,概括段意,三年级语文' },
+        meta: { title: "阅读理解入门 - 三年级语文 | AI奇妙语文", description: "学习阅读理解的基本方法，培养提取信息和理解文意的能力。", keywords: '阅读理解,理解词语,概括段意,三年级语文' },
         info: { title: "阅读理解入门", description: "阅读就像当小侦探！在文字中找线索、解谜题！🔍", tags: [{ text: '基础达标', color: 'blue' }, { text: '30分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生学习阅读理解入门。引导学生掌握三步法：通读全文了解大意→带着问题精读→回到原文找答案。用侦探找线索的比喻。",
         aiChatTitle: "🔍 阅读小侦探", aiChatIntro: "每篇文章都藏着秘密！跟我一起当小侦探，把答案找出来！",
@@ -63,7 +63,7 @@ export const grade3Content = {
 
     // ==================== L1-2. 修辞手法 ====================
     'cn3-l1-rhetoric': {
-        meta: { title: "修辞手法 - 三年级语文 | AI7Miao语文", description: "学习比喻和拟人两种常用修辞手法。", keywords: '修辞手法,比喻,拟人,三年级语文' },
+        meta: { title: "修辞手法 - 三年级语文 | AI奇妙语文", description: "学习比喻和拟人两种常用修辞手法。", keywords: '修辞手法,比喻,拟人,三年级语文' },
         info: { title: "修辞手法（比喻·拟人）", description: "语言也能变魔术！比喻让事物更生动，拟人让万物都会说话！✨", tags: [{ text: '基础达标', color: 'blue' }, { text: '30分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生学习比喻和拟人。比喻是把A说成像B（本体、喻体、比喻词），拟人是把事物当人写。引导学生发现修辞的生动效果。",
         aiChatTitle: "✨ 修辞魔法师", aiChatIntro: "修辞手法让你的文字变得像魔法一样精彩！",
@@ -120,7 +120,7 @@ export const grade3Content = {
 
     // ==================== L1-3. 必背古诗词（上） ====================
     'cn3-l1-ancient-poems-1': {
-        meta: { title: "必背古诗词（上）- 三年级语文 | AI7Miao语文", description: "学习并背诵经典古诗词，体会诗歌的意境美。", keywords: '古诗词,必背古诗,三年级语文' },
+        meta: { title: "必背古诗词（上）- 三年级语文 | AI奇妙语文", description: "学习并背诵经典古诗词，体会诗歌的意境美。", keywords: '古诗词,必背古诗,三年级语文' },
         info: { title: "必背古诗词（上）", description: "穿越千年，和古代大诗人一起看山看水！每首诗都是一幅画！🏔️", tags: [{ text: '基础达标', color: 'blue' }, { text: '25分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生学习古诗词。用情境还原法帮助理解诗意：让学生想象自己回到诗人所处的场景。引导体味关键字词的妙处。",
         aiChatTitle: "🏔️ 诗词时光机", aiChatIntro: "坐上时光机，去看看古代诗人写诗时看到了什么！",
@@ -189,7 +189,7 @@ export const grade3Content = {
 
     // ==================== L1-4. 段落大意概括 ====================
     'cn3-l1-paragraph': {
-        meta: { title: "段落大意概括 - 三年级语文 | AI7Miao语文", description: "学习概括段落大意和找中心句的方法。", keywords: '段落大意,中心句,概括,三年级语文' },
+        meta: { title: "段落大意概括 - 三年级语文 | AI奇妙语文", description: "学习概括段落大意和找中心句的方法。", keywords: '段落大意,中心句,概括,三年级语文' },
         info: { title: "段落大意概括", description: "把一大段话缩成一句话！学会抓重点，你就是'缩句大王'！📄", tags: [{ text: '基础达标', color: 'blue' }, { text: '30分钟', icon: Clock, color: 'slate' }] },
         aiContext: "学生学习段落大意概括。教会找中心句（通常在段首或段尾），以及用'谁+做了什么+结果怎样'来概括大意。",
         aiChatTitle: "📄 概括小能手", aiChatIntro: "一段话太长记不住？学会概括，一句话就能说清楚！",
@@ -217,7 +217,7 @@ export const grade3Content = {
 
     // ==================== L2-1. 写作启蒙 ====================
     'cn3-l2-writing-intro': {
-        meta: { title: "写作启蒙 - 三年级语文 | AI7Miao语文", description: "学习写人写事的基本方法。", keywords: '写作,写人,写事,三年级语文' },
+        meta: { title: "写作启蒙 - 三年级语文 | AI奇妙语文", description: "学习写人写事的基本方法。", keywords: '写作,写人,写事,三年级语文' },
         info: { title: "写作启蒙（写人写事）", description: "用文字画一个人、讲一件事！你也可以是小作家！📝", tags: [{ text: '素养进阶', color: 'purple' }, { text: '35分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生学习写人和写事的作文。写人要抓住外貌、语言、动作、心理描写；写事要按开头→经过→结尾的顺序。",
         aiChatTitle: "📝 小作家工坊", aiChatIntro: "每个人都有故事可以写！来学习把故事写得精彩吧！",
@@ -245,7 +245,7 @@ export const grade3Content = {
 
     // ==================== L2-2. 关联词语 ====================
     'cn3-l2-conjunctions': {
-        meta: { title: "关联词语 - 三年级语文 | AI7Miao语文", description: "学习常用关联词语的搭配和用法。", keywords: '关联词,因果关系,转折关系,三年级语文' },
+        meta: { title: "关联词语 - 三年级语文 | AI奇妙语文", description: "学习常用关联词语的搭配和用法。", keywords: '关联词,因果关系,转折关系,三年级语文' },
         info: { title: "关联词语", description: "关联词就像句子之间的桥梁，把两个意思连起来！🌉", tags: [{ text: '素养进阶', color: 'purple' }, { text: '25分钟', icon: Clock, color: 'slate' }] },
         aiContext: "学生学习关联词语。用配对的方式教学，强调关联词必须成对使用。用生活场景造句。",
         aiChatTitle: "🌉 造桥小工匠", aiChatIntro: "关联词就是连接两个句子的小桥！学会造桥，你的句子会更通顺！",
@@ -273,7 +273,7 @@ export const grade3Content = {
 
     // ==================== L2-3. 日记与周记 ====================
     'cn3-l2-diary': {
-        meta: { title: "日记与周记 - 三年级语文 | AI7Miao语文", description: "学习写日记和周记的格式和方法。", keywords: '日记,周记,写作,三年级语文' },
+        meta: { title: "日记与周记 - 三年级语文 | AI奇妙语文", description: "学习写日记和周记的格式和方法。", keywords: '日记,周记,写作,三年级语文' },
         info: { title: "日记与周记", description: "每天写一点，记录生活中的点点滴滴！日记是你最忠实的朋友！📔", tags: [{ text: '素养进阶', color: 'purple' }, { text: '30分钟', icon: Clock, color: 'slate' }] },
         aiContext: "学生学习写日记。重点讲日记格式（日期、星期、天气）和写作要点（真实、有感受、选一件事写）。",
         aiChatTitle: "📔 日记小管家", aiChatIntro: "日记就是和自己聊天！今天发生了什么有趣的事呢？",

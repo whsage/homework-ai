@@ -1,5 +1,5 @@
 # robots.txt for ai7miao.com
-# AI Homework Tutor Platform
+# AI奇妙 - AI学习辅导平台
 
 # Allow all search engines to crawl
 User-agent: *

@@ -29,7 +29,7 @@ git init
 git add .
 
 # 5. 提交
-git commit -m "Initial commit - 智能作业辅导系统"
+git commit -m "Initial commit - 智能学习辅导系统"
 
 # 6. 在 GitHub 创建仓库后，连接远程仓库
 git remote add origin https://github.com/whsage/homework-ai.git

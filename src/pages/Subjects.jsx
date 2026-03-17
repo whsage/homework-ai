@@ -31,8 +31,8 @@ const Subjects = () => {
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
             <Helmet>
-                <title>知识点学习中心 - 科学的学习体系 | AI7Miao</title>
-                <meta name="description" content="AI7Miao知识点学习中心，提供数学、物理、英语等全学科的系统化AI辅导。" />
+                <title>知识点学习中心 - 科学的学习体系 | AI奇妙</title>
+                <meta name="description" content="AI奇妙知识点学习中心，提供数学、物理、英语等全学科的系统化AI辅导。" />
             </Helmet>
 
             <div className="max-w-6xl mx-auto p-6 md:p-8 space-y-12">

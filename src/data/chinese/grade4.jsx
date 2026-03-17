@@ -5,7 +5,7 @@ export const grade4Content = {
 
     // ==================== L1-1. 缩句与扩句 ====================
     'cn4-l1-sentence-transform': {
-        meta: { title: "缩句与扩句 - 四年级语文 | AI7Miao语文", description: "学习缩句和扩句的方法，掌握句子的基本结构。", keywords: '缩句,扩句,句式变换,四年级语文' },
+        meta: { title: "缩句与扩句 - 四年级语文 | AI奇妙语文", description: "学习缩句和扩句的方法，掌握句子的基本结构。", keywords: '缩句,扩句,句式变换,四年级语文' },
         info: { title: "缩句与扩句", description: "句子也能变大变小！缩句像脱衣服，扩句像穿衣服！👔", tags: [{ text: '基础达标', color: 'blue' }, { text: '30分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生学习缩句与扩句。缩句：去掉修饰成分（'的''地''得'前面的词），保留主干'谁+做什么'。扩句：给主干添加修饰成分让句子更生动。用穿衣脱衣的比喻。",
         aiChatTitle: "👔 句子变装师", aiChatIntro: "给句子穿新衣裳或脱衣裳！你的句子你做主！",
@@ -63,7 +63,7 @@ export const grade4Content = {
 
     // ==================== L1-2. 关联词应用 ====================
     'cn4-l1-conjunction-usage': {
-        meta: { title: "关联词应用 - 四年级语文 | AI7Miao语文", description: "深入学习关联词的辨析和在复杂句中的运用。", keywords: '关联词,复句,四年级语文' },
+        meta: { title: "关联词应用 - 四年级语文 | AI奇妙语文", description: "深入学习关联词的辨析和在复杂句中的运用。", keywords: '关联词,复句,四年级语文' },
         info: { title: "关联词应用", description: "关联词升级版！不光要会用，还要选得对！🎯", tags: [{ text: '基础达标', color: 'blue' }, { text: '30分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生进阶学习关联词。重点在于辨析易混淆的关联词（如'虽然…但是…'和'尽管…还是…'），以及在选择题中正确选用关联词。",
         aiChatTitle: "🎯 关联词达人", aiChatIntro: "三年级学了基础关联词，现在我们来升级打怪！",
@@ -91,7 +91,7 @@ export const grade4Content = {
 
     // ==================== L1-3. 必背古诗词（下） ====================
     'cn4-l1-ancient-poems-2': {
-        meta: { title: "必背古诗词（下）- 四年级语文 | AI7Miao语文", description: "学习更多经典古诗词，深入赏析手法与情感。", keywords: '古诗词,诗词鉴赏,四年级语文' },
+        meta: { title: "必背古诗词（下）- 四年级语文 | AI奇妙语文", description: "学习更多经典古诗词，深入赏析手法与情感。", keywords: '古诗词,诗词鉴赏,四年级语文' },
         info: { title: "必背古诗词（下）", description: "更多名篇佳作！感受诗词之美，学会赏析古人的智慧！🌺", tags: [{ text: '基础达标', color: 'blue' }, { text: '25分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生学习更多古诗词。四年级需要更深层次的赏析：不仅理解诗意，还要体会关键词的妙处和诗人的情感变化。",
         aiChatTitle: "🌺 诗词品鉴家", aiChatIntro: "当个小小诗词品鉴家，品味每一个字的精妙！",
@@ -138,7 +138,7 @@ export const grade4Content = {
 
     // ==================== L1-4. 阅读理解（记叙文） ====================
     'cn4-l1-reading-comprehension': {
-        meta: { title: "阅读理解（记叙文）- 四年级语文 | AI7Miao语文", description: "学习分析记叙文的人物、事件、中心思想。", keywords: '阅读理解,记叙文,中心思想,四年级语文' },
+        meta: { title: "阅读理解（记叙文）- 四年级语文 | AI奇妙语文", description: "学习分析记叙文的人物、事件、中心思想。", keywords: '阅读理解,记叙文,中心思想,四年级语文' },
         info: { title: "阅读理解（记叙文）", description: "读懂文章的'骨架'和'灵魂'！从人物和事件中找到作者想说的话！📖", tags: [{ text: '基础达标', color: 'blue' }, { text: '35分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生学习记叙文阅读理解。重点是六要素（时间、地点、人物、起因、经过、结果）和归纳中心思想的方法。",
         aiChatTitle: "📖 阅读分析师", aiChatIntro: "记叙文有六大线索！找到它们，文章就被你'破解'了！",
@@ -166,7 +166,7 @@ export const grade4Content = {
 
     // ==================== L2-1. 写作进阶（写景状物） ====================
     'cn4-l2-writing-scenes': {
-        meta: { title: "写作进阶 - 四年级语文 | AI7Miao语文", description: "学习写景和状物的方法和技巧。", keywords: '写景,状物,描写,四年级语文' },
+        meta: { title: "写作进阶 - 四年级语文 | AI奇妙语文", description: "学习写景和状物的方法和技巧。", keywords: '写景,状物,描写,四年级语文' },
         info: { title: "写作进阶（写景状物）", description: "用文字画一幅画！让读者看了你的文章就像身临其境！🎨", tags: [{ text: '素养进阶', color: 'purple' }, { text: '35分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生学习写景状物。写景要按顺序（时间或空间），运用修辞手法（比喻拟人），调动感官描写（看听闻触）。",
         aiChatTitle: "🎨 风景画家", aiChatIntro: "用文字当画笔，画出最美的风景！",
@@ -194,7 +194,7 @@ export const grade4Content = {
 
     // ==================== L2-2. 病句修改 ====================
     'cn4-l2-sick-sentences': {
-        meta: { title: "病句修改 - 四年级语文 | AI7Miao语文", description: "学习识别和修改常见病句类型。", keywords: '病句,修改病句,语病,四年级语文' },
+        meta: { title: "病句修改 - 四年级语文 | AI奇妙语文", description: "学习识别和修改常见病句类型。", keywords: '病句,修改病句,语病,四年级语文' },
         info: { title: "病句修改", description: "句子也会'生病'！当个小医生，给句子看病开药方！🏥", tags: [{ text: '素养进阶', color: 'purple' }, { text: '30分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生学习病句修改。四大病句类型：成分残缺、搭配不当、语序不当、重复啰嗦。用'看病'的比喻教学。",
         aiChatTitle: "🏥 句子小医生", aiChatIntro: "句子也会生病！来当小医生，找出病因，开出药方！",
@@ -222,7 +222,7 @@ export const grade4Content = {
 
     // ==================== L2-3. 修辞手法进阶 ====================
     'cn4-l2-rhetoric-adv': {
-        meta: { title: "修辞手法进阶 - 四年级语文 | AI7Miao语文", description: "学习排比和夸张修辞手法。", keywords: '排比,夸张,修辞手法,四年级语文' },
+        meta: { title: "修辞手法进阶 - 四年级语文 | AI奇妙语文", description: "学习排比和夸张修辞手法。", keywords: '排比,夸张,修辞手法,四年级语文' },
         info: { title: "修辞手法（排比·夸张）", description: "排比让文章有气势！夸张让文章有张力！又学两招修辞魔法！💫", tags: [{ text: '素养进阶', color: 'purple' }, { text: '25分钟', icon: Clock, color: 'slate' }] },
         aiContext: "学生学习排比和夸张。排比是三个以上结构相似的句子；夸张是有意放大或缩小事物特征。辨析适度夸张与不合理表达的区别。",
         aiChatTitle: "💫 修辞大师", aiChatIntro: "排比和夸张是让文章更有感染力的秘密武器！",

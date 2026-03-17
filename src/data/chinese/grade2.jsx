@@ -5,7 +5,7 @@ export const grade2Content = {
 
     // ==================== L1-1. 偏旁部首 ====================
     'cn2-l1-radicals': {
-        meta: { title: "偏旁部首 - 二年级语文 | AI7Miao语文", description: "学习常用偏旁部首，掌握形旁表意、声旁表音的规律。", keywords: '偏旁部首,形旁,声旁,二年级语文' },
+        meta: { title: "偏旁部首 - 二年级语文 | AI奇妙语文", description: "学习常用偏旁部首，掌握形旁表意、声旁表音的规律。", keywords: '偏旁部首,形旁,声旁,二年级语文' },
         info: { title: "偏旁部首", description: "偏旁就像汉字的'零件'！认识了零件，就能拼出更多汉字！🔧", tags: [{ text: '基础达标', color: 'blue' }, { text: '25分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生学习偏旁部首。用'汉字工厂'比喻：偏旁就是零件，不同零件组装出不同的字。重点讲解形旁表意（氵和水有关）、声旁表音（'青'作声旁的字读音接近）。",
         aiChatTitle: "🔧 汉字工厂", aiChatIntro: "欢迎来到汉字工厂！这里的零件组合起来就能造出好多新字！",
@@ -67,7 +67,7 @@ export const grade2Content = {
 
     // ==================== L1-2. 组词造句 ====================
     'cn2-l1-word-building': {
-        meta: { title: "组词造句 - 二年级语文 | AI7Miao语文", description: "学习组词和造句技巧，丰富词汇量和表达能力。", keywords: '组词,造句,词语搭配,二年级语文' },
+        meta: { title: "组词造句 - 二年级语文 | AI奇妙语文", description: "学习组词和造句技巧，丰富词汇量和表达能力。", keywords: '组词,造句,词语搭配,二年级语文' },
         info: { title: "组词造句", description: "一个字可以组出好多词，一个词可以造出好多句子！像变魔术一样！🎩", tags: [{ text: '基础达标', color: 'blue' }, { text: '30分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生学习组词造句。引导学生从一个字扩展到词组再到完整句子，逐步丰富表达。",
         aiChatTitle: "🎩 词语魔术师", aiChatIntro: "一个字能变出好多词语！来玩词语变魔术吧！",
@@ -95,7 +95,7 @@ export const grade2Content = {
 
     // ==================== L1-3. 标点符号 ====================
     'cn2-l1-punctuation': {
-        meta: { title: "标点符号 - 二年级语文 | AI7Miao语文", description: "学习常用标点符号的用法和作用。", keywords: '标点符号,句号,问号,感叹号,二年级语文' },
+        meta: { title: "标点符号 - 二年级语文 | AI奇妙语文", description: "学习常用标点符号的用法和作用。", keywords: '标点符号,句号,问号,感叹号,二年级语文' },
         info: { title: "标点符号", description: "标点符号是句子的'表情包'！没有它们，句子就没有感情啦！😊❓❗", tags: [{ text: '基础达标', color: 'blue' }, { text: '25分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生学习标点符号。用'句子的表情包'来教学：句号像微笑脸（平静说完），问号像疑惑脸（有疑问），感叹号像惊讶脸（有感情）。",
         aiChatTitle: "😊 标点表情包", aiChatIntro: "标点符号就是句子的表情！来学习它们各自代表什么感情吧！",
@@ -123,7 +123,7 @@ export const grade2Content = {
 
     // ==================== L1-4. 查字典方法 ====================
     'cn2-l1-dictionary': {
-        meta: { title: "查字典方法 - 二年级语文 | AI7Miao语文", description: "学习音序查字法和部首查字法。", keywords: '查字典,音序查字法,部首查字法,二年级语文' },
+        meta: { title: "查字典方法 - 二年级语文 | AI奇妙语文", description: "学习音序查字法和部首查字法。", keywords: '查字典,音序查字法,部首查字法,二年级语文' },
         info: { title: "查字典方法", description: "字典是最好的语文老师！学会查字典，遇到生字再也不怕！📖", tags: [{ text: '基础达标', color: 'blue' }, { text: '20分钟', icon: Clock, color: 'slate' }] },
         aiContext: "学生学习查字典。音序查字法适合知道读音的字，部首查字法适合不认识的字。用'找人'的比喻。",
         aiChatTitle: "📖 字典小侦探", aiChatIntro: "字典里藏着所有汉字的秘密！跟我当小侦探，把它们找出来！",
@@ -151,7 +151,7 @@ export const grade2Content = {
 
     // ==================== L2-1. 看图写话 ====================
     'cn2-l2-picture-writing': {
-        meta: { title: "看图写话 - 二年级语文 | AI7Miao语文", description: "从看图说话升级到看图写话，学会用文字记录故事。", keywords: '看图写话,写话,二年级语文' },
+        meta: { title: "看图写话 - 二年级语文 | AI奇妙语文", description: "从看图说话升级到看图写话，学会用文字记录故事。", keywords: '看图写话,写话,二年级语文' },
         info: { title: "看图写话", description: "把嘴巴说的故事用笔写下来！从说到写，你就是小作家啦！✏️", tags: [{ text: '素养进阶', color: 'purple' }, { text: '30分钟', icon: Clock, color: 'slate' }, { text: '重点', icon: Star, color: 'orange' }] },
         aiContext: "学生学习看图写话。在一年级看图说话基础上升级为写话。引导使用'四要素'：时间、地点、人物、事件。",
         aiChatTitle: "✏️ 小作家训练营", aiChatIntro: "你已经会看图说话了，现在我们来把故事写下来！",
@@ -179,7 +179,7 @@ export const grade2Content = {
 
     // ==================== L2-2. 成语故事 ====================
     'cn2-l2-idioms': {
-        meta: { title: "成语故事 - 二年级语文 | AI7Miao语文", description: "通过有趣的故事学习常用成语。", keywords: '成语,成语故事,二年级语文' },
+        meta: { title: "成语故事 - 二年级语文 | AI奇妙语文", description: "通过有趣的故事学习常用成语。", keywords: '成语,成语故事,二年级语文' },
         info: { title: "成语故事", description: "四个字藏着一个大故事！成语是古人留下的智慧宝藏！💎", tags: [{ text: '素养进阶', color: 'purple' }, { text: '25分钟', icon: Clock, color: 'slate' }] },
         aiContext: "学生学习成语故事。用讲故事的方式引入成语，让学生理解成语的来源和含义，并尝试在句子中运用。",
         aiChatTitle: "💎 成语大冒险", aiChatIntro: "每个成语背后都有一个精彩的故事！来听故事学成语吧！",
@@ -207,7 +207,7 @@ export const grade2Content = {
 
     // ==================== L2-3. 近义词与反义词 ====================
     'cn2-l2-antonyms-synonyms': {
-        meta: { title: "近义词与反义词 - 二年级语文 | AI7Miao语文", description: "学习常见的近义词和反义词对。", keywords: '近义词,反义词,二年级语文' },
+        meta: { title: "近义词与反义词 - 二年级语文 | AI奇妙语文", description: "学习常见的近义词和反义词对。", keywords: '近义词,反义词,二年级语文' },
         info: { title: "近义词与反义词", description: "词语也有双胞胎（近义词）和死对头（反义词）！认识它们让你的表达更丰富！👯", tags: [{ text: '素养进阶', color: 'purple' }, { text: '25分钟', icon: Clock, color: 'slate' }] },
         aiContext: "学生学习近义词和反义词。用'好朋友'和'反方向'的比喻帮助理解。",
         aiChatTitle: "👯 词语好朋友", aiChatIntro: "有些词语意思差不多是'好朋友'，有些意思完全相反是'对头'！来认识它们吧！",

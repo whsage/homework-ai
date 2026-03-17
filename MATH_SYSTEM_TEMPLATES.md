@@ -29,7 +29,7 @@ const NewTopicPage = () => { // 修改组件名
 
     // 1. SEO 元数据
     const meta = {
-        title: "页面标题 | AI7Miao数学学习",
+        title: "页面标题 | AI奇妙数学学习",
         description: "页面SEO描述",
         keywords: "关键词1,关键词2"
     };

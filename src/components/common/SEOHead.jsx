@@ -7,7 +7,7 @@ const SEOHead = ({
     canonicalUrl,
     ogType = 'website'
 }) => {
-    const siteTitle = 'AI7Miao 智能作业辅导';
+    const siteTitle = 'AI奇妙-学习辅导平台';
     const fullTitle = title ? `${title} - ${siteTitle}` : siteTitle;
     const baseUrl = 'https://ai7miao.com';
     const canonical = canonicalUrl ? `${baseUrl}${canonicalUrl}` : baseUrl;

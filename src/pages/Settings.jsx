@@ -21,8 +21,8 @@ const Settings = () => {
     return (
         <>
             <Helmet>
-                <title>个人设置 - 账户管理 | AI7Miao</title>
-                <meta name="description" content="管理您的AI7Miao账户设置，包括个人资料、偏好设置和通知选项。个性化您的作业辅导体验。" />
+                <title>个人设置 - 账户管理 | AI奇妙</title>
+                <meta name="description" content="管理您的AI奇妙账户设置，包括个人资料、偏好设置和通知选项。个性化您的学习辅导体验。" />
                 <meta name="keywords" content="个人设置,账户管理,用户资料,偏好设置" />
             </Helmet>
 

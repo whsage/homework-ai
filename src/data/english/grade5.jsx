@@ -7,7 +7,7 @@ import ReadingDetectiveLab from '../../components/subjects/english/elementary/Re
 // ==================== 五年级英语 ====================
 export const grade5Content = {
     'en5-l1-past-tense': {
-        meta: { title: "一般过去时 - 五年级英语 | AI7Miao英语", description: "掌握一般过去时的结构和动词过去式变化规则。", keywords: "一般过去时,past tense,动词过去式,五年级英语" },
+        meta: { title: "一般过去时 - 五年级英语 | AI奇妙英语", description: "掌握一般过去时的结构和动词过去式变化规则。", keywords: "一般过去时,past tense,动词过去式,五年级英语" },
         info: { title: "一般过去时", description: "Yesterday, I played football! 讲述昨天发生的事情！⏳", tags: [{ text: "基础达标", color: "blue" }, { text: "30分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "教授一般过去时：表示过去某个时间发生的动作或状态。规则动词加-ed的四种变化(一般加ed、结尾e加d、辅音+y变i加ed、重读闭音节双写加ed)。不规则动词(go-went, am/is-was, are-were, have-had)。时间标志词(yesterday, last week, in 2020)。",
         aiChatTitle: "⏳ 时光穿梭机", aiChatIntro: "昨天你做了什么？用一般过去时告诉我吧！",
@@ -22,7 +22,7 @@ export const grade5Content = {
     },
 
     'en5-l1-countable-uncountable': {
-        meta: { title: "可数名词与不可数名词 - 五年级英语 | AI7Miao英语", description: "区分可数与不可数名词，学习some/any和much/many的用法。", keywords: "可数名词,不可数名词,some,any,much,many,五年级英语" },
+        meta: { title: "可数名词与不可数名词 - 五年级英语 | AI奇妙英语", description: "区分可数与不可数名词，学习some/any和much/many的用法。", keywords: "可数名词,不可数名词,some,any,much,many,五年级英语" },
         info: { title: "可数与不可数名词", description: "水能数吗？米能数吗？认清英语里的数量概念！💧🍎", tags: [{ text: "基础达标", color: "blue" }, { text: "25分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "区分Countable(苹果、书、人)和Uncountable(水、米、牛奶、钱、面包)名词。量词的运用：some/any, much/many, a lot of, a piece/glass/bottle of。不可数名词不能直接加's'也不能直接加'a/an'。",
         aiChatTitle: "🍎 数量魔法师", aiChatIntro: "我们可以说'一个苹果'，但是能说'一个水'吗？",
@@ -37,7 +37,7 @@ export const grade5Content = {
     },
 
     'en5-l2-reading-methods': {
-        meta: { title: "阅读理解方法 - 五年级英语 | AI7Miao英语", description: "学习英语略读与寻读策略。", keywords: "阅读理解,略读,寻读,reading skills,五年级英语" },
+        meta: { title: "阅读理解方法 - 五年级英语 | AI奇妙英语", description: "学习英语略读与寻读策略。", keywords: "阅读理解,略读,寻读,reading skills,五年级英语" },
         info: { title: "阅读技能初步", description: "阅读不能一个字一个字查字母！学会快速找线索！📖", tags: [{ text: "能力拓展", color: "purple" }, { text: "30分钟", icon: Clock, color: "slate" }] },
         aiContext: "英语阅读两大核心技能入门：1. Skimming (略读/扫读) 抓大意：看标题、首尾段。2. Scanning (寻读/查读) 找细节：带着问题在文中找特定词汇(如数字、大写人名、地点)。克服遇到生词就停下来的坏习惯，利用上下文猜词。",
         aiChatTitle: "📖 阅读大侦探", aiChatIntro: "看到一篇长长的英语文章就害怕？我教你两招破案秘籍！",
@@ -55,7 +55,7 @@ export const grade5Content = {
 // ==================== 六年级英语 ====================
 export const grade6Content = {
     'en6-l1-future-tense': {
-        meta: { title: "一般将来时 - 六年级英语 | AI7Miao英语", description: "掌握一般将来时的两种表达方式：will 和 be going to。", keywords: "一般将来时,future tense,will,be going to,六年级英语" },
+        meta: { title: "一般将来时 - 六年级英语 | AI奇妙英语", description: "掌握一般将来时的两种表达方式：will 和 be going to。", keywords: "一般将来时,future tense,will,be going to,六年级英语" },
         info: { title: "一般将来时", description: "Tomorrow, Next week... 学习计划和预测未来！🚀", tags: [{ text: "基础达标", color: "blue" }, { text: "30分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "一般将来时的两种结构：1. will + 动词原形 (表示打算、预测)。 2. be going to + 动词原形 (表示有计划、有迹象的将来)。时间标志词：tomorrow, next year, in the future 等。",
         aiChatTitle: "🚀 未来畅想局", aiChatIntro: "下周末你打算做什么？长大了你想当什么？",
@@ -70,7 +70,7 @@ export const grade6Content = {
     },
 
     'en6-l1-grammar-review': {
-        meta: { title: "小升初语法总结 - 六年级英语 | AI7Miao英语", description: "汇总小学阶段三大核心时态和词性变化。", keywords: "小升初,英语语法,时态复习,六年级英语" },
+        meta: { title: "小升初语法总结 - 六年级英语 | AI奇妙英语", description: "汇总小学阶段三大核心时态和词性变化。", keywords: "小升初,英语语法,时态复习,六年级英语" },
         info: { title: "小升初语法全总结", description: "时态、词性大作战！备战小升初必备秘籍！⚔️", tags: [{ text: "基础达标", color: "blue" }, { text: "35分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "系统梳理小学三大核心时态：一般现在时(现在/习惯)、一般过去时(昨天/过去)、现在进行时(此刻正在)。对比三者的结构和时间标志词。梳理名词单复数、人称代词(主格/宾格)、形容词比较级。建立初步的语法框架体系。",
         aiChatTitle: "⚔️ 语法终结者", aiChatIntro: "打通小学英语语法大关，三种时态你能分清吗？",

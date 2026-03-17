@@ -14,7 +14,7 @@ export const grade9Content = {
     // ==================== 21. 一元二次方程 ====================
     'mid-9-1-quadratic-equations': {
         meta: {
-            title: "一元二次方程 - 解法与应用 | AI7Miao数学",
+            title: "一元二次方程 - 解法与应用 | AI奇妙数学",
             description: "掌握一元二次方程的定义、解法(配方法、公式法、因式分解法)及根与系数的关系。通过面积问题理解二次方程的实际意义。",
             keywords: "一元二次方程,求根公式,韦达定理,配方法,判别式"
         },
@@ -272,7 +272,7 @@ export const grade9Content = {
     // ==================== 22. 二次函数 (保留原有) ====================
     'mid-9-2-quadratic-functions': {
         meta: {
-            title: "二次函数知识点详解 - 图像性质与应用 | AI7Miao数学学习",
+            title: "二次函数知识点详解 - 图像性质与应用 | AI奇妙数学学习",
             description: "详细讲解二次函数的概念、图像、性质和应用。包括配方法、顶点式、一般式等，提供AI互动学习和练习题。基于建构主义学习理论，引导式教学。",
             keywords: "二次函数,二次函数图像,二次函数性质,配方法,顶点式,抛物线,二次函数应用,数学知识点,初中数学"
         },
@@ -587,7 +587,7 @@ export const grade9Content = {
     // ==================== 23. 旋转 ====================
     'mid-9-1-rotation': {
         meta: {
-            title: "图形的旋转 - 几何变换 | AI7Miao数学",
+            title: "图形的旋转 - 几何变换 | AI奇妙数学",
             description: "理解图形旋转的三要素：旋转中心、旋转方向和旋转角。掌握中心对称图形的性质。",
             keywords: "旋转,中心对称,旋转中心,几何变换"
         },
@@ -663,7 +663,7 @@ export const grade9Content = {
     // ==================== 24. 圆 ====================
     'mid-9-1-circles-basic': {
         meta: {
-            title: "圆的性质与计算 - 垂径定理与圆周角 | AI7Miao数学",
+            title: "圆的性质与计算 - 垂径定理与圆周角 | AI奇妙数学",
             description: "深入学习圆的所有性质：垂径定理、圆心角与圆周角的关系、切线的判定与性质。",
             keywords: "圆,垂径定理,圆周角,切线"
         },
@@ -804,7 +804,7 @@ export const grade9Content = {
 
     'mid-9-1-probability': {
         meta: {
-            title: "概率初步 - 随机事件与概率计算 | AI7Miao数学",
+            title: "概率初步 - 随机事件与概率计算 | AI奇妙数学",
             description: "理解确定性事件与随机事件，掌握用列举法（列表、画树状图）求概率。",
             keywords: "概率,随机事件,树状图,频率与概率"
         },
@@ -858,7 +858,7 @@ export const grade9Content = {
     // ==================== 26. 反比例函数 ====================
     'mid-9-2-inverse-proportional': {
         meta: {
-            title: "反比例函数 - 图像与性质 | AI7Miao数学",
+            title: "反比例函数 - 图像与性质 | AI奇妙数学",
             description: "掌握反比例函数的解析式 y=k/x，理解其双曲线图像与k值的关系。",
             keywords: "反比例函数,双曲线,反比例函数图像"
         },
@@ -924,7 +924,7 @@ export const grade9Content = {
     // ==================== 27. 相似 ====================
     'mid-9-2-similarity': {
         meta: {
-            title: "相似图形 - 相似三角形判定与性质 | AI7Miao数学",
+            title: "相似图形 - 相似三角形判定与性质 | AI奇妙数学",
             description: "学习相似图形的概念，重点掌握相似三角形的判定定理（AA, SAS, SSS）及性质。",
             keywords: "相似,相似三角形,位似"
         },
@@ -1007,7 +1007,7 @@ export const grade9Content = {
     // ==================== 28. 锐角三角函数 ====================
     'mid-9-2-trigonometry': {
         meta: {
-            title: "锐角三角函数 - sin cos tan | AI7Miao数学",
+            title: "锐角三角函数 - sin cos tan | AI奇妙数学",
             description: "在直角三角形中理解正弦(sin)、余弦(cos)、正切(tan)的定义，记住特殊角的三角函数值。",
             keywords: "三角函数,sin,cos,tan,解直角三角形"
         },

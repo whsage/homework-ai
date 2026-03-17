@@ -5,7 +5,7 @@ import SentenceTrain from '../../components/subjects/english/elementary/Sentence
 // ==================== 三年级英语 ====================
 export const grade3Content = {
     'en3-l1-nouns-articles': {
-        meta: { title: "名词与冠词 - 三年级英语 | AI7Miao英语", description: "学习英语中名词的单复数变化和冠词a/an的用法。", keywords: "名词,单复数,冠词,a,an,三年级英语" },
+        meta: { title: "名词与冠词 - 三年级英语 | AI奇妙英语", description: "学习英语中名词的单复数变化和冠词a/an的用法。", keywords: "名词,单复数,冠词,a,an,三年级英语" },
         info: { title: "名词与冠词", description: "a apple 还是 an apple？一个苹果还是两个苹果们？一起来学！🍎🍎", tags: [{ text: "基础达标", color: "blue" }, { text: "25分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "教授名词的单数和复数规则(加-s, -es, -ies及不规则变化如man-men, child-children)，以及不定冠词 a/an 的用法区别 (元音音素开头的单词前用 an)。",
         aiChatTitle: "🍎 词汇魔法师", aiChatIntro: "你能把一个苹果(apple)变成很多个苹果吗？试着加上词尾吧！",
@@ -20,7 +20,7 @@ export const grade3Content = {
     },
 
     'en3-l1-be-verbs': {
-        meta: { title: "Be动词与一般现在时 - 三年级英语 | AI7Miao英语", description: "掌握 am, is, are 的用法及一般现在时的基本构成。", keywords: "be动词,am is are,一般现在时,三年级英语" },
+        meta: { title: "Be动词与一般现在时 - 三年级英语 | AI奇妙英语", description: "掌握 am, is, are 的用法及一般现在时的基本构成。", keywords: "be动词,am is are,一般现在时,三年级英语" },
         info: { title: "Be动词与一般现在时", description: "I用am，you用are，is跟着他她它！学会Be动词的绝密口诀！🔗", tags: [{ text: "基础达标", color: "blue" }, { text: "30分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "梳理Be动词(am, is, are)的搭配规则：I am, You/We/They are, He/She/It is。介绍一般现在时当主语是第三人称单数时，动词要加-s或-es的规则(He likes apples)。",
         aiChatTitle: "🔗 动词连连看", aiChatIntro: "主语和Be动词是好朋友，它们是怎么搭配的呢？",
@@ -35,7 +35,7 @@ export const grade3Content = {
     },
 
     'en3-l1-yes-no-questions': {
-        meta: { title: "疑问句入门 - 三年级英语 | AI7Miao英语", description: "学习一般疑问句和特殊疑问句的构成与回答。", keywords: "一般疑问句,特殊疑问句,WH问句,三年级英语" },
+        meta: { title: "疑问句入门 - 三年级英语 | AI奇妙英语", description: "学习一般疑问句和特殊疑问句的构成与回答。", keywords: "一般疑问句,特殊疑问句,WH问句,三年级英语" },
         info: { title: "一般疑问句与特殊疑问句", description: "Are you a student? What is this? 学会用英语提问！❓", tags: [{ text: "基础达标", color: "blue" }, { text: "25分钟", icon: Clock, color: "slate" }, { text: "重点", icon: Star, color: "orange" }] },
         aiContext: "教授一般疑问句的基本结构：将Be动词或助动词(do/does)提前，用Yes/No回答(Are you ready? Yes, I am)。介绍特殊疑问词(5W1H：What, Who, Where, When, Why, How)的含义和用法。",
         aiChatTitle: "❓ 提问小达人", aiChatIntro: "对这个世界充满好奇？学会用英语问问题吧！",
@@ -50,7 +50,7 @@ export const grade3Content = {
     },
 
     'en3-l2-daily-dialogues': {
-        meta: { title: "日常对话场景 - 三年级英语 | AI7Miao英语", description: "在特定场景中的英语对话全真模拟。", keywords: "对话练习,餐厅点餐,打电话,三年级英语" },
+        meta: { title: "日常对话场景 - 三年级英语 | AI奇妙英语", description: "在特定场景中的英语对话全真模拟。", keywords: "对话练习,餐厅点餐,打电话,三年级英语" },
         info: { title: "日常对话场景", description: "点餐、问路、打电话！把英语用到生活中去！🍔路线", tags: [{ text: "能力拓展", color: "purple" }, { text: "25分钟", icon: Clock, color: "slate" }] },
         aiContext: "设定餐厅点餐(I'd like some...), 问路(Excuse me, where is the...?), 邀请(Let's go to...)等场景让学生进行角色扮演对话。强调口语交际的自然感。",
         aiChatTitle: "🎭 英语情景剧", aiChatIntro: "我们在快餐店点餐吧！我当服务员，你当客人。你想吃什么？",

@@ -4,7 +4,7 @@ import { PracticeProblem } from './common';
 // ==================== 高一英语 ====================
 export const grade10Content = {
     'en10-l1-tense-voice': {
-        meta: { title: "时态与语态大融通 - 高一英语 | AI7Miao英语", description: "高中英语时态体系深化：过去完成时、将来进行时及被动语态特例。", keywords: "英语时态,被动语态,过去完成时,高一英语" },
+        meta: { title: "时态与语态大融通 - 高一英语 | AI奇妙英语", description: "高中英语时态体系深化：过去完成时、将来进行时及被动语态特例。", keywords: "英语时态,被动语态,过去完成时,高一英语" },
         info: { title: "时态与语态大融通", description: "打破初高中壁垒，建立真正的16时态三维坐标系！🌐", tags: [{ text: "基础达标", color: "blue" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "核心语法", icon: Star, color: "orange" }] },
         aiContext: "高中重点时态突破：1. 过去完成时(had done)：表示'过去的过去'，强调两个动作的先后顺序，常与by+过去时间或when从句(一般过去时)连用。 2. 将来进行时(will be doing)：表示将来某个时刻正在发生的动作。 3. 语态进阶：'感官动词+adj'(look, smell)主动表被动；'be to be done'结构。",
         aiChatTitle: "🌐 时空三维坐标", aiChatIntro: "英语有过去、现在、将来三个维度，加上一般、进行、完成三个状态，组成了庞大的时空网络。",
@@ -18,7 +18,7 @@ export const grade10Content = {
     },
 
     'en10-l1-application-writing': {
-        meta: { title: "应用文写作 - 高一英语 | AI7Miao英语", description: "高中常考应用文体裁：书信邮件、发言稿、倡议书的格式与金句。", keywords: "应用文写作,英语邮件,倡议书,发言稿,高一英语" },
+        meta: { title: "应用文写作 - 高一英语 | AI奇妙英语", description: "高中常考应用文体裁：书信邮件、发言稿、倡议书的格式与金句。", keywords: "应用文写作,英语邮件,倡议书,发言稿,高一英语" },
         info: { title: "实用应用文写作", description: "李华又遇到麻烦了，帮他写生动的英文邮件！✉️", tags: [{ text: "基础达标", color: "blue" }, { text: "35分钟", icon: Clock, color: "slate" }, { text: "满分模板", icon: Star, color: "orange" }] },
         aiContext: "详细拆解高中阶段最常考的'中国籍学生李华'相关应用文。重点包含三种体裁：1. 书信邮件（邀请信、建议信、感谢信、道歉信）：称呼语，开门见山说明来意，主体论述(条理清晰，连接词)，期盼回复结尾。 2. 倡议书/演讲稿：称呼听众，阐明现状背景，列举三点倡议(First, Moreover, Lastly)，呼吁行动结尾(Action speaks louder than words!)。",
         aiChatTitle: "✉️ 拯救李华联盟", aiChatIntro: "李华又要给外国朋友写信了，你能帮他拿满分吗？",
@@ -35,7 +35,7 @@ export const grade10Content = {
 // ==================== 高二英语 ====================
 export const grade11Content = {
     'en11-l1-subjunctive': {
-        meta: { title: "虚拟语气 - 高二英语 | AI7Miao英语", description: "彻底搞懂if条件句中的虚拟语气与wish/would rather宾语从句的虚拟。", keywords: "虚拟语气,subjunctive mood,if条件句虚拟,高二英语" },
+        meta: { title: "虚拟语气 - 高二英语 | AI奇妙英语", description: "彻底搞懂if条件句中的虚拟语气与wish/would rather宾语从句的虚拟。", keywords: "虚拟语气,subjunctive mood,if条件句虚拟,高二英语" },
         info: { title: "虚拟语气", description: "If I were you, I wouldn't do that. 假设非真实情况的语法！💭", tags: [{ text: "基础达标", color: "blue" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "难点突破", icon: Star, color: "orange" }] },
         aiContext: "系统突破虚拟语气：1. If引导的非真实条件句：对现在的虚拟(从句did/were，主句would/could/might do)、对过去的虚拟(从句had done，主句would have done)、对将来的虚拟。 2. 省略If的倒装(Had I known... = If I had known...)。 3. wish / would rather / as if 引导的从句中的虚拟变法规律。",
         aiChatTitle: "💭 幻想空间系", aiChatIntro: "如果我是一只鸟，如果昨天没下雨...英语是如何表达'妄想'的？",
@@ -49,7 +49,7 @@ export const grade11Content = {
     },
 
     'en11-l1-non-finite': {
-        meta: { title: "非谓语动词 - 高二英语 | AI7Miao英语", description: "高中最核心语法：动名词、现在分词、过去分词与不定式的系统讲解。", keywords: "非谓语动词,doing,done,todo,高二英语" },
+        meta: { title: "非谓语动词 - 高二英语 | AI奇妙英语", description: "高中最核心语法：动名词、现在分词、过去分词与不定式的系统讲解。", keywords: "非谓语动词,doing,done,todo,高二英语" },
         info: { title: "非谓语动词终极奥义", description: "doing 是主动还是进行？done 是被动还是完成？彻底解剖它！🔪", tags: [{ text: "基础达标", color: "blue" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "难点突破", icon: Star, color: "orange" }] },
         aiContext: "深入讲解非谓语动词三大形式及其核心意义：1. to do (不定式)：表【将来/目的/未发生】，作宾语、状语。 2. doing (现在分词/动名词)：表【主动/进行/习惯】，作伴随状语、定语。 3. done (过去分词)：表【被动/完成】，作后置定语、状语。 教授非谓语做状语时的逻辑主语一致性原则(也就是逗号前后主语必须一致)。",
         aiChatTitle: "🔪 动词庖丁解牛", aiChatIntro: "英语句子有且只能有一个真正的带头大哥(谓语)，其他小弟都要变身！",
@@ -66,7 +66,7 @@ export const grade11Content = {
 // ==================== 高三英语 ====================
 export const grade12Content = {
     'en12-l1-grammar-filling': {
-        meta: { title: "高考语法填空策略 - 高三英语 | AI7Miao英语", description: "高考语法填空题型剖析：有提示词类与无提示词类解题技巧归纳。", keywords: "语法填空,高考英语语法,解题技巧,有提示词,无提示词,高三英语" },
+        meta: { title: "高考语法填空策略 - 高三英语 | AI奇妙英语", description: "高考语法填空题型剖析：有提示词类与无提示词类解题技巧归纳。", keywords: "语法填空,高考英语语法,解题技巧,有提示词,无提示词,高三英语" },
         info: { title: "高考语法填空终极满分策略", description: "不是乱猜！一切空格皆有规律！掌握四大词性转换。🧩", tags: [{ text: "基础达标", color: "blue" }, { text: "40分钟", icon: Clock, color: "slate" }, { text: "决战高考", icon: Star, color: "rose" }] },
         aiContext: "语法填空解题黄金法则：将空分为[有提示词]与[无提示词]两类。1. 有提示词类：若是动词，判断做谓语(考时态、语态、主谓一致)还是非谓语(doing/done/todo)。若是名/形/副词，考词性转换(加后缀/前缀/比较级)。 2. 无提示词类(只填1个词)：必考介词(固定搭配)、连词(并列连词and/but，从句引导词that/which/where)、冠词(a/an/the)或代词。",
         aiChatTitle: "🧩 填词炼金术", aiChatIntro: "一篇短文，挖了十个空，你能像拼图一样精准复原吗？",
@@ -80,7 +80,7 @@ export const grade12Content = {
     },
 
     'en12-l1-writing-exam': {
-        meta: { title: "高考读后续写与应用文作文特训 - 高三英语 | AI7Miao英语", description: "高考英语两大写作题型(应用文与读后续写)的冲刺结构和高分技巧。", keywords: "高考英语作文,读后续写,语篇逻辑,微动作描写,高三英语" },
+        meta: { title: "高考读后续写与应用文作文特训 - 高三英语 | AI奇妙英语", description: "高考英语两大写作题型(应用文与读后续写)的冲刺结构和高分技巧。", keywords: "高考英语作文,读后续写,语篇逻辑,微动作描写,高三英语" },
         info: { title: "高考作文突围行动", description: "从词汇贫乏到妙笔生花，读后续写微动作怎么写？✍️", tags: [{ text: "基础达标", color: "blue" }, { text: "45分钟", icon: Clock, color: "slate" }, { text: "决战高考", icon: Star, color: "rose" }] },
         aiContext: "详细拆解新高考英语作文大杀器【读后续写(Continuation Writing)】：1. 审题：定基调(喜或悲)、定人称、定时态(绝对是过去时主导)。 2. 预测走向法：前文铺垫了什么陷阱？段首句给了什么限定词？情节闭环(正能量结局如懂得感恩，努力有回报)。 3. 加分法宝：动作描写链(V1 and V2 instead of simply saying someone is nervous)、情绪描写的高级词汇替代(sad -> heart sinking; happy -> over the moon)。",
         aiChatTitle: "✍️ 妙笔生花", aiChatIntro: "考试给了一半的故事，你要像大作家一样给它续个漂亮的尾巴！",

@@ -12,7 +12,7 @@
 
 1. 打开浏览器，访问 [https://supabase.com](https://supabase.com)
 2. 登录你的 Supabase 账号
-3. 选择你的项目（HomeworkAI 项目）
+3. 选择你的项目（AI奇妙 项目）
 
 ### 步骤 2: 打开 SQL Editor
 
