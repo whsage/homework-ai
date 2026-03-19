@@ -1,4 +1,4 @@
-import { LayoutDashboard, BookOpen, Settings, MessageSquare, BarChart3, Download, GraduationCap } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Settings, MessageSquare, BarChart3, Download, GraduationCap, Sparkles } from 'lucide-react';
 import { NavLink, Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { supabase } from '../../supabase';
@@ -92,14 +92,21 @@ const Sidebar = ({ isOpen, onClose }) => {
                 "bg-white/80 dark:bg-slate-900/90 backdrop-blur-xl border-r border-white/20 dark:border-slate-800",
                 isOpen ? "translate-x-0 shadow-2xl shadow-indigo-500/10" : "-translate-x-full"
             )}>
-                <div className="p-6 flex items-center justify-between">
+                <div className="p-6 flex items-center justify-between border-b border-white/40 dark:border-slate-800/50 mb-2">
                     <h1 className="text-2xl font-bold text-slate-800 dark:text-white flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-2xl flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/30 transform hover:scale-105 transition-transform duration-300">
-                            <span className="font-extrabold text-2xl tracking-tighter">H</span>
+                        <div className="w-11 h-11 rounded-[14px] flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/30 transform hover:scale-105 transition-transform duration-300">
+                            <Sparkles size={22} className="text-white" />
                         </div>
-                        <span className="tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-300">
-                            {t('appName')}
-                        </span>
+                        <div className="flex flex-col">
+                            <span className="text-[18px] font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-300 leading-none">
+                                {t('appName').split('-')[0] || t('appName')}
+                            </span>
+                            {t('appName').split('-')[1] && (
+                                <span className="text-[11px] font-medium text-slate-400 dark:text-slate-500 tracking-wide line-clamp-1 -mt-0.5">
+                                    {t('appName').split('-')[1]}
+                                </span>
+                            )}
+                        </div>
                     </h1>
                 </div>
 
@@ -125,7 +132,7 @@ const Sidebar = ({ isOpen, onClose }) => {
 
                     {/* Recent Activity Section */}
                     {(isLoadingSessions || recentSessions.length > 0) && (
-                        <div className="mt-8 px-2">
+                        <div className="mt-8 px-2 border-t border-slate-200/50 dark:border-slate-800/50 pt-6 mx-2">
                             <h3 className="px-2 text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-3">
                                 {t('sidebar.recent')}
                             </h3>

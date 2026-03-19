@@ -103,7 +103,7 @@ const MainLayout = () => {
     }, []);
 
     return (
-        <div className="flex h-screen bg-slate-100 dark:bg-slate-900 overflow-hidden font-sans transition-colors duration-200">
+        <div className="flex h-screen bg-[#F4F2FF] dark:bg-slate-900 overflow-hidden font-sans transition-colors duration-200">
             <Sidebar
                 isOpen={isMobileMenuOpen}
                 onClose={() => setIsMobileMenuOpen(false)}

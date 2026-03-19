@@ -344,7 +344,7 @@ const UploadZone = () => {
                 </div>
 
                 {/* 操作按钮区域 */}
-                <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center justify-between gap-3 mt-2">
                     {/* 左侧：附件按钮 */}
                     <div className="flex items-center gap-2">
                         <input
@@ -358,13 +358,13 @@ const UploadZone = () => {
                         <label
                             htmlFor="file-upload-zone"
                             className={clsx(
-                                "flex items-center gap-2 px-4 py-2 rounded-lg transition-colors cursor-pointer",
+                                "flex items-center gap-2 px-4 py-2.5 rounded-lg transition-colors cursor-pointer group hover:bg-slate-100 border border-transparent",
                                 selectedFile
                                     ? "text-indigo-600 bg-indigo-50 border border-indigo-200"
-                                    : "text-slate-600 bg-slate-100 hover:bg-slate-200 border border-slate-200"
+                                    : "text-slate-500 hover:text-slate-700"
                             )}
                         >
-                            <Paperclip size={18} />
+                            {selectedFile ? <ImageIcon size={18} /> : <Paperclip size={18} className="group-hover:scale-110 transition-transform" />}
                             <span className="text-sm font-medium">{t('uploadZone.addImage')}</span>
                         </label>
                     </div>
@@ -374,33 +374,15 @@ const UploadZone = () => {
                         type="submit"
                         disabled={(!message.trim() && !selectedFile) || isUploading}
                         className={clsx(
-                            "flex items-center gap-2 px-6 py-2 rounded-lg transition-all duration-200 font-medium",
+                            "flex items-center gap-2 px-8 py-3 rounded-xl transition-all duration-200 font-bold text-sm",
                             (message.trim() || selectedFile) && !isUploading
-                                ? "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95 shadow-md"
-                                : "bg-slate-200 text-slate-400 cursor-not-allowed"
+                                ? "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95 shadow-lg shadow-indigo-600/30 hover:shadow-indigo-600/40"
+                                : "bg-slate-100 text-slate-400 cursor-not-allowed"
                         )}
                     >
-                        <Send size={18} />
                         <span>{t('uploadZone.startChat')}</span>
+                        <Send size={16} className={clsx((message.trim() || selectedFile) && !isUploading ? "animate-pulse" : "")} />
                     </button>
-                </div>
-
-                {/* 提示文字 */}
-                <div className="mt-4 text-xs text-slate-400 text-center flex items-center justify-center gap-4">
-                    <span className="flex items-center gap-1">
-                        <Type size={14} />
-                        {t('uploadZone.tips.text')}
-                    </span>
-                    <span className="text-slate-300">|</span>
-                    <span className="flex items-center gap-1">
-                        <Paperclip size={14} />
-                        {t('uploadZone.tips.upload')}
-                    </span>
-                    <span className="text-slate-300">|</span>
-                    <span className="flex items-center gap-1">
-                        <ImageIcon size={14} />
-                        {t('uploadZone.tips.paste')}
-                    </span>
                 </div>
             </form>
 

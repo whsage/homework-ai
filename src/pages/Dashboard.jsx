@@ -27,13 +27,13 @@ const getSubjectConfig = (subject) => {
 };
 
 const StatCard = ({ icon: IconComponent, label, value, color }) => (
-    <div className="bg-white p-3 md:p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-2 md:gap-4 dark:bg-slate-800 dark:border-slate-700">
-        <div className={`w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center ${color} flex-shrink-0`}>
-            <IconComponent size={20} className="text-white md:w-6 md:h-6" />
+    <div className="bg-white p-5 md:p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-4 md:gap-5 dark:bg-slate-800 dark:border-slate-700">
+        <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center ${color} flex-shrink-0`}>
+            <IconComponent className="w-6 h-6 md:w-7 md:h-7 text-white" />
         </div>
-        <div className="text-center md:text-left">
-            <p className="text-slate-500 dark:text-slate-400 text-xs md:text-sm font-medium">{label}</p>
-            <p className="text-lg md:text-2xl font-bold text-slate-800 dark:text-white">{value}</p>
+        <div className="text-center md:text-left flex-1 min-w-0">
+            <p className="text-slate-500 dark:text-slate-400 text-xs md:text-sm font-medium mb-0.5">{label}</p>
+            <p className="text-2xl md:text-[32px] md:leading-tight font-extrabold text-slate-800 dark:text-white">{value}</p>
         </div>
     </div>
 );
@@ -242,20 +242,20 @@ const Dashboard = () => {
                     <div className="bg-white dark:bg-slate-800 rounded-xl p-6">
                         <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-6 text-center">{t('faq.howTo.title')}</h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div className="text-center">
-                                <div className="w-16 h-16 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-2xl font-bold mx-auto mb-4">1</div>
-                                <h4 className="font-semibold text-slate-800 dark:text-white mb-2">{t('faq.howTo.step1Title')}</h4>
-                                <p className="text-sm text-slate-600 dark:text-slate-400">{t('faq.howTo.step1Desc')}</p>
+                            <div className="text-center px-2">
+                                <div className="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-sm font-bold mx-auto mb-3">1</div>
+                                <h4 className="font-semibold text-slate-800 dark:text-slate-100 mb-1.5">{t('faq.howTo.step1Title')}</h4>
+                                <p className="text-sm text-slate-700 dark:text-slate-300">{t('faq.howTo.step1Desc')}</p>
                             </div>
-                            <div className="text-center">
-                                <div className="w-16 h-16 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 flex items-center justify-center text-2xl font-bold mx-auto mb-4">2</div>
-                                <h4 className="font-semibold text-slate-800 dark:text-white mb-2">{t('faq.howTo.step2Title')}</h4>
-                                <p className="text-sm text-slate-600 dark:text-slate-400">{t('faq.howTo.step2Desc')}</p>
+                            <div className="text-center px-2">
+                                <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/60 text-blue-600 dark:text-blue-400 flex items-center justify-center text-sm font-bold mx-auto mb-3">2</div>
+                                <h4 className="font-semibold text-slate-800 dark:text-slate-100 mb-1.5">{t('faq.howTo.step2Title')}</h4>
+                                <p className="text-sm text-slate-700 dark:text-slate-300">{t('faq.howTo.step2Desc')}</p>
                             </div>
-                            <div className="text-center">
-                                <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl font-bold mx-auto mb-4">3</div>
-                                <h4 className="font-semibold text-slate-800 dark:text-white mb-2">{t('faq.howTo.step3Title')}</h4>
-                                <p className="text-sm text-slate-600 dark:text-slate-400">{t('faq.howTo.step3Desc')}</p>
+                            <div className="text-center px-2">
+                                <div className="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-sm font-bold mx-auto mb-3">3</div>
+                                <h4 className="font-semibold text-slate-800 dark:text-slate-100 mb-1.5">{t('faq.howTo.step3Title')}</h4>
+                                <p className="text-sm text-slate-700 dark:text-slate-300">{t('faq.howTo.step3Desc')}</p>
                             </div>
                         </div>
                         <div className="text-center mt-6">
@@ -271,7 +271,12 @@ const Dashboard = () => {
 
                 {/* Recent Activity Section */}
                 <section>
-                    <h2 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">{t('dashboard.recentActivity')}</h2>
+                    <div className="flex items-center justify-between mb-4">
+                        <h2 className="text-lg font-semibold text-slate-800 dark:text-white">{t('dashboard.recentActivity')}</h2>
+                        <Link to="/history" className="text-sm font-medium text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 flex items-center">
+                            {t('dashboard.viewAll')} <span className="ml-1">&rarr;</span>
+                        </Link>
+                    </div>
                     <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
                         {isLoading ? (
                             // Loading skeleton
@@ -303,9 +308,9 @@ const Dashboard = () => {
                                             <p className="text-xs text-slate-500 dark:text-slate-400">{timeAgo(session.created_at)} • {getSubjectConfig(session.subject || 'General').name}</p>
                                         </div>
                                     </div>
-                                    <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 whitespace-nowrap ml-2">
-                                        {t('dashboard.viewAll')}
-                                    </span>
+                                    <div className="text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-1">
+                                        &rarr;
+                                    </div>
                                 </Link>
                             ))
                         ) : (
