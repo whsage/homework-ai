@@ -419,11 +419,11 @@ const Statistics = () => {
 
                         {/* 右侧：成就系统 */}
                         <div className="space-y-6">
-                            {/* 成就徽章 */}
-                            <div className="bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-2xl shadow-lg p-6 border-2 border-yellow-200 dark:border-yellow-700">
+                            {/* 作业成就徽章 */}
+                            <div className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 rounded-2xl shadow-lg p-6 border-2 border-indigo-200 dark:border-indigo-700">
                                 <div className="flex items-center gap-2 mb-6">
-                                    <Award className="text-yellow-600 dark:text-yellow-500" size={24} />
-                                    <h2 className="text-xl font-bold text-slate-800 dark:text-white">{t('statistics.achievements')}</h2>
+                                    <Award className="text-indigo-600 dark:text-indigo-500" size={24} />
+                                    <h2 className="text-xl font-bold text-slate-800 dark:text-white">作业成就徽章</h2>
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-4">

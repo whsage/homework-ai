@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { supabase } from '../supabase';
 
 /**
  * RewardContext - 游戏化奖励系统
@@ -100,15 +101,94 @@ export const RewardProvider = ({ children }) => {
     });
 
     const [pendingNotifications, setPendingNotifications] = useState([]);
+    const [user, setUser] = useState(null);
+    const [hasLoadedRemote, setHasLoadedRemote] = useState(false);
 
-    // Persist to localStorage
+    // Initial auth listen and load from supabase
+    useEffect(() => {
+        let isMounted = true;
+        
+        const loadRemoteRewards = async (userId) => {
+            try {
+                const { data } = await supabase
+                    .from('user_settings')
+                    .select('settings')
+                    .eq('user_id', userId)
+                    .single();
+                    
+                if (data?.settings?.rewards && isMounted) {
+                    setState(prev => {
+                        // Merge remote with local. If remote has more stars, assume it's newer/better.
+                        if (data.settings.rewards.totalStars >= prev.totalStars) {
+                            return { ...DEFAULT_STATE, ...data.settings.rewards };
+                        }
+                        return prev;
+                    });
+                }
+            } catch (err) {
+                // Ignore PGRST116 (no rows)
+            }
+            if (isMounted) setHasLoadedRemote(true);
+        };
+
+        const checkAuth = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session?.user) {
+                if (isMounted) setUser(session.user);
+                await loadRemoteRewards(session.user.id);
+            } else {
+                if (isMounted) setHasLoadedRemote(true);
+            }
+        };
+        
+        checkAuth();
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            if (session?.user) {
+                if (isMounted) setUser(session.user);
+                setHasLoadedRemote(false);
+                loadRemoteRewards(session.user.id);
+            } else {
+                if (isMounted) {
+                    setUser(null);
+                    setHasLoadedRemote(true);
+                }
+            }
+        });
+
+        return () => {
+            isMounted = false;
+            subscription.unsubscribe();
+        };
+    }, []);
+
+    // Persist to localStorage and Supabase
     useEffect(() => {
         try {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            
+            if (user && hasLoadedRemote) {
+                const saveToRemote = async () => {
+                    try {
+                        const { data } = await supabase.from('user_settings').select('settings').eq('user_id', user.id).single();
+                        const currentSettings = data?.settings || {};
+                        await supabase.from('user_settings').upsert({
+                            user_id: user.id,
+                            settings: { ...currentSettings, rewards: state }
+                        }, { onConflict: 'user_id', ignoreDuplicates: false });
+                    } catch (err) {
+                        console.warn('Failed to sync rewards to supabase', err);
+                    }
+                };
+                
+                // Debounce to prevent too many requests
+                const timer = setTimeout(saveToRemote, 2000);
+                return () => clearTimeout(timer);
+            }
         } catch (e) {
             console.warn('Failed to save rewards:', e);
         }
-    }, [state]);
+    }, [state, user, hasLoadedRemote]);
 
     const queueNotification = useCallback((notification) => {
         setPendingNotifications(prev => [...prev, { ...notification, id: Date.now() + Math.random() }]);

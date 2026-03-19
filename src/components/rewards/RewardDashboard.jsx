@@ -73,7 +73,7 @@ const RewardDashboard = () => {
                     {/* Achievements */}
                     <div>
                         <h4 className="text-sm font-bold text-slate-600 dark:text-slate-400 mb-3 flex items-center gap-2">
-                            <Trophy className="w-4 h-4" /> 成就徽章
+                            <Trophy className="w-4 h-4" /> 闯关成就徽章
                         </h4>
                         <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
                             {achievements.map(a => {
