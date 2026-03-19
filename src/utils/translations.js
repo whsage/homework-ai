@@ -1,7 +1,7 @@
 export const translations = {
     zh: {
         // App Name
-        appName: "AI奇妙-学习辅导平台",
+        appName: "AI奇妙-一起发现解题的奇妙",
 
         // Navigation
         nav: {
@@ -381,7 +381,7 @@ export const translations = {
     },
     en: {
         // App Name
-        appName: "AI7Miao-Smart Learning Hub",
+        appName: "AI7Miao-Discover the Magic of Learning",
 
         // Navigation
         nav: {
