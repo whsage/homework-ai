@@ -381,7 +381,7 @@ export const translations = {
     },
     en: {
         // App Name
-        appName: "AI奇妙-学习辅导平台",
+        appName: "AI7Miao-Smart Learning Hub",
 
         // Navigation
         nav: {

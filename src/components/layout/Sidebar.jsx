@@ -97,7 +97,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                         <div className="w-11 h-11 rounded-[14px] flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/30 transform hover:scale-105 transition-transform duration-300">
                             <Sparkles size={22} className="text-white" />
                         </div>
-                        <div className="flex flex-col">
+                        <div className="flex flex-col translate-y-[2px]">
                             <span className="text-[18px] font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-300 leading-none">
                                 {t('appName').split('-')[0] || t('appName')}
                             </span>
