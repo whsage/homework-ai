@@ -31,8 +31,25 @@ const UploadZone = () => {
         try {
             const { data: { user } } = await supabase.auth.getUser();
             if (!user) {
-                alert(t('uploadZone.loginRequired'));
-                navigate('/login');
+                // 游客体验额度检查 (与知识点学习模块共享额度)
+                const count = parseInt(localStorage.getItem('guest_chat_count') || '0', 10);
+                if (count >= 3) {
+                    navigate('/register');
+                    return;
+                }
+
+                // 创建临时本地会话并跳转 (使用 ObjectURL 避免 sessionStorage 撑爆)
+                let blobUrl = '';
+                if (selectedFile) {
+                    blobUrl = URL.createObjectURL(selectedFile);
+                }
+                sessionStorage.setItem('guest_session_img', blobUrl);
+                sessionStorage.setItem('guest_session_text', message.trim() || t('chat.defaultQuestion'));
+                
+                setUploadProgress(t('uploadZone.redirecting'));
+                setTimeout(() => {
+                    navigate('/homework/guest');
+                }, 300);
                 return;
             }
 

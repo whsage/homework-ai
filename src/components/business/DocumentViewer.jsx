@@ -21,6 +21,18 @@ const DocumentViewer = () => {
                 setIsLoading(false);
                 return;
             }
+
+            if (sessionId === 'guest') {
+                const img = sessionStorage.getItem('guest_session_img');
+                const txt = sessionStorage.getItem('guest_session_text');
+                if (img) setImageUrl(img);
+                if (txt) setTextContent(txt);
+                setSessionTitle('游客体验会话');
+                setSessionNumber('');
+                setIsLoading(false);
+                return;
+            }
+
             const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
             if (!uuidRegex.test(sessionId)) {
                 setIsLoading(false);

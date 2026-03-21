@@ -18,6 +18,7 @@ import SmartPracticeSession from './SmartPracticeSession'; // 导入练习组件
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import { Link } from 'react-router-dom';
 import 'katex/dist/katex.min.css'; // KaTeX样式
 
 // 错误边界组件
@@ -70,6 +71,7 @@ const SmartChatContent = ({ topicId, topicName, onClose, initialContext }) => {
     const [initializing, setInitializing] = useState(true);
     const [diagnosis, setDiagnosis] = useState(null); // 新增: 诊断信息
     const [showProgress, setShowProgress] = useState(false); // 修改: 默认隐藏进度
+    const [guestChatCount, setGuestChatCount] = useState(() => parseInt(localStorage.getItem('guest_chat_count') || '0', 10)); // 新增: 会话记录
     const chatContainerRef = useRef(null);
     const inputRef = useRef(null);
 
@@ -168,9 +170,21 @@ const SmartChatContent = ({ topicId, topicName, onClose, initialContext }) => {
     const handleSend = async () => {
         if (!input.trim() || loading) return;
 
+        // 如果未登录且次数达到上限，阻止发送
+        if ((!user || !user.id) && guestChatCount >= 3) {
+            return;
+        }
+
         const userMessage = input.trim();
         setInput('');
         setLoading(true);
+
+        // 如果未登录，增加会话计数
+        if (!user || !user.id) {
+            const newCount = guestChatCount + 1;
+            setGuestChatCount(newCount);
+            localStorage.setItem('guest_chat_count', newCount.toString());
+        }
 
         // 添加用户消息
         const newUserMsg = {
@@ -394,62 +408,75 @@ const SmartChatContent = ({ topicId, topicName, onClose, initialContext }) => {
                 )}
             </div>
 
-            {/* 输入框 */}
-            <div className="smart-chat-input">
-                {/* 快捷按钮 */}
-                <div className="flex gap-2 mb-3">
-                    <button
-                        onClick={() => setInput('请给我一个例子')}
-                        disabled={loading}
-                        className="flex-1 px-3 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-lg text-sm font-medium hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                    >
-                        <Calculator className="w-4 h-4" />
-                        示例
-                    </button>
-                    <button
-                        onClick={() => setInput('我想做练习题')}
-                        disabled={loading}
-                        className="flex-1 px-3 py-2 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 rounded-lg text-sm font-medium hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                    >
-                        <PenTool className="w-4 h-4" />
-                        练习题
-                    </button>
-                    <button
-                        onClick={() => setInput('请重新讲解一遍')}
-                        disabled={loading}
-                        className="flex-1 px-3 py-2 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded-lg text-sm font-medium hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                    >
-                        <MessageCircle className="w-4 h-4" />
-                        重新讲解
-                    </button>
+            {/* 输入框或注册提示 */}
+            {(!user || !user.id) && guestChatCount >= 3 ? (
+                <div className="smart-chat-input bg-gradient-to-r from-indigo-50 to-purple-50 p-6 text-center border-t border-indigo-100 rounded-b-2xl">
+                    <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-sm text-indigo-600">
+                        <Sparkles className="w-6 h-6" />
+                    </div>
+                    <h4 className="text-lg font-bold text-indigo-900 mb-2">免费体验次数已达上限</h4>
+                    <p className="text-indigo-700 text-sm mb-5">您已经体验了 AI 导师的奇妙辅导！免费注册账号，即可解锁无限对话、诊断学习情况并为您永久保存进度。</p>
+                    <Link to="/register" className="inline-block px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105">
+                        免费体验完整功能
+                    </Link>
                 </div>
+            ) : (
+                <div className="smart-chat-input">
+                    {/* 快捷按钮 */}
+                    <div className="flex gap-2 mb-3">
+                        <button
+                            onClick={() => setInput('请给我一个例子')}
+                            disabled={loading}
+                            className="flex-1 px-3 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-lg text-sm font-medium hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                        >
+                            <Calculator className="w-4 h-4" />
+                            示例
+                        </button>
+                        <button
+                            onClick={() => setInput('我想做练习题')}
+                            disabled={loading}
+                            className="flex-1 px-3 py-2 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 rounded-lg text-sm font-medium hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                        >
+                            <PenTool className="w-4 h-4" />
+                            练习题
+                        </button>
+                        <button
+                            onClick={() => setInput('请重新讲解一遍')}
+                            disabled={loading}
+                            className="flex-1 px-3 py-2 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded-lg text-sm font-medium hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                        >
+                            <MessageCircle className="w-4 h-4" />
+                            重新讲解
+                        </button>
+                    </div>
 
-                <div className="flex items-end gap-2">
-                    <textarea
-                        ref={inputRef}
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                        onKeyPress={handleKeyPress}
-                        placeholder="输入你的问题..."
-                        className="flex-1 resize-none rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 px-4 py-3 text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                        rows="1"
-                        style={{ maxHeight: '120px' }}
-                        disabled={loading}
-                    />
-                    <button
-                        onClick={handleSend}
-                        disabled={!input.trim() || loading}
-                        className="px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                    >
-                        <Send className="w-5 h-5" />
-                    </button>
+                    <div className="flex items-end gap-2">
+                        <textarea
+                            ref={inputRef}
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            onKeyPress={handleKeyPress}
+                            placeholder="输入你的问题..."
+                            className="flex-1 resize-none rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 px-4 py-3 text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            rows="1"
+                            style={{ maxHeight: '120px' }}
+                            disabled={loading}
+                        />
+                        <button
+                            onClick={handleSend}
+                            disabled={!input.trim() || loading}
+                            className="px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                        >
+                            <Send className="w-5 h-5" />
+                        </button>
+                    </div>
+
+                    <p className="text-xs text-slate-400 dark:text-slate-500 mt-2 flex items-center gap-1">
+                        <Sparkles className="w-3 h-3" />
+                        AI会根据你的水平个性化讲解 {!user && guestChatCount < 3 && <span className="text-indigo-500 ml-1">(游客还有 {3 - guestChatCount} 次免费体验)</span>}
+                    </p>
                 </div>
-
-                <p className="text-xs text-slate-400 dark:text-slate-500 mt-2 flex items-center gap-1">
-                    <Sparkles className="w-3 h-3" />
-                    AI会根据你的水平个性化讲解
-                </p>
-            </div>
+            )}
         </div>
     );
 };

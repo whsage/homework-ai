@@ -1,5 +1,5 @@
 import UploadZone from '../components/business/UploadZone';
-import { Clock, CheckCircle2, TrendingUp } from 'lucide-react';
+import { Clock, CheckCircle2, TrendingUp, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { supabase } from '../supabase';
@@ -39,7 +39,7 @@ const StatCard = ({ icon: IconComponent, label, value, color }) => (
 );
 
 const Dashboard = () => {
-    const { settings } = useUser();
+    const { user, settings } = useUser();
     const { t } = useLanguage();
     const [stats, setStats] = useState({
         completedTasks: 0,
@@ -132,61 +132,84 @@ const Dashboard = () => {
             </Helmet>
 
             <div className="space-y-8 p-6 md:p-8">
-                {/* Welcome Section */}
-                <div>
-                    <h1 className="text-2xl font-bold text-slate-800 dark:text-white flex items-center gap-2 h-9">
-                        {isLoading ? (
-                            <>
-                                {t('common.loading')}
-                            </>
-                        ) : (
-                            t('dashboard.welcome', { name: nickname || t('common.student') })
-                        )}
-                    </h1>
-                    <p className="text-slate-500 dark:text-slate-400 mt-1 mb-6">{t('dashboard.startLearning')}</p>
-                    <DailyQuote />
-                </div>
-
-                {/* Stats Grid */}
-                <div className="grid grid-cols-3 gap-3 md:gap-6">
-                    {isLoading ? (
-                        // Stats Loading Skeleton
-                        [1, 2, 3].map((i) => (
-                            <div key={i} className="bg-white p-3 md:p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-2 md:gap-4 animate-pulse">
-                                <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-slate-200 flex-shrink-0" />
-                                <div className="flex-1 w-full space-y-2">
-                                    <div className="h-3 bg-slate-200 rounded w-1/2 mx-auto md:mx-0" />
-                                    <div className="h-6 bg-slate-200 rounded w-3/4 mx-auto md:mx-0" />
-                                </div>
+                {/* Welcome & Stats Section */}
+                {!user ? (
+                    <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl p-8 md:p-12 text-white shadow-xl relative overflow-hidden mb-8">
+                        <div className="relative z-10 md:w-2/3">
+                            <h1 className="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">探索 AI 智能辅导的奇妙世界</h1>
+                            <p className="text-lg md:text-xl text-indigo-100 mb-8 leading-relaxed">基于教育心理学的专业全科辅导，提供精准学情诊断、启发式引导。免费注册，永久保存您的学习报告与专属错题本。</p>
+                            <div className="flex flex-wrap gap-4">
+                                <Link to="/register" className="px-8 py-4 bg-white text-indigo-600 font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all text-lg flex items-center gap-2">
+                                    免费注册账号
+                                </Link>
+                                <Link to="/subjects" className="px-8 py-4 bg-indigo-700/50 backdrop-blur-sm border border-indigo-400/30 text-white font-medium rounded-xl hover:bg-indigo-700/70 transition-all text-lg">
+                                    先去体验课程
+                                </Link>
                             </div>
-                        ))
-                    ) : (
-                        <>
-                            <StatCard
-                                icon={CheckCircle2}
-                                label={t('faq.statCard.completedTasks')}
-                                value={stats.completedTasks}
-                                color="bg-emerald-500"
-                            />
-                            <StatCard
-                                icon={Clock}
-                                label={t('faq.statCard.studyHours')}
-                                value={`${stats.studyHours}h`}
-                                color="bg-blue-500"
-                            />
-                            <StatCard
-                                icon={TrendingUp}
-                                label={t('faq.statCard.activeDays')}
-                                value={`${stats.streak}d`}
-                                color="bg-orange-500"
-                            />
-                        </>
-                    )}
-                </div>
+                        </div>
+                        {/* 装饰元素 */}
+                        <div className="absolute right-0 top-0 w-1/3 h-full hidden md:flex items-center justify-center opacity-20 pointer-events-none">
+                            <Sparkles className="w-64 h-64" />
+                        </div>
+                    </div>
+                ) : (
+                    <>
+                        {/* Welcome Section */}
+                        <div>
+                            <h1 className="text-2xl font-bold text-slate-800 dark:text-white flex items-center gap-2 h-9">
+                                {isLoading ? (
+                                    <>
+                                        {t('common.loading')}
+                                    </>
+                                ) : (
+                                    t('dashboard.welcome', { name: nickname || t('common.student') })
+                                )}
+                            </h1>
+                            <p className="text-slate-500 dark:text-slate-400 mt-1 mb-6">{t('dashboard.startLearning')}</p>
+                            <DailyQuote />
+                        </div>
 
+                        {/* Stats Grid */}
+                        <div className="grid grid-cols-3 gap-3 md:gap-6 mb-8">
+                            {isLoading ? (
+                                // Stats Loading Skeleton
+                                [1, 2, 3].map((i) => (
+                                    <div key={i} className="bg-white p-3 md:p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-2 md:gap-4 animate-pulse">
+                                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-slate-200 flex-shrink-0" />
+                                        <div className="flex-1 w-full space-y-2">
+                                            <div className="h-3 bg-slate-200 rounded w-1/2 mx-auto md:mx-0" />
+                                            <div className="h-6 bg-slate-200 rounded w-3/4 mx-auto md:mx-0" />
+                                        </div>
+                                    </div>
+                                ))
+                            ) : (
+                                <>
+                                    <StatCard
+                                        icon={CheckCircle2}
+                                        label={t('faq.statCard.completedTasks')}
+                                        value={stats.completedTasks}
+                                        color="bg-emerald-500"
+                                    />
+                                    <StatCard
+                                        icon={Clock}
+                                        label={t('faq.statCard.studyHours')}
+                                        value={`${stats.studyHours}h`}
+                                        color="bg-blue-500"
+                                    />
+                                    <StatCard
+                                        icon={TrendingUp}
+                                        label={t('faq.statCard.activeDays')}
+                                        value={`${stats.streak}d`}
+                                        color="bg-orange-500"
+                                    />
+                                </>
+                            )}
+                        </div>
+                    </>
+                )}
 
-                {/* Main Upload Area */}
-                <section>
+                {/* Main Upload Area - Visible to all users */}
+                <section className="mb-8">
                     <div className="flex items-center justify-between mb-4">
                         <h2 className="text-lg font-semibold text-slate-800 dark:text-white">{t('dashboard.newSession')}</h2>
                     </div>

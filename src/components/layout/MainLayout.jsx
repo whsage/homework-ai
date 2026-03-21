@@ -1,13 +1,15 @@
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, Link } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import { useState, useEffect, useRef } from 'react';
 import { supabase } from '../../supabase';
+import { useUser } from '../../context/UserContext';
 
 const MainLayout = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { pathname } = useLocation();
     const mainRef = useRef(null);
+    const { user, loading } = useUser();
 
     // 路由切换时自动滚动到顶部
     useEffect(() => {
@@ -111,6 +113,17 @@ const MainLayout = () => {
 
             <div className="flex-1 flex flex-col h-full overflow-hidden">
                 <Header onMenuClick={() => setIsMobileMenuOpen(true)} />
+                
+                {/* 游客提示横幅 */}
+                {!loading && !user && (
+                    <div className="bg-indigo-600 px-4 py-2 text-white text-sm text-center flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 shadow-md z-30 relative flex-shrink-0 animate-fadeIn">
+                        <span>💡 正在体验游客模式，您的测验记录和AI对话将不会被保存。</span>
+                        <Link to="/register" className="inline-block px-3 py-1 bg-white text-indigo-700 text-xs font-bold rounded shadow-sm hover:bg-slate-50 transition-colors whitespace-nowrap">
+                            免费注册保存进度 👉
+                        </Link>
+                    </div>
+                )}
+
                 <main ref={mainRef} className="flex-1 overflow-y-auto scroll-smooth">
                     <Outlet />
                 </main>

@@ -1,34 +1,4 @@
-# robots.txt for ai7miao.com
-# AI奇妙 - AI学习辅导平台
-
-# Allow all search engines to crawl
 User-agent: *
 Allow: /
 
-# Disallow paths (if any)
-# Disallow: /api/
-# Disallow: /admin/
-
-# Sitemap location
 Sitemap: https://ai7miao.com/sitemap.xml
-Sitemap: https://www.ai7miao.com/sitemap.xml
-Sitemap: https://homework-ai.pages.dev/sitemap.xml
-
-# Crawl delay (optional)
-# Crawl-delay: 1
-
-# Specific search engine settings
-User-agent: Googlebot
-Allow: /
-
-User-agent: Baiduspider
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Sogou spider
-Allow: /
-
-User-agent: 360Spider
-Allow: /

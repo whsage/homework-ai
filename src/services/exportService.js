@@ -1,5 +1,4 @@
 import { supabase } from '../supabase';
-import { Document, Paragraph, TextRun, ImageRun, HeadingLevel, AlignmentType, Packer } from 'docx';
 
 /**
  * 导出服务 - 处理作业会话的批量导出
@@ -264,6 +263,9 @@ const fetchImageAsArrayBuffer = async (url) => {
  * 导出单个会话为 Word 格式
  */
 export const exportSessionAsWord = async (session) => {
+    // 动态引入 docx，减小初始包体积
+    const { Document, Paragraph, TextRun, ImageRun, HeadingLevel, AlignmentType, Packer } = await import('docx');
+
     const messages = await getSessionMessages(session.id);
 
     // 创建文档段落数组

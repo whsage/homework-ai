@@ -1,6 +1,6 @@
-﻿import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ChatInput from './ChatInput';
-import { Bot, User, Copy, Check, ChevronDown, ChevronUp, Image as ImageIcon } from 'lucide-react';
+import { Bot, User, Copy, Check, ChevronDown, ChevronUp, Image as ImageIcon, Sparkles } from 'lucide-react';
 import clsx from 'clsx';
 import { sendMessageToTutor } from '../../services/aiService';
 import { supabase } from '../../supabase';
@@ -9,6 +9,8 @@ import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { highlightKeywords } from '../../utils/textHighlight';
+import { useUser } from '../../context/UserContext';
+import { Link } from 'react-router-dom';
 
 // 修复常见的由 JSON 转义导致的 LaTeX 错误
 // 例如：\frac 在 JSON 中被解析为 \f (Form Feed) + rac，导致显示为 krac
@@ -82,6 +84,7 @@ const TypewriterText = ({ text, onComplete }) => {
 
 const ChatInterface = ({ sessionId: initialSessionId }) => {
     const { t } = useLanguage();
+    const { user } = useUser();
     const [messages, setMessages] = useState([
         { id: 1, type: 'ai', text: t('chat.welcome'), timestamp: new Date(), isTypingDone: true }
     ]);
@@ -91,6 +94,7 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
     const [sessionId, setSessionId] = useState(initialSessionId);
     const autoAnalysisTriggeredRef = useRef(false); // 防止重复触发
     const [collapsedMessages, setCollapsedMessages] = useState(new Set()); // 折叠的消息ID集合
+    const [guestChatCount, setGuestChatCount] = useState(() => parseInt(localStorage.getItem('guest_chat_count') || '0', 10));
 
     // Update sessionId when prop changes (navigation)
     useEffect(() => {
@@ -103,6 +107,39 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
         const loadHistory = async () => {
             const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
             if (!sessionId || !uuidRegex.test(sessionId)) {
+                if (sessionId === 'guest') {
+                    if (!autoAnalysisTriggeredRef.current) {
+                        const txt = sessionStorage.getItem('guest_session_text') || '我想解答这道题';
+                        const img = sessionStorage.getItem('guest_session_img');
+                        const welcomeMessage = {
+                            id: 'welcome',
+                            type: 'ai',
+                            text: t('chat.welcome'),
+                            timestamp: new Date(Date.now() - 1000),
+                            isTypingDone: true
+                        };
+                        const userMsg = {
+                            id: 'guest-msg-1',
+                            type: 'user',
+                            text: txt,
+                            timestamp: new Date(),
+                            isTypingDone: true,
+                            imageUrl: img || null
+                        };
+                        setMessages([welcomeMessage, userMsg]);
+                        autoAnalysisTriggeredRef.current = true;
+                        
+                        const stubMessage = {
+                            id: 'guest-msg-1',
+                            role: 'user',
+                            content: txt,
+                            image_url: img || null
+                        };
+                        triggerAutoAnalysis(stubMessage, false);
+                    }
+                    return;
+                }
+
                 // Reset to default if not a valid session (e.g. '102') or empty
                 if (!initialSessionId) {
                     setMessages([{ id: 1, type: 'ai', text: t('chat.welcome'), timestamp: new Date(), isTypingDone: true }]);
@@ -280,6 +317,14 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
         }
         addMessage(userMessage, 'user', false, imageUrl);
 
+        if (sessionId === 'guest' || (!user || !user.id)) {
+            const count = parseInt(localStorage.getItem('guest_chat_count') || '0', 10);
+            if (count >= 3 && (!user || !user.id)) return;
+            const newCount = count + 1;
+            localStorage.setItem('guest_chat_count', newCount.toString());
+            setGuestChatCount(newCount);
+        }
+
         setIsTyping(true);
         setStatus(file ? t('chat.recognizing') : t('chat.analyzingQuestion'));
 
@@ -430,7 +475,20 @@ const ChatInterface = ({ sessionId: initialSessionId }) => {
                 <div ref={messagesEndRef} />
             </div>
 
-            <ChatInput onSend={handleSendMessage} disabled={isTyping} />
+            {(!user || !user.id) && guestChatCount >= 3 ? (
+                <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 text-center border-t border-indigo-100 rounded-b-2xl shrink-0">
+                    <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-sm text-indigo-600">
+                        <Sparkles className="w-6 h-6" />
+                    </div>
+                    <h4 className="text-lg font-bold text-indigo-900 mb-2">免费体验次数已达上限</h4>
+                    <p className="text-indigo-700 text-sm mb-5">您已经体验了 AI 导师的奇妙辅导！免费注册账号，即可解锁无限对话、诊断学习情况并为您永久保存进度。</p>
+                    <Link to="/register" className="inline-block px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105">
+                        免费体验完整功能
+                    </Link>
+                </div>
+            ) : (
+                <ChatInput onSend={handleSendMessage} disabled={isTyping} />
+            )}
         </div >
     );
 };
