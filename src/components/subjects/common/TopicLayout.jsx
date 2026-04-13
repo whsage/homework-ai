@@ -89,6 +89,24 @@ const TopicLayout = ({
                 <title>{meta.title}</title>
                 <meta name="description" content={meta.description} />
                 <meta name="keywords" content={meta.keywords} />
+                <script type="application/ld+json">{JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "LearningResource",
+                    "name": info.title,
+                    "description": meta.description,
+                    "url": `https://ai7miao.com${location.pathname}`,
+                    "educationalLevel": info.tags?.find(t => t.text?.includes('年级') || t.text?.includes('初') || t.text?.includes('高'))?.text || '中小学',
+                    "learningResourceType": "练习题 / 知识点讲解",
+                    "inLanguage": "zh-CN",
+                    "teaches": info.title,
+                    "provider": {
+                        "@type": "Organization",
+                        "name": "AI奇妙-学习辅导平台",
+                        "url": "https://ai7miao.com"
+                    },
+                    "isAccessibleForFree": true,
+                    "keywords": meta.keywords
+                })}</script>
             </Helmet>
 
             {/* Header */}

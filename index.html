@@ -46,27 +46,59 @@
   <!-- Canonical URL -->
   <link rel="canonical" href="https://ai7miao.com/" />
 
-  <!-- Structured Data (JSON-LD) -->
+  <!-- Structured Data: WebSite + EducationalOrganization + BreadcrumbList -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "name": "AI奇妙-学习辅导平台",
-    "alternateName": "AI奇妙学习辅导",
-    "url": "https://ai7miao.com",
-    "logo": "https://ai7miao.com/logo.png",
-    "description": "专业的AI智能学习辅导平台，提供数学学习辅导、物理学习辅导、化学学习辅导、英语学习辅导等全学科在线学习帮助服务。采用苏格拉底式教学方法，24小时在线学习辅导。",
-    "keywords": "学习辅导,AI学习辅导,在线学习辅导,数学学习辅导,物理学习辅导,化学学习辅导,英语学习辅导",
-    "sameAs": [],
-    "serviceType": ["学习辅导", "在线辅导", "AI教育", "学习辅导"],
-    "areaServed": "中国",
-    "availableLanguage": "Chinese",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "customer service",
-      "availableLanguage": ["Chinese"]
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "AI奇妙-学习辅导平台",
+      "url": "https://ai7miao.com",
+      "description": "专业AI智能学习辅导平台，提供数学、语文、英语全学科知识点辅导",
+      "inLanguage": "zh-CN",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://ai7miao.com/knowledge-map"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "AI奇妙-学习辅导平台",
+      "alternateName": "AI奇妙学习辅导",
+      "url": "https://ai7miao.com",
+      "logo": "https://ai7miao.com/logo.png",
+      "description": "专业的AI智能学习辅导平台，提供数学学习辅导、语文学习辅导、英语学习辅导等全学科在线学习帮助服务。涵盖小学、初中、高中200+知识点，采用苏格拉底式教学，24小时在线辅导。",
+      "keywords": "学习辅导,AI学习辅导,在线学习辅导,数学学习辅导,语文学习辅导,英语学习辅导,小学数学,初中数学,高中数学,知识点辅导",
+      "sameAs": [],
+      "serviceType": ["学习辅导", "在线辅导", "AI教育", "知识点讲解", "练习题"],
+      "areaServed": "中国",
+      "availableLanguage": "Chinese",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "知识点学习体系",
+        "itemListElement": [
+          {"@type": "Offer", "itemOffered": {"@type": "Course", "name": "小学数学辅导", "description": "一至六年级数学知识点，包括四则运算、分数、几何等"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Course", "name": "初中数学辅导", "description": "初一至初三数学，包括方程、函数、几何证明等"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Course", "name": "高中数学辅导", "description": "高一至高三数学，包括集合、三角函数、解析几何等"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Course", "name": "小学语文辅导", "description": "一至六年级语文，包括识字、阅读理解、写作等"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Course", "name": "初中语文辅导", "description": "初一至初三语文，包括文言文、写作、名著阅读等"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Course", "name": "小学英语辅导", "description": "一至六年级英语，包括字母、语法基础、阅读等"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Course", "name": "初中英语辅导", "description": "初一至初三英语，包括时态、从句、写作等"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Course", "name": "高中英语辅导", "description": "高一至高三英语，包括阅读理解、完形填空、写作等"}}
+        ]
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "availableLanguage": ["Chinese"]
+      }
     }
-  }
+  ]
   </script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"

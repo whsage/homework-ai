@@ -1,4 +1,4 @@
-import { LayoutDashboard, BookOpen, Settings, MessageSquare, BarChart3, Download, GraduationCap, Sparkles } from 'lucide-react';
+import { LayoutDashboard, BookOpen, Settings, MessageSquare, BarChart3, Download, GraduationCap, Sparkles, Map } from 'lucide-react';
 import { NavLink, Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { supabase } from '../../supabase';
@@ -72,6 +72,7 @@ const Sidebar = ({ isOpen, onClose }) => {
     const navItems = [
         { icon: LayoutDashboard, label: t('nav.home'), path: '/' },
         { icon: GraduationCap, label: language === 'zh' ? '知识点学习' : 'Subjects', path: '/subjects' },
+        { icon: Map, label: language === 'zh' ? '知识点地图' : 'Knowledge Map', path: '/knowledge-map' },
         { icon: BookOpen, label: t('nav.homework'), path: '/history' },
         { icon: BarChart3, label: t('nav.statistics'), path: '/statistics' },
         { icon: Settings, label: t('nav.settings'), path: '/settings' },
