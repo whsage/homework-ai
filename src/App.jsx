@@ -12,6 +12,7 @@ const History = lazy(() => import('./pages/History'));
 const Statistics = lazy(() => import('./pages/Statistics'));
 const Settings = lazy(() => import('./pages/Settings'));
 const FAQ = lazy(() => import('./pages/FAQ'));
+const KnowledgeMapPage = lazy(() => import('./pages/KnowledgeMapPage'));
 
 const Subjects = lazy(() => import('./pages/Subjects'));
 const MathLearning = lazy(() => import('./pages/subjects/MathLearning'));
@@ -60,6 +61,7 @@ function App() {
                   <Route path="statistics" element={<Statistics />} />
                   <Route path="settings" element={<Settings />} />
                   <Route path="faq" element={<FAQ />} />
+                  <Route path="knowledge-map" element={<KnowledgeMapPage />} />
                   <Route path="*" element={<Navigate to="/" replace />} />
                 </Route>
               </Routes>

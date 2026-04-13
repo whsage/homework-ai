@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import {
     BookOpen,
@@ -15,6 +15,26 @@ import AIChatSession from '../../../components/subjects/common/AIChatSession';
 import SmartChat from '../../../components/learning/SmartChat';
 import { englishTopicContent } from '../../../data/englishTopicContent';
 import RewardMiniCard from '../../../components/rewards/RewardMiniCard';
+import { getEnglishFlattenedTopics } from '../../../data/englishCurriculum';
+
+// 构建 topicId -> {grade, stage, name} 的查找表
+const englishTopicMeta = {};
+for (const t of getEnglishFlattenedTopics()) {
+    englishTopicMeta[t.id] = { grade: t.grade, stage: t.stage, name: t.name };
+}
+
+function buildEnglishSEOMeta(topicId, originalMeta, topicName) {
+    const info = englishTopicMeta[topicId];
+    if (!info) return originalMeta;
+    const { grade, stage } = info;
+    const gradeLabel = stage === '小学' ? grade : (stage === '初中' ? grade.replace('年级', '') : grade.replace('年级', ''));
+    const prefix = `${gradeLabel}英语`;
+    return {
+        title: `${prefix} ${topicName} - AI辅导练习 | AI奇妙`,
+        description: `AI奇妙提供${prefix}「${topicName}」知识点详解、例题分析和练习题。${prefix}重点语法AI智能辅导，24小时在线解答，让${grade}英语学习更轻松。`,
+        keywords: `${prefix},${topicName},${prefix}辅导,${prefix}练习题,${prefix}语法,${topicName}怎么学,${stage}英语辅导,AI英语辅导,${originalMeta.keywords || ''}`.replace(/,$/, '')
+    };
+}
 
 const EnglishTopicPage = () => {
     const { topicId } = useParams();
@@ -48,7 +68,13 @@ const EnglishTopicPage = () => {
         return <Navigate to="/subjects/english" replace />;
     }
 
-    const { meta, info, tabs, aiChatTitle, aiChatIntro, aiMessages, aiContext: defaultAiContext } = topicData;
+    const { meta: rawMeta, info, tabs, aiChatTitle, aiChatIntro, aiMessages, aiContext: defaultAiContext } = topicData;
+
+    // 动态增强 SEO meta（含年级关键词）
+    const meta = useMemo(
+        () => buildEnglishSEOMeta(topicId, rawMeta, info.title),
+        [topicId, rawMeta, info.title]
+    );
 
     const handleStartAIChat = (context) => {
         setAiContext(context || defaultAiContext);
