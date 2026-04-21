@@ -4,6 +4,8 @@
     "devCommand": "npm run dev",
     "installCommand": "npm install",
     "framework": "vite",
+    "trailingSlash": false,
+    "cleanUrls": true,
     "rewrites": [
         {
             "source": "/(.*)",
