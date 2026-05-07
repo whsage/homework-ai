@@ -32,7 +32,8 @@ const Subjects = () => {
         <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
             <Helmet>
                 <title>知识点学习中心 - 科学的学习体系 | AI奇妙</title>
-                <meta name="description" content="AI奇妙知识点学习中心，提供数学、物理、英语等全学科的系统化AI辅导。" />
+                <meta name="description" content="AI奇妙全学科知识点学习中心，涵盖数学、语文、英语小学到高中全学段，共200+知识点。采用苏格拉底式引导教学，不直接给答案，通过AI智能对话帮助学生真正理解知识，24小时在线辅导。" />
+                <meta name="keywords" content="知识点学习,全学科辅导,数学知识点,英语知识点,语文知识点,AI学习辅导,在线学习,苏格拉底教学,小学辅导,初中辅导,高中辅导" />
             </Helmet>
 
             <div className="max-w-6xl mx-auto p-6 md:p-8 space-y-12">

@@ -279,7 +279,7 @@ const MathLearning = () => {
         <>
             <Helmet>
                 <title>数学学习中心 - 知识点与学习辅导 | AI奇妙</title>
-                <meta name="description" content="全方位的数学学习平台，提供从小学到大学的系统化知识点学习和专业的AI学习辅导。代数、几何、微积分全覆盖，苏格拉底式教学引导。" />
+                <meta name="description" content="AI奇妙数学学习中心，涵盖小学一年级到高三全学段100+数学知识点，包括代数、几何、函数、微积分。采用苏格拉底式AI引导教学，不直接给答案，配套例题和练习，帮助学生真正掌握数学思维，24小时在线辅导。" />
                 <meta name="keywords" content="数学学习,数学辅导,数学作业,数学知识点,代数,几何,微积分,在线辅导,AI教学" />
             </Helmet>
 
